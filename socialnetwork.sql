@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 15 Νοε 2021 στις 09:23:37
+-- Χρόνος δημιουργίας: 15 Νοε 2021 στις 12:06:45
 -- Έκδοση διακομιστή: 10.4.21-MariaDB
 -- Έκδοση PHP: 8.0.12
 
@@ -129,7 +129,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `fullname`, `bio`, `avatar`, `type`, `status`, `followers`, `following`, `auth_key`) VALUES
 (1, 'nikos', 'Nikos Antoniadis', 'Καλημέρα κόσμε!', NULL, 1, 1, 0, 0, '6a8ywu9xh3uxgie9vla6b9bcwab5qm50'),
-(2, 'george', 'Giorgos Pavlou', 'Καλημέρα κόσμε!', NULL, 1, 1, 0, 0, NULL),
 (7, 'gregoris', 'Gregoris Bachtsevanos', NULL, NULL, 1, 1, 0, 0, NULL),
 (11, 'jason', 'jason born', NULL, NULL, 1, 1, 0, 0, NULL);
 
