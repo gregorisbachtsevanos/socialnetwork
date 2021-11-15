@@ -59,7 +59,7 @@ include "includes/navigationbar.php";
 				<div id="comments-container" class="hide-comments">
 					<div id="comment-info">
 						
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
+						<p>Lorems ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
 					</div>
 				</div>
 				
