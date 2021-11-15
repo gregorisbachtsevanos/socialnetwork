@@ -5,7 +5,7 @@
 // }
 
 const homepage = "http://localhost/socialnetwork/public/homepage.php";
-// const homepage = "http://localhost/socialnetwork/public/homepage.php";
+const index = "http://localhost/socialnetwork/public/index.php";
 if(window.location.href == homepage){
 
     document.querySelector(".fa-comment").addEventListener("click", () => {

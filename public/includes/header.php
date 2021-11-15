@@ -1,10 +1,11 @@
 <?php
 	session_start();
-	require_once "../app/model/settings.php";
+	// require_once "..//app/model/settings.php";
+	include_once "../app/model/settings.php";
 
 	if(isset($_GET["logout"])){
 		unset($_SESSION["user"]);
-		header("Location: index.php");
+		header("Location: ../public/index.php");
 	}
 	
 ?>
