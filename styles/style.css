@@ -224,7 +224,7 @@ input[type="submit"]:hover {
           justify-content: space-between;
 }
 
-#feed-container #feed-controler #feed #comments-container {
+#feed-container #feed-controler #comments-container {
   width: 90%;
   margin: auto;
   border: 1px solid #b4b4b4;
@@ -233,7 +233,7 @@ input[type="submit"]:hover {
   background-color: rgba(30, 31, 32, 0.5);
 }
 
-#feed-container #feed-controler #feed .hide-comments {
+#feed-container #feed-controler .hide-comments {
   display: none;
 }
 

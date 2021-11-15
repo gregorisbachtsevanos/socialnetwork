@@ -1,5 +1,5 @@
 <?php
-    require "../public/header.php";
+    require "../public/includes/header.php";
     if(isset($_POST["submit"])){
         if(empty($_POST["new-feed"])){
             exit();

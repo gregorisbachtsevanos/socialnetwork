@@ -153,21 +153,22 @@
                     display: flex;
                     justify-content: space-between;
                 }
-            }
+            }        
+            
+        }
 
-            #comments-container {
-                width: 90%;
-                margin: auto;
-                border: 1px solid #b4b4b4;
-                border-radius: 10px;
-                padding: 1%;
-                background-color: rgba(30, 31, 32, .5);
+        #comments-container {
+            width: 90%;
+            margin: auto;
+            border: 1px solid #b4b4b4;
+            border-radius: 10px;
+            padding: 1%;
+            background-color: rgba(30, 31, 32, .5);
 
-            }
-
-            .hide-comments {
-                display: none;
-            }
+        }
+        
+        .hide-comments {
+            display: none;
         }
     }
 

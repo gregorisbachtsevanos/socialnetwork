@@ -3,9 +3,12 @@
 //     document.querySelector(".login").classList.toggle("hide");
 //     document.querySelector(".singup").classList.toggle("hide");  
 // }
-if(window.location.href == "http://localhost/loginTest/public/homepage.php"){
 
-    document.querySelector("#reactions").addEventListener("click", () => {
+const homepage = "http://localhost/socialnetwork/public/homepage.php";
+// const homepage = "http://localhost/socialnetwork/public/homepage.php";
+if(window.location.href == homepage){
+
+    document.querySelector(".fa-comment").addEventListener("click", () => {
         document.querySelector("#comments-container").classList.toggle("hide-comments");  
     })
 

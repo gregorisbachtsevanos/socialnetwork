@@ -1,6 +1,6 @@
 <?php
 
-require_once "header.php";
+require_once "includes/header.php";
 
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
@@ -8,7 +8,7 @@ require_once "header.php";
 include "includes/navigationbar.php";
 ?>
 <div id='welcome'>
-<p>Welcome <br><span><?php echo $_SESSION['fullname']?></span></p>
+<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
 </div>
 
 
@@ -72,4 +72,4 @@ include "includes/navigationbar.php";
 
 </div>
 
-<?php require_once "footer.php" ?>
+<?php require_once "includes/footer.php" ?>
