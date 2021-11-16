@@ -1,11 +1,11 @@
-@media all and (max-width: 1150px){
+@media all and (max-width: 1200px){
 
     #nav-container{
         position: fixed;
-        top: 90%;
+        top: 94%;
         left: 0;
         width: 100%;
-        height: 10%;
+        height: 6%;
         background-color: #1a1b1b;
         flex-direction: column;
         vertical-align: baseline;
@@ -28,7 +28,7 @@
             display: flex;
             justify-content: end;
             align-items: center;
-            padding-bottom: 1%;
+            padding-bottom: .8%;
         }
         
         #logout{

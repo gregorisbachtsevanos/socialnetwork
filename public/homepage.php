@@ -8,7 +8,7 @@ require_once "includes/header.php";
 include "includes/navigationbar.php";
 ?>
 <div id='welcome'>
-<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
+	<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
 </div>
 
 
@@ -17,7 +17,7 @@ include "includes/navigationbar.php";
 	<form method="post" action="../app/newFeed.php">
 		<div id="textarea-container">
 			<div id="textarea-controler">
-				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts"  rows="7" required></textarea>
+				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts" rows="7" required></textarea>
 			</div>
 			<div id="feedBtn-controler">
 				<div id="media">
@@ -35,38 +35,38 @@ include "includes/navigationbar.php";
 			$sql = 'SELECT `id`, `user_id`, `parent_id`, `message`, `video`, `images`, `audio`, `date_created`, `total_views`, `total_reposts`, `total_likes`, `total_comments`, `mentions`, `hashtags`, `repost_id` FROM "posts" WHERE "parent_id" is Null';
 			$rows = $db->fetch($sql);
 			if($rows > 0){ 
-				foreach($rows as $value){?>
+				foreach($rows as $value):?>
 
-				<div id="feed">
-					<?php 
+					<div id="feed">
+				<?php 
 						$sql = "SELECT `fullname`, `username` FROM `users` WHERE `id` = '$value->user_id'";
 						$row = $db->row($sql);
-					?>
-					<div id="feed-info">
-						<h4><?php echo ucwords($row->fullname)."<small> @$row->username</small>" ?></h4>
-						<span><small><?php echo  date("d/m/Y",strtotime($value->date_created)) ?></small></span><hr>
+						?>
+						<div id="feed-info">
+							<h4><?php echo ucwords($row->fullname)."<small> @$row->username</small>" ?></h4>
+							<span><small><?php echo date("d/m/Y", strtotime($value->date_created)) ?></small></span>
+							<hr>
+						</div>
+						<div id="feed-message">
+							<p id="post-msg"><?php echo $value->message ?></p>
+							<hr>
+								<span class="fas fa-heart"></span>
+								<small><?php echo $value->total_likes?></small>
+								<span class="fas fa-comment"></span>
+								<small><?php echo $value->total_comments?></small>
+						</div>
+
 					</div>
-					<div id="feed-message">
-						<p id="post-msg"><?php echo $value->message ?></p><hr>
-						<p id="reactions">
-							<span class="far fa-eye"> <small><?php echo $value->total_views?></small></span>
-							<span class="far fa-heart"> <small><?php echo $value->total_likes?></small></span>
-							<span class="far fa-comment"> <small><?php echo $value->total_comments?></small></span>
-						</p>
+					<div id="comments-container" class="hide-comments">
+						<div id="comment-info">
+
+							<p>Lorems ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
+						</div>
 					</div>
 
-				</div>
-				<div id="comments-container" class="hide-comments">
-					<div id="comment-info">
-						
-						<p>Lorems ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
-					</div>
-				</div>
-				
-			<?php 
-				}
+		<?php 
+				endforeach;
 			}
-
 		?>
 	</div>
 

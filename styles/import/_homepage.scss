@@ -97,10 +97,16 @@
                     padding: 1% 0;
                 }
 
-                #reactions {
+                .reactions {
                     width: 12%;
                     display: flex;
                     justify-content: space-between;
+
+                    input[type=submit]{
+                        border: none;
+                        background-color: transparent;
+                        color: #fc6d26be
+                    }
                 }
             }        
             
