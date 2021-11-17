@@ -40,7 +40,7 @@ include "includes/navigationbar.php";
 					<div id="feed" data-id="<?php echo $value->id ?>">
 				<?php 	
 						// feed info
-						$sql = "SELECT `fullname`, `username` FROM `users` WHERE `id` = '$value->user_id'";
+						$sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$value->user_id'";
 						$row = $db->row($sql);
 						?>
 						<div id="feed-info">
@@ -48,6 +48,15 @@ include "includes/navigationbar.php";
 							<span><small><?php echo date("d/m/Y", strtotime($value->date_created)) ?></small></span>
 							<hr>
 						</div>
+						<?php 
+						
+							$sql = "SELECT `post_id` FROM posts_likes WHERE user_id = ?";
+							$params = array($row->id);
+							$row = $db->fetch($sql, $params);
+							if($row->post_id){
+								print_r($row);
+							}
+						?>
 						<div id="feed-message">
 							<p id="post-msg"><?php echo $value->message ?></p>
 							<hr>
