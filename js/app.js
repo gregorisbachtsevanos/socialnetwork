@@ -30,10 +30,8 @@ if(window.location.href == homepage){
                     let data = JSON.parse(this.responseText)
                    
                     if(data.liked){
-                        e.target.style.color = data.color
                         e.target.querySelector("small").innerHTML = data.total;        
                     }else{
-                        e.target.style.color = data.color;
                         e.target.querySelector("small").innerHTML = data.total;
                     }
                 }

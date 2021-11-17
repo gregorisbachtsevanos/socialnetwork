@@ -35,48 +35,55 @@ include "includes/navigationbar.php";
 			$sql = 'SELECT `id`, `user_id`, `parent_id`, `message`, `video`, `images`, `audio`, `date_created`, `total_views`, `total_reposts`, `total_likes`, `total_comments`, `mentions`, `hashtags`, `repost_id` FROM "posts" WHERE "parent_id" is Null';
 			$rows = $db->fetch($sql);
 			if($rows > 0){ 
-				foreach($rows as $value):?>
-
+				foreach($rows as $value):
+					
+					
+							
+					// get post_id for like
+					$sql = "SELECT `post_id` FROM `posts_likes`";
+					// $params = array($_SESSION["user"]);
+					$rows = $db->fetch($sql);
+					foreach($rows as $index){
+						print_r($index);
+					}?>
+				
+				
 					<div id="feed" data-id="<?php echo $value->id ?>">
-				<?php 	
+					<?php 	
 						// feed info
-						$sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$value->user_id'";
-						$row = $db->row($sql);
-						?>
+					$sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$value->user_id'";
+					$row = $db->row($sql);
+						
+					?>
 						<div id="feed-info">
 							<h4><?php echo ucwords($row->fullname)."<small> @$row->username</small>" ?></h4>
 							<span><small><?php echo date("d/m/Y", strtotime($value->date_created)) ?></small></span>
 							<hr>
 						</div>
-						<?php 
-						
-							$sql = "SELECT `post_id` FROM posts_likes WHERE user_id = ?";
-							$params = array($row->id);
-							$row = $db->fetch($sql, $params);
-							if($row->post_id){
-								print_r($row);
-							}
-						?>
+					
 						<div id="feed-message">
 							<p id="post-msg"><?php echo $value->message ?></p>
 							<hr>
-								<span class="fas fa-heart">
-									<small id="likes"><?php echo $value->total_likes?></small>
-								</span>
+							
+					
+						<span class="fas fa-heart <?php echo $index->post_id == $value->id ? 'liked' : '';?>" >
+							<small id="likes"><?php echo $value->total_likes?></small>
+						</span>
+							
 								<span class="fas fa-comment">
 									<small id="comment"><?php echo $value->total_comments?></small>
 								</span>
 						</div>
 
-					</div>
-					<div id="comments-container" class="hide-comments">
-						<div id="comment-info">
-
-							<p>Lorems ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
+						<div id="comments-container" class="hide-comments">
+							<div id="comment-info">
+								
+								<p>Lorems ipsum dolor sit amet consectetur adipisicing elit. Inventore quos perferendis qui possimus nesciunt consectetur molestias velit, blanditiis nostrum, voluptatibus, sed corporis quidem accusamus a facilis atque voluptas dicta culpa.</p>
+							</div>
 						</div>
 					</div>
-
 				<?php 
+					
 				endforeach;
 			}
 		?>
