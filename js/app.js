@@ -11,25 +11,37 @@ const toggleComments = () => {
     document.querySelector("#comments-container").classList.toggle("hide-comments");  
 }
 
-const liked = () => {
-    likeBtn.style.color ="#fc6d26be";
-}
-
-const likeBtn = document.querySelector(".fa-heart");
+const likeBtns = document.querySelectorAll(".fa-heart");
 
 if(window.location.href == homepage){
-    // document.querySelector(".fa-comment").addEventListener("click", () => toggleComments());
-    // likeBtn.addEventListener("click", () => liked());
 
-    likeBtn.addEventListener("click", (e) => {
-        e.preventDefault();
+    for(likeBtn of likeBtns){
 
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "../app/ajax/like.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(data);
+        let post = likeBtn.parentElement.parentElement;
+        let postId = post.dataset.id
 
-    });
+        likeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            xhr = new XMLHttpRequest();
+            xhr.open("POST", `../app/ajax/like.php`, true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onload = function (data){
+                if(xhr.status == 200){
+                    let data = JSON.parse(this.responseText)
+                   
+                    if(data.liked){
+                        e.target.style.color = data.color
+                        e.target.querySelector("small").innerHTML = data.total;        
+                    }else{
+                        e.target.style.color = data.color;
+                        e.target.querySelector("small").innerHTML = data.total;
+                    }
+                }
+            }
+            xhr.send(`postId=${postId}`);
+        })
+    }
+
 
 } else if(window.location.href == index){
     document.querySelector("#new-account").addEventListener("click", (e) => toggleForms(e));

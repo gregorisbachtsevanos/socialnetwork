@@ -37,8 +37,9 @@ include "includes/navigationbar.php";
 			if($rows > 0){ 
 				foreach($rows as $value):?>
 
-					<div id="feed">
-				<?php 
+					<div id="feed" data-id="<?php echo $value->id ?>">
+				<?php 	
+						// feed info
 						$sql = "SELECT `fullname`, `username` FROM `users` WHERE `id` = '$value->user_id'";
 						$row = $db->row($sql);
 						?>
@@ -50,10 +51,12 @@ include "includes/navigationbar.php";
 						<div id="feed-message">
 							<p id="post-msg"><?php echo $value->message ?></p>
 							<hr>
-								<span class="fas fa-heart"></span>
-								<small><?php echo $value->total_likes?></small>
-								<span class="fas fa-comment"></span>
-								<small><?php echo $value->total_comments?></small>
+								<span class="fas fa-heart">
+									<small id="likes"><?php echo $value->total_likes?></small>
+								</span>
+								<span class="fas fa-comment">
+									<small id="comment"><?php echo $value->total_comments?></small>
+								</span>
 						</div>
 
 					</div>
@@ -64,7 +67,7 @@ include "includes/navigationbar.php";
 						</div>
 					</div>
 
-		<?php 
+				<?php 
 				endforeach;
 			}
 		?>
