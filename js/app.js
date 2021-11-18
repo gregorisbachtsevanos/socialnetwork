@@ -34,7 +34,6 @@ if(window.location.href == homepage){
                         e.target.querySelector("small").innerHTML = data.total;        
                     }else{
                         e.target.style.color = data.color
-
                         e.target.querySelector("small").innerHTML = data.total;
                     }
                 }
