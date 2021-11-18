@@ -1,5 +1,6 @@
 <?php
-    require "../public/includes/header.php";
+session_start();
+    require "../model/settings.php";
     if(isset($_POST["submit"])){
         if(empty($_POST["new-feed"])){
             exit();
@@ -11,7 +12,7 @@
             $data["date_created"] =  date("Y/m/d-H:m:s");
             $data["total_views"] = 0;
             $db -> insert("posts", $data);
-            header("Location: ../public/homepage.php");
+            header("Location: ../../public/homepage.php");
         }
     }
 

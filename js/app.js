@@ -23,15 +23,18 @@ if(window.location.href == homepage){
         likeBtn.addEventListener("click", (e) => {
             e.preventDefault();
             xhr = new XMLHttpRequest();
-            xhr.open("POST", `../app/ajax/like.php`, true);
+            xhr.open("POST", `../app/controllers/ajax/like-controller.php`, true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.onload = function (data){
                 if(xhr.status == 200){
                     let data = JSON.parse(this.responseText)
                    
                     if(data.liked){
+                        e.target.style.color = data.color    
                         e.target.querySelector("small").innerHTML = data.total;        
                     }else{
+                        e.target.style.color = data.color
+
                         e.target.querySelector("small").innerHTML = data.total;
                     }
                 }

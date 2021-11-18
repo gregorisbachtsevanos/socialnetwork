@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../model/settings.php";
+    require_once "../../model/settings.php";
     if(isset($_POST["postId"])){
         $sql = "SELECT user_id FROM posts_likes WHERE post_id = ? AND user_id = ?";
         $params = array($_POST["postId"], $_SESSION["user"]);

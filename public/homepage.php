@@ -14,7 +14,7 @@ include "includes/navigationbar.php";
 
 <div id="feed-container">
 
-	<form method="post" action="../app/newFeed.php">
+	<form method="post" action="../app/controllers/newFeed-controller.php">
 		<div id="textarea-container">
 			<div id="textarea-controler">
 				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts" rows="7" required></textarea>
@@ -40,13 +40,9 @@ include "includes/navigationbar.php";
 					
 							
 					// get post_id for like
-					$sql = "SELECT `post_id` FROM `posts_likes`";
-					// $params = array($_SESSION["user"]);
-					$rows = $db->fetch($sql);
-					foreach($rows as $index){
-						print_r($index);
-					}?>
-				
+					$sql = "SELECT `post_id` FROM `posts_likes` WHERE `user_id` = ?";
+					$params = array($_SESSION["user"]);
+					$rows = $db->fetch($sql, $params);?>
 				
 					<div id="feed" data-id="<?php echo $value->id ?>">
 					<?php 	
@@ -66,7 +62,14 @@ include "includes/navigationbar.php";
 							<hr>
 							
 					
-						<span class="fas fa-heart <?php echo $index->post_id == $value->id ? 'liked' : '';?>" >
+						<span class="fas fa-heart<?php
+							foreach($rows as $index){
+								if($index->post_id == $value->id){
+									$likedPost = array($index->post_id);
+									if($likedPost[0] == $value->id){echo "liked";}
+								}
+							}?>"
+						>
 							<small id="likes"><?php echo $value->total_likes?></small>
 						</span>
 							
