@@ -158,34 +158,60 @@ input[type=submit]:hover {
   width: 100%;
   margin-top: 7%;
 }
-#feed-container #feed-controler #feed {
+#feed-container #feed-controler .feed {
   border: 1px solid #b4b4b4;
   border-radius: 10px;
   padding: 1%;
-  margin: 2% 0;
+  margin: 10% 0;
   background-color: rgba(30, 31, 32, 0.5);
 }
-#feed-container #feed-controler #feed #feed-info h4 small {
+#feed-container #feed-controler .feed .feed-info h4 small {
   color: #fc6d26be;
 }
-#feed-container #feed-controler #feed #feed-info span {
+#feed-container #feed-controler .feed .feed-info span {
   font-size: 0.7rem;
 }
-#feed-container #feed-controler #feed hr {
+#feed-container #feed-controler .feed hr {
   border: none;
   border-top: 1px solid #b4b4b4;
   margin: 1% 0;
 }
-#feed-container #feed-controler #feed #feed-message #post-msg {
+#feed-container #feed-controler .feed .feed-message .post-msg {
   padding: 1% 0;
 }
-#feed-container #feed-controler #comments-container {
-  width: 90%;
-  margin: auto;
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translate(-50%);
+  width: 40%;
   border: 1px solid #b4b4b4;
   border-radius: 10px;
-  padding: 1%;
-  background-color: rgba(30, 31, 32, 0.5);
+  padding: 0.5%;
+  background-color: #1e1f20;
+  margin: 1% auto 0 auto;
+}
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
+  font-size: 0.6rem;
+  font-weight: 100;
+}
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #fc6d26be;
+  width: 90%;
+  font-weight: 100;
+}
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .new-comment {
+  width: 10%;
+  padding: 0 1%;
+  cursor: pointer;
+  font-weight: 400;
+  color: #1e1f20;
+  border-radius: 10px;
+  border: 1px solid #fc6d26be;
+  background-color: #fc6d26be;
 }
 #feed-container #feed-controler .hide-comments {
   display: none;
@@ -193,6 +219,10 @@ input[type=submit]:hover {
 
 .liked {
   color: #fc6d26be;
+}
+
+.not-liked {
+  color: #b4b4b4;
 }
 
 #nav-container {
