@@ -61,6 +61,7 @@ if(window.location.href == homepage){
 
 		comment.addEventListener("click", (e) => {
 			let post = e.target.closest(".feed");
+			console.log(post)
 			e.target.querySelector(".comment-info").classList.toggle("hide-comments");
 			e.preventDefault();
 		})
@@ -112,28 +113,18 @@ if(window.location.href == homepage){
 		deletePost.addEventListener("click", (e) => {
 			let post = e.target.closest('.feed');
 			let postId = post.dataset.id
-			const data = { postId: postId };
-			// post.remove();
-			let formData = new FormData();
-			formData.append('postId');
+			post.remove();
+			let xhr = new XMLHttpRequest();
+			xhr.open("POST", "../app/controllers/ajax/delete-post_controller.php", true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-			fetch("../app/controllers/ajax/delete-post_controller.php?postId=${post}",
-			{
-				headers: {
-					"Content-type": "application/json;charset=UTF-8"
-				},
-				method: "POST",
-				body: formData	
-			})
-				.then(res => {
-					return res.json();
-				})
-				.then(data =>{
-					console.log(data)
-				})
-				// .catch(er => {
-				// 	console.log(`Error: ${er}`);
-				// })
+			xhr.onload = function(){
+				if(this.status == 200){
+					console.log(this.responseText)
+				}
+			}
+			xhr.send(`postId=${postId}`)
+			
 		});
 	}
 
