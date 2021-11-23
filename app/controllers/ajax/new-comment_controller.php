@@ -17,7 +17,14 @@
                     );
         $data = array('status'=>200, 'comment'=>true);
 
-        $sql = 'SELECT COUNT(`total_comments`) as `total` FROM `posts` WHERE `parent_id` = ?';
+        $sql = "SELECT `username` FROM `users` WHERE `id` = ?";
+        $params = array($_SESSION["user"]);
+        $row = $db->row($sql, $params);
+        $data['username'] = $row->username;
+        $data['date_created'] = date("d/m/Y");
+        $data['message'] = $_POST['msg'];
+
+        $sql = 'SELECT COUNT(`id`) as `total` FROM `posts` WHERE `parent_id` = ?';
         $params = array($_POST['postId']);
         $row = $db->row($sql, $params);
         $db->update('posts', array('total_comments'=>$row->total), array('id'=>$_POST['postId']));

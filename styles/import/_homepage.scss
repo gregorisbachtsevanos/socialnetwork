@@ -10,7 +10,7 @@
         font-size: 4rem;
         
         span{
-            color: #fc6d26be;
+            color: var(--secondary-text-color);
         }
     }
 } //end welcome
@@ -25,10 +25,10 @@
 
         textarea {
             width: 100%;
-            border: 1px solid #b4b4b4;
+            border: 1px solid var(--main-text-color);
             border-radius: 10px;
             background-color: transparent;
-            color: whitesmoke;
+            color: var(--main-text-color);
             padding: 1%;
             outline: none;
         }
@@ -48,7 +48,7 @@
                     flex-flow: column;
                     justify-content: space-between;
                     font-size: 1.3rem;
-                    color: #fc6d26be;
+                    color: var(--secondary-text-color);
                 }
             }
 
@@ -56,8 +56,8 @@
             #feed-btn {
                 width: 10%;
                 border-radius: 10px;
-                border: 1px solid #fc6d26be;
-                background-color: #fc6d26be;
+                border: 1px solid var(--secondary-text-color);
+                background-color: var(--secondary-text-color);
             }
 
         } //end feedBtn-controler
@@ -69,27 +69,37 @@
         margin-top: 7%;
 
         .feed {
-            border: 1px solid #b4b4b4;
+            border: 1px solid var(--main-text-color);
             border-radius: 10px;
             padding: 1%;
             margin: 10% 0;
             background-color: rgba(30, 31, 32, .5);
 
             .feed-info {
+
+                .post-header{
+                    display: flex;
+                    justify-content: space-between;
+
                     h4 {
                         small {
-                            color: #fc6d26be;
+
+                            color: var(--secondary-text-color);
+                            font-size: .8rem;
                         }
                     }
 
                     span {
-                        font-size: .7rem;
+                        
                     }
-                } //end feed-info
+                    
+                } // post-header
+
+            } //end feed-info
 
                 hr {
                     border: none;
-                    border-top: 1px solid #b4b4b4;
+                    border-top: 1px solid var(--main-text-color);
                     margin: 1% 0;
                 }
 
@@ -99,62 +109,62 @@
                         padding: 1% 0;                    
                     }
 
-                .fa-comment{
-                        
-                        .comment-info{
-                            position: absolute;
-                            top: auto;
-                            left: 50%;
-                            transform: translate(-50%);
-                            width: 40%;
-                            border: 1px solid #b4b4b4;
-                            border-radius: 10px;
-                            padding: .5%;
-                            background-color: rgba(30, 31, 32, 1);
-                            margin: 1% auto 0 auto;
+                    .fa-heart,
+                    .fa-comment{
+                        font-size: 1.1rem;
 
-                            .post-comments{
-
-                                div{
-
-                                    h4{
-
-                                    }
-
-                                    small{
-                                    font-size: .6rem;
-                                    font-weight: 100;
-                                    }
-
-                                    p{
-                                        
+                            .comment-info{
+                                position: absolute;
+                                top: auto;
+                                left: 50%;
+                                transform: translate(-50%);
+                                width: 40%;
+                                border: 1px solid var(--main-text-color);
+                                border-radius: 10px;
+                                padding: .5%;
+                                background-color: var(--secondary-bg-color);
+                                margin: 1% auto 0 auto;
+    
+                                .post-comments{
+                                    font-size: 1rem;
+                                    
+                                    div{
+    
+                                        small{
+                                            font-size: var(--small-text-size);
+                                            font-weight: 100;
+                                        }
+    
+                                        p{
+                                            
+                                        }
                                     }
                                 }
-                            }
-                            
-                            input[type=text]{
-                                background-color: transparent;
-                                border: none;
-                                outline: none;
-                                color: #fc6d26be;
-                                width: 90%;
-                                font-weight: 100;
-                            }
-            
-                            .new-comment{
-                                width: 10%;
-                                padding: 0 1%;
-                                cursor: pointer;
-                                font-weight: 400;
-                                color: #1e1f20;
-                                border-radius: 10px;
-                                border: 1px solid #fc6d26be;
-                                background-color: #fc6d26be;
-                            }
-
-                        } // comments-container
-
-                } //end fa-comment
+                                
+                                input[type=text]{
+                                    background-color: transparent;
+                                    border: none;
+                                    outline: none;
+                                    color: var(--secondary-text-color);
+                                    width: 90%;
+                                    font-weight: 100;
+                                }
+                
+                                .new-comment{
+                                    width: 10%;
+                                    padding: 0 1%;
+                                    font-size: .8rem;
+                                    cursor: pointer;
+                                    font-weight: 400;
+                                    color: #1e1f20;
+                                    border-radius: 10px;
+                                    border: 1px solid var(--secondary-text-color);
+                                    background-color: var(--secondary-text-color);
+                                }
+    
+                            } // comments-container
+    
+                    } //end fa-comment
 
             } //end feed-message
                 
@@ -168,9 +178,9 @@
 } //feed-container
 
 .liked{
-    color:#fc6d26be;
+    color:var(--secondary-text-color);
 }
 
 .not-liked{
-    color:#b4b4b4;
+    color:var(--main-text-color);
 }

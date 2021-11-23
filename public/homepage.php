@@ -23,18 +23,23 @@ include "includes/navigationbar.php";
 					<span class='fas fa-video'></span>
 					<span class='fas fa-microphone'></span>
 				</div>
-				<button id="feed-btn" type="submit" name="submit">Public</button>
+				<button id="feed-btn" type="submit" name="submit"><i class="fa fa-paper-plane-o"></i></button>
 			</div>
 		</div>
 	</form>
 
 	<div id="feed-controler">
 		<?php
+			// get all posts
 			$sql = 'SELECT `id`, `user_id`, `parent_id`, `message`, `video`, `images`, `audio`, `date_created`, `total_views`, `total_reposts`, `total_likes`, `total_comments`, `mentions`, `hashtags`, `repost_id` FROM "posts" WHERE "parent_id" is Null';
 			$rows = $db->fetch($sql);
 			if($rows > 0){ 
 				foreach(array_reverse($rows) as $value):
 					
+					// get posts info
+					$sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$value->user_id'";
+					$row = $db->row($sql);
+
 					// get post_id for like
 					$liked_class = '';
 					$sql = 'SELECT `date` FROM posts_likes WHERE post_id = ? AND user_id = ?';
@@ -42,62 +47,60 @@ include "includes/navigationbar.php";
 					$like = $db->row($sql, $params);
 					if(isset($like->date)){
 						$liked_class = ' liked';
-					}?>
+					}
+
+					// get comments info
+					$sql = "SELECT `user_id`, `message`, `date_created` FROM `posts` WHERE `parent_id` = ?";
+					$params = array($value->id);
+					$rows = $db->fetch($sql, $params);
+			?>
 				
-					<div class="feed" data-id="<?php echo $value->id ?>">
-					<?php 	
-						// feed info
-					$sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$value->user_id'";
-					$row = $db->row($sql);
-						
-					?>
-						<div class="feed-info">
-							<h4><?php echo ucwords($row->fullname)."<small> @$row->username</small>" ?></h4>
+				<div class="feed" data-id="<?php echo $value->id ?>">
+					<div class="feed-info">
+						<div class="post-header">
+
+							<?php echo "<h4>".ucwords($row->fullname)."<small> @$row->username</small></h4>"; 
+							echo $_SESSION['user'] === $value->user_id ?  "<i class='far fa-trash-alt' data-id='$value->id'></i>" : ""; ?>
+						</div>
 							<span><small><?php echo date("d/m/Y", strtotime($value->date_created)) ?></small></span>
-							<hr>
-						</div> <!-- end feed-info -->
-					
-						<div class="feed-message">
-							<p class="post-msg"><?php echo $value->message ?></p>
-							<hr>
-					
+						<hr>
+					</div> <!-- end feed-info -->
+				
+					<div class="feed-message">
+						<p class="post-msg"><?php echo $value->message ?></p>
+						<hr>
+
 							<span class="fas fa-heart <?php echo $liked_class?>">
 								<small class="likes"><?php echo $value->total_likes?></small>
 							</span>
-								
+							
 							<span class="fas fa-comment" id="<?php echo $value->id ?>">
 								<small class="comment"><?php echo $value->total_comments?></small>
 								<div class="comment-info hide-comments" data-id="<?php echo $value->id ?>">
 									<div class="post-comments">
 										<?php
-										
-											$sql = "SELECT `user_id`, `message`, `date_created` FROM `posts` WHERE `parent_id` = ?";
-											$params = array($value->id);
-											$rows = $db->fetch($sql, $params);
-											
-											foreach($rows as $index){
-												$sql = "SELECT `username` FROM `users` WHERE `id` = $index->user_id";
-												$row = $db->row($sql)
-												
-												?>
-												<div>
-													<h4><?php echo $row->username ?></h4>
-													<small><?php echo date("d/m/Y", strtotime($index->date_created)) ?></small>
-													<p><?php echo $index->message ?></p>
-													<hr>
-												</div>
-										<?php	}
-										
+										foreach($rows as $index){
+											$sql = "SELECT `username` FROM `users` WHERE `id` = $index->user_id";
+											$row = $db->row($sql)
+											?>
+											<div>
+												<h4><?php echo $row->username ?></h4>
+												<small><?php echo date("d/m/Y", strtotime($index->date_created)) ?></small>
+												<p><?php echo $index->message ?></p>
+												<hr>
+											</div>
+										<?php
+										}
 										?>
-									</div>
-									<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
-									<small class="new-comment">Comment</small>
 								</div>
-							</span>
-						</div> <!-- end feed-message -->
+								<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+								<small class="new-comment">Comment</small>
+							</div>
+						</span>
+					</div> <!-- end feed-message -->
 
-					</div> <!-- end feed -->
-				<?php 
+				</div> <!-- end feed -->
+			<?php 
 				endforeach;
 			}
 		?>

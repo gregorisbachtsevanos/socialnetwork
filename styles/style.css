@@ -1,3 +1,11 @@
+:root {
+  --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
+  --secondary-bg-color: rgba(30, 31, 32, 1);
+  --main-text-color: #dadada;
+  --secondary-text-color: #fc6d26be;
+  --small-text-size: .6rem;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -7,9 +15,9 @@
 body {
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, #333333 0%, #1e1f20 80%);
+  background: var(--main-bg-color);
   font-family: arial;
-  color: #dadada;
+  color: var(--main-text-color);
 }
 
 legend {
@@ -111,7 +119,7 @@ input[type=submit]:hover {
   font-size: 4rem;
 }
 #welcome p span {
-  color: #fc6d26be;
+  color: var(--secondary-text-color);
 }
 
 #feed-container {
@@ -124,10 +132,10 @@ input[type=submit]:hover {
 }
 #feed-container #textarea-container textarea {
   width: 100%;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--main-text-color);
   border-radius: 10px;
   background-color: transparent;
-  color: whitesmoke;
+  color: var(--main-text-color);
   padding: 1%;
   outline: none;
 }
@@ -146,83 +154,98 @@ input[type=submit]:hover {
   flex-flow: column;
   justify-content: space-between;
   font-size: 1.3rem;
-  color: #fc6d26be;
+  color: var(--secondary-text-color);
 }
 #feed-container #textarea-container #feedBtn-controler #feed-btn {
   width: 10%;
   border-radius: 10px;
-  border: 1px solid #fc6d26be;
-  background-color: #fc6d26be;
+  border: 1px solid var(--secondary-text-color);
+  background-color: var(--secondary-text-color);
 }
 #feed-container #feed-controler {
   width: 100%;
   margin-top: 7%;
 }
 #feed-container #feed-controler .feed {
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--main-text-color);
   border-radius: 10px;
   padding: 1%;
   margin: 10% 0;
   background-color: rgba(30, 31, 32, 0.5);
 }
-#feed-container #feed-controler .feed .feed-info h4 small {
-  color: #fc6d26be;
+#feed-container #feed-controler .feed .feed-info .post-header {
+  display: flex;
+  justify-content: space-between;
 }
-#feed-container #feed-controler .feed .feed-info span {
-  font-size: 0.7rem;
+#feed-container #feed-controler .feed .feed-info .post-header h4 small {
+  color: var(--secondary-text-color);
+  font-size: 0.8rem;
 }
 #feed-container #feed-controler .feed hr {
   border: none;
-  border-top: 1px solid #b4b4b4;
+  border-top: 1px solid var(--main-text-color);
   margin: 1% 0;
 }
 #feed-container #feed-controler .feed .feed-message .post-msg {
   padding: 1% 0;
 }
+#feed-container #feed-controler .feed .feed-message .fa-heart,
+#feed-container #feed-controler .feed .feed-message .fa-comment {
+  font-size: 1.1rem;
+}
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info,
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info {
   position: absolute;
   top: auto;
   left: 50%;
   transform: translate(-50%);
   width: 40%;
-  border: 1px solid #b4b4b4;
+  border: 1px solid var(--main-text-color);
   border-radius: 10px;
   padding: 0.5%;
-  background-color: #1e1f20;
+  background-color: var(--secondary-bg-color);
   margin: 1% auto 0 auto;
 }
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments,
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments {
+  font-size: 1rem;
+}
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div small,
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
-  font-size: 0.6rem;
+  font-size: var(--small-text-size);
   font-weight: 100;
 }
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info input[type=text],
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
   background-color: transparent;
   border: none;
   outline: none;
-  color: #fc6d26be;
+  color: var(--secondary-text-color);
   width: 90%;
   font-weight: 100;
 }
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .new-comment,
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
+  font-size: 0.8rem;
   cursor: pointer;
   font-weight: 400;
   color: #1e1f20;
   border-radius: 10px;
-  border: 1px solid #fc6d26be;
-  background-color: #fc6d26be;
+  border: 1px solid var(--secondary-text-color);
+  background-color: var(--secondary-text-color);
 }
 #feed-container #feed-controler .hide-comments {
   display: none;
 }
 
 .liked {
-  color: #fc6d26be;
+  color: var(--secondary-text-color);
 }
 
 .not-liked {
-  color: #b4b4b4;
+  color: var(--main-text-color);
 }
 
 #nav-container {
@@ -245,7 +268,7 @@ input[type=submit]:hover {
 #nav-container #nav-items #nav-item {
   margin: auto;
   list-style: none;
-  color: #b4b4b4;
+  color: var(--main-text-color);
 }
 #nav-container #nav-items #logout,
 #nav-container #nav-items #user {
@@ -255,11 +278,11 @@ input[type=submit]:hover {
 }
 #nav-container #nav-items #user {
   top: 5%;
-  color: #b4b4b4;
+  color: var(--main-text-color);
 }
 #nav-container #nav-items #logout {
   bottom: 5%;
-  color: #fc6d26be;
+  color: var(--secondary-text-color);
 }
 
 @media all and (max-width: 1200px) {

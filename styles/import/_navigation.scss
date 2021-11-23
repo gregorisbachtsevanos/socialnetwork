@@ -18,7 +18,7 @@
         #nav-item{
             margin:auto;
             list-style: none;
-            color:#b4b4b4
+            color: var(--main-text-color);
         }
         
         #logout,
@@ -30,12 +30,12 @@
         
         #user{
             top: 5%; 
-            color:#b4b4b4;
+            color: var(--main-text-color);
         }
         
         #logout{
             bottom: 5%;
-            color: #fc6d26be;
+            color: var(--secondary-text-color);
         }
     }
 }
