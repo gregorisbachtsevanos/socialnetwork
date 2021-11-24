@@ -30,7 +30,21 @@
         
         #user{
             top: 5%; 
-            color: var(--main-text-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            border-radius: 50px;
+            align-items: center;
+            text-decoration: none;
+            justify-content: center;
+            color: var(--secondary-bg-color);
+            background-color: var(--secondary-text-color);
+            border: 5px solid #c35924be;
+            
+            .user-icon{
+                font-weight: 500;
+            }
+
         }
         
         #logout{

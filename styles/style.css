@@ -1,23 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 :root {
   --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
   --secondary-bg-color: rgba(30, 31, 32, 1);
   --main-text-color: #dadada;
   --secondary-text-color: #fc6d26be;
   --small-text-size: .6rem;
+  --middle-text-size: .9rem;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   width: 100%;
   height: 100%;
-  background: var(--main-bg-color);
-  font-family: arial;
   color: var(--main-text-color);
+  background: var(--main-bg-color);
 }
 
 legend {
@@ -107,6 +109,14 @@ input[type=submit]:hover {
   transition: 1.3s;
 }
 
+h3 {
+  color: var(--main-color-text);
+  text-align: center;
+}
+h3 small {
+  color: var(--secondary-text-color);
+}
+
 #welcome {
   padding: 2%;
   width: 100%;
@@ -192,6 +202,7 @@ input[type=submit]:hover {
 #feed-container #feed-controler .feed .feed-message .fa-heart,
 #feed-container #feed-controler .feed .feed-message .fa-comment {
   font-size: 1.1rem;
+  font-weight: 100;
 }
 #feed-container #feed-controler .feed .feed-message .fa-heart .comment-info,
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info {
@@ -210,10 +221,25 @@ input[type=submit]:hover {
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments {
   font-size: 1rem;
 }
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div,
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div {
+  font-weight: 100;
+  font-size: var(--middle-text-size);
+}
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div h4,
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 #feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div small,
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 100;
+}
+#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div p,
+#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div p {
+  padding: 0.5% 0;
 }
 #feed-container #feed-controler .feed .feed-message .fa-heart .comment-info input[type=text],
 #feed-container #feed-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
@@ -278,7 +304,19 @@ input[type=submit]:hover {
 }
 #nav-container #nav-items #user {
   top: 5%;
-  color: var(--main-text-color);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  text-decoration: none;
+  justify-content: center;
+  color: var(--secondary-bg-color);
+  background-color: var(--secondary-text-color);
+  border: 5px solid #c35924be;
+}
+#nav-container #nav-items #user .user-icon {
+  font-weight: 500;
 }
 #nav-container #nav-items #logout {
   bottom: 5%;

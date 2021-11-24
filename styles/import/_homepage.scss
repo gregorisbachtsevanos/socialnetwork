@@ -112,6 +112,7 @@
                     .fa-heart,
                     .fa-comment{
                         font-size: 1.1rem;
+                        font-weight: 100;
 
                             .comment-info{
                                 position: absolute;
@@ -129,6 +130,13 @@
                                     font-size: 1rem;
                                     
                                     div{
+                                        font-weight: 100;
+                                        font-size: var(--middle-text-size);
+                                        h4{
+                                            width: 100%;
+                                            display: flex;
+                                            justify-content: space-between;
+                                        }
     
                                         small{
                                             font-size: var(--small-text-size);
@@ -136,7 +144,7 @@
                                         }
     
                                         p{
-                                            
+                                            padding: .5% 0;
                                         }
                                     }
                                 }

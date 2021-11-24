@@ -3,7 +3,6 @@ require_once "includes/header.php";
 isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 ?>
 
-<body>
 
 	<?php
 	$error = "";
@@ -58,7 +57,6 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 			</form>
 		</div>
 	</div>
-
 
 	<?php
 	// singup call
