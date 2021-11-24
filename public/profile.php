@@ -11,7 +11,11 @@ if(isset($_GET["id"])){
 
 	!isset($row->id) ? die("Not found") : null;
 
+
+
+
 	include "includes/navigationbar.php";
+	// $data = $db->update("users", array("avatar" => "man.png"), array('id'=>$_GET['id']));
 }
 
 ?>
@@ -20,7 +24,7 @@ if(isset($_GET["id"])){
 <div class="profile-contrainer">
 	<div class="userprofile-controler">
 		<div class="profile-pic">
-			<img src="../files/assets/img/avatars/man.png">
+			<img <?php echo "src=../files/assets/img/avatars/".$row->avatar ?>>
 
 			<h3><?php echo $row->fullname ?> <small><?php echo "@".$row->username ?></small></h3>
 			<p></p>
