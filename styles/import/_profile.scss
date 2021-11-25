@@ -1,8 +1,190 @@
-h3{
-    color: var(--main-color-text);
-    text-align: center;
+.profile-contrainer{
+ 
+    .user-controler{
+        width: 50%;
+        margin: auto;
+        border: 2px solid rgba(51,51,51,1);
+        background-color: rgba(30, 31, 32, 1);
+        padding: 3% .5%;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top: none;
 
-    small{
-        color: var(--secondary-text-color);
+        .user{
+            width: 100%;
+           
+            .img{
+                width: 15%;
+                padding-right: 1%;
+                margin: auto;
+
+                img{
+                    width: 100%;
+                }
+
+            }
+
+            .name{
+                // display: flex;
+                // justify-content: center;
+                // align-self: center;
+
+                h3{
+                    color: var(--main-color-text);
+                    text-align: center;
+                    
+                    small{
+                        color: var(--secondary-text-color);
+                    }
+                }
+
+            }
+
+            .info{
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                font-weight: 100;
+
+                p{
+                    padding: 0 .5%;
+                }
+            }
+
+        } //end user-info
+
+    } //end user-controller
+
+    .status-controler{
+        width: 50%;
+        margin: 1% auto;
+        padding: 1% .5%;
+        border-radius: 10px;
+
+            .feed {
+                border-radius: 10px;
+                padding: 1%;
+                margin: 5% 0;
+                background-color: rgba(30, 31, 32, .6);
+    
+                .feed-info {
+    
+                    .post-header{
+                        display: flex;
+                        justify-content: space-between;
+    
+                        h4 {
+                            
+                            a{
+                                text-decoration: none;
+                                
+                                span {
+        
+                                    color: var(--secondary-text-color);
+                                    font-size: .8rem;
+                                }
+    
+                            }
+                        }
+    
+                        span {
+                            
+                        }
+                        
+                    } // post-header
+    
+                } //end feed-info
+    
+                    hr {
+                        border: none;
+                        border-top: 1px solid rgba(51,51,51,1);
+                        margin: 1% 0;
+                    }
+    
+                .feed-message {
+    
+                    .post-msg {
+                            padding: 1% 0;                    
+                        }
+    
+                        .fa-heart,
+                        .fa-comment{
+                            font-size: 1.1rem;
+                            font-weight: 100;
+    
+                                .comment-info{
+                                    position: absolute;
+                                    top: auto;
+                                    left: 50%;
+                                    transform: translate(-50%);
+                                    width: 40%;
+                                    border-radius: 10px;
+                                    padding: .5%;
+                                    background-color: var(--secondary-bg-color);
+                                    margin: 1% auto 0 auto;
+        
+                                    .post-comments{
+                                        font-size: 1rem;
+                                        
+                                        div{
+                                            font-weight: 100;
+                                            font-size: var(--middle-text-size);
+                                            h4{
+                                                width: 100%;
+                                                display: flex;
+                                                justify-content: space-between;
+                                            }
+        
+                                            small{
+                                                font-size: var(--small-text-size);
+                                                font-weight: 100;
+                                            }
+        
+                                            p{
+                                                padding: .5% 0;
+                                            }
+                                        }
+                                    }
+                                    
+                                    input[type=text]{
+                                        background-color: transparent;
+                                        border: none;
+                                        outline: none;
+                                        color: var(--secondary-text-color);
+                                        width: 90%;
+                                        font-weight: 100;
+                                    }
+                    
+                                    .new-comment{
+                                        width: 10%;
+                                        padding: 0 1%;
+                                        font-size: .8rem;
+                                        cursor: pointer;
+                                        font-weight: 400;
+                                        color: #1e1f20;
+                                        border-radius: 10px;
+                                        border: 1px solid var(--secondary-text-color);
+                                        background-color: var(--secondary-text-color);
+                                    }
+        
+                                } // comments-container
+        
+                        } //end fa-comment
+    
+                } //end feed-message
+                    
+            } //end feed
+    
+            .hide-comments {
+                display: none;
+            }
     }
+
+} //end profile-container
+.liked{
+    color:var(--secondary-text-color);
+}
+
+.not-liked{
+    color:var(--main-text-color);
 }

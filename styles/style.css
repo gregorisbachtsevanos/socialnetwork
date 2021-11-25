@@ -2,7 +2,7 @@
 :root {
   --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
   --secondary-bg-color: rgba(30, 31, 32, 1);
-  --main-text-color: #dadada;
+  --main-text-color: #d6d6d6;
   --secondary-text-color: #fc6d26be;
   --small-text-size: .6rem;
   --middle-text-size: .9rem;
@@ -109,12 +109,146 @@ input[type=submit]:hover {
   transition: 1.3s;
 }
 
-h3 {
+.profile-contrainer .user-controler {
+  width: 50%;
+  margin: auto;
+  border: 2px solid #333333;
+  background-color: #1e1f20;
+  padding: 3% 0.5%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: none;
+}
+.profile-contrainer .user-controler .user {
+  width: 100%;
+}
+.profile-contrainer .user-controler .user .img {
+  width: 15%;
+  padding-right: 1%;
+  margin: auto;
+}
+.profile-contrainer .user-controler .user .img img {
+  width: 100%;
+}
+.profile-contrainer .user-controler .user .name h3 {
   color: var(--main-color-text);
   text-align: center;
 }
-h3 small {
+.profile-contrainer .user-controler .user .name h3 small {
   color: var(--secondary-text-color);
+}
+.profile-contrainer .user-controler .user .info {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-weight: 100;
+}
+.profile-contrainer .user-controler .user .info p {
+  padding: 0 0.5%;
+}
+.profile-contrainer .status-controler {
+  width: 50%;
+  margin: 1% auto;
+  padding: 1% 0.5%;
+  border-radius: 10px;
+}
+.profile-contrainer .status-controler .feed {
+  border-radius: 10px;
+  padding: 1%;
+  margin: 5% 0;
+  background-color: rgba(30, 31, 32, 0.6);
+}
+.profile-contrainer .status-controler .feed .feed-info .post-header {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-contrainer .status-controler .feed .feed-info .post-header h4 a {
+  text-decoration: none;
+}
+.profile-contrainer .status-controler .feed .feed-info .post-header h4 a span {
+  color: var(--secondary-text-color);
+  font-size: 0.8rem;
+}
+.profile-contrainer .status-controler .feed hr {
+  border: none;
+  border-top: 1px solid #333333;
+  margin: 1% 0;
+}
+.profile-contrainer .status-controler .feed .feed-message .post-msg {
+  padding: 1% 0;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment {
+  font-size: 1.1rem;
+  font-weight: 100;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info {
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translate(-50%);
+  width: 40%;
+  border-radius: 10px;
+  padding: 0.5%;
+  background-color: var(--secondary-bg-color);
+  margin: 1% auto 0 auto;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments {
+  font-size: 1rem;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div {
+  font-weight: 100;
+  font-size: var(--middle-text-size);
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div h4,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div small,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
+  font-size: var(--small-text-size);
+  font-weight: 100;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div p,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div p {
+  padding: 0.5% 0;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info input[type=text],
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--secondary-text-color);
+  width: 90%;
+  font-weight: 100;
+}
+.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .new-comment,
+.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .new-comment {
+  width: 10%;
+  padding: 0 1%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 400;
+  color: #1e1f20;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-text-color);
+  background-color: var(--secondary-text-color);
+}
+.profile-contrainer .status-controler .hide-comments {
+  display: none;
+}
+
+.liked {
+  color: var(--secondary-text-color);
+}
+
+.not-liked {
+  color: var(--main-text-color);
 }
 
 #welcome {
@@ -177,23 +311,25 @@ h3 small {
   margin-top: 7%;
 }
 #feed-container #feed-controler .feed {
-  border: 1px solid var(--main-text-color);
   border-radius: 10px;
   padding: 1%;
   margin: 10% 0;
-  background-color: rgba(30, 31, 32, 0.5);
+  background-color: rgba(30, 31, 32, 0.6);
 }
 #feed-container #feed-controler .feed .feed-info .post-header {
   display: flex;
   justify-content: space-between;
 }
-#feed-container #feed-controler .feed .feed-info .post-header h4 small {
+#feed-container #feed-controler .feed .feed-info .post-header h4 a {
+  text-decoration: none;
+}
+#feed-container #feed-controler .feed .feed-info .post-header h4 a span {
   color: var(--secondary-text-color);
   font-size: 0.8rem;
 }
 #feed-container #feed-controler .feed hr {
   border: none;
-  border-top: 1px solid var(--main-text-color);
+  border-top: 1px solid #333333;
   margin: 1% 0;
 }
 #feed-container #feed-controler .feed .feed-message .post-msg {
@@ -211,7 +347,6 @@ h3 small {
   left: 50%;
   transform: translate(-50%);
   width: 40%;
-  border: 1px solid var(--main-text-color);
   border-radius: 10px;
   padding: 0.5%;
   background-color: var(--secondary-bg-color);
@@ -313,7 +448,6 @@ h3 small {
   justify-content: center;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
-  border: 5px solid #c35924be;
 }
 #nav-container #nav-items #user .user-icon {
   font-weight: 500;
