@@ -9,20 +9,17 @@ const toggleForms = (e) => {
 }
 
 const mouseOver = (e) => {
-	post = e.target.closest(".feed");
-	(e.target.classList.contains("delete-feed")) ? post.querySelector(".delete-feed").style.color = "#fc6d26be" : post.querySelector(".delete-comment").style.color = "#fc6d26be";
+	(e.target.classList.contains("delete-feed")) ? e.target.style.color = "#fc6d26be" : e.target.style.color = "#fc6d26be";
 }
 
 const mouseOut = (e) => {
-	post = e.target.closest(".feed");
-	(e.target.classList.contains("delete-feed")) ? post.querySelector(".delete-feed").style.color = "#dadada" : post.querySelector(".delete-comment").style.color = "#dadada";
+	(e.target.classList.contains("delete-feed")) ? e.target.style.color = "#dadada" : e.target.style.color = "#dadada";
 }
 
 function toggleComments() {
 	for (comment of showComments) {
 
 		comment.addEventListener("click", (e) => {
-			let post = e.target.closest(".feed");
 			e.target.querySelector(".comment-info").classList.toggle("hide-comments");
 			e.preventDefault();
 		});
@@ -108,7 +105,6 @@ function insertComment(data, post) {
 
 function deletePost() {
 	for (deletePost of deletePosts) {
-		let param = ".fa-trash-alt";
 		deletePost.addEventListener("mouseover", mouseOver);
 		deletePost.addEventListener("mouseout", mouseOut);
 
@@ -137,16 +133,15 @@ function deleteComment() {
 		deleteComment.addEventListener("mouseout", mouseOut);
 
 		deleteComment.addEventListener("click", (e) => {
-			let comment = deleteComment.closest(".comment");
-			comment.remove();
+			let comment = e.target.closest(".comment");
 			let commentId = comment.dataset.id;
-			console.log(commentId);
+			comment.remove();
 			let xhr = new XMLHttpRequest();
 			xhr.open("POST", "../app/controllers/ajax/delete-post_controller.php", true);
 			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhr.onload = function () {
 				if (this.status == 200) {
-					console.log(this.responseText);
+					// console.log(this.responseText);
 				}
 			};
 			xhr.send(`commentId=${commentId}`);

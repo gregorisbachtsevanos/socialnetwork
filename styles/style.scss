@@ -23,6 +23,7 @@ body{
     background: var(--main-bg-color);
 }
 
+@import "import/edit";
 @import "import/index";
 @import "import/profile";
 @import "import/homepage";

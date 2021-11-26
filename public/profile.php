@@ -10,13 +10,12 @@ if(isset($_GET["id"])){
 	!isset($row->id) ? die("Not found") : null;
 
 	include "includes/navigationbar.php";
-	$data = $db->update("users", array("avatar" => "man.png"), array('id'=>$_GET['id']));
 }
 
 ?>
 
-<div class="profile-contrainer">
-	<div class="user-controler">
+<div class="profile-container">	
+	<div class="user-container">
 		<div class="user">
 			<div class="img">
 				<img <?php echo "src=../files/assets/img/avatars/".$row->avatar ?>>
@@ -26,14 +25,30 @@ if(isset($_GET["id"])){
 			</div>
 			<div class="info">
 				<p><?php echo $row->followers ?> followers</p>
-				<p><?php echo $row->followers ?> following</p>
+				<p><?php echo $row->following ?> following</p>
 			</div>
 		</div>
 		<p><?php echo $row->bio ?></p>
 		<?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : null ?>
 		
 	</div>
-	<div class="status-controler">
+	<div class="actions-container">
+		<div class="action-type">
+			<div class="action">
+				<h4>Posts</h4>
+			</div>
+			<div class="action">
+				<h4>Comments</h4>
+			</div>
+			<div class="action">
+				<h4>Mentions</h4>
+			</div>
+			<div class="action">
+				<h4>Likes</h4>
+			</div>
+		</div>
+	</div>
+	<div class="status-container">
 		<?php
 			
 			// get users posts

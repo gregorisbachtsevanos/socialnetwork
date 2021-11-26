@@ -49,7 +49,7 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 					</label>
 				</div>
 				<div class="input-controler" id="submit-btn">
-					<input type="submit" name="login-btn" value="Login"></input><br>
+					<input type="submit" class="submit" name="login-btn" value="Login"></input><br>
 				</div>
 				<?php echo $error ?>
 				<br>
@@ -156,7 +156,7 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 					</label>
 				</div>
 				<div class="input-controler" id="submit-btn">
-					<input type="submit" name="singup-btn" value="Singup"></input><br>
+					<input type="submit" class="submit" name="singup-btn" value="Singup"></input><br>
 				</div>
 				<?php echo $error ?>
 				<br>

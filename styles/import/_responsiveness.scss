@@ -16,27 +16,22 @@
             flex-direction: row;
             align-items: center;
             height: 100%;
+
+            #logout{
+                position: absolute;
+                width: 0%;
+                left: 2%;
+                // top:20%;
+            }
+
+            #user{
+                position: absolute;
+                left: 95%;
+            }
         }
 
-        #logout,
-        #user{
-            height: 100%;
-        }
+
         
-        #user{
-            width: 85%;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            padding-bottom: .8%;
-        }
-        
-        #logout{
-            top: 0;
-            width: 85%;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-        }
+       
     }
 }

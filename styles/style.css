@@ -63,7 +63,7 @@ label {
   justify-content: center;
 }
 
-input[type=submit] {
+.submit {
   width: 50%;
   padding: 3%;
   cursor: pointer;
@@ -72,7 +72,7 @@ input[type=submit] {
   background-color: #dadada;
 }
 
-input[type=submit]:hover {
+.submit:hover {
   background-color: #1e1f20;
   color: #dadada;
   transition: 0.6s;
@@ -109,7 +109,7 @@ input[type=submit]:hover {
   transition: 1.3s;
 }
 
-.profile-contrainer .user-controler {
+.profile-container .user-container {
   width: 50%;
   margin: auto;
   border: 2px solid #333333;
@@ -119,71 +119,83 @@ input[type=submit]:hover {
   border-bottom-right-radius: 10px;
   border-top: none;
 }
-.profile-contrainer .user-controler .user {
+.profile-container .user-container .user {
   width: 100%;
 }
-.profile-contrainer .user-controler .user .img {
-  width: 15%;
+.profile-container .user-container .user .img {
+  width: 20%;
   padding-right: 1%;
   margin: auto;
 }
-.profile-contrainer .user-controler .user .img img {
+.profile-container .user-container .user .img img {
   width: 100%;
+  border-radius: 100px;
 }
-.profile-contrainer .user-controler .user .name h3 {
+.profile-container .user-container .user .name h3 {
   color: var(--main-color-text);
   text-align: center;
 }
-.profile-contrainer .user-controler .user .name h3 small {
+.profile-container .user-container .user .name h3 small {
   color: var(--secondary-text-color);
 }
-.profile-contrainer .user-controler .user .info {
+.profile-container .user-container .user .info {
   display: flex;
   justify-content: center;
   align-self: center;
   font-weight: 100;
 }
-.profile-contrainer .user-controler .user .info p {
+.profile-container .user-container .user .info p {
   padding: 0 0.5%;
 }
-.profile-contrainer .status-controler {
+.profile-container .actions-container {
   width: 50%;
-  margin: 1% auto;
   padding: 1% 0.5%;
   border-radius: 10px;
+  margin: 2% auto 0 auto;
+  background-color: #1e1f20;
 }
-.profile-contrainer .status-controler .feed {
-  border-radius: 10px;
-  padding: 1%;
-  margin: 5% 0;
-  background-color: rgba(30, 31, 32, 0.6);
-}
-.profile-contrainer .status-controler .feed .feed-info .post-header {
+.profile-container .actions-container .action-type {
+  width: 50%;
   display: flex;
   justify-content: space-between;
 }
-.profile-contrainer .status-controler .feed .feed-info .post-header h4 a {
+.profile-container .status-container {
+  width: 50%;
+  margin: 1% auto;
+  padding: 1% 0.5%;
+}
+.profile-container .status-container .feed {
+  border-radius: 10px;
+  padding: 1%;
+  margin-top: 2%;
+  background-color: rgba(30, 31, 32, 0.8);
+}
+.profile-container .status-container .feed .feed-info .post-header {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-container .status-container .feed .feed-info .post-header h4 a {
   text-decoration: none;
 }
-.profile-contrainer .status-controler .feed .feed-info .post-header h4 a span {
+.profile-container .status-container .feed .feed-info .post-header h4 a span {
   color: var(--secondary-text-color);
   font-size: 0.8rem;
 }
-.profile-contrainer .status-controler .feed hr {
+.profile-container .status-container .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
-.profile-contrainer .status-controler .feed .feed-message .post-msg {
+.profile-container .status-container .feed .feed-message .post-msg {
   padding: 1% 0;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment {
+.profile-container .status-container .feed .feed-message .fa-heart,
+.profile-container .status-container .feed .feed-message .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info {
   position: absolute;
   top: auto;
   left: 50%;
@@ -194,32 +206,32 @@ input[type=submit]:hover {
   background-color: var(--secondary-bg-color);
   margin: 1% auto 0 auto;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments {
   font-size: 1rem;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div h4,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div h4,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div small,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div small,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 100;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .post-comments div p,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .post-comments div p {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div p,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div p {
   padding: 0.5% 0;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info input[type=text],
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info input[type=text],
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info input[type=text] {
   background-color: transparent;
   border: none;
   outline: none;
@@ -227,8 +239,8 @@ input[type=submit]:hover {
   width: 90%;
   font-weight: 100;
 }
-.profile-contrainer .status-controler .feed .feed-message .fa-heart .comment-info .new-comment,
-.profile-contrainer .status-controler .feed .feed-message .fa-comment .comment-info .new-comment {
+.profile-container .status-container .feed .feed-message .fa-heart .comment-info .new-comment,
+.profile-container .status-container .feed .feed-message .fa-comment .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
   font-size: 0.8rem;
@@ -239,7 +251,7 @@ input[type=submit]:hover {
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
 }
-.profile-contrainer .status-controler .hide-comments {
+.profile-container .status-container .hide-comments {
   display: none;
 }
 
@@ -475,22 +487,13 @@ input[type=submit]:hover {
     align-items: center;
     height: 100%;
   }
-  #nav-container #logout,
-#nav-container #user {
-    height: 100%;
+  #nav-container #nav-items #logout {
+    position: absolute;
+    width: 0%;
+    left: 2%;
   }
-  #nav-container #user {
-    width: 85%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding-bottom: 0.8%;
-  }
-  #nav-container #logout {
-    top: 0;
-    width: 85%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+  #nav-container #nav-items #user {
+    position: absolute;
+    left: 95%;
   }
 }/*# sourceMappingURL=style.css.map */
