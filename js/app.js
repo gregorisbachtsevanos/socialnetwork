@@ -31,24 +31,35 @@ $('body').on('click', '.delete-feed', function(e){
 $('body').on("click", ".delete-comment", function(e){
 	let comment = $(this).closest(".comment");
 	let commentId = comment.data("id");
-	console.log(commentId)
-	$.post("../app/controllers/ajax/delete-post_controller.php", {commentId: commentId}, function(data){
-		comment.remove();
+	$.post("../app/controllers/ajax/delete-post_controller.php", {commentId: commentId}, function(res){
+		let data = jQuery.parseJSON(res)
+		console.log(typeof data)
 		comment.closest(".feed").find(".comment-count").html(data.total);
+		comment.remove();
 
 	})
 })
 
-
+// add comment
 $('.feed').on("click", ".new-comment", function(e){
 	let post = $(this).closest(".feed");
 	let postId = post.data("id");
 	let msg = post.find(".comment-field").val()
 	$.post("../app/controllers/ajax/new-comment_controller.php", {postId: postId, msg: msg}, function(res){
 		let data = res
+		console.log(res);
 		if (data.comment) {
 			post.find(".comment-count").html(data.total);
-			insertComment(data, post);
+			let addComment = `
+				<div class="comment" data-id=${data.id}>
+					<h4>${data.username} 
+						<i class="far fa-trash-alt delete-comment"></i>
+						</h4>
+					<small>${data.date_created}</small>
+					<p>${data.message}</p>
+				</div>
+			`;
+			post.find(".post-comments").append(addComment);
 		} else {
 			post.find(".comment-count").html(data.total);
 		};
@@ -56,6 +67,7 @@ $('.feed').on("click", ".new-comment", function(e){
 	post.find(".comment-field").val('')
 })
 
+// add a like
 $(".feed").on("click", ".fa-heart", function(e){
 	let post = $(this).closest('.feed');
 	let postId = post.data("id");
@@ -73,23 +85,6 @@ $(".feed").on("click", ".fa-heart", function(e){
 })
 
 
-function insertComment(data, post) {
-	const div = document.createElement("div");
-	const hr = document.createElement("hr");
-	const h4 = document.createElement("h4");
-	const i = document.createElement("i");
-	const small = document.createElement("small");
-	const p = document.createElement("p");
-	div.className = "comment";
-	// div.setAttribute("data-id",);
-	h4.innerHTML = data.username;
-	i.className = "far fa-trash-alt delete-comment";
-	small.innerHTML = data.date_created;
-	p.innerHTML = data.message;
-	h4.append(i)
-	div.append(h4, small, p);
-	post.find(".post-comments").append(div, hr);
-}
 
 // const getUserActions = (removeClass, addClass0, addClass1, addClass2)=>{
 // 	removeClass.classList.remove("show-action");
@@ -97,26 +92,10 @@ function insertComment(data, post) {
 // 	addClass1.classList.add("show-action");
 // 	addClass2.classList.add("show-action");
 // }	
-
-
-// const likeBtns = document.querySelectorAll(".fa-heart");
-// const commentBtns = document.querySelectorAll(".new-comment");
-// const showComments = document.querySelectorAll(".fa-comment");
-// const deletePosts = document.querySelectorAll(".delete-feed");
-// var deleteComments = document.querySelectorAll(".delete-comment");
-
 // const getPosts = document.querySelector(".get-posts");
 // const getComments = document.querySelector(".get-comments");
 // const getMentions = document.querySelector(".get-mentions");
 // const getLikes = document.querySelector(".get-likes");
-
-// //homepage)
-// 	addLikeBtn();
-// 	addCommentBtn();
-// 	deleteComment();
-	
-
-
 
 // 	document.querySelector(".comment-action").addEventListener("click",	() => {
 // 		getUserActions(getComments, getPosts, getMentions, getLikes)

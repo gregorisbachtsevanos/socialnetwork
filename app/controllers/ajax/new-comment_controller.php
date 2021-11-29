@@ -8,14 +8,14 @@
         $params = array($_POST['postId']);
         $row = $db->row($sql, $params);
            
-        $db->insert('posts', array(
-                                    'parent_id'=>$_POST['postId'],
-                                    'message'=>$_POST['msg'],
-                                    'user_id'=>$_SESSION["user"],
-                                    'date_created'=>date('Y-m-d H:i:s')
+       $new_id = $db->insert('posts', array(
+                                    'parent_id'     =>$_POST['postId'],
+                                    'message'       =>$_POST['msg'],
+                                    'user_id'       =>$_SESSION["user"],
+                                    'date_created'  =>date('Y-m-d H:i:s')
                                )
                     );
-        $data = array('status'=>200, 'comment'=>true);
+        $data = array('status'=>200, 'comment'=>true, 'id'=>$_POST["postId"]);
 
         $sql = "SELECT `username` FROM `users` WHERE `id` = ?";
         $params = array($_SESSION["user"]);
@@ -23,6 +23,7 @@
         $data['username'] = $row->username;
         $data['date_created'] = date("d/m/Y");
         $data['message'] = $_POST['msg'];
+        $data["id"] = $new_id;
 
         $sql = 'SELECT COUNT(`id`) as `total` FROM `posts` WHERE `parent_id` = ?';
         $params = array($_POST['postId']);
