@@ -22,6 +22,10 @@ body {
   background: var(--main-bg-color);
 }
 
+.fa-trash-alt:hover {
+  color: #fc6d26be !important;
+}
+
 legend {
   text-align: center;
 }
@@ -164,74 +168,80 @@ label {
   margin: 1% auto;
   padding: 1% 0.5%;
 }
-.profile-container .status-container .feed {
+.profile-container .status-container .get-posts, .profile-container .status-container .get-comments, .profile-container .status-container .get-likes, .profile-container .status-container .get-mentions {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  transition: 1s;
+}
+.profile-container .status-container .get-posts .feed, .profile-container .status-container .get-comments .feed, .profile-container .status-container .get-likes .feed, .profile-container .status-container .get-mentions .feed {
   border-radius: 10px;
   padding: 1%;
   margin-top: 2%;
   background-color: rgba(30, 31, 32, 0.8);
 }
-.profile-container .status-container .feed .feed-info .post-header {
+.profile-container .status-container .get-posts .feed .feed-info .post-header, .profile-container .status-container .get-comments .feed .feed-info .post-header, .profile-container .status-container .get-likes .feed .feed-info .post-header, .profile-container .status-container .get-mentions .feed .feed-info .post-header {
   display: flex;
   justify-content: space-between;
 }
-.profile-container .status-container .feed .feed-info .post-header h4 a {
+.profile-container .status-container .get-posts .feed .feed-info .post-header h4 a, .profile-container .status-container .get-comments .feed .feed-info .post-header h4 a, .profile-container .status-container .get-likes .feed .feed-info .post-header h4 a, .profile-container .status-container .get-mentions .feed .feed-info .post-header h4 a {
   text-decoration: none;
 }
-.profile-container .status-container .feed .feed-info .post-header h4 a span {
+.profile-container .status-container .get-posts .feed .feed-info .post-header h4 a span, .profile-container .status-container .get-comments .feed .feed-info .post-header h4 a span, .profile-container .status-container .get-likes .feed .feed-info .post-header h4 a span, .profile-container .status-container .get-mentions .feed .feed-info .post-header h4 a span {
   color: var(--secondary-text-color);
   font-size: 0.8rem;
 }
-.profile-container .status-container .feed hr {
+.profile-container .status-container .get-posts .feed hr, .profile-container .status-container .get-comments .feed hr, .profile-container .status-container .get-likes .feed hr, .profile-container .status-container .get-mentions .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
-.profile-container .status-container .feed .feed-message .post-msg {
+.profile-container .status-container .get-posts .feed .feed-message .post-msg, .profile-container .status-container .get-comments .feed .feed-message .post-msg, .profile-container .status-container .get-likes .feed .feed-message .post-msg, .profile-container .status-container .get-mentions .feed .feed-message .post-msg {
   padding: 1% 0;
 }
-.profile-container .status-container .feed .feed-message .fa-heart,
-.profile-container .status-container .feed .feed-message .fa-comment {
+.profile-container .status-container .get-posts .feed .feed-message .reactions, .profile-container .status-container .get-comments .feed .feed-message .reactions, .profile-container .status-container .get-likes .feed .feed-message .reactions, .profile-container .status-container .get-mentions .feed .feed-message .reactions {
+  display: flex;
+  width: 100%;
+}
+.profile-container .status-container .get-posts .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-comments .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-likes .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-mentions .feed .feed-message .reactions .fa-heart {
+  font-size: 1.1rem;
+  font-weight: 100;
+  height: 1%;
+  width: 5%;
+}
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body {
+  width: 90%;
+}
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info {
-  position: absolute;
-  top: auto;
-  left: 50%;
-  transform: translate(-50%);
-  width: 40%;
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info {
+  width: 100%;
   border-radius: 10px;
-  padding: 0.5%;
-  background-color: var(--secondary-bg-color);
-  margin: 1% auto 0 auto;
+  padding: 1%;
+  margin-top: 1%;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div h4,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div small,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div small {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 100;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .post-comments div p,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .post-comments div p {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
   padding: 0.5% 0;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info input[type=text],
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info input[type=text] {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
   outline: none;
@@ -239,8 +249,7 @@ label {
   width: 90%;
   font-weight: 100;
 }
-.profile-container .status-container .feed .feed-message .fa-heart .comment-info .new-comment,
-.profile-container .status-container .feed .feed-message .fa-comment .comment-info .new-comment {
+.profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
   font-size: 0.8rem;
@@ -251,7 +260,7 @@ label {
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
 }
-.profile-container .status-container .hide-comments {
+.profile-container .status-container .get-posts .hide-comments, .profile-container .status-container .get-comments .hide-comments, .profile-container .status-container .get-likes .hide-comments, .profile-container .status-container .get-mentions .hide-comments {
   display: none;
 }
 
@@ -261,6 +270,11 @@ label {
 
 .not-liked {
   color: var(--main-text-color);
+}
+
+.show-action {
+  transform: scale(0) translate(0%, -100%);
+  transition: 1s;
 }
 
 #welcome {
@@ -347,49 +361,49 @@ label {
 #feed-container #feed-controler .feed .feed-message .post-msg {
   padding: 1% 0;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart,
-#feed-container #feed-controler .feed .feed-message .fa-comment {
+#feed-container #feed-controler .feed .feed-message .reactions {
+  display: flex;
+  width: 100%;
+}
+#feed-container #feed-controler .feed .feed-message .reactions .fa-heart {
+  font-size: 1.1rem;
+  font-weight: 100;
+  height: 1%;
+  width: 5%;
+}
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body {
+  width: 90%;
+}
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info {
-  position: absolute;
-  top: auto;
-  left: 50%;
-  transform: translate(-50%);
-  width: 40%;
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info {
+  width: 100%;
   border-radius: 10px;
-  padding: 0.5%;
-  background-color: var(--secondary-bg-color);
-  margin: 1% auto 0 auto;
+  padding: 1%;
+  margin-top: 1%;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div h4,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div h4 {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div small,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div small {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .post-comments div p,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .post-comments div p {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
   padding: 0.5% 0;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info input[type=text],
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info input[type=text] {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
   outline: none;
@@ -397,8 +411,7 @@ label {
   width: 90%;
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .fa-heart .comment-info .new-comment,
-#feed-container #feed-controler .feed .feed-message .fa-comment .comment-info .new-comment {
+#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
   font-size: 0.8rem;
@@ -409,7 +422,7 @@ label {
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
 }
-#feed-container #feed-controler .hide-comments {
+#feed-container .hide-comments {
   display: none;
 }
 

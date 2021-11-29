@@ -23,6 +23,10 @@ body{
     background: var(--main-bg-color);
 }
 
+.fa-trash-alt:hover {
+    color: #fc6d26be!important
+}
+
 @import "import/edit";
 @import "import/index";
 @import "import/profile";

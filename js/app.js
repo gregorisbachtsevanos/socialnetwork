@@ -2,88 +2,76 @@ const homepage = "http://localhost/socialnetwork/public/homepage.php";
 const index = "http://localhost/socialnetwork/public/index.php";
 const profile = `http://localhost/socialnetwork/public/profile.php`;
 
-const toggleForms = (e) => {
-    e.preventDefault();
-    document.querySelector(".login").classList.toggle("hide");
-    document.querySelector(".singup").classList.toggle("hide");  
-}
+// toggle forms
+$("#new-account, #member").on('click', function(e){
+	e.preventDefault();
+	$('.login').toggleClass('hide')
+	$('.singup').toggleClass('hide')
+})
 
-const mouseOver = (e) => {
-	(e.target.classList.contains("delete-feed")) ? e.target.style.color = "#fc6d26be" : e.target.style.color = "#fc6d26be";
-}
+typeof signup !== "undefined" ? $("#member").click() : void(0);
 
-const mouseOut = (e) => {
-	(e.target.classList.contains("delete-feed")) ? e.target.style.color = "#dadada" : e.target.style.color = "#dadada";
-}
 
-function toggleComments() {
-	for (comment of showComments) {
+// show comments
+$('body').on('click', '.fa-comment', function(e){
+	let el = $(this).parent()
+	el.find('.comment-info').toggleClass('hide-comments');
+})
 
-		comment.addEventListener("click", (e) => {
-			e.target.querySelector(".comment-info").classList.toggle("hide-comments");
-			e.preventDefault();
-		});
-	}
-}
+// delete posts
+$('body').on('click', '.delete-feed', function(e){
+	let post = $(this).closest('.feed');
+	let postId = post.data('id');
+	$.post("../app/controllers/ajax/delete-post_controller.php", {postId: postId}, function(data){
+		post.remove();
+	})
+})
 
-function addLikeBtn() {
-	for (likeBtn of likeBtns) {
+// delete comment
+$('body').on("click", ".delete-comment", function(e){
+	let comment = $(this).closest(".comment");
+	let commentId = comment.data("id");
+	console.log(commentId)
+	$.post("../app/controllers/ajax/delete-post_controller.php", {commentId: commentId}, function(data){
+		comment.remove();
+		comment.closest(".feed").find(".comment-count").html(data.total);
 
-		let post = likeBtn.closest('.feed');
-		let postId = post.dataset.id;
+	})
+})
 
-		likeBtn.addEventListener("click", (e) => {
-			e.preventDefault();
-			xhr = new XMLHttpRequest();
-			xhr.open("POST", `../app/controllers/ajax/like_controller.php`, true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr.onload = function (data) {
-				if (xhr.status == 200) {
-					let data = JSON.parse(this.responseText);
 
-					if (data.liked) {
-						post.querySelector(".fa-heart").style.color = data.color;
-						post.querySelector(".likes").innerHTML = data.total;
-					} else {
-						post.querySelector(".fa-heart").style.color = data.color;
-						post.querySelector(".likes").innerHTML = data.total;
-					}
-				}
-			};
-			xhr.send(`postId=${postId}`);
-		});
-	}
-}
+$('.feed').on("click", ".new-comment", function(e){
+	let post = $(this).closest(".feed");
+	let postId = post.data("id");
+	let msg = post.find(".comment-field").val()
+	$.post("../app/controllers/ajax/new-comment_controller.php", {postId: postId, msg: msg}, function(res){
+		let data = res
+		if (data.comment) {
+			post.find(".comment-count").html(data.total);
+			insertComment(data, post);
+		} else {
+			post.find(".comment-count").html(data.total);
+		};
+	})
+	post.find(".comment-field").val('')
+})
 
-function addCommentBtn() {
-	for (commentBtn of commentBtns) {
-		let post = commentBtn.closest(".feed");
-		let postId = post.dataset.id;
-		commentBtn.addEventListener("click", (e) => {
+$(".feed").on("click", ".fa-heart", function(e){
+	let post = $(this).closest('.feed');
+	let postId = post.data("id");
+	e.preventDefault();
+	$.post("../app/controllers/ajax/like_controller.php", {postId: postId}, function(res){
+		let data = jQuery.parseJSON(res)		
+		if (data.liked) {
+			post.find(".fa-heart").css("color", data.color);
+			post.find(".likes").html(data.total);
+		} else {
+			post.find(".fa-heart").css("color", data.color);
+			post.find(".likes").html(data.total);
+		}
+	})
+})
 
-			let msg = post.querySelector(".comment-field").value;
-			console.log(msg);
-			if (!msg.trim().length == 0) {
-
-				e.preventDefault();
-				xhr = new XMLHttpRequest();
-				xhr.open("POST", "../app/controllers/ajax/new-comment_controller.php", true);
-				xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhr.onload = function (data) {
-					if (this.status == 200) {
-						let data = JSON.parse(this.responseText);
-						if (data.comment) {
-							post.querySelector(".comment").innerHTML = data.total;
-							insertComment(data, post);
-						}
-					}
-				};
-				xhr.send(`postId=${postId}&msg=${msg}`);
-			}
-			post.querySelector(".comment-field").value = '';
-		});
-	}
-}
 
 function insertComment(data, post) {
 	const div = document.createElement("div");
@@ -100,86 +88,46 @@ function insertComment(data, post) {
 	p.innerHTML = data.message;
 	h4.append(i)
 	div.append(h4, small, p);
-	post.querySelector(".post-comments").append(div, hr);
+	post.find(".post-comments").append(div, hr);
 }
 
-function deletePost() {
-	for (deletePost of deletePosts) {
-		deletePost.addEventListener("mouseover", mouseOver);
-		deletePost.addEventListener("mouseout", mouseOut);
+// const getUserActions = (removeClass, addClass0, addClass1, addClass2)=>{
+// 	removeClass.classList.remove("show-action");
+// 	addClass0.classList.add("show-action");
+// 	addClass1.classList.add("show-action");
+// 	addClass2.classList.add("show-action");
+// }	
 
-		deletePost.addEventListener("click", (e) => {
-			let post = e.target.closest('.feed');
-			let postId = post.dataset.id;
-			post.remove();
-			let xhr = new XMLHttpRequest();
-			xhr.open("POST", "../app/controllers/ajax/delete-post_controller.php", true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-			xhr.onload = function () {
-				if (this.status == 200) {
-					// console.log(this.responseText)
-				}
-			};
-			xhr.send(`postId=${postId}`);
+// const likeBtns = document.querySelectorAll(".fa-heart");
+// const commentBtns = document.querySelectorAll(".new-comment");
+// const showComments = document.querySelectorAll(".fa-comment");
+// const deletePosts = document.querySelectorAll(".delete-feed");
+// var deleteComments = document.querySelectorAll(".delete-comment");
 
-		});
-	}
-}
+// const getPosts = document.querySelector(".get-posts");
+// const getComments = document.querySelector(".get-comments");
+// const getMentions = document.querySelector(".get-mentions");
+// const getLikes = document.querySelector(".get-likes");
 
-function deleteComment() {
-	for (deleteComment of deleteComments) {
-		deleteComment.addEventListener("mouseover", mouseOver);
-		deleteComment.addEventListener("mouseout", mouseOut);
-
-		deleteComment.addEventListener("click", (e) => {
-			let comment = e.target.closest(".comment");
-			let commentId = comment.dataset.id;
-			comment.remove();
-			let xhr = new XMLHttpRequest();
-			xhr.open("POST", "../app/controllers/ajax/delete-post_controller.php", true);
-			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr.onload = function () {
-				if (this.status == 200) {
-					// console.log(this.responseText);
-				}
-			};
-			xhr.send(`commentId=${commentId}`);
-		});
-	}
-}
-
-const likeBtns = document.querySelectorAll(".fa-heart");
-const commentBtns = document.querySelectorAll(".new-comment");
-const showComments = document.querySelectorAll(".fa-comment");
-const deletePosts = document.querySelectorAll(".delete-feed");
-const deleteComments = document.querySelectorAll(".delete-comment");
-
-if(window.location.href == homepage){
-
-	deletePost();
-    addLikeBtn();
-	toggleComments();
-	addCommentBtn();
-	deleteComment();
-
-}else if(window.location.href == index){
-    document.querySelector("#new-account").addEventListener("click", (e) => toggleForms(e));
-    document.querySelector("#member").addEventListener("click", (e) => toggleForms(e));
-    (sing_up !== undefined) ? document.querySelector("#member").click() : void(0);
-}else{
-
-	deletePost();
-    addLikeBtn();
-	toggleComments();
-	addCommentBtn();
-	deleteComment();
-
-}
+// //homepage)
+// 	addLikeBtn();
+// 	addCommentBtn();
+// 	deleteComment();
+	
 
 
 
-
-
-
-
+// 	document.querySelector(".comment-action").addEventListener("click",	() => {
+// 		getUserActions(getComments, getPosts, getMentions, getLikes)
+// 	});
+// 	document.querySelector(".mention-action").addEventListener("click",	() => {
+// 		getUserActions(getMentions, getComments, getPosts, getLikes)
+// 	});
+// 	document.querySelector(".like-action").addEventListener("click", () => {
+// 		getUserActions(getLikes, getComments, getPosts, getMentions)
+// 	});
+// 	document.querySelector(".post-action").addEventListener("click", () => {
+// 		getUserActions(getPosts, getComments, getMentions, getLikes)
+// 	});
+ 

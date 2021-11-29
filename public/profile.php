@@ -34,29 +34,89 @@ if(isset($_GET["id"])){
 	</div>
 	<div class="actions-container">
 		<div class="action-type">
-			<div class="action">
+			<div class="action post-action">
 				<h4>Posts</h4>
 			</div>
-			<div class="action">
+			<div class="action comment-action">
 				<h4>Comments</h4>
 			</div>
-			<div class="action">
+			<div class="action mention-action">
 				<h4>Mentions</h4>
 			</div>
-			<div class="action">
+			<div class="action like-action">
 				<h4>Likes</h4>
 			</div>
 		</div>
 	</div>
 	<div class="status-container">
-		<?php
+		<div class='get-posts'>
+
+			<?php
 			
 			// get users posts
 			$sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is NULL";
 			$params = array($_GET["id"]);
 			$rows = $db->fetch($sql, $params);
-	
-			require "includes/feeds.php"; ?>
+			echo count((array)$rows) == 0 ? "No posts" : null;
+			
+			include "includes/feeds.php"; ?>
+		</div>
+		<div class='get-comments show-action'>
+
+			<?php
+			
+			// get users posts
+			$sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is not NULL";
+			$params = array($_GET["id"]);
+			$rows = $db->fetch($sql, $params);
+			echo count((array)$rows) == 0 ? "No comments" : null;
+			
+			foreach($rows as $index){
+				$sql = "SELECT * FROM posts WHERE id = ?";
+				$params = array($index->parent_id);
+				$rows = $db->fetch($sql, $params);	
+				include "includes/feeds.php";
+			}?>
+			
+		</div>
+
+		<div class='get-mentions show-action'>
+
+			<?php
+			
+			// get users posts
+			$sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
+			$params = array($_GET["id"]);
+			$rows = $db->fetch($sql, $params);
+			echo count((array)$rows) == 0 ? "No mentions" : null;
+			
+			foreach($rows as $index){
+				$sql = "SELECT * FROM posts WHERE id = ?";
+				$params = array($index->post_id);
+				$rows = $db->fetch($sql, $params);	
+				include "includes/feeds.php";
+			}?>
+			
+		</div>
+		<div class='get-likes show-action'>
+
+			<?php
+			
+			// get users posts
+			$sql = "SELECT * FROM posts_likes WHERE user_id = ?";
+			$params = array($_GET["id"]);
+			$rows = $db->fetch($sql, $params);
+			echo count((array)$rows) == 0 ? "No likes" : null;
+			
+			foreach($rows as $index){
+				$sql = "SELECT * FROM posts WHERE id = ?";
+				$params = array($index->post_id);
+				$rows = $db->fetch($sql, $params);	
+				include "includes/feeds.php";
+			}?>
+			
+		</div>
+		
 
 	</div>
 </div>

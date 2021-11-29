@@ -1,5 +1,5 @@
 <?php
-echo count((array)$rows) == 0 ? "No posts" : null;
+// echo count((array)$rows) == 0 ? "No posts" : null;
 foreach(array_reverse($rows) as $post):
     $sql = "SELECT `fullname`, `username`, id FROM `users` WHERE `id` = '$post->user_id'";
     $row = $db->row($sql);
@@ -31,11 +31,15 @@ foreach(array_reverse($rows) as $post):
         <div class="feed-message">
             <p class="post-msg"><?php echo $post->message ?></p>
             <hr>
-            <span class="fas fa-heart <?php echo $liked_class?>">
-                <small class="likes"><?php echo $post->total_likes?></small>
-            </span>
-            <span class="fas fa-comment" id="<?php echo $post->id ?>">
-                    <small class="comment"><?php echo $post->total_comments?></small>
+            <div class="reactions">
+
+                <span class="fas fa-heart <?php echo $liked_class?>">
+                    <small class="likes"><?php echo $post->total_likes?></small>
+                </span>
+                <div class="comment-body">
+                    <span class="fas fa-comment" id="<?php echo $post->id ?>">
+                        <small class="comment-count"><?php echo $post->total_comments?></small>
+                    </span>
                     <div class="comment-info hide-comments" data-id="<?php echo $post->id ?>">
                         <div class="post-comments">
                             <?php
@@ -49,7 +53,7 @@ foreach(array_reverse($rows) as $post):
                                         echo $_SESSION['user'] === $comment->user_id ?  "<i class='far fa-trash-alt delete-comment'></i>" : null;?>
                                     </h4>
                                     <small><?php echo date("d/m/Y", strtotime($comment->date_created)) ?></small>
-                                    <p><?php echo $comment->message ?></p>
+                                    <p ><?php echo $comment->message ?></p>
                                     <hr>
                                 </div>
                             <?php
@@ -59,10 +63,11 @@ foreach(array_reverse($rows) as $post):
                         <input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
                         <small class="new-comment">Comment</small>
                     </div> <!--end comment-info -->
-                </span>
-                
+                </div> <!-- end comment-body -->
+            </div> <!-- end reactions -->
+            
                 
         </div> <!-- end feed-message -->
 
-    </div>
+    </div> <!-- end feed -->
 <?php endforeach; ?>

@@ -4,14 +4,14 @@
     require_once "../model/settings.php";
     if (isset($_POST['submit'])){
 
-        if(!empty($_FILES["avatar"])){
+        if(!empty($_FILES["avatar"]["name"])){
             $img = $_FILES["avatar"]["name"];
             move_uploaded_file($_FILES["avatar"]["tmp_name"], "../../files/assets/img/avatars/".$img);
             $db->update('users', 
                 array('avatar'=>$img),
                 array('id'=>$_SESSION["user"])
             );
-        }else{echo"F";}
+        }
         if(!empty($_POST["fullname"])){
             $db->update('users', 
                 array('fullname'=>$_POST["fullname"]),
@@ -59,6 +59,29 @@
                 array('phone'=>$_POST["phone"]),
                 array('user_id'=>$_SESSION["user"])
             );
+        }
+        if(!empty($_POST["password"])){
+            $sql = 'SELECT `user_id`, "password" FROM users_login WHERE `user_id` = ?';
+			$params = array($_SESSION["user"]);
+			$row = $db->row($sql, $params);
+            if(password_verify($_POST["password"],$row->password)){
+                
+                if(!empty($_POST["new-password"]) && !empty($_POST["repeat-password"])){
+                    if(strlen($_POST["new-password"]) < 8){
+                        echo "Password must have 8 characters or more";
+                    } elseif($_POST["new-password"] !== $_POST["repeat-password"]){
+                        echo "Passwords not match";
+                    }else{
+                        $pwdHash = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
+                        $db->update('users_login',
+                            array("password"=>$pwdHash),
+                            array("user_id"=>$_SESSION["user"])
+                        );
+                        echo "success";
+                    }
+                }
+
+            }
         }
         
         header("Location: ../../public/profile.php?id=".$_SESSION["user"]);

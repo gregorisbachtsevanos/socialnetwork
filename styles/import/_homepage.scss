@@ -1,15 +1,15 @@
-#welcome{
+#welcome {
     padding: 2%;
     width: 100%;
     display: flex;
     flex-flow: column;
     justify-content: center;
-    
-    p{
+
+    p {
         text-align: center;
         font-size: 4rem;
-        
-        span{
+
+        span {
             color: var(--secondary-text-color);
         }
     }
@@ -39,7 +39,7 @@
             justify-content: space-between;
             padding: 1%;
 
-            #media{
+            #media {
                 width: 20%;
 
                 .fas {
@@ -76,17 +76,17 @@
 
             .feed-info {
 
-                .post-header{
+                .post-header {
                     display: flex;
                     justify-content: space-between;
 
                     h4 {
 
-                        a{
+                        a {
                             text-decoration: none;
-                            
+
                             span {
-    
+
                                 color: var(--secondary-text-color);
                                 font-size: .8rem;
                             }
@@ -94,105 +94,113 @@
                         }
                     }
 
-                    span {
-                        
-                    }
-                    
-                } // post-header
+                    span {}
+
+                }  // post-header
 
             } //end feed-info
 
-                hr {
-                    border: none;
-                    border-top: 1px solid rgba(51,51,51,1);
-                    margin: 1% 0;
-                }
+            hr {
+                border: none;
+                border-top: 1px solid rgba(51, 51, 51, 1);
+                margin: 1% 0;
+            }
 
             .feed-message {
 
                 .post-msg {
-                        padding: 1% 0;                    
-                    }
+                    padding: 1% 0;
+                }
+                    .reactions{
+                        display: flex;
+                        width: 100%;
+                        
+                        .fa-heart {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                            height: 1%;
+                            width: 5%;
+                        }
+                        
+                        .comment-body {
+                            width: 90%;
 
-                    .fa-heart,
-                    .fa-comment{
-                        font-size: 1.1rem;
-                        font-weight: 100;
+                            .fa-comment {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                        }
 
-                            .comment-info{
-                                position: absolute;
-                                top: auto;
-                                left: 50%;
-                                transform: translate(-50%);
-                                width: 40%;
-                                border-radius: 10px;
-                                padding: .5%;
-                                background-color: var(--secondary-bg-color);
-                                margin: 1% auto 0 auto;
-    
-                                .post-comments{
-                                    font-size: 1rem;
-                                    
-                                    div{
+                        .comment-info {
+                            width: 100%;
+                            border-radius: 10px;
+                            padding: 1%;
+                            margin-top: 1% ;
+
+                            .post-comments {
+                                font-size: 1rem;
+
+                                div {
+                                    font-weight: 100;
+                                    font-size: var(--middle-text-size);
+
+                                    h4 {
+                                        width: 100%;
+                                        display: flex;
+                                        justify-content: space-between;
+                                    }
+
+                                    small {
+                                        font-size: var(--small-text-size);
                                         font-weight: 100;
-                                        font-size: var(--middle-text-size);
-                                        h4{
-                                            width: 100%;
-                                            display: flex;
-                                            justify-content: space-between;
-                                        }
-    
-                                        small{
-                                            font-size: var(--small-text-size);
-                                            font-weight: 100;
-                                        }
-    
-                                        p{
-                                            padding: .5% 0;
-                                        }
+                                    }
+
+                                    p {
+                                        padding: .5% 0;
                                     }
                                 }
-                                
-                                input[type=text]{
-                                    background-color: transparent;
-                                    border: none;
-                                    outline: none;
-                                    color: var(--secondary-text-color);
-                                    width: 90%;
-                                    font-weight: 100;
-                                }
-                
-                                .new-comment{
-                                    width: 10%;
-                                    padding: 0 1%;
-                                    font-size: .8rem;
-                                    cursor: pointer;
-                                    font-weight: 400;
-                                    color: #1e1f20;
-                                    border-radius: 10px;
-                                    border: 1px solid var(--secondary-text-color);
-                                    background-color: var(--secondary-text-color);
-                                }
-    
-                            } // comments-container
-    
-                    } //end fa-comment
+                            }
 
+                            input[type=text] {
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                                color: var(--secondary-text-color);
+                                width: 90%;
+                                font-weight: 100;
+                            }
+
+                            .new-comment {
+                                width: 10%;
+                                padding: 0 1%;
+                                font-size: .8rem;
+                                cursor: pointer;
+                                font-weight: 400;
+                                color: #1e1f20;
+                                border-radius: 10px;
+                                border: 1px solid var(--secondary-text-color);
+                                background-color: var(--secondary-text-color);
+                            }
+
+                        } // comments-container
+
+                    } //end comment-body
+                }
             } //end feed-message
-                
+            
+
         } //end feed
 
-        .hide-comments {
-            display: none;
-        }
     } //end feed-controler
 
+    .hide-comments {
+        display: none;
+    }
 } //feed-container
 
-.liked{
-    color:var(--secondary-text-color);
+.liked {
+    color: var(--secondary-text-color);
 }
 
-.not-liked{
-    color:var(--main-text-color);
+.not-liked {
+    color: var(--main-text-color);
 }

@@ -9,6 +9,17 @@
         echo json_encode($data);
     }
     if(isset($_POST["commentId"])){
+
+        $sql = "SELECT parent_id FROM users WHERE id = ?";
+        $params = array($_POST['commentId']);
+        $row = $db->row($sql, $params);
+        
+        $sql1 = 'SELECT COUNT(`id`) as `total` FROM `posts` WHERE `parent_id` = ?';
+        $params = array($_POST['commentId']);
+        $row1 = $db->row($sql1, $params);
+
+        $db->update('posts', array('total_comments'=>$row->total), array('id'=>$_POST["commentId"]));
+
         $data = $db -> delete("posts", array('id'=>$_POST["commentId"]));
         echo json_encode($data);
     }
