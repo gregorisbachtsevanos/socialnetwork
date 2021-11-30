@@ -67,6 +67,11 @@
             width: 50%;
             display: flex;
             justify-content: space-between;
+
+            .action{
+
+                cursor: pointer;
+            }
         }
     } // end actions-container
 
@@ -79,7 +84,7 @@
             position: absolute;
             width: 50%;
             left: 25%;
-            transition: 1s;
+            transition: 1.5s;
         }
        
         .get-posts, .get-comments, .get-likes, .get-mentions{

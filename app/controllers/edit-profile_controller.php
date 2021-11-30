@@ -56,7 +56,7 @@
         }
         if(!empty($_POST["phone"])){
             $db->update('users_extra_info', 
-                array('phone'=>$_POST["phone"]),
+                array('phone_number'=>$_POST["phone"]),
                 array('user_id'=>$_SESSION["user"])
             );
         }

@@ -47,7 +47,7 @@
                     display: inline-flex;
                     flex-flow: column;
                     justify-content: space-between;
-                    font-size: 1.3rem;
+                    font-size: 1rem;
                     color: var(--secondary-text-color);
                 }
             }
@@ -134,7 +134,8 @@
                             width: 100%;
                             border-radius: 10px;
                             padding: 1%;
-                            margin-top: 1% ;
+                            margin-top: 1%;
+                            display: none;
 
                             .post-comments {
                                 font-size: 1rem;
@@ -192,9 +193,6 @@
 
     } //end feed-controler
 
-    .hide-comments {
-        display: none;
-    }
 } //feed-container
 
 .liked {

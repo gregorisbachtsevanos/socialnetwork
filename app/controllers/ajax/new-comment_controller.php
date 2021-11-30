@@ -8,7 +8,7 @@
         $params = array($_POST['postId']);
         $row = $db->row($sql, $params);
            
-       $new_id = $db->insert('posts', array(
+        $new_id = $db->insert('posts', array(
                                     'parent_id'     =>$_POST['postId'],
                                     'message'       =>$_POST['msg'],
                                     'user_id'       =>$_SESSION["user"],
@@ -16,7 +16,6 @@
                                )
                     );
         $data = array('status'=>200, 'comment'=>true, 'id'=>$_POST["postId"]);
-
         $sql = "SELECT `username` FROM `users` WHERE `id` = ?";
         $params = array($_SESSION["user"]);
         $row = $db->row($sql, $params);
@@ -34,4 +33,4 @@
         echo json_encode($data);
         exit();
     }
-?>
+?> 

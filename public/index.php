@@ -112,6 +112,17 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 							);
 
 							$db -> insert("users_login", $data);
+							
+							$data = array(
+								"user_id"		=> $new_id,
+								"cover_image"	=> NULL,
+								"phone_number"	=> NULL,
+								"website"		=> NULL,
+								"youtube"		=> NULL,
+								"date_registered"	=> null
+							);
+							
+							$db -> insert("users_extra_info", $data);
 							$_SESSION["user"] = $new_id;
 							$_SESSION["fullname"] = $_POST["fullname"];
 							header("Location: homepage.php");

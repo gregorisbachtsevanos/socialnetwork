@@ -40,7 +40,7 @@ foreach(array_reverse($rows) as $post):
                     <span class="fas fa-comment" id="<?php echo $post->id ?>">
                         <small class="comment-count"><?php echo $post->total_comments?></small>
                     </span>
-                    <div class="comment-info hide-comments" data-id="<?php echo $post->id ?>">
+                    <div class="comment-info" data-id="<?php echo $post->id ?>">
                         <div class="post-comments">
                             <?php
                             foreach($rows as $comment){

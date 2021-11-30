@@ -26,6 +26,46 @@ body {
   color: #fc6d26be !important;
 }
 
+.edit-container {
+  width: 100%;
+}
+.edit-container .info-items {
+  width: 40%;
+  margin: auto;
+}
+.edit-container .info-items .input-items {
+  width: 100%;
+  margin: 5% auto;
+}
+.edit-container .info-items .input-items .input-item {
+  width: 100%;
+  margin-top: 2%;
+}
+.edit-container .info-items .input-items .input-item label {
+  display: block;
+}
+.edit-container .info-items .input-items .input-item textarea,
+.edit-container .info-items .input-items .input-item input {
+  background-color: #333333;
+  width: 100%;
+  padding: 2%;
+  border: 2px solid #3d3d3d;
+  border-radius: 10px;
+  color: var(--main-text-color);
+  outline: none;
+}
+.edit-container .info-items .input-items .input-item input[type=submit] {
+  background-color: var(--secondary-text-color);
+  width: 20%;
+  border: none;
+}
+.edit-container .info-items #danger {
+  color: rgba(201, 0, 0, 0.712);
+}
+.edit-container .info-items #danger hr {
+  border: 1px solid rgba(201, 0, 0, 0.712);
+}
+
 legend {
   text-align: center;
 }
@@ -163,6 +203,9 @@ label {
   display: flex;
   justify-content: space-between;
 }
+.profile-container .actions-container .action-type .action {
+  cursor: pointer;
+}
 .profile-container .status-container {
   width: 50%;
   margin: 1% auto;
@@ -172,7 +215,7 @@ label {
   position: absolute;
   width: 50%;
   left: 25%;
-  transition: 1s;
+  transition: 1.5s;
 }
 .profile-container .status-container .get-posts .feed, .profile-container .status-container .get-comments .feed, .profile-container .status-container .get-likes .feed, .profile-container .status-container .get-mentions .feed {
   border-radius: 10px;
@@ -323,7 +366,7 @@ label {
   display: inline-flex;
   flex-flow: column;
   justify-content: space-between;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: var(--secondary-text-color);
 }
 #feed-container #textarea-container #feedBtn-controler #feed-btn {
@@ -383,6 +426,7 @@ label {
   border-radius: 10px;
   padding: 1%;
   margin-top: 1%;
+  display: none;
 }
 #feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
@@ -421,9 +465,6 @@ label {
   border-radius: 10px;
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
-}
-#feed-container .hide-comments {
-  display: none;
 }
 
 .liked {
