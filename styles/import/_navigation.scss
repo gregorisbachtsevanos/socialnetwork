@@ -41,7 +41,6 @@
             justify-content: center;
             color: var(--secondary-bg-color);
             background-color: var(--secondary-text-color);
-            // border: 50px solid #c35924be;
             
             .user-icon{
                 font-weight: 500;
@@ -96,6 +95,29 @@
         }
 
     } //search-items
+
+    .results{
+        width: 100%;
+
+        .input-result{
+            display: flex;
+            padding: 4%;
+            align-items: center;
+
+            h4{
+                small{
+                    a{
+                        text-decoration: none;
+                        color: var(--secondary-text-color);
+                    }
+                }
+            }
+        }
+        hr{
+            border: none;
+            border-top: 1px solid rgba(51, 51, 51, 1);
+        }
+    } //end results
    
 }
 

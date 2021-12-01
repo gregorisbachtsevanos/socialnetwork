@@ -125,18 +125,18 @@ $(".fa-times").click(()=>
 	$(".search").animate({left:'-30%'}, "slow")
 )
 
-$("#search-items .search-input").on('input',(e)=>{
-		console.log(e.code)
+$("#search-items .search-input").on('keypress',(e)=>{
+		console.log(e.keyCode)
 	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:$(e.target).val()}, function(res){
 		let data = jQuery.parseJSON(res)
 		console.log(data)
 		for (user of data){
 			let searchResult = 	`
-				<div>
-				<h4>${user.fullname} <small>${user.username}</small></h4>
-				
-				<hr>
+				<div class="input-result">
+					<img src="../files/assets/img/avatars/${user.avatar}" width="10%">	
+					<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
 				</div>
+				<hr>
 			`;
 			$(".results").append(searchResult)
 		}

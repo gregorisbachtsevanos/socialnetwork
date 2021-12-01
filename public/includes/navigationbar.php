@@ -1,6 +1,18 @@
+<?php 
+
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $params = array($_SESSION['user']);
+    $row = $db->row($sql, $params);
+
+    if($row->avatar){
+        $avatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>";
+    }else{
+        $avatar = "<span class='user-icon' style='font-size:35px;'>".substr(ucwords($_SESSION['fullname']),0,1)."</span>";
+    }
+?>
 <nav id='nav-container'>
     <ul id='nav-items'>
-        <a id='user' href='../public/profile.php?id=<?php echo $_SESSION['user'] ?>'><span class="user-icon" style='font-size:35px'><?php echo substr(ucwords($_SESSION['fullname']),0,1) ?></span></a>
+        <a id='user' href='../public/profile.php?id=<?php echo $_SESSION['user'] ?>'><?php echo $avatar ?></a>
         <li id='nav-item' href='#'><i class='fas fa-search' style='font-size:35px'></i></li>
         <li id='nav-item' href='#'><i class='fas fa-bell' style='font-size:35px'></i></li>
         <li id='nav-item' href='#'><i class='fas fa-comments' style='font-size:35px'></i></li>

@@ -29,12 +29,12 @@ if(isset($_GET["id"])){
 			</div>
 		</div>
 		<p><?php echo $row->bio ?></p>
-		<p id="edit-profile"><?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : null ?></p>
+		<p id="edit-profile"><?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : "<button class='follow-btn'>follow</button>" ?></p>
 		
 	</div>
 	<div class="actions-container">
 		<div class="action-type">
-			<div class="action post-action">
+			<div class="action post-action"> 
 				<h4>Posts</h4>
 			</div>
 			<div class="action comment-action">
