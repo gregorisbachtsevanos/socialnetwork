@@ -1,12 +1,51 @@
-.fullfill{
-}
-
 .edit-container{
     width: 100%;
+
+    #go-back{
+        width: 70%;
+        margin: auto;
+        padding-top: 2%;
+        display: flex;
+        justify-content: right;
+
+            a{
+                cursor: pointer;
+                text-decoration: none;
+                color: var(--secondary-text-color);
+            }
+    }
     
     .info-items{
         width: 40%;
         margin: auto;
+        
+        #message{
+            padding-top: 3%;
+
+            p{
+                width: 50%;
+                padding: 2%;
+                border-radius: 10px;
+                color: var(--main-text-color);
+            }
+            
+            #error-msg{
+                background-color:  rgba(128, 0, 0, 0.808);
+                border: 2px solid rgb(168, 20, 20);
+
+            }
+            #success-msg{
+                background-color:  rgba(39, 117, 39, 0.808);
+                border: 2px solid rgb(39, 117, 39);
+
+            }
+            #no-changes-msg{
+                background-color:  rgba(117, 83, 39, 0.808);
+                border: 2px solid rgb(117, 83, 39);
+
+            }
+        
+        }
         
         .input-items{
             width: 100%;
@@ -61,10 +100,10 @@
         } // end input-item
 
         #danger{
-            color: rgba(201, 0, 0, 0.712);
+            color: rgb(150,50,50);
 
             hr{
-                border:1px solid rgba(201, 0, 0, 0.712);
+                border:1px solid rgb(150,50,50);
             }
         }
     } // end info-items

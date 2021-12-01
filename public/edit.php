@@ -7,11 +7,35 @@
         $params = array($_SESSION["user"]);
         $row = $db->row($sql, $params);
     require_once "../public/includes/navigationbar.php";
-      
-        ?>
 
-    <div class="edit-container">
-        <div class="info-items">
+    if(isset($_GET["error"])){
+        $msg = $_GET["error"];
+        $class = 'error-msg';
+    }else if(isset($_GET["success"])){
+        $msg = $_GET["success"];
+        $class = 'success-msg';
+    }else if(isset($_GET["noChanges"])){
+        $msg = $_GET["noChanges"];
+        $class = 'no-changes-msg';
+    }else{
+        $msg = null;
+        $class = '';
+    }
+    
+    ?>
+
+<div class="edit-container">
+    <div id="go-back">
+        <a href="./profile.php?id=<?php echo $_SESSION["user"]?>">
+            <i class="fas fa-undo"></i>
+            Back to your page
+        </a>
+    </div>
+    <div class="info-items">
+        <div id="message">
+                <p id="<?php echo $class;?>"> <?php echo $msg;?></p>
+            </div>
+
             <form method="post" action="../app/controllers/edit-profile_controller.php" enctype="multipart/form-data" class="input-items">
                 <div class="input-item">
                     <label for="Photo-Profile">Photo Profile</label>
@@ -19,42 +43,42 @@
                 </div>
                 <div class="input-item">
                     <label for="Fullname">Fullname</label>
-                        <input type="text" class="<?php echo $row->fullname ? 'fullfill' : null ?>" name="fullname" value="<?php echo $row->fullname ?>">
+                        <input type="text" name="fullname" value="<?php echo $row->fullname ?>">
                 </div>    
                 <div class="input-item">
                     <label for="Bio">Bio</label>
-                        <textarea type="text" class="<?php echo $row->bio ? 'fullfill' : null ?>" name="bio" rows="7"><?php echo $row->bio ?></textarea>
+                        <textarea type="text" name="bio" rows="7"><?php echo $row->bio ?></textarea>
                 </div>
                 <div class="input-item">
                     <label for="Email">Email</label>
-                        <input type="email" class="<?php echo $row->email ? 'fullfill' : null ?>" name="Email" value="<?php echo $row->email ?>">
+                        <input type="email" name="Email" value="<?php echo $row->email ?>">
                 </div>
                 <div class="input-item">
                     <label for="Website">Website</label>
-                        <input type="text" class="<?php echo $row->website ? 'fullfill' : null ?>" name="website" value="<?php echo $row->website ?>">
+                        <input type="text" name="website" value="<?php echo $row->website ?>">
                 </div>
                 <div class="input-item">
                     <label for="YouTube">YouTube</label>
-                        <input type="text" class="<?php echo $row->youtube ? 'fullfill' : null ?>" name="youtube" value="<?php echo $row->youtube ?>">
+                        <input type="text" name="youtube" value="<?php echo $row->youtube ?>">
                 </div>
                 <div class="input-item">
                     <label for="Instagram">Instagram</label>
-                        <input type="text" class="<?php echo $row->instagram ? 'fullfill' : null ?>" name="instagram" value="<?php echo $row->instagram ?>">
+                        <input type="text" name="instagram" value="<?php echo $row->instagram ?>">
                 </div>
                 <div class="input-item">
                     <label for="Instagram">TikTok</label>
-                        <input type="text" class="<?php echo $row->tiktok ? 'fullfill' : null ?>" name="tiktok" value="<?php echo $row->tiktok ?>">
+                        <input type="text" name="tiktok" value="<?php echo $row->tiktok ?>">
                 </div>
                 <div class="input-item">
                     <label for="Twitch">Phone Number</label>
-                        <input type="text" class="<?php echo $row->phone_number ? 'fullfill' : null ?>" name="phone" value="<?php echo $row->phone_number ?>">
+                        <input type="text" name="phone" value="<?php echo $row->phone_number ?>">
                 </div>
                 <div class="input-item">
-                    <input type="submit" name="submit">
+                    <input type="submit" name="submit" value="Save">
                 </div>
             </form>
             <div id="danger">
-                <h3>Dangerous Zone</h3><hr>
+                <h3>Danger Zone</h3><hr>
             </div>
             <form method="post" action="../app/controllers/edit-profile_controller.php" enctype="multipart/form-data" class="input-items">
                 <div class="input-item">
@@ -70,13 +94,13 @@
                         <input type="password" name="repeat-password">
                 </div>
                 <div class="input-item">
-                    <input type="submit" name="submit">
+                    <input type="submit" name="submit" value="Save">
                 </div>
             </form>
         </div>
     </div>
         
-    <?php
+    <?php 
     }else{
         die("Error");
     }

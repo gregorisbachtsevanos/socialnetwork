@@ -2,10 +2,10 @@
 $("#new-account, #member").on('click', function(e){
 	e.preventDefault();
 	$('.login').toggleClass('hide');
-	$('.singup').toggleClass('hide');
+	$('.signup').toggleClass('hide');
 })
 
-typeof signup !== "undefined" ? $("#member").click() : void(0);
+typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
 // show comments
 $('body').on('click', '.fa-comment', function(){
@@ -88,7 +88,58 @@ function getUserActions(removeClass, addClass0, addClass1, addClass2){
 	addClass2.addClass("show-action");
 }	
 
-$(".comment-action").click(() => getUserActions($(".get-comments"), $(".get-posts"), $(".get-mentions"), $(".get-likes")));
-$(".mention-action").click(() => getUserActions($(".get-mentions"), $(".get-comments"), $(".get-posts"), $(".get-likes")));
-$(".like-action").click(() => getUserActions($(".get-likes"), $(".get-comments"), $(".get-posts"), $(".get-mentions")));
-$(".post-action").click(() => getUserActions($(".get-posts"), $(".get-comments"), $(".get-mentions"), $(".get-likes")));
+$(".comment-action").click(() => getUserActions(
+	$(".get-comments"), 
+	$(".get-posts"), 
+	$(".get-mentions"), 
+	$(".get-likes")
+));
+
+$(".mention-action").click(() => getUserActions(
+	$(".get-mentions"), 
+	$(".get-comments"), 
+	$(".get-posts"), 
+	$(".get-likes")
+));
+
+$(".like-action").click(() => getUserActions(
+	$(".get-likes"), 
+	$(".get-comments"), 
+	$(".get-posts"), 
+	$(".get-mentions")
+));
+
+$(".post-action").click(() => getUserActions(
+	$(".get-posts"), 
+	$(".get-comments"), 
+	$(".get-mentions"), 
+	$(".get-likes")
+));
+
+// search form show
+$(".fa-search").click(()=>
+	$(".search").animate({ left: '0' }, "slow")
+)
+
+$(".fa-times").click(()=>
+	$(".search-form").animate({left:'-25%'}, "slow")
+)
+
+// $("#search-items .search-input").on('input',(e)=>{
+	$("#search-items .search-input").on('keydown',(e)=>{
+		console.log(e.code)
+	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:$(e.target).val()}, function(res){
+		let data = jQuery.parseJSON(res)
+		console.log(data)
+		for (user of data){
+			let searchResult = 	`
+				<div>
+				<h4>${user.fullname} <small>${user.username}</small></h4>
+				
+				<hr>
+				</div>
+			`;
+			$(".results").append(searchResult)
+		}
+	})
+})

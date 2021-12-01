@@ -29,7 +29,7 @@ if(isset($_GET["id"])){
 			</div>
 		</div>
 		<p><?php echo $row->bio ?></p>
-		<?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : null ?>
+		<p id="edit-profile"><?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : null ?></p>
 		
 	</div>
 	<div class="actions-container">
@@ -65,7 +65,7 @@ if(isset($_GET["id"])){
 
 			<?php
 			
-			// get users posts
+			// get users comments
 			$sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is not NULL";
 			$params = array($_GET["id"]);
 			$rows = $db->fetch($sql, $params);
@@ -74,7 +74,8 @@ if(isset($_GET["id"])){
 			foreach($rows as $index){
 				$sql = "SELECT * FROM posts WHERE id = ?";
 				$params = array($index->parent_id);
-				$rows = $db->fetch($sql, $params);	
+				$rows = $db->fetch($sql, $params);
+
 				include "includes/feeds.php";
 			}?>
 			
@@ -84,7 +85,7 @@ if(isset($_GET["id"])){
 
 			<?php
 			
-			// get users posts
+			// get users mentions
 			$sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
 			$params = array($_GET["id"]);
 			$rows = $db->fetch($sql, $params);
@@ -93,7 +94,8 @@ if(isset($_GET["id"])){
 			foreach($rows as $index){
 				$sql = "SELECT * FROM posts WHERE id = ?";
 				$params = array($index->post_id);
-				$rows = $db->fetch($sql, $params);	
+				$rows = $db->fetch($sql, $params);
+
 				include "includes/feeds.php";
 			}?>
 			
@@ -102,7 +104,7 @@ if(isset($_GET["id"])){
 
 			<?php
 			
-			// get users posts
+			// get users likes
 			$sql = "SELECT * FROM posts_likes WHERE user_id = ?";
 			$params = array($_GET["id"]);
 			$rows = $db->fetch($sql, $params);
@@ -111,7 +113,8 @@ if(isset($_GET["id"])){
 			foreach($rows as $index){
 				$sql = "SELECT * FROM posts WHERE id = ?";
 				$params = array($index->post_id);
-				$rows = $db->fetch($sql, $params);	
+				$rows = $db->fetch($sql, $params);
+				
 				include "includes/feeds.php";
 			}?>
 			

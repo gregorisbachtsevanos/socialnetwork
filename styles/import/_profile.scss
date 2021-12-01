@@ -10,6 +10,13 @@
         border-bottom-right-radius: 10px;
         border-top: none;
 
+        #edit-profile{
+            a{
+                text-decoration: none;
+                color: var(--secondary-text-color);
+            }
+        }
+
         .user{
             width: 100%;
            
@@ -157,7 +164,8 @@
                                     width: 100%;
                                     border-radius: 10px;
                                     padding: 1%;
-                                    margin-top: 1% ;
+                                    margin-top: 1%;
+                                    display: none;
         
                                     .post-comments {
                                         font-size: 1rem;
@@ -211,9 +219,7 @@
                     } //end feed-message
                     
             } //end feed
-            .hide-comments {
-                display: none;
-            }
+            
         }
     } //end status container
 
@@ -229,5 +235,5 @@
 .show-action{
     transform: scale(0) translate(0%, -100%);
     transition: 1s;
-
+    opacity: 0;
 }

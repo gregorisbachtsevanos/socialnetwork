@@ -29,9 +29,42 @@ body {
 .edit-container {
   width: 100%;
 }
+.edit-container #go-back {
+  width: 70%;
+  margin: auto;
+  padding-top: 2%;
+  display: flex;
+  justify-content: right;
+}
+.edit-container #go-back a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secondary-text-color);
+}
 .edit-container .info-items {
   width: 40%;
   margin: auto;
+}
+.edit-container .info-items #message {
+  padding-top: 3%;
+}
+.edit-container .info-items #message p {
+  width: 50%;
+  padding: 2%;
+  border-radius: 10px;
+  color: var(--main-text-color);
+}
+.edit-container .info-items #message #error-msg {
+  background-color: rgba(128, 0, 0, 0.808);
+  border: 2px solid #a81414;
+}
+.edit-container .info-items #message #success-msg {
+  background-color: rgba(39, 117, 39, 0.808);
+  border: 2px solid #277527;
+}
+.edit-container .info-items #message #no-changes-msg {
+  background-color: rgba(117, 83, 39, 0.808);
+  border: 2px solid #755327;
 }
 .edit-container .info-items .input-items {
   width: 100%;
@@ -60,10 +93,10 @@ body {
   border: none;
 }
 .edit-container .info-items #danger {
-  color: rgba(201, 0, 0, 0.712);
+  color: #963232;
 }
 .edit-container .info-items #danger hr {
-  border: 1px solid rgba(201, 0, 0, 0.712);
+  border: 1px solid #963232;
 }
 
 legend {
@@ -138,7 +171,7 @@ label {
   transition: 1.3s;
 }
 
-.singup {
+.signup {
   position: absolute;
   top: 0;
   transition: 1.3s;
@@ -162,6 +195,10 @@ label {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-top: none;
+}
+.profile-container .user-container #edit-profile a {
+  text-decoration: none;
+  color: var(--secondary-text-color);
 }
 .profile-container .user-container .user {
   width: 100%;
@@ -264,6 +301,7 @@ label {
   border-radius: 10px;
   padding: 1%;
   margin-top: 1%;
+  display: none;
 }
 .profile-container .status-container .get-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-comments .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-likes .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-mentions .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
@@ -303,9 +341,6 @@ label {
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
 }
-.profile-container .status-container .get-posts .hide-comments, .profile-container .status-container .get-comments .hide-comments, .profile-container .status-container .get-likes .hide-comments, .profile-container .status-container .get-mentions .hide-comments {
-  display: none;
-}
 
 .liked {
   color: var(--secondary-text-color);
@@ -318,6 +353,7 @@ label {
 .show-action {
   transform: scale(0) translate(0%, -100%);
   transition: 1s;
+  opacity: 0;
 }
 
 #welcome {
@@ -478,14 +514,15 @@ label {
 #nav-container {
   position: fixed;
   top: 0;
-  width: 4%;
+  width: 5%;
   height: 100%;
   background-color: #1a1b1be7;
   display: flex;
   flex-direction: row;
+  z-index: 2;
 }
 #nav-container #nav-items {
-  height: 30%;
+  height: 40%;
   width: 100%;
   margin: auto;
   display: flex;
@@ -496,6 +533,7 @@ label {
   margin: auto;
   list-style: none;
   color: var(--main-text-color);
+  cursor: pointer;
 }
 #nav-container #nav-items #logout,
 #nav-container #nav-items #user {
@@ -521,6 +559,45 @@ label {
 #nav-container #nav-items #logout {
   bottom: 5%;
   color: var(--secondary-text-color);
+}
+
+.search {
+  left: -30%;
+  width: 25%;
+  height: 100%;
+  margin-left: 5%;
+  padding: 2%;
+  position: fixed;
+  background-color: rgba(30, 31, 32, 0.9);
+  z-index: 1;
+}
+.search .search-form {
+  display: flex;
+}
+.search .search-form #search-items {
+  width: 100%;
+}
+.search .search-form #search-items label {
+  display: block;
+  font-size: 1.5rem;
+}
+.search .search-form #search-items input {
+  width: 100%;
+  background-color: #333333;
+  width: 100%;
+  padding: 3%;
+  border: 2px solid #3d3d3d;
+  border-radius: 10px;
+  color: var(--main-text-color);
+  outline: none;
+}
+.search .search-form .fa-times {
+  color: var(--secondary-text-color);
+  cursor: pointer;
+}
+
+.fade {
+  transform: translate(-150%, 0);
 }
 
 @media all and (max-width: 1200px) {

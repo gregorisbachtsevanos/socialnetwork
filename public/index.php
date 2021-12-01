@@ -59,11 +59,11 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 	</div>
 
 	<?php
-	// singup call
-	if(isset($_POST['singup-btn'])){
+	// signup call
+	if(isset($_POST['signup-btn'])){
 		$error = "";
-		$SING_UP = 1;
-		echo "<script>let sing_up = `<?php echo '$SING_UP';?>`</script>";
+		$SIGN_UP = 1;
+		echo "<script>let sign_up = `<?php echo '$SIGN_UP';?>`</script>";
 		if(empty($_POST["username"]) || empty($_POST["fullname"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdRepeat"])){
 			$error = "Some fields are";
 		} else{
@@ -135,12 +135,12 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 	}
 	?>
 
-	<!-- singup form -->
-	<div class="container singup hide">
+	<!-- signup form -->
+	<div class="container signup hide">
 		<div class="form">
 
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-				<legend>Sing Up</legend>
+				<legend>Sign Up</legend>
 				<div class="input-controler">
 					<label>Username<br>
 						<input type="text" name="username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];} ?>">
@@ -167,7 +167,7 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 					</label>
 				</div>
 				<div class="input-controler" id="submit-btn">
-					<input type="submit" class="submit" name="singup-btn" value="Singup"></input><br>
+					<input type="submit" class="submit" name="signup-btn" value="Signup"></input><br>
 				</div>
 				<?php echo $error ?>
 				<br>
