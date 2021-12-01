@@ -122,11 +122,10 @@ $(".fa-search").click(()=>
 )
 
 $(".fa-times").click(()=>
-	$(".search-form").animate({left:'-25%'}, "slow")
+	$(".search").animate({left:'-30%'}, "slow")
 )
 
-// $("#search-items .search-input").on('input',(e)=>{
-	$("#search-items .search-input").on('keydown',(e)=>{
+$("#search-items .search-input").on('input',(e)=>{
 		console.log(e.code)
 	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:$(e.target).val()}, function(res){
 		let data = jQuery.parseJSON(res)
