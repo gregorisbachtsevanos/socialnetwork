@@ -190,9 +190,22 @@ body {
   border-bottom-right-radius: 10px;
   border-top: none;
 }
-.profile-container .user-container #btn-profile a {
+.profile-container .user-container #btn-profile {
+  display: flex;
+  justify-content: right;
+}
+.profile-container .user-container #btn-profile a,
+.profile-container .user-container #btn-profile button {
   text-decoration: none;
   color: var(--secondary-text-color);
+}
+.profile-container .user-container #btn-profile .follow-btn {
+  padding: 0.5% 3%;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--secondary-text-color);
+  color: var(--secondary-bg-color);
+  font-weight: 500;
 }
 .profile-container .user-container .user {
   width: 100%;

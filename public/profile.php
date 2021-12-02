@@ -4,6 +4,7 @@ include "includes/navigationbar.php";
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
 if(isset($_GET["id"])){
+	// get user's info
 	$sql = "SELECT * FROM `users` WHERE id = ?";
 	$params = array($_GET["id"]);
 	$row = $db -> row($sql, $params);
@@ -11,14 +12,15 @@ if(isset($_GET["id"])){
 	!isset($row->id) ? die("Not found") : null;
 	if(isset($_GET['id'])){
 
+		// sql for user's avatar
         $sql = "SELECT * FROM users WHERE id = ?";
         $params = array($_GET['id']);
-        $rowUser = $db->row($sql, $params);
+        $rowUserAvatar = $db->row($sql, $params);
         
-        if($rowUser->avatar){
+        if($rowUserAvatar->avatar){
             $profileAvatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>";
         }else{
-            $profileAvatar = "<span class='user-icon'>".substr(ucwords($rowUser->fullname),0,1)."</span>";
+            $profileAvatar = "<span class='user-icon'>".substr(ucwords($rowUserAvatar->fullname),0,1)."</span>";
         }
     }
 
@@ -36,13 +38,24 @@ if(isset($_GET["id"])){
 				<h3><?php echo $row->fullname ?> <small><?php echo "@".$row->username ?></small></h3>
 			</div>
 			<div class="info">
-				<p><?php echo $row->followers ?> followers</p>
-				<p><?php echo $row->following ?> following</p>
+				<p><span id="followers"><?php echo $row->followers ?></span> followers</p>
+				<p><span id="following"><?php echo $row->following ?></span> following</p>
 			</div>
 		</div>
 		<p><?php echo $row->bio ?></p>
 		<p id="btn-profile">
-			<?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : "<button class='follow-btn'>follow</button>" ?>
+			<?php 
+				// get follow unfollow btn
+				$sql = "SELECT * FROM `follow` WHERE `user_id` = ? AND `follow_user_id` = ?";
+				$params = array($_SESSION["user"], $_GET["id"]);
+				$rowFollow = $db->row($sql, $params);
+				if($rowFollow){
+					$follow = "<button class='follow-btn'>unfollow</button>";
+				}else{
+					$follow = "<button class='follow-btn'>follow</button>";
+				}
+
+			echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : $follow ?>
 		</p>
 		
 	</div>

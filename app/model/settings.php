@@ -3,7 +3,7 @@
 $dbhost = 'localhost'; //Usually localhost
 $dbuser = 'root';      //MySQL User
 $dbpass = '';          //User's Password
-$dbname = 'socialnetwork';   //Name of the database
+$dbname = 'socialnetwork1';   //Name of the database
 
 
 class DB extends SQL{

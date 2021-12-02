@@ -11,9 +11,22 @@
         border-top: none;
 
         #btn-profile{
-            a{
+
+            display: flex;
+            justify-content: right;
+            a,
+            button{
                 text-decoration: none;
                 color: var(--secondary-text-color);
+            }
+
+            .follow-btn{
+                padding: .5% 3%;
+                border: none;
+                border-radius: 5px;
+                background-color: var(--secondary-text-color);
+                color: var(--secondary-bg-color);
+                font-weight: 500;
             }
         }
 

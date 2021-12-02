@@ -144,7 +144,15 @@ $(".user-container").on('click','.follow-btn', function() {
 	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
 		userId: $(this).closest(".user-container").data("id")
 	}, function(res){
-
 		console.log(res)
+		let data = jQuery.parseJSON(res);
+		console.log(data)
+		if(data.followed){
+			$('.follow-btn').html("unfollow");
+			$("#followers").html(data.totalFollowers);
+		}else{
+			$('.follow-btn').html("follow");
+			$("#followers").html(data.totalFollowers);
+		}
 	})
 })
