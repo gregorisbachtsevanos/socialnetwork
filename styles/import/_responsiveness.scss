@@ -11,30 +11,17 @@
         vertical-align: baseline;
 
         #nav-items{
-            height: 30%;
-            width: 60%;
+            width: 100%;
+            height: 100%;
             flex-direction: row;
             align-items: center;
-            height: 100%;
 
-            #logout{
-                position: absolute;
-                width: 10%;
-                margin: auto;
-                left: 10%;
-                top: 25%;
+            #space{
+                flex-direction: row;
+                width: 60%;
             }
 
-            #user{
-                position: absolute;
-                left: 90%;
-                top: 50%;
-                transform: translate(0,-50%);
-            }
-        }
-
-
-        
+        }        
        
     }
 }

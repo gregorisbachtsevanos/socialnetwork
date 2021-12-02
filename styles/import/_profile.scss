@@ -10,7 +10,7 @@
         border-bottom-right-radius: 10px;
         border-top: none;
 
-        #edit-profile{
+        #btn-profile{
             a{
                 text-decoration: none;
                 color: var(--secondary-text-color);
@@ -21,13 +21,23 @@
             width: 100%;
            
             .img{
-                width: 20%;
-                padding-right: 1%;
+                width: 120px;
+                height: 120px;
                 margin: auto;
+                color: var(--secondary-bg-color);
+                background-color: var(--secondary-text-color);
+                border-radius: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 
                 img{
                     width: 100%;
-                    border-radius: 100px;
+                }
+
+                .user-icon{
+                    font-size: 4.4rem;
+                    font-weight: 700;
                 }
 
             }

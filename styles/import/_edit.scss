@@ -4,26 +4,17 @@
     #go-back{
         width: 70%;
         margin: auto;
-        padding-top: 2%;
         display: flex;
-        justify-content: right;
+        justify-content: space-evenly;
+        padding-top: 2%;
 
             a{
                 cursor: pointer;
                 text-decoration: none;
                 color: var(--secondary-text-color);
             }
-    }
-    
-    .info-items{
-        width: 40%;
-        margin: auto;
-        
-        #message{
-            padding-top: 3%;
-
             p{
-                width: 50%;
+                width: 35%;
                 padding: 2%;
                 border-radius: 10px;
                 color: var(--main-text-color);
@@ -32,24 +23,33 @@
             #error-msg{
                 background-color:  rgba(128, 0, 0, 0.808);
                 border: 2px solid rgb(168, 20, 20);
-
+        
             }
             #success-msg{
                 background-color:  rgba(39, 117, 39, 0.808);
                 border: 2px solid rgb(39, 117, 39);
-
+        
             }
             #no-changes-msg{
                 background-color:  rgba(117, 83, 39, 0.808);
                 border: 2px solid rgb(117, 83, 39);
-
-            }
         
-        }
+            }
+    }
+    
+    .info-items{
+        width: 40%;
+        margin: auto;
+        
+        // #message{
+            // padding-top: 3%;
+
+        
+        // }
         
         .input-items{
             width: 100%;
-            margin: 5% auto;
+            margin: auto;
             
             .input-item{
                 width: 100%;
@@ -58,14 +58,6 @@
                 label{
                     display: block;
                 }
-
-                // #file-upload{
-                //     position: absolute;
-                //     top: 6.1%;
-                //     left: 50%;
-                //     transform: translate(-50%);
-                //     z-index: -5;
-                // }
                 
                 textarea,
                 input{
@@ -75,7 +67,6 @@
                     border: 2px solid rgb(61, 61, 61);
                     border-radius: 10px;
                     color: var(--main-text-color);
-                    outline: none;
                 }
 
                 input[type="submit"]{
@@ -83,18 +74,6 @@
                     width: 20%;
                     border: none;
                 }
-                // input[type=file]{
-                //     background-color:  transparent;
-                //     padding: 0;
-                //     border:none
-                // }
-                // input[type=file]::file-selector-button {
-                //     background-color:  rgba(51,51,51,1);
-                //     width: 100%;
-                //     padding: 2%;
-                //     border: 2px solid rgb(61, 61, 61);
-                //     color: transparent;
-                // }
                 
             } //end input-item
         } // end input-item

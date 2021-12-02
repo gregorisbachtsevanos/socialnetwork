@@ -1,5 +1,6 @@
 <?php
 require_once "includes/header.php";
+include "includes/navigationbar.php";
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
 if(isset($_GET["id"])){
@@ -8,17 +9,28 @@ if(isset($_GET["id"])){
 	$row = $db -> row($sql, $params);
 
 	!isset($row->id) ? die("Not found") : null;
+	if(isset($_GET['id'])){
 
-	include "includes/navigationbar.php";
+        $sql = "SELECT * FROM users WHERE id = ?";
+        $params = array($_GET['id']);
+        $rowUser = $db->row($sql, $params);
+        
+        if($rowUser->avatar){
+            $profileAvatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>";
+        }else{
+            $profileAvatar = "<span class='user-icon'>".substr(ucwords($rowUser->fullname),0,1)."</span>";
+        }
+    }
+
 }
 
 ?>
 
-<div class="profile-container">	
-	<div class="user-container">
+<div class="profile-container" >	
+	<div class="user-container" data-id="<?php echo $row->id ?>">
 		<div class="user">
 			<div class="img">
-				<img <?php echo "src=../files/assets/img/avatars/".$row->avatar ?>>
+				<?php echo $profileAvatar; ?>
 			</div>
 			<div class="name">
 				<h3><?php echo $row->fullname ?> <small><?php echo "@".$row->username ?></small></h3>
@@ -29,7 +41,9 @@ if(isset($_GET["id"])){
 			</div>
 		</div>
 		<p><?php echo $row->bio ?></p>
-		<p id="edit-profile"><?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : "<button class='follow-btn'>follow</button>" ?></p>
+		<p id="btn-profile">
+			<?php echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : "<button class='follow-btn'>follow</button>" ?>
+		</p>
 		
 	</div>
 	<div class="actions-container">

@@ -51,7 +51,7 @@ $('.feed').on("click", ".new-comment", function(){
 				<div class="comment" data-id=${data.id}>
 					<h4>${data.username} 
 						<i class="far fa-trash-alt delete-comment"></i>
-						</h4>
+					</h4>
 					<small>${data.date_created}</small>
 					<p>${data.message}</p>
 					<hr>
@@ -117,28 +117,34 @@ $(".post-action").click(() => getUserActions(
 ));
 
 // search form show
-$(".fa-search").click(()=>
-	$(".search").animate({ left: '0' }, "slow")
-)
+$(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
 
-$(".fa-times").click(()=>
-	$(".search").animate({left:'-30%'}, "slow")
-)
+$(".fa-times").click(() => $(".search, .search-background").animate({left:'-30%'}, "slow"));
 
 $("#search-items .search-input").on('keypress',(e)=>{
-		console.log(e.keyCode)
+	console.log(e.keyCode);
 	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:$(e.target).val()}, function(res){
-		let data = jQuery.parseJSON(res)
-		console.log(data)
+		let data = jQuery.parseJSON(res);
 		for (user of data){
+			
 			let searchResult = 	`
 				<div class="input-result">
-					<img src="../files/assets/img/avatars/${user.avatar}" width="10%">	
+				${user.avatar ? `<img src="../files/assets/img/avatars/${user.avatar}"></img>` : `<span>${user.fullname.charAt(0)}</span>`}
 					<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
 				</div>
 				<hr>
 			`;
-			$(".results").append(searchResult)
+			$(".results").append(searchResult);
 		}
+	})
+})
+
+// follow / unfollow
+$(".user-container").on('click','.follow-btn', function() {
+	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
+		userId: $(this).closest(".user-container").data("id")
+	}, function(res){
+
+		console.log(res)
 	})
 })

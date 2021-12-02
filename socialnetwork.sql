@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 15 Νοε 2021 στις 12:06:45
+-- Χρόνος δημιουργίας: 02 Δεκ 2021 στις 16:02:46
 -- Έκδοση διακομιστή: 10.4.21-MariaDB
 -- Έκδοση PHP: 8.0.12
 
@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Δομή πίνακα για τον πίνακα `follow`
+--
+
+CREATE TABLE `follow` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `follow_user_id` int(10) UNSIGNED NOT NULL,
+  `date_followed` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `follow`
+--
+
+INSERT INTO `follow` (`user_id`, `follow_user_id`, `date_followed`) VALUES
+(7, 17, '2021-12-02 15:30:08');
+
+-- --------------------------------------------------------
+
+--
 -- Δομή πίνακα για τον πίνακα `posts`
 --
 
@@ -31,7 +50,7 @@ CREATE TABLE `posts` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
-  `message` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `video` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `images` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `audio` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -50,12 +69,11 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `parent_id`, `message`, `video`, `images`, `audio`, `date_created`, `total_views`, `total_reposts`, `total_likes`, `total_comments`, `mentions`, `hashtags`, `repost_id`) VALUES
-(35, 11, NULL, 'i am a new feed', NULL, NULL, NULL, '2021-11-10 10:17:08', 0, 0, 0, 0, NULL, NULL, NULL),
-(49, 7, NULL, 'and anohter feed ', NULL, NULL, NULL, '2021-11-12 03:39:50', 0, 0, 0, 0, NULL, NULL, NULL),
-(55, 7, NULL, 'and one post', NULL, NULL, NULL, '2021-11-12 03:50:09', 0, 0, 0, 0, NULL, NULL, NULL),
-(58, 7, NULL, 'and one more', NULL, NULL, NULL, '2021-11-12 03:54:38', 0, 0, 0, 0, NULL, NULL, NULL),
-(59, 7, NULL, 'and one more', NULL, NULL, NULL, '2021-11-12 04:00:15', 0, 0, 0, 0, NULL, NULL, NULL),
-(60, 7, NULL, 'ασδφ', NULL, NULL, NULL, '2021-11-15 07:13:29', 0, 0, 0, 0, NULL, NULL, NULL);
+(463, 7, NULL, 'post 1\r\n', NULL, NULL, NULL, '2021-11-30 13:11:19', 0, 0, 0, 0, NULL, NULL, NULL),
+(464, 7, NULL, 'post 2', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 0, 0, NULL, NULL, NULL),
+(465, 7, NULL, 'post 3', NULL, NULL, NULL, '2021-11-30 13:11:29', 0, 0, 1, 0, NULL, NULL, NULL),
+(507, 17, NULL, 'test', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 0, 0, NULL, NULL, NULL),
+(508, 7, NULL, 'new feed', NULL, NULL, NULL, '2021-12-02 14:12:51', 0, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -79,6 +97,13 @@ CREATE TABLE `posts_likes` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `posts_likes`
+--
+
+INSERT INTO `posts_likes` (`post_id`, `user_id`, `date`) VALUES
+(465, 7, '2021-11-30 13:44:13');
 
 -- --------------------------------------------------------
 
@@ -129,8 +154,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `fullname`, `bio`, `avatar`, `type`, `status`, `followers`, `following`, `auth_key`) VALUES
 (1, 'nikos', 'Nikos Antoniadis', 'Καλημέρα κόσμε!', NULL, 1, 1, 0, 0, '6a8ywu9xh3uxgie9vla6b9bcwab5qm50'),
-(7, 'gregoris', 'Gregoris Bachtsevanos', NULL, NULL, 1, 1, 0, 0, NULL),
-(11, 'jason', 'jason born', NULL, NULL, 1, 1, 0, 0, NULL);
+(7, 'gregoris', 'Gregoris Bachtsevanos', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae amet aliquam saepe nemo ad ea quasi minima mollitia odio, ab cupiditate veritatis odit quisquam excepturi ex dignissimos dolores ipsa aut?', 'man.png', 1, 1, 0, 0, NULL),
+(16, 'mike', 'Mike Junior', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae sit delectus reiciendis suscipit exercitationem tempore laboriosam, maxime odit reprehenderit deleniti alias omnis libero vitae, neque quae modi laborum nam voluptatibus?', NULL, 1, 1, 0, 0, NULL),
+(17, 'jason', 'Jason Pots', NULL, NULL, 1, 1, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,6 +170,8 @@ CREATE TABLE `users_extra_info` (
   `phone_number` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `website` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `youtube` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tiktok` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_registered` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -151,8 +179,11 @@ CREATE TABLE `users_extra_info` (
 -- Άδειασμα δεδομένων του πίνακα `users_extra_info`
 --
 
-INSERT INTO `users_extra_info` (`user_id`, `cover_image`, `phone_number`, `website`, `youtube`, `date_registered`) VALUES
-(1, 'novibet-1-1024x576-1.png', NULL, 'https://globalconcept.gr', '#', '2021-11-05 21:14:05');
+INSERT INTO `users_extra_info` (`user_id`, `cover_image`, `phone_number`, `website`, `youtube`, `instagram`, `tiktok`, `date_registered`) VALUES
+(1, 'novibet-1-1024x576-1.png', NULL, 'https://globalconcept.gr', '#', NULL, NULL, '2021-11-05 21:14:05'),
+(7, NULL, '6972510728', 'https://www.google.com', 'https://www.youtube.com', 'https://www.instagram.com', 'https://www.tiktok.com', '2021-11-30 12:50:33'),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -172,8 +203,9 @@ CREATE TABLE `users_login` (
 
 INSERT INTO `users_login` (`user_id`, `email`, `password`) VALUES
 (1, 'antoniadis.gr@gmail.com', '$2y$10$z2uvLoNJsxbbcw9IfAFvMO1iOdbawPm6lXcwQpKZyXs800YL3to9e'),
-(7, 'greg@gmail.com', '$2y$10$swZsi2JKFqwwr0j.ax5dguYGwtPTcDeER1zS7.IscVgYlADB1IvcC'),
-(11, 'jason#@gmail.com', '$2y$10$6FotnrvOQW0PgO9pCTFCL.KAzGAP1y2X690B.v.2hYQ9yEYgoqicS');
+(7, 'greg@gmail.com', '$2y$10$8D91GmJoIQ5c1LjquO7kl.blok23r3MgiQ6YLKWkIFJ2aCsAPv2eu'),
+(16, 'mike@gmail.com', '$2y$10$XOe0mxavNchcpj.BKtiaL.BZt2iFIytjPzEbdl.V9vUR6vzXKxGce'),
+(17, 'jason@gmail.com', '$2y$10$j6qV5Sj55j2s6eAoARSR.OOg7GmUqHMoNuxBz5Y9uwtFwi2CpUb/q');
 
 -- --------------------------------------------------------
 
@@ -203,11 +235,21 @@ INSERT INTO `users_login_history` (`id`, `user_id`, `date`, `output`, `last_onli
 (4, 1, '2021-11-05 21:18:56', 0, '2021-11-05 21:18:56', 'Google Chrome', '::1', 'Windows 10'),
 (5, 1, '2021-11-05 21:19:00', 1, '2021-11-05 21:19:00', 'Google Chrome', '::1', 'Windows 10'),
 (6, 1, '2021-11-05 21:19:35', 0, '2021-11-05 21:19:35', 'Google Chrome', '::1', 'Windows 10'),
-(7, 1, '2021-11-05 21:19:39', 1, '2021-11-06 19:33:06', 'Google Chrome', '::1', 'Windows 10');
+(7, 1, '2021-11-05 21:19:39', 1, '2021-11-06 19:33:06', 'Google Chrome', '::1', 'Windows 10'),
+(8, 7, '2021-11-16 10:58:25', 1, '2021-11-16 11:16:46', 'Google Chrome', '::1', 'Windows 10'),
+(9, 7, '2021-11-18 11:03:02', 1, '2021-11-18 11:03:36', 'Google Chrome', '::1', 'Windows 10');
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
 --
+
+--
+-- Ευρετήρια για πίνακα `follow`
+--
+ALTER TABLE `follow`
+  ADD PRIMARY KEY (`user_id`,`follow_user_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `follow_user_id` (`follow_user_id`);
 
 --
 -- Ευρετήρια για πίνακα `posts`
@@ -284,23 +326,30 @@ ALTER TABLE `users_login_history`
 -- AUTO_INCREMENT για πίνακα `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=509;
 
 --
 -- AUTO_INCREMENT για πίνακα `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT για πίνακα `users_login_history`
 --
 ALTER TABLE `users_login_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Περιορισμοί για άχρηστους πίνακες
 --
+
+--
+-- Περιορισμοί για πίνακα `follow`
+--
+ALTER TABLE `follow`
+  ADD CONSTRAINT `follow_user_id` FOREIGN KEY (`follow_user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_d` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Περιορισμοί για πίνακα `posts`

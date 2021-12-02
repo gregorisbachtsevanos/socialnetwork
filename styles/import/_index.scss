@@ -1,70 +1,79 @@
-
-legend{
-    text-align: center;
-}
-
 .container{
     width: 100%;
     margin-top: 10%;
     display: flex;
     justify-content: center;
-}
+    
+    .form{
+        width: 25%;
+        padding: 2%;
+        display: flex;
+        justify-content: center;
+        // border: 1px solid #dadada;
 
-.form{
-    width: 25%;
-    padding: 2%;
-    display: flex;
-    justify-content: center;
-    border: 1px solid #dadada;
-}
+        form{
+            width: 100%;
+            
+            legend{
+                text-align: center;
+            }
+            
+            .input-controler{
+                width: 100%;
+                margin: 2% auto;
 
-.input-controler{
-    padding: 3% 0;
-}
+                
+                label{
+                    padding-bottom: 1%;
+                    display: block;
+                    
+                    input{
+                        width: 100%;
+                        background-color:  rgba(51,51,51,1);
+                        padding: 3%;
+                        border: 2px solid rgb(61, 61, 61);
+                        border-radius: 10px;
+                        color: var(--main-text-color);
+                    }
 
-label{
-    padding-bottom: 1%;
-}
+                }
+            } // end input-controler
+            
+            #submit-btn{
+                display: flex;
+                justify-content: center;
 
-.input-controler label input{
-    padding: .5%;
-    outline: none;
-    background-color: #dadada;
-    border: 8px solid #dadada;
-    border-radius: 5px;
-    width: 100%;
-}
+                .submit{
+                    background-color: var(--secondary-text-color);
+                    width: 20%;
+                    border: none;
+                    padding: 3%;
+                    border-radius: 10px;
+                }
+                
+                .submit:hover{
+                    background-color: #1e1f20;
+                    color: #dadada;
+                    transition: .6s;
+                }
+            } // end submit-btn
+            
+            #new-account{
+                width: auto;
+                color: #fc6d26be;
+            }
 
-#submit-btn{
-    display: flex;
-    justify-content: center;
-}
+            #member{
+                width: auto;
+                color: #fc6d26be;
+            }
 
-.submit{
-    width: 50%;
-    padding: 3%;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #dadada;
-    background-color: #dadada;
-}
+        } // end form
 
-.submit:hover{
-    background-color: #1e1f20;
-    color: #dadada;
-    transition: .6s;
-}
+    } // end class form
 
-#new-account{
-    width: 100%;
-    text-align: center;
-    color: #fc6d26be;
-}
-#member{
-    width: auto;
-    margin: auto;
-    color: #fc6d26be;
-}
+} //end container
+
 .login{
     transition: 1.3s;
 }
@@ -74,12 +83,8 @@ label{
     transition: 1.3s;
 }
 
-#error{
-    text-align: center;
-}
-
 .hide{
     transform: translateY(-300%);
-    transition: 1.3s;
+    // transition: 1.3s;
 }
 

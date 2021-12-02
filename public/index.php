@@ -40,7 +40,7 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 				<legend>Login</legend>
 				<div class="input-controler">
 					<label>Username <br>
-						<input type="text" name="username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];} ?>">
+						<input type="text" name="username" autocomplete="off" value="<?php if(isset($_POST["username"])){echo $_POST["username"];} ?>">
 					</label>
 				</div>
 				<div class="input-controler">
@@ -81,9 +81,8 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 					$sql = 'SELECT `user_id` FROM users_login WHERE email = ?';
 					$params = array($_POST['email']);
 					$row = $db->row($sql, $params);
-
+					
 					if(isset($row->id)){
-
 						$error = "Email in use.";
 					}else{
 						if(strlen($_POST["pwd"]) < 8){
@@ -103,24 +102,25 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 									'following'	=>	0,
 									'auth_key'	=> 	null,
 								);
+
 							$new_id = $db->insert('users', $data);
 							print_r($new_id);
 							$data = array(
-								'user_id'	=>	$new_id,
-								'email'		=> $_POST["email"],
-								"password"	=>	$pwdHash
-							);
+									'user_id'	=>	$new_id,
+									'email'		=> $_POST["email"],
+									"password"	=>	$pwdHash
+								);
 
 							$db -> insert("users_login", $data);
 							
 							$data = array(
-								"user_id"		=> $new_id,
-								"cover_image"	=> NULL,
-								"phone_number"	=> NULL,
-								"website"		=> NULL,
-								"youtube"		=> NULL,
-								"date_registered"	=> null
-							);
+									"user_id"			=>	$new_id,
+									"cover_image"		=>	NULL,
+									"phone_number"		=>	NULL,
+									"website"			=>	NULL,
+									"youtube"			=>	NULL,
+									"date_registered"	=>	date("Y:m:d h:m:s")
+								);
 							
 							$db -> insert("users_extra_info", $data);
 							$_SESSION["user"] = $new_id;
@@ -143,27 +143,27 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 				<legend>Sign Up</legend>
 				<div class="input-controler">
 					<label>Username<br>
-						<input type="text" name="username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];} ?>">
+						<input type="text" autocomplete="off" name="username" value="<?php if(isset($_POST["username"])){echo $_POST["username"];} ?>">
 					</label>
 				</div>
 				<div class="input-controler">
 					<label>Fullname<br>
-						<input type="text" name="fullname" value="<?php if(isset($_POST["fullname"])){echo $_POST["fullname"];} ?>">
+						<input type="text" autocomplete="off" name="fullname" value="<?php if(isset($_POST["fullname"])){echo $_POST["fullname"];} ?>">
 					</label>
 				</div>
 				<div class="input-controler">
 					<label>Email<br>
-						<input type="email" name="email" value="<?php if(isset($_POST["email"])){echo $_POST["email"];} ?>">
+						<input type="email" autocomplete="off" name="email" value="<?php if(isset($_POST["email"])){echo $_POST["email"];} ?>">
 					</label>
 				</div>
 				<div class="input-controler">
 					<label>Password<br>
-						<input type="password" name="pwd">
+						<input type="password" autocomplete="off" name="pwd">
 					</label>
 				</div>
 				<div class="input-controler">
 					<label>Repeat Password<br>
-						<input type="password" name="pwdRepeat">
+						<input type="password" autocomplete="off" name="pwdRepeat">
 					</label>
 				</div>
 				<div class="input-controler" id="submit-btn">
