@@ -19,6 +19,7 @@
             );
             $success[] = "Profile Pic";
             $changeEvent = true;
+          
         }
         if(!empty($_POST["fullname"]) && $_POST["fullname"] != $row->fullname){
             $db->update('users', 

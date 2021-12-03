@@ -119,23 +119,34 @@ $(".post-action").click(() => getUserActions(
 // search form show
 $(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
 
-$(".fa-times").click(() => $(".search, .search-background").animate({left:'-30%'}, "slow"));
+$(".fa-times").click( function() {
+	$(".search, .search-background").animate({left:'-30%'}, "slow");
+	$(".search-input").val('');
+	$(".input-result, hr").remove();
+});
 
-$("#search-items .search-input").on('keypress',(e)=>{
-	console.log(e.keyCode);
-	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:$(e.target).val()}, function(res){
+$("#search-items .search-input").on("keyup ", function(e){
+
+	let keyPressed = this.which;
+	let userInput = $(this).val();
+	
+	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:userInput}, function(res){
 		let data = jQuery.parseJSON(res);
+		$(".results").html("")
 		for (user of data){
-			
 			let searchResult = 	`
-				<div class="input-result">
-				${user.avatar ? `<img src="../files/assets/img/avatars/${user.avatar}"></img>` : `<span>${user.fullname.charAt(0)}</span>`}
-					<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
-				</div>
-				<hr>
+			<div class="input-result">
+			${user.avatar ? `<img src="../files/assets/img/avatars/${user.avatar}"></img>` : `<span>${user.fullname.charAt(0)}</span>`}
+			<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
+			</div>
+			<hr>
 			`;
 			$(".results").append(searchResult);
-		}
+			
+		
+					
+		}	
+	
 	})
 })
 
@@ -146,7 +157,6 @@ $(".user-container").on('click','.follow-btn', function() {
 	}, function(res){
 		console.log(res)
 		let data = jQuery.parseJSON(res);
-		console.log(data)
 		if(data.followed){
 			$('.follow-btn').html("unfollow");
 			$("#followers").html(data.totalFollowers);
@@ -156,3 +166,4 @@ $(".user-container").on('click','.follow-btn', function() {
 		}
 	})
 })
+

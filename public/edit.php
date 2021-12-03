@@ -39,7 +39,7 @@
             <form method="post" action="../app/controllers/edit-profile_controller.php" enctype="multipart/form-data" class="input-items">
                 <div class="input-item">
                     <label for="Photo-Profile">Photo Profile</label>
-                        <input type="file" autocomplete="off" id="file"><!--<span id="file-upload">Choose a file</span>-->
+                        <input type="file" autocomplete="off" name="avatar" id="file"><!--<span id="file-upload">Choose a file</span>-->
                 </div>
                 <div class="input-item">
                     <label for="Fullname">Fullname</label>

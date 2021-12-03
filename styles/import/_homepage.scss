@@ -58,6 +58,7 @@
                 border-radius: 10px;
                 border: 1px solid var(--secondary-text-color);
                 background-color: var(--secondary-text-color);
+                color: rgba(51,51,51,1);
             }
 
         } //end feedBtn-controler
@@ -70,9 +71,9 @@
 
         .feed {
             border-radius: 10px;
-            padding: 1%;
-            margin: 10% 0;
-            background-color: rgba(30, 31, 32, .6);
+            padding: 1.5%;
+            margin: 2% 0;
+            background-color: rgba(30, 31, 32, .8);
 
             .feed-info {
 
