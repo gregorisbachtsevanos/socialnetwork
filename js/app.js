@@ -127,7 +127,6 @@ $(".fa-times").click( function() {
 
 $("#search-items .search-input").on("keyup ", function(e){
 
-	let keyPressed = this.which;
 	let userInput = $(this).val();
 	
 	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:userInput}, function(res){
@@ -142,8 +141,6 @@ $("#search-items .search-input").on("keyup ", function(e){
 			<hr>
 			`;
 			$(".results").append(searchResult);
-			
-		
 					
 		}	
 	
@@ -151,9 +148,10 @@ $("#search-items .search-input").on("keyup ", function(e){
 })
 
 // follow / unfollow
-$(".user-container").on('click','.follow-btn', function() {
+$(".user-container, #friends-container").on('click','.follow-btn', function() {
+	
 	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
-		userId: $(this).closest(".user-container").data("id")
+		userId: $(this).closest(".user").data("id")
 	}, function(res){
 		console.log(res)
 		let data = jQuery.parseJSON(res);
@@ -165,5 +163,9 @@ $(".user-container").on('click','.follow-btn', function() {
 			$("#followers").html(data.totalFollowers);
 		}
 	})
+
+	if(($(this).parent().hasClass( "btns" ))){
+		$(this).closest(".friend-card").remove()
+	}
 })
 

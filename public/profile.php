@@ -29,7 +29,7 @@ if(isset($_GET["id"])){
 ?>
 
 <div class="profile-container" >	
-	<div class="user-container" data-id="<?php echo $row->id ?>">
+	<div class="user-container user" data-id="<?php echo $row->id ?>">
 		<div class="user">
 			<div class="img">
 				<?php echo $profileAvatar; ?>

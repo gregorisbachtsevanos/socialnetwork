@@ -35,7 +35,7 @@
             <a href="#"><i class='fas fa-compass' style='font-size:35px'></i></a>
         </li>
         <li id='nav-item'>
-            <a href="#"><i class='fas fa-user-friends' style='font-size:35px'></i></a>
+            <a href="./friends.php"><i class='fas fa-user-friends' style='font-size:35px'></i></a>
         </li>
         </div>
         <li id='nav-item'>
