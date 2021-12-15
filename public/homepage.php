@@ -6,9 +6,7 @@ require_once "includes/header.php";
 
 include $appIncludes."navigationbar.php";
 ?>
-<script>
-	const userId = <?php echo $_SESSION['user'] ?>
-</script>
+
 
 <div id='welcome'>
 	<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
@@ -35,11 +33,11 @@ include $appIncludes."navigationbar.php";
 	<div id="feed-controler">
 		<?php
 			// get all posts
-			$sql = 'SELECT * FROM "posts" WHERE "parent_id" is Null';
-			// $sql = 'SELECT follow_user_id FROM "follow" WHERE "user_id" = ?'; post of followers
-			$rows = $db->fetch($sql);
+			// $sql = 'SELECT * FROM "posts" WHERE "parent_id" is Null';
+			// // $sql = 'SELECT follow_user_id FROM "follow" WHERE "user_id" = ?'; post of followers
+			// $rows = $db->fetch($sql);
 										
-			require $appIncludes."feeds.php";
+			// require $appIncludes."feeds.php";
 
 		?>
 	</div> <!-- end feed-controler -->

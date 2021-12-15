@@ -67,7 +67,6 @@ $('.feed').on("click", ".new-comment", function(){
 // add a like
 $(".feed").on("click", ".fa-heart", function(){
 	let post = $(this).closest('.feed');
-	let postId = post.data("id");
 	$.post("../app/controllers/ajax/like_controller.php", {postId: post.data("id")}, function(res){
 		let data = jQuery.parseJSON(res);		
 		if (data.liked) {
@@ -131,6 +130,7 @@ $("#search-items .search-input").on("keyup ", function(e){
 	
 	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:userInput}, function(res){
 		let data = jQuery.parseJSON(res);
+	
 		$(".results").html("")
 		for (user of data){
 			let searchResult = 	`
@@ -170,7 +170,20 @@ $(".user-container, #friends-container").on('click','.follow-btn', function() {
 })
 
 // load posts
-$.post("../public/homepage.php", function(res){
-	console.log(userId)
+$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
+	let data = jQuery.parseJSON(res)
+	console.log(data)
+	for(post of data){
+		console.log(post)
+		let showPosts = `
+		<div class="feed-message">
+			<p class="post-msg">${post.message}</p>
+			<hr>
+
+		</div>
+		`;
+		$("#feed-controler").append(showPosts)
+	}
+
 
 })

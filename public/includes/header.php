@@ -8,6 +8,9 @@
 	}
 	
 ?>
+<script>
+	const userId = <?php echo $_SESSION['user'] ?>
+</script>
 <!doctype html>
 <html lang="en">
 <head>
