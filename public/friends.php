@@ -4,7 +4,7 @@ require_once "includes/header.php";
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
 
-include "includes/navigationbar.php";
+include $appIncludes."navigationbar.php";
 
 $sql = "SELECT `follow_user_id` FROM `follow` WHERE `user_id` = ?";
 $params = array($_SESSION["user"]);
@@ -42,4 +42,4 @@ $rows = $db -> fetch($sql, $params);
 		</div> <!-- end friends-controller -->
 </div> <!-- end friends-container -->
 
-<?php require_once "includes/footer.php" ?>
+<?php require_once $appIncludes."footer.php" ?>

@@ -12,7 +12,7 @@ session_start();
             $data["date_created"] =  date("Y/m/d-H:m:s");
             $data["total_views"] = 0;
             $db -> insert("posts", $data);
-            header("Location: ../../public/homepage.php");
+            header("Location: ".$appPublic."homepage.php");
         }
     }
 

@@ -107,11 +107,11 @@
                 if(!empty($_POST["new-password"]) && !empty($_POST["repeat-password"])){
                     if(strlen($_POST["new-password"]) < 8){
                         $error = "Password must have 8 characters or more";
-                        header("Location: ../../public/edit.php?error=".$error);
+                        header("Location: ".$appPublic."edit.php?error=".$error);
                         exit();
                     } elseif($_POST["new-password"] !== $_POST["repeat-password"]){
                         $error = "Passwords not match";
-                        header("Location: ../../public/edit.php?error=".$error);
+                        header("Location: ".$appPublic."edit.php?error=".$error);
                         exit();
                     }else{
                         $pwdHash = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
@@ -126,15 +126,15 @@
 
             }else {
                 $error = "Wrong password";
-                header("Location: ../../public/edit.php?error=".$error);
+                header("Location: ".$appPublic."edit.php?error=".$error);
                 exit();
             }
         }
         if($changeEvent){
-            header("Location: ../../public/edit.php?success=".implode(" ",$success). " have change successfully");
+            header("Location: ".$appPublic."edit.php?success=".implode(" ",$success). " have change successfully");
             exit();
         }else{
-            header("Location: ../../public/edit.php?noChanges=No changes are made");
+            header("Location: ".$appPublic."edit.php?noChanges=No changes are made");
             exit();
         }
     }else{

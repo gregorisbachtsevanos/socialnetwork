@@ -1,12 +1,12 @@
 .edit-container{
     width: 100%;
+    margin: 2% 0;
 
     #go-back{
         width: 70%;
         margin: auto;
         display: flex;
         justify-content: space-evenly;
-        padding-top: 2%;
 
             a{
                 cursor: pointer;
@@ -57,6 +57,7 @@
 
                 label{
                     display: block;
+                    margin: .5% auto;
                 }
                 
                 textarea,
@@ -73,16 +74,18 @@
                     background-color: var(--secondary-text-color);
                     width: 20%;
                     border: none;
+
                 }
                 
             } //end input-item
         } // end input-item
 
         #danger{
+            margin: 5% 0;
             color: rgb(150,50,50);
 
             hr{
-                border:1px solid rgb(150,50,50);
+                border: 1px solid rgb(150,50,50);
             }
         }
     } // end info-items

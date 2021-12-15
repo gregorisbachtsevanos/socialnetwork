@@ -169,3 +169,8 @@ $(".user-container, #friends-container").on('click','.follow-btn', function() {
 	}
 })
 
+// load posts
+$.post("../public/homepage.php", function(res){
+	console.log(userId)
+
+})

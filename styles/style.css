@@ -40,13 +40,13 @@ body {
 
 .edit-container {
   width: 100%;
+  margin: 2% 0;
 }
 .edit-container #go-back {
   width: 70%;
   margin: auto;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 2%;
 }
 .edit-container #go-back a {
   cursor: pointer;
@@ -85,6 +85,7 @@ body {
 }
 .edit-container .info-items .input-items .input-item label {
   display: block;
+  margin: 0.5% auto;
 }
 .edit-container .info-items .input-items .input-item textarea,
 .edit-container .info-items .input-items .input-item input {
@@ -101,6 +102,7 @@ body {
   border: none;
 }
 .edit-container .info-items #danger {
+  margin: 5% 0;
   color: #963232;
 }
 .edit-container .info-items #danger hr {
@@ -660,6 +662,10 @@ body {
 }
 #nav-container #nav-items #nav-item #logout {
   bottom: 5%;
+  color: var(--secondary-text-color);
+}
+#nav-container #nav-items #nav-item a:hover {
+  transition: 0.3s;
   color: var(--secondary-text-color);
 }
 

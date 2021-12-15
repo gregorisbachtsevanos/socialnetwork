@@ -28,7 +28,7 @@
             margin:auto;
             list-style: none;
             cursor: pointer;
-
+            
             a{
                 color: var(--main-text-color);
             }
@@ -60,6 +60,11 @@
             
             #logout{
                 bottom: 5%;
+                color: var(--secondary-text-color);
+            }
+
+            a:hover{
+                transition: .3s;
                 color: var(--secondary-text-color);
             }
         }

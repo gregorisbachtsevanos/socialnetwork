@@ -179,5 +179,5 @@ isset($_SESSION['user']) ? header("Location: homepage.php") : null;
 	</div>
 
 <?php 
-	require_once "includes/footer.php";
+	require_once $appIncludes."footer.php";
 ?>

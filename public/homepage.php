@@ -4,15 +4,19 @@ require_once "includes/header.php";
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
 
-include "includes/navigationbar.php";
+include $appIncludes."navigationbar.php";
 ?>
+<script>
+	const userId = <?php echo $_SESSION['user'] ?>
+</script>
+
 <div id='welcome'>
 	<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
 </div>
 
 <div id="feed-container">
 
-	<form method="post" action="../app/controllers/newFeed-controller.php">
+	<form method="post" action="<?php echo $appControllers."newFeed-controller.php"?>">
 		<div id="textarea-container">
 			<div id="textarea-controler">
 				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts" rows="7" required></textarea>
@@ -32,13 +36,14 @@ include "includes/navigationbar.php";
 		<?php
 			// get all posts
 			$sql = 'SELECT * FROM "posts" WHERE "parent_id" is Null';
+			// $sql = 'SELECT follow_user_id FROM "follow" WHERE "user_id" = ?'; post of followers
 			$rows = $db->fetch($sql);
 										
-			require "includes/feeds.php";
+			require $appIncludes."feeds.php";
 
 		?>
 	</div> <!-- end feed-controler -->
 
 </div> <!-- end feed-container -->
 
-<?php require_once "includes/footer.php" ?>
+<?php require_once $appIncludes."footer.php" ?>

@@ -4,7 +4,7 @@
 
 	if(isset($_GET["logout"])){
 		unset($_SESSION["user"]);
-		header("Location: ../public/index.php");
+		header("Location: ".$appPublic."index.php");
 	}
 	
 ?>

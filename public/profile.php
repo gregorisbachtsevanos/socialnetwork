@@ -1,6 +1,6 @@
 <?php
 require_once "includes/header.php";
-include "includes/navigationbar.php";
+include $appIncludes."navigationbar.php";
 
 !isset($_SESSION['user']) ? header("Location: index.php") : null;
 if(isset($_GET["id"])){
@@ -86,7 +86,7 @@ if(isset($_GET["id"])){
 			$rows = $db->fetch($sql, $params);
 			echo count((array)$rows) == 0 ? "No posts" : null;
 			
-			include "includes/feeds.php"; ?>
+			include $appIncludes."feeds.php"; ?>
 		</div>
 		<div class='get-comments show-action'>
 
@@ -103,7 +103,7 @@ if(isset($_GET["id"])){
 				$params = array($index->parent_id);
 				$rows = $db->fetch($sql, $params);
 
-				include "includes/feeds.php";
+				include $appIncludes."feeds.php";
 			}?>
 			
 		</div>
@@ -123,7 +123,7 @@ if(isset($_GET["id"])){
 				$params = array($index->post_id);
 				$rows = $db->fetch($sql, $params);
 
-				include "includes/feeds.php";
+				include $appIncludes."feeds.php";
 			}?>
 			
 		</div>
@@ -142,7 +142,7 @@ if(isset($_GET["id"])){
 				$params = array($index->post_id);
 				$rows = $db->fetch($sql, $params);
 				
-				include "includes/feeds.php";
+				include $appIncludes."feeds.php";
 			}?>
 			
 		</div>
@@ -151,4 +151,4 @@ if(isset($_GET["id"])){
 	</div>
 </div>
 
-<?php require_once "includes/footer.php" ?>
+<?php require_once $appIncludes."footer.php" ?>
