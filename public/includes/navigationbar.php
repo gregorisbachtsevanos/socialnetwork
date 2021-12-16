@@ -40,7 +40,7 @@
         </li>
         </div>
         <li id='nav-item'>
-            <a id='logout' href="./index.php?logout=1"><i class="fas fa-power-off" style="font-size:45px"></i></a>
+            <a id='logout' href="../app/controllers/logout_controller.php"><i class="fas fa-power-off" style="font-size:45px"></i></a>
         </li>
     </ul>
 </nav>

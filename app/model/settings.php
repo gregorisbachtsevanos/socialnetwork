@@ -3,8 +3,8 @@
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User
 $dbpass = '';          // User's Password
-$dbname = 'socialnetwork';   // Name of the database
-$appName = ''; //appName configuration
+$dbname = 'socialnetwork1';   // Name of the database
+$appName = 'social'; //appName configuration
 $appControllers = '../app/controllers/'; //app controllers folder
 $appAjax = '../app/controllers/ajax/'; //app ajax controllers folder
 $appAvatars = '../files/assets/img/avatars/'; // app avatars folder

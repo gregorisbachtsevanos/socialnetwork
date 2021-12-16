@@ -2,10 +2,10 @@
 	session_start();
 	require_once "../app/model/settings.php";
 
-	if(isset($_GET["logout"])){
-		unset($_SESSION["user"]);
-		header("Location: ".$appPublic."index.php");
-	}
+	// if(isset($_GET["logout"])){
+	// 	unset($_SESSION["user"]);
+	// 	header("Location: ".$appPublic."index.php");
+	// }
 	
 ?>
 <script>
