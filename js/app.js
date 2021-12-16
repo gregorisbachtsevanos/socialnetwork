@@ -7,10 +7,64 @@ $("#new-account, #member").on('click', function(e){
 
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
+// load posts
+if(typeof PAGE != "undefined" && PAGE == "homepage"){
+
+	$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
+		let data = jQuery.parseJSON(res)
+		console.log(data)
+		for(post of data.posts){
+			let showPosts = `
+			<div class="feed" data-id="${post.post_id}">
+				<div class="feed-info">
+					<div class="post-header">
+	
+						<h4>${post.fullname} ${post.liked}
+							<a href='../public/profile.php?id=${post.user_id}'>
+								<span> @${post.username}</span>
+							</a>
+						</h4>
+						<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>
+					</div>
+						<span><small>${post.date_created}</small></span>
+					<hr>
+				</div>
+	
+				<div class="feed-message">
+					<p class="post-msg">${post.message}</p>
+					<hr>
+					<div class="reactions">
+	
+						<span class="fas fa-heart ${post.liked}">
+							<small class="likes">${post.total_likes}</small>
+						</span>  
+						<div class="comment-body">
+							<span class="fas fa-comment" id="${post.post_id}">
+								<small class="comment-count">${post.total_comments}</small>
+							</span>
+							<div class="comment-info" data-id="${post.post_id}">
+								<div class="post-comments"></div>
+								<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+								<small class="new-comment">Comment</small>
+							</div>
+						</div>
+					</div> 
+					
+						
+				</div>
+	
+			</div> 
+			`;
+			$("#feed-controller").append(showPosts)
+		}
+		
+	})
+}
+
 // show comments
 $('body').on('click', '.fa-comment', function(){
 	let el = $(this).parent();
-	el.find('.comment-info').slideToggle(600);
+	el.find('.comment-info').slideToggle(400);
 })
 
 // delete posts
@@ -37,7 +91,7 @@ $('body').on("click", ".delete-comment", function(){
 })
 
 // add comment
-$('.feed').on("click", ".new-comment", function(){
+$('#feed-controller').on("click", ".new-comment", function(){
 
 	let post = $(this).closest(".feed");
 	$.post("../app/controllers/ajax/new-comment_controller.php", {
@@ -65,7 +119,7 @@ $('.feed').on("click", ".new-comment", function(){
 })
 
 // add a like
-$(".feed").on("click", ".fa-heart", function(){
+$("#feed-controller").on("click", ".fa-heart", function(){
 	let post = $(this).closest('.feed');
 	$.post("../app/controllers/ajax/like_controller.php", {postId: post.data("id")}, function(res){
 		let data = jQuery.parseJSON(res);		
@@ -167,23 +221,4 @@ $(".user-container, #friends-container").on('click','.follow-btn', function() {
 	if(($(this).parent().hasClass( "btns" ))){
 		$(this).closest(".friend-card").remove()
 	}
-})
-
-// load posts
-$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
-	let data = jQuery.parseJSON(res)
-	console.log(data)
-	for(post of data){
-		console.log(post)
-		let showPosts = `
-		<div class="feed-message">
-			<p class="post-msg">${post.message}</p>
-			<hr>
-
-		</div>
-		`;
-		$("#feed-controler").append(showPosts)
-	}
-
-
 })

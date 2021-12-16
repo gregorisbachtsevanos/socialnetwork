@@ -127,15 +127,15 @@ body {
 .container .form form legend {
   text-align: center;
 }
-.container .form form .input-controler {
+.container .form form .input-controller {
   width: 100%;
   margin: 2% auto;
 }
-.container .form form .input-controler label {
+.container .form form .input-controller label {
   padding-bottom: 1%;
   display: block;
 }
-.container .form form .input-controler label input {
+.container .form form .input-controller label input {
   width: 100%;
   background-color: #333333;
   padding: 3%;
@@ -481,16 +481,16 @@ body {
   padding: 1%;
   outline: none;
 }
-#feed-container #textarea-container #feedBtn-controler {
+#feed-container #textarea-container #feedBtn-controller {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1%;
 }
-#feed-container #textarea-container #feedBtn-controler #media {
+#feed-container #textarea-container #feedBtn-controller #media {
   width: 20%;
 }
-#feed-container #textarea-container #feedBtn-controler #media .fas {
+#feed-container #textarea-container #feedBtn-controller #media .fas {
   width: 30%;
   display: inline-flex;
   flex-flow: column;
@@ -498,86 +498,86 @@ body {
   font-size: 1rem;
   color: var(--secondary-text-color);
 }
-#feed-container #textarea-container #feedBtn-controler #feed-btn {
+#feed-container #textarea-container #feedBtn-controller #feed-btn {
   width: 10%;
   border-radius: 10px;
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
   color: #333333;
 }
-#feed-container #feed-controler {
+#feed-container #feed-controller {
   width: 100%;
   margin-top: 7%;
 }
-#feed-container #feed-controler .feed {
+#feed-container #feed-controller .feed {
   border-radius: 10px;
   padding: 1.5%;
   margin: 2% 0;
   background-color: rgba(30, 31, 32, 0.8);
 }
-#feed-container #feed-controler .feed .feed-info .post-header {
+#feed-container #feed-controller .feed .feed-info .post-header {
   display: flex;
   justify-content: space-between;
 }
-#feed-container #feed-controler .feed .feed-info .post-header h4 a {
+#feed-container #feed-controller .feed .feed-info .post-header h4 a {
   text-decoration: none;
 }
-#feed-container #feed-controler .feed .feed-info .post-header h4 a span {
+#feed-container #feed-controller .feed .feed-info .post-header h4 a span {
   color: var(--secondary-text-color);
   font-size: 0.8rem;
 }
-#feed-container #feed-controler .feed hr {
+#feed-container #feed-controller .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
-#feed-container #feed-controler .feed .feed-message .post-msg {
+#feed-container #feed-controller .feed .feed-message .post-msg {
   padding: 1% 0;
 }
-#feed-container #feed-controler .feed .feed-message .reactions {
+#feed-container #feed-controller .feed .feed-message .reactions {
   display: flex;
   width: 100%;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .fa-heart {
+#feed-container #feed-controller .feed .feed-message .reactions .fa-heart {
   font-size: 1.1rem;
   font-weight: 100;
   height: 1%;
   width: 5%;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body {
   width: 90%;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .fa-comment {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info {
   width: 100%;
   border-radius: 10px;
   padding: 1%;
   margin-top: 1%;
   display: none;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
   padding: 0.5% 0;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
   outline: none;
@@ -585,7 +585,7 @@ body {
   width: 90%;
   font-weight: 100;
 }
-#feed-container #feed-controler .feed .feed-message .reactions .comment-body .comment-info .new-comment {
+#feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
   font-size: 0.8rem;
@@ -661,6 +661,7 @@ body {
   font-size: 2.2rem;
 }
 #nav-container #nav-items #nav-item #logout {
+  background-color: var(--);
   bottom: 5%;
   color: var(--secondary-text-color);
 }

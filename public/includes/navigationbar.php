@@ -1,7 +1,8 @@
 <?php 
 
     // if(isset($_GET['id'])){
-
+       
+        ini_set("display_errors", 1);
         $sql = "SELECT * FROM users WHERE id = ?";
         $params = array($_SESSION['user']);
         $row = $db->row($sql, $params);
@@ -39,7 +40,7 @@
         </li>
         </div>
         <li id='nav-item'>
-            <a id='logout' href='index.php?logout=1'><i class="fas fa-power-off" style="font-size:45px"></i></a>
+            <a id='logout' href="./index.php?logout=1"><i class="fas fa-power-off" style="font-size:45px"></i></a>
         </li>
     </ul>
 </nav>

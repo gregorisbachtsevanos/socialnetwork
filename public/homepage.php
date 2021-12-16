@@ -6,6 +6,9 @@ require_once "includes/header.php";
 
 include $appIncludes."navigationbar.php";
 ?>
+<script>
+	const PAGE = "<?php echo "homepage" ?>"
+</script>
 
 
 <div id='welcome'>
@@ -16,10 +19,10 @@ include $appIncludes."navigationbar.php";
 
 	<form method="post" action="<?php echo $appControllers."newFeed-controller.php"?>">
 		<div id="textarea-container">
-			<div id="textarea-controler">
+			<div id="textarea-controller">
 				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts" rows="7" required></textarea>
 			</div>
-			<div id="feedBtn-controler">
+			<div id="feedBtn-controller">
 				<div id="media">
 					<span class='fas fa-image'></span>
 					<span class='fas fa-video'></span>
@@ -30,7 +33,7 @@ include $appIncludes."navigationbar.php";
 		</div>
 	</form>
 
-	<div id="feed-controler">
+	<div id="feed-controller">
 		<?php
 			// get all posts
 			// $sql = 'SELECT * FROM "posts" WHERE "parent_id" is Null';
@@ -40,7 +43,8 @@ include $appIncludes."navigationbar.php";
 			// require $appIncludes."feeds.php";
 
 		?>
-	</div> <!-- end feed-controler -->
+	</div> <!-- end feed-controller -->
+	<!-- <button>More posts</button> -->
 
 </div> <!-- end feed-container -->
 

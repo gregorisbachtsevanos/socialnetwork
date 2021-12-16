@@ -17,7 +17,7 @@ legend {
   border: 1px solid #dadada;
 }
 
-.input-controler {
+.input-controller {
   padding: 3% 0;
 }
 
@@ -25,7 +25,7 @@ label {
   padding-bottom: 1%;
 }
 
-.input-controler label input {
+.input-controller label input {
   padding: 0.5%;
   outline: none;
   background-color: #dadada;
