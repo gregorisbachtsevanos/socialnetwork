@@ -8,7 +8,7 @@
         $row = $db->row($sql, $params);
         
         if($row->avatar){
-            $avatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>";
+            $avatar = "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."' alt='image-profile'>";
         }else{
             $avatar = "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";
         }
@@ -17,30 +17,30 @@
 <nav id='nav-container'>
     <ul id='nav-items'>
         <li id='nav-item'>
-            <a id='user' href='./profile.php?id=<?php echo $_SESSION['user'] ?>'><?php echo $avatar ?></a>
+            <a id='user' href='./profile.php?id=<?php echo $_SESSION['user'] ?>' aria-label="profile"><?php echo $avatar ?></a>
         </li>
-        <div id="space">
+        <span id="space">
+            <li id='nav-item'>
+                <a href="./homepage.php" aria-label="homepage"><i class='fas fa-home' style='font-size:35px'></i></a>
+            </li>
+            <li id='nav-item'>
+                <a href="#" aria-label="search"><i class='fas fa-search' style='font-size:35px'></i></a>
+            </li>
+            <li id='nav-item'>
+                <a href="#" aria-label="notification"><i class='fas fa-bell' style='font-size:35px'></i></a>
+            </li>
+            <li id='nav-item'>
+                <a href="#" aria-label="chat"><i class='fas fa-comments' style='font-size:35px'></i></a>
+            </li>
+            <li id='nav-item'>
+                <a href="#" aria-label="trending"><i class='fas fa-compass' style='font-size:35px'></i></a>
+            </li>
+            <li id='nav-item'>
+                <a href="./friends.php" aria-label="friends"><i class='fas fa-user-friends' style='font-size:35px'></i></a>
+            </li>
+        </span>
         <li id='nav-item'>
-            <a href="./homepage.php"><i class='fas fa-home' style='font-size:35px'></i></a>
-        </li>
-        <li id='nav-item'>
-            <a href="#"><i class='fas fa-search' style='font-size:35px'></i></a>
-        </li>
-        <li id='nav-item'>
-            <a href="#"><i class='fas fa-bell' style='font-size:35px'></i></a>
-        </li>
-        <li id='nav-item'>
-            <a href="#"><i class='fas fa-comments' style='font-size:35px'></i></a>
-        </li>
-        <li id='nav-item'>
-            <a href="#"><i class='fas fa-compass' style='font-size:35px'></i></a>
-        </li>
-        <li id='nav-item'>
-            <a href="./friends.php"><i class='fas fa-user-friends' style='font-size:35px'></i></a>
-        </li>
-        </div>
-        <li id='nav-item'>
-            <a id='logout' href="../app/controllers/logout_controller.php"><i class="fas fa-power-off" style="font-size:45px"></i></a>
+            <a id='logout' href="../app/controllers/logout_controller.php" aria-label="logout"><i class="fas fa-power-off" style="font-size:45px"></i></a>
         </li>
     </ul>
 </nav>
@@ -48,8 +48,8 @@
 <div class="search">
     <div class="search-form">
         <div id=search-items>
-            <label for="search">Search</label>
-            <input type="search" class="search-input">
+            <label for="search">Search
+            <input type="search" class="search-input"></label>
         </div>
         <i class="fas fa-times"></i>
     </div>

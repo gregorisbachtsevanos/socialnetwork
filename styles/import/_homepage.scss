@@ -1,23 +1,7 @@
-#welcome {
-    padding: 2%;
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-
-    p {
-        text-align: center;
-        font-size: 4rem;
-
-        span {
-            color: var(--secondary-text-color);
-        }
-    }
-} //end welcome
-
 #feed-container {
     width: 50%;
-    margin: auto;
+    margin: 5% auto;
+    padding-bottom: 2%;
 
     #textarea-container {
         width: 70%;
@@ -80,24 +64,53 @@
                 .post-header {
                     display: flex;
                     justify-content: space-between;
+                    padding-bottom: 1%;
 
-                    h4 {
+                    a {
+                        text-decoration: none;
+                        width: 100%;
 
-                        a {
-                            text-decoration: none;
+                        .users-info{
+                            display: flex;
+                            align-items: center;
 
-                            span {
+                            .users-avatar{
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 100px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: var(--secondary-bg-color);
+                                background-color: var(--secondary-text-color);
+                                margin-right: 1%;
 
-                                color: var(--secondary-text-color);
-                                font-size: .8rem;
+                                img{
+                                    border-radius: 100px;
+                                }
+                                .user-icon{
+                                    font-size: 1.7rem;
+                                    font-weight: 700;
+                                }
                             }
-
-                        }
-                    }
-
-                    span {}
-
+        
+                            h4 {
+                                color: var(--main-text-color);
+                                span {
+    
+                                    color: var(--secondary-text-color);
+                                    font-size: .8rem;
+                                }
+    
+                            }
+                        } 
+                    } // a
+                    
                 }  // post-header
+                
+                .date {
+                    font-size: .8rem;
+                }
 
             } //end feed-info
 

@@ -18,7 +18,7 @@ if(isset($_GET["id"])){
         $rowUserAvatar = $db->row($sql, $params);
         
         if($rowUserAvatar->avatar){
-            $profileAvatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>";
+            $profileAvatar = "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."' alt='image-profile'>";
         }else{
             $profileAvatar = "<span class='user-icon'>".substr(ucwords($rowUserAvatar->fullname),0,1)."</span>";
         }

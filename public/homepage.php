@@ -11,9 +11,7 @@ include $appIncludes."navigationbar.php";
 </script>
 
 
-<div id='welcome'>
-	<p>Welcome <br><span><?php echo ucwords($_SESSION['fullname'])?></span></p>
-</div>
+
 
 <div id="feed-container">
 
@@ -28,7 +26,7 @@ include $appIncludes."navigationbar.php";
 					<span class='fas fa-video'></span>
 					<span class='fas fa-microphone'></span>
 				</div>
-				<button id="feed-btn" type="submit" name="submit"><i class="fa fa-paper-plane-o"></i></button>
+				<button id="feed-btn" type="submit" name="submit" aria-label="submit-feed"><i class="fa fa-paper-plane-o"></i></button>
 			</div>
 		</div>
 	</form>

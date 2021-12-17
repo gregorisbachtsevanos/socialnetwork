@@ -12,51 +12,87 @@ if(typeof PAGE != "undefined" && PAGE == "homepage"){
 
 	$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
 		let data = jQuery.parseJSON(res)
-		console.log(data)
+		let showComments = []
+		let showPosts = ''
 		for(post of data.posts){
-			let showPosts = `
-			<div class="feed" data-id="${post.post_id}">
-				<div class="feed-info">
-					<div class="post-header">
-	
-						<h4>${post.fullname} ${post.liked}
+			if(post.comments.length > 0){
+				for(comment of post.comments){
+					showComments.push(
+					/*html*/`
+						<div class="comment" data-id='${comment.parent_id}'>
+							<h4>
+								<!--${comment.username}-->
+								${comment.user_id} 
+								${comment.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+							</h4>
+							<small>${comment.date_created}</small>
+							<p>${comment.message}</p>
+							<hr>
+						</div>`
+					);
+				}
+			}
+			showPosts = 
+			/*html*/`
+				<div class="feed" data-id="${post.post_id}">
+					<div class="feed-info">
+						<div class="post-header">
 							<a href='../public/profile.php?id=${post.user_id}'>
-								<span> @${post.username}</span>
+								<div class="users-info">
+									<div class="users-avatar">
+										${post.avatar}
+									</div>
+									<h4>${post.fullname} 
+										<span> @${post.username}</span>
+									</h4>
+								</div>
 							</a>
-						</h4>
-						<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>
-					</div>
-						<span><small>${post.date_created}</small></span>
-					<hr>
-				</div>
-	
-				<div class="feed-message">
-					<p class="post-msg">${post.message}</p>
-					<hr>
-					<div class="reactions">
-	
-						<span class="fas fa-heart ${post.liked}">
-							<small class="likes">${post.total_likes}</small>
-						</span>  
-						<div class="comment-body">
-							<span class="fas fa-comment" id="${post.post_id}">
-								<small class="comment-count">${post.total_comments}</small>
-							</span>
-							<div class="comment-info" data-id="${post.post_id}">
-								<div class="post-comments"></div>
-								<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
-								<small class="new-comment">Comment</small>
-							</div>
+							${post.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
 						</div>
-					</div> 
-					
-						
-				</div>
-	
-			</div> 
+						<span class="date"><small>${post.date_created}</small></span>
+						<hr>
+					</div>
+		
+					<div class="feed-message">
+						<p class="post-msg">${post.message}</p>
+						<hr>
+						<div class="reactions">
+							<span class="fas fa-heart ${post.liked}">
+								<small class="likes">${post.total_likes}</small>
+							</span>  
+							<div class="comment-body">
+								<span class="fas fa-comment" id="${post.post_id}">
+									<small class="comment-count">${post.total_comments}</small>
+								</span>
+								<div class="comment-info" data-id="${post.post_id}">
+									<div class="post-comments">${showComments}</div>
+									<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+									<small class="new-comment">Comment</small>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div> 
 			`;
+			// for(comment of post.comments){
+			// 	let showComments = ''
+			// 	if(post.post_id == comment.parent_id){
+			// 		showComments = 
+			// 		/*html*/`
+			// 			<div class="comment" data-id='${comment.parent_id}'>
+			// 				<h4>
+			// 					${comment.user_id} ${comment.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+			// 				</h4>
+			// 				<small>${comment.date_created}</small>
+			// 				<p>${comment.message}</p>
+			// 				<hr>
+			// 			</div>
+			// 		`;
+			// 	}
+			// 	$(".post-comments").append(showComments)
 			$("#feed-controller").append(showPosts)
 		}
+		// }
 		
 	})
 }
@@ -189,7 +225,7 @@ $("#search-items .search-input").on("keyup ", function(e){
 		for (user of data){
 			let searchResult = 	`
 			<div class="input-result">
-			${user.avatar ? `<img src="../files/assets/img/avatars/${user.avatar}"></img>` : `<span>${user.fullname.charAt(0)}</span>`}
+			${user.avatar ? `<img style='width:100%;height:100%' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
 			<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
 			</div>
 			<hr>

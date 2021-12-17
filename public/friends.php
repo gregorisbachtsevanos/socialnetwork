@@ -13,14 +13,14 @@ $rows = $db -> fetch($sql, $params);
 ?>
 
 <div id="friends-container">
-	<?php echo count($rows) == 0 ? "<p class='follow'>Nothing to show. <a href='#'>Find people to follow.</a></p>" 	: null; ?> 
+	<?php echo count($rows) == 0 ? "<p class='follow'>Nothing to show. <a href='#'>Find people to follow.</a></p>" : null; ?> 
 	<div class="friends-controller">
 		<?php
 		foreach($rows as $row){
 			$sql = "SELECT `id`, `fullname`, `username`, `avatar` FROM `users` WHERE `id` = ?";
 			$params = array($row->follow_user_id);
 			$row = $db -> row($sql, $params);
-			$row -> avatar	? $profileAvatar = "<img style='width:100%' src='../files/assets/img/avatars/".$row->avatar."'>" 
+			$row -> avatar	? $profileAvatar = "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."'alt='image-profile'>" 
 							: $profileAvatar = "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";	
 		?>
 			<div class="friend-card user" data-id="<?php echo $row->id ?>">
