@@ -204,10 +204,38 @@
             
 
         } //end feed
-
+        
     } //end feed-controller
-
+    
 } //feed-container
+#loading-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    #load-posts{
+        width: auto;
+        padding: 1% 3%;
+        margin: 2% auto;
+        border: none;
+        font-weight: 400;
+        font-style: italic;
+        background-color: transparent;
+        color: var(--secondary-text-color);
+        border-top: 1px solid var(--secondary-text-color);
+        border-bottom: 1px solid var(--secondary-text-color);
+    }
+
+    #loader{
+        display: flex;
+        justify-content: center;
+        display: none;
+        padding: 1% 3%;
+    }
+
+}
 
 .liked {
     color: var(--secondary-text-color);

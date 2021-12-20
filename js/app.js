@@ -7,78 +7,145 @@ $("#new-account, #member").on('click', function(e){
 
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
-// load posts
-if(typeof PAGE != "undefined" && PAGE == "homepage"){
-
-	$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
-		// console.log(res)
-		let data = jQuery.parseJSON(res)
-		let showPosts = ''
-		for(post of data.posts){
-			let showComments = []
-			let comment = []
-			for(comment of post.comments){
-				showComments.push(
-				/*html*/`
-					<div class="comment" data-id='${comment.id}'>
-						<h4>
-							${comment.username.username} 
-							${comment.user_id == userId ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
-						</h4>
-						<small>${comment.date_created}</small>
-						<p>${comment.message}</p>
-						<hr>
-					</div>`
-				);
-			}
-			showPosts = 
-			/*html*/`
-				<div class="feed" data-id="${post.post_id}">
-					<div class="feed-info">
-						<div class="post-header">
-							<a href='../public/profile.php?id=${post.user_id}'>
-								<div class="users-info">
-									<div class="users-avatar">
-										${post.avatar}
-									</div>
-									<h4>${post.fullname} 
-										<span> @${post.username}</span>
-									</h4>
-								</div>
-							</a>
-							${post.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
-						</div>
-						<span class="date"><small>${post.date_created}</small></span>
-						<hr>
-					</div>
-		
-					<div class="feed-message">
-						<p class="post-msg">${post.message}</p>
-						<hr>
-						<div class="reactions">
-							<span class="fas fa-heart ${post.liked}">
-								<small class="likes">${post.total_likes}</small>
-							</span>  
-							<div class="comment-body">
-								<span class="fas fa-comment" id="${post.post_id}">
-									<small class="comment-count">${post.total_comments}</small>
-								</span>
-								<div class="comment-info" data-id="${post.post_id}">
-									<div class="post-comments">${ post.post_id == comment.parent_id ? showComments.join(' ') : '' }</div>
-									<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
-									<small class="new-comment">Comment</small>
-								</div>
+// loading more posts
+function loadPosts(post, appendTo) {
+	let showComments = [];
+	let comment = [];
+	for (comment of post.comments) {
+		showComments.push(
+        /*html*/ `
+			<div class="comment" data-id='${comment.id}'>
+				<h4>
+					${comment.username.username} 
+					${comment.user_id == userId ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
+				</h4>
+				<small>${comment.date_created}</small>
+				<p>${comment.message}</p>
+				<hr>
+			</div>`
+		);
+	}
+	showPosts =
+	/*html*/ `
+		<div class="feed" data-id="${post.post_id}">
+			<div class="feed-info">
+				<div class="post-header">
+					<a href='../public/profile.php?id=${post.user_id}'>
+						<div class="users-info">
+							<div class="users-avatar">
+								${post.avatar}
 							</div>
-						</div> 
+							<h4>${post.fullname} 
+								<span> @${post.username}</span>
+							</h4>
+						</div>
+					</a>
+					${post.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+				</div>
+				<span class="date"><small>${post.date_created}</small></span>
+				<hr>
+			</div>
+
+			<div class="feed-message">
+				<p class="post-msg">${post.message}</p>
+				<hr>
+				<div class="reactions">
+					<span class="fas fa-heart ${post.liked}">
+						<small class="likes">${post.total_likes}</small>
+					</span>  
+					<div class="comment-body">
+						<span class="fas fa-comment" id="${post.post_id}">
+							<small class="comment-count">${post.total_comments}</small>
+						</span>
+						<div class="comment-info" data-id="${post.post_id}">
+							<div class="post-comments">${post.post_id == comment.parent_id ? showComments.join(' ') : ''}</div>
+							<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+							<small class="new-comment">Comment</small>
+						</div>
 					</div>
 				</div> 
-			`;
-			
-			$("#feed-controller").append(showPosts)
-		}
-		// }
-		
-	})
+			</div>
+		</div>`
+	;
+
+	return appendTo.append(showPosts);
+}
+
+// first load posts
+if(typeof PAGE != "undefined"){
+
+	if(PAGE == "homepage"){
+		$.post("../app/controllers/ajax/show-posts_controller.php", {
+			userId,
+			page: PAGE
+		}, function(res){
+			// console.log(res);
+			let data = jQuery.parseJSON(res);
+			let showPosts = '';
+			for (post of data.posts) {
+				loadPosts(post, $("#feed-controller"));
+			}
+			$("#load-posts").on('click', function(e){
+				e.preventDefault()
+				$.post("../app/controllers/ajax/show-posts_controller.php", {
+					userId,
+					page: PAGE,
+					counter: post.counter,
+					postId: post.post_id
+				}, function(res){
+					// console.log(res);
+					data = jQuery.parseJSON(res);
+					showPosts = '';
+					$("#load-posts").hide();
+					$("#loader").show()
+					setTimeout(function(){
+						for (post of data.posts) {
+							loadPosts(post, $("#feed-controller"));
+							$("#load-posts").show();
+							$("#loader").hide()
+						}
+					},500)
+				})
+			})
+
+		})
+
+	} //else if(PAGE == "profile"){
+	// 	$.post("../app/controllers/ajax/show-posts_controller.php", {
+	// 		userId,
+	// 		page: PAGE
+	// 	}, function(res){
+	// 		console.log(res);
+	// 		let data = jQuery.parseJSON(res);
+	// 		let showPosts = '';
+	// 		for (post of data.posts) {
+	// 			loadPosts(post, $(".get-posts"));
+	// 		}
+	// 		$("#load-posts").on('click', function(e){
+	// 			e.preventDefault()
+	// 			$.post("../app/controllers/ajax/show-posts_controller.php", {
+	// 				userId,
+	// 				page: PAGE,
+	// 				counter: post.counter,
+	// 				postId: post.post_id
+	// 			}, function(res){
+	// 				// console.log(res);
+	// 				data = jQuery.parseJSON(res);
+	// 				showPosts = '';
+	// 				$("#load-posts").hide();
+	// 				$("#loader").show()
+	// 				setTimeout(function(){
+	// 					for (post of data.posts) {
+	// 						loadPosts(post, $(".get-posts"));
+	// 						$("#load-posts").show();
+	// 						$("#loader").hide()
+	// 					}
+	// 				},500)
+	// 			})
+	// 		})
+
+	// 	})
+	// }
 }
 
 // show comments
@@ -112,7 +179,7 @@ $('body').on("click", ".delete-comment", function(){
 })
 
 // add comment
-$('#feed-controller').on("click", ".new-comment", function(){
+$('body').on("click", ".new-comment", function(){
 
 	let post = $(this).closest(".feed");
 	$.post("../app/controllers/ajax/new-comment_controller.php", {
@@ -122,7 +189,8 @@ $('#feed-controller').on("click", ".new-comment", function(){
 		let data = res;
 		if (data.comment) {
 			post.find(".comment-count").html(data.total);
-			let addComment = `
+			let addComment = 
+			/*html*/`
 				<div class="comment" data-id=${data.id}>
 					<h4>${data.username} 
 						<i class="far fa-trash-alt delete-comment"></i>
@@ -140,7 +208,7 @@ $('#feed-controller').on("click", ".new-comment", function(){
 })
 
 // add a like
-$("#feed-controller").on("click", ".fa-heart", function(){
+$("body").on("click", ".fa-heart", function(){
 	let post = $(this).closest('.feed');
 	$.post("../app/controllers/ajax/like_controller.php", {
 		postId: post.data("id")
@@ -163,6 +231,7 @@ $("#feed-controller").on("click", ".fa-heart", function(){
 		}
 	})
 })
+
 
 // users action
 function getUserActions(removeClass, addClass0, addClass1, addClass2){
@@ -220,10 +289,15 @@ $("#search-items .search-input").on("keyup ", function(e){
 	
 		$(".results").html("")
 		for (user of data){
-			let searchResult = 	`
+			let searchResult = 	
+			/*html*/`
 			<div class="input-result">
-			${user.avatar ? `<img style='width:100%;height:100%' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
-			<h4>${user.fullname} <small><a href="../public/profile.php?id=${user.id}">@${user.username}</a></small></h4>
+				${user.avatar ? `<img style='width:100%;height:100%' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
+				<h4>${user.fullname} 
+					<small>
+						<a href="../public/profile.php?id=${user.id}">@${user.username}</a>
+					</small>
+				</h4>
 			</div>
 			<hr>
 			`;
