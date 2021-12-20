@@ -26,20 +26,19 @@
 			$total_comments = ($post->total_comments);
 			
 			foreach($commentsRow as $comment){
-				// if($comment->id){
+				if($comment->id){
 
-				// 	$sql = "SELECT `username` FROM users WHERE id = ?";
-				// 	$params = array($comment->user_id);
-				// 	$commentsUsername = $db->row($sql, $params);
-				// 	array_push($comments, $commentsUsername)
-				// }
-				$comment->id ? array_push($comments, $comment) : null;
+					$sql = "SELECT `username` FROM users WHERE id = ?";
+					$params = array($comment->user_id);
+					$commentsUsername = $db->row($sql, $params);
+					$comment->username = $commentsUsername;
+					array_push($comments, $comment);
+				}
+				// print_r(($comment));
 			}
 			$sql = "SELECT COUNT(total_comments) as total FROM posts WHERE parent_id = ?";
 			$params = array($post->id);
 			$totalCommentsRow = $db->row($sql, $params);
-			// print_r($comments);
-			// print_r($comments);
 			$data = array(
 				"post_id"		=> $post->id,
 				"user_id"		=> $post->user_id,
@@ -61,6 +60,7 @@
 				"avatar"		=> $avatar,
 				"comments"		=> $comments
 			);
+			// print_r($data);
 
 			$data["liked"] = '';
 			$sql = "SELECT `date` FROM posts_likes WHERE user_id = ? AND post_id = ?";

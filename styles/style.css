@@ -590,7 +590,7 @@ body {
 }
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
-  font-weight: 100;
+  font-weight: 300;
 }
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
   padding: 0.5% 0;
@@ -601,7 +601,7 @@ body {
   outline: none;
   color: var(--secondary-text-color);
   width: 90%;
-  font-weight: 100;
+  font-weight: 300;
 }
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;

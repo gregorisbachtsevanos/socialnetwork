@@ -11,26 +11,25 @@ typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 if(typeof PAGE != "undefined" && PAGE == "homepage"){
 
 	$.post("../app/controllers/ajax/show-posts_controller.php", {userId}, function(res){
+		// console.log(res)
 		let data = jQuery.parseJSON(res)
-		let showComments = []
 		let showPosts = ''
 		for(post of data.posts){
-			if(post.comments.length > 0){
-				for(comment of post.comments){
-					showComments.push(
-					/*html*/`
-						<div class="comment" data-id='${comment.parent_id}'>
-							<h4>
-								<!--${comment.username}-->
-								${comment.user_id} 
-								${comment.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
-							</h4>
-							<small>${comment.date_created}</small>
-							<p>${comment.message}</p>
-							<hr>
-						</div>`
-					);
-				}
+			let showComments = []
+			let comment = []
+			for(comment of post.comments){
+				showComments.push(
+				/*html*/`
+					<div class="comment" data-id='${comment.id}'>
+						<h4>
+							${comment.username.username} 
+							${comment.user_id == userId ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
+						</h4>
+						<small>${comment.date_created}</small>
+						<p>${comment.message}</p>
+						<hr>
+					</div>`
+				);
 			}
 			showPosts = 
 			/*html*/`
@@ -65,7 +64,7 @@ if(typeof PAGE != "undefined" && PAGE == "homepage"){
 									<small class="comment-count">${post.total_comments}</small>
 								</span>
 								<div class="comment-info" data-id="${post.post_id}">
-									<div class="post-comments">${showComments}</div>
+									<div class="post-comments">${ post.post_id == comment.parent_id ? showComments.join(' ') : '' }</div>
 									<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
 									<small class="new-comment">Comment</small>
 								</div>
@@ -74,22 +73,7 @@ if(typeof PAGE != "undefined" && PAGE == "homepage"){
 					</div>
 				</div> 
 			`;
-			// for(comment of post.comments){
-			// 	let showComments = ''
-			// 	if(post.post_id == comment.parent_id){
-			// 		showComments = 
-			// 		/*html*/`
-			// 			<div class="comment" data-id='${comment.parent_id}'>
-			// 				<h4>
-			// 					${comment.user_id} ${comment.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
-			// 				</h4>
-			// 				<small>${comment.date_created}</small>
-			// 				<p>${comment.message}</p>
-			// 				<hr>
-			// 			</div>
-			// 		`;
-			// 	}
-			// 	$(".post-comments").append(showComments)
+			
 			$("#feed-controller").append(showPosts)
 		}
 		// }
@@ -106,14 +90,15 @@ $('body').on('click', '.fa-comment', function(){
 // delete posts
 $('body').on('click', '.delete-feed', function(){
 	let post = $(this).closest('.feed');
-	$.post("../app/controllers/ajax/delete-post_controller.php", {postId: post.data('id')}, function(data){
+	$.post("../app/controllers/ajax/delete-post_controller.php", {
+		postId: post.data('id')
+	}, function(data){
 		post.remove();
 	})
 })
 
 // delete comment
 $('body').on("click", ".delete-comment", function(){
-
 	let comment = $(this).closest(".comment");
 	$.post("../app/controllers/ajax/delete-post_controller.php", {
 		commentId: comment.data("id"),
@@ -157,11 +142,21 @@ $('#feed-controller').on("click", ".new-comment", function(){
 // add a like
 $("#feed-controller").on("click", ".fa-heart", function(){
 	let post = $(this).closest('.feed');
-	$.post("../app/controllers/ajax/like_controller.php", {postId: post.data("id")}, function(res){
+	$.post("../app/controllers/ajax/like_controller.php", {
+		postId: post.data("id")
+	}, function(res){
 		let data = jQuery.parseJSON(res);		
 		if (data.liked) {
-			post.find(".fa-heart").css("color", data.color);
 			post.find(".likes").html(data.total);
+			post.find(".fa-heart").css({"color": data.color,
+										'transform': 'scale(1.1)',
+										'font-weight': '700'}
+									);
+			setTimeout(() => {
+				post.find(".fa-heart").css({'transform': 'scale(1)',
+											'font-weight': '100'}
+										);
+			},50)
 		} else {
 			post.find(".fa-heart").css("color", data.color);
 			post.find(".likes").html(data.total);
@@ -218,7 +213,9 @@ $("#search-items .search-input").on("keyup ", function(e){
 
 	let userInput = $(this).val();
 	
-	$.post("../app/controllers/ajax/user-search_controler.php",{searchInput:userInput}, function(res){
+	$.post("../app/controllers/ajax/user-search_controler.php",{
+		searchInput:userInput
+	}, function(res){
 		let data = jQuery.parseJSON(res);
 	
 		$(".results").html("")
