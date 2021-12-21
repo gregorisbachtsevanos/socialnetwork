@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 02 Δεκ 2021 στις 16:02:46
+-- Χρόνος δημιουργίας: 21 Δεκ 2021 στις 16:05:57
 -- Έκδοση διακομιστή: 10.4.21-MariaDB
 -- Έκδοση PHP: 8.0.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`user_id`, `follow_user_id`, `date_followed`) VALUES
-(7, 17, '2021-12-02 15:30:08');
+(17, 7, '2021-12-03 09:11:19');
 
 -- --------------------------------------------------------
 
@@ -69,11 +69,35 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `parent_id`, `message`, `video`, `images`, `audio`, `date_created`, `total_views`, `total_reposts`, `total_likes`, `total_comments`, `mentions`, `hashtags`, `repost_id`) VALUES
-(463, 7, NULL, 'post 1\r\n', NULL, NULL, NULL, '2021-11-30 13:11:19', 0, 0, 0, 0, NULL, NULL, NULL),
-(464, 7, NULL, 'post 2', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 0, 0, NULL, NULL, NULL),
-(465, 7, NULL, 'post 3', NULL, NULL, NULL, '2021-11-30 13:11:29', 0, 0, 1, 0, NULL, NULL, NULL),
-(507, 17, NULL, 'test', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 0, 0, NULL, NULL, NULL),
-(508, 7, NULL, 'new feed', NULL, NULL, NULL, '2021-12-02 14:12:51', 0, 0, 0, 0, NULL, NULL, NULL);
+(463, 16, NULL, 'post 1\r\n', NULL, NULL, NULL, '2021-11-30 13:11:19', 0, 0, 0, 1, NULL, NULL, NULL),
+(464, 7, NULL, 'post 2', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 1, 0, NULL, NULL, NULL),
+(507, 17, NULL, 'post 3', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 1, 1, NULL, NULL, NULL),
+(529, 7, 507, 'comment 1', NULL, NULL, NULL, '2021-12-20 10:15:26', 0, 0, 0, 0, NULL, NULL, NULL),
+(553, 1, NULL, 'post 4', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(562, 17, 553, 'comment 2', NULL, NULL, NULL, '2021-12-20 11:06:26', 0, 0, 0, 0, NULL, NULL, NULL),
+(563, 7, 553, 'comment 3', NULL, NULL, NULL, '2021-12-20 11:06:29', 0, 0, 0, 0, NULL, NULL, NULL),
+(565, 16, 553, 'comment 4', NULL, NULL, NULL, '2021-12-20 12:19:47', 0, 0, 0, 0, NULL, NULL, NULL),
+(567, 17, NULL, 'post 5', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 1, 0, NULL, NULL, NULL),
+(568, 16, NULL, 'post 6', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 1, 1, NULL, NULL, NULL),
+(569, 7, NULL, 'post 7', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(571, 1, NULL, 'post 8', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 1, 0, NULL, NULL, NULL),
+(572, 17, NULL, 'post 9', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 1, 1, NULL, NULL, NULL),
+(573, 7, NULL, 'post 10', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(574, 17, 553, 'comment 5', NULL, NULL, NULL, '2021-12-20 11:06:26', 0, 0, 0, 0, NULL, NULL, NULL),
+(575, 7, 553, 'comment 6', NULL, NULL, NULL, '2021-12-20 11:06:29', 0, 0, 0, 0, NULL, NULL, NULL),
+(576, 16, 553, 'comment 7', NULL, NULL, NULL, '2021-12-20 12:19:47', 0, 0, 0, 0, NULL, NULL, NULL),
+(578, 17, NULL, 'post 11', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 1, 1, NULL, NULL, NULL),
+(579, 1, NULL, 'post 12', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 1, 1, NULL, NULL, NULL),
+(580, 7, NULL, 'post 13', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(581, 7, 578, 'text', NULL, NULL, NULL, '2021-12-20 15:52:13', 0, 0, 0, 0, NULL, NULL, NULL),
+(582, 7, NULL, 'post 14', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(583, 7, NULL, 'post 15', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 0, NULL, NULL, NULL),
+(585, 17, NULL, 'post 16', NULL, NULL, NULL, '2021-11-30 13:11:24', 0, 0, 1, 1, NULL, NULL, NULL),
+(586, 1, NULL, 'post 17', NULL, NULL, NULL, '2021-12-02 12:20:06', 0, 0, 1, 1, NULL, NULL, NULL),
+(587, 7, NULL, 'post 18', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 3, NULL, NULL, NULL),
+(588, 7, NULL, 'post 19', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 0, 3, NULL, NULL, NULL),
+(589, 7, NULL, 'post 20', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 0, NULL, NULL, NULL),
+(590, 7, NULL, 'post 21', NULL, NULL, NULL, '2021-12-20 10:12:56', 0, 0, 1, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +127,19 @@ CREATE TABLE `posts_likes` (
 --
 
 INSERT INTO `posts_likes` (`post_id`, `user_id`, `date`) VALUES
-(465, 7, '2021-11-30 13:44:13');
+(464, 7, '2021-12-20 12:36:31'),
+(507, 7, '2021-12-20 12:37:31'),
+(573, 7, '2021-12-20 12:58:13'),
+(579, 7, '2021-12-20 12:58:21'),
+(553, 7, '2021-12-20 15:21:51'),
+(578, 7, '2021-12-20 15:52:03'),
+(569, 7, '2021-12-20 16:38:31'),
+(580, 7, '2021-12-21 09:23:15'),
+(582, 7, '2021-12-21 09:32:33'),
+(583, 7, '2021-12-21 13:31:09'),
+(589, 7, '2021-12-21 15:42:16'),
+(590, 7, '2021-12-21 15:42:17'),
+(587, 7, '2021-12-21 15:42:21');
 
 -- --------------------------------------------------------
 
@@ -154,9 +190,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `fullname`, `bio`, `avatar`, `type`, `status`, `followers`, `following`, `auth_key`) VALUES
 (1, 'nikos', 'Nikos Antoniadis', 'Καλημέρα κόσμε!', NULL, 1, 1, 0, 0, '6a8ywu9xh3uxgie9vla6b9bcwab5qm50'),
-(7, 'gregoris', 'Gregoris Bachtsevanos', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae amet aliquam saepe nemo ad ea quasi minima mollitia odio, ab cupiditate veritatis odit quisquam excepturi ex dignissimos dolores ipsa aut?', 'man.png', 1, 1, 0, 0, NULL),
+(7, 'gregoris', 'Gregoris Bachtsevanos', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae amet aliquam saepe nemo ad ea quasi minima mollitia odio, ab cupiditate veritatis odit quisquam excepturi ex dignissimos dolores ipsa aut?', '4.jpg', 1, 1, 1, 0, NULL),
 (16, 'mike', 'Mike Junior', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae sit delectus reiciendis suscipit exercitationem tempore laboriosam, maxime odit reprehenderit deleniti alias omnis libero vitae, neque quae modi laborum nam voluptatibus?', NULL, 1, 1, 0, 0, NULL),
-(17, 'jason', 'Jason Pots', NULL, NULL, 1, 1, 0, 0, NULL);
+(17, 'jason', 'Jason Pots', NULL, NULL, 1, 1, 0, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -203,7 +239,7 @@ CREATE TABLE `users_login` (
 
 INSERT INTO `users_login` (`user_id`, `email`, `password`) VALUES
 (1, 'antoniadis.gr@gmail.com', '$2y$10$z2uvLoNJsxbbcw9IfAFvMO1iOdbawPm6lXcwQpKZyXs800YL3to9e'),
-(7, 'greg@gmail.com', '$2y$10$8D91GmJoIQ5c1LjquO7kl.blok23r3MgiQ6YLKWkIFJ2aCsAPv2eu'),
+(7, 'greg@gmail.com', '$2y$10$d.o/3uY7ixbh93UnR2OHAu7MDqzOQI6AcHqr47sI.bfdu37kKzBfO'),
 (16, 'mike@gmail.com', '$2y$10$XOe0mxavNchcpj.BKtiaL.BZt2iFIytjPzEbdl.V9vUR6vzXKxGce'),
 (17, 'jason@gmail.com', '$2y$10$j6qV5Sj55j2s6eAoARSR.OOg7GmUqHMoNuxBz5Y9uwtFwi2CpUb/q');
 
@@ -326,7 +362,7 @@ ALTER TABLE `users_login_history`
 -- AUTO_INCREMENT για πίνακα `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=509;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=591;
 
 --
 -- AUTO_INCREMENT για πίνακα `users`
