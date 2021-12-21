@@ -7,7 +7,7 @@ require_once "includes/header.php";
 include $appIncludes."navigationbar.php";
 ?>
 <script>
-	const PAGE = "<?php echo "homepage" ?>"
+	const PAGE = "homepage"
 </script>
 
 

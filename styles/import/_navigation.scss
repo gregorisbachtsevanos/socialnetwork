@@ -9,7 +9,7 @@
     z-index: 2;
     
     #nav-items{
-        height: 100%;
+        height: 95%;
         width: 100%;
         margin: auto;
         display: flex;
@@ -18,7 +18,7 @@
         
         .space{
             width: 100%;
-            height: 20%;
+            height: 10%;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -31,6 +31,11 @@
             
             a{
                 color: var(--main-text-color);
+                transition: .3s;
+
+                &:hover{
+                    color: var(--secondary-text-color);
+                }
             }
             
             #user{
@@ -39,6 +44,7 @@
                 height: 60px;
                 display: flex;
                 border-radius: 50px;
+                border: 3px solid var(--secondary-text-color);
                 align-items: center;
                 text-decoration: none;
                 justify-content: center;
@@ -61,14 +67,13 @@
             #logout{
                 background-color: var(--);
                 bottom: 5%;
-                // border: none;
                 color: var(--secondary-text-color);
             }
 
-            a:hover{
-                transition: .3s;
-                color: var(--secondary-text-color);
-            }
+            // a:hover{
+            //     transition: .3s;
+            //     color: var(--secondary-text-color);
+            // }
         }
         
     }
@@ -77,6 +82,8 @@
 .search,
 .search-background{
     left: -30%;
+    top: 0;
+
     width: 25%;
     height : 90%;
     margin-left: 5%;

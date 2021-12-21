@@ -14,6 +14,7 @@
 
             display: flex;
             justify-content: right;
+
             a,
             button{
                 text-decoration: none;
@@ -39,6 +40,7 @@
                 margin: auto;
                 color: var(--secondary-bg-color);
                 background-color: var(--secondary-text-color);
+                border: 8px solid var(--secondary-text-color);
                 border-radius: 100px;
                 display: flex;
                 justify-content: center;
@@ -58,9 +60,7 @@
             }
 
             .name{
-                // display: flex;
-                // justify-content: center;
-                // align-self: center;
+                margin-top: 1%;
 
                 h3{
                     color: var(--main-color-text);
@@ -80,7 +80,7 @@
                 font-weight: 100;
 
                 p{
-                    padding: 0 .5%;
+                    padding: 1% .5%;
                 }
             }
 
@@ -101,25 +101,31 @@
             justify-content: space-between;
 
             .action{
-
                 cursor: pointer;
             }
         }
     } // end actions-container
 
     .status-container{
+        position: absolute;
         width: 50%;
         margin: 1% auto;
         padding: 1% .5%;
 
         .get-posts, .get-comments, .get-likes, .get-mentions{
-            position: absolute;
-            width: 50%;
-            left: 25%;
-            transition: 1.5s;
+            // position: absolute;
+            // width: 50%;
+            // left: 25%;
+            // transition: 1.5s;
         }
        
         .get-posts, .get-comments, .get-likes, .get-mentions{
+            position: absolute;
+            width: 100%;
+            left: 50%;
+            transition: 1.5s;
+
+            .users-posts{
 
             .feed {
                 border-radius: 10px;
@@ -146,6 +152,7 @@
                                     height: 50px;
                                     width: 50px;
                                     border-radius: 100px;
+                                    border: 2px solid var(--secondary-text-color);
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
@@ -269,44 +276,48 @@
                         } //end comment-body
                     }
                 } //end feed-message
-                
     
             } //end feed
-            
-        }
-    } //end status container
-    #loading-container{
-        height: 100%;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    
-    
-        #load-posts{
-            width: auto;
-            padding: 1% 3%;
-            margin: 2% auto;
-            border: none;
-            font-weight: 400;
-            font-style: italic;
-            background-color: transparent;
-            color: var(--secondary-text-color);
-            border-top: 1px solid var(--secondary-text-color);
-            border-bottom: 1px solid var(--secondary-text-color);
-        }
-    
-        #loader{
-            display: flex;
-            justify-content: center;
-            display: none;
-            padding: 1% 3%;
-        }
-    
-    }
 
+            #loading-container{
+                height: 100%;
+                position: relative;
+                width: 100%;
+                top: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            
+                #load-posts{
+                    width: auto;
+                    padding: 1% 3%;
+                    margin: 2% auto;
+                    border: none;
+                    font-weight: 400;
+                    font-style: italic;
+                    background-color: transparent;
+                    color: var(--secondary-text-color);
+                    border-top: 1px solid var(--secondary-text-color);
+                    border-bottom: 1px solid var(--secondary-text-color);
+                }
+        
+                #loader{
+                    display: flex;
+                    justify-content: center;
+                    display: none;
+                    padding: 1% 3%;
+                }
+            
+            } //  end loading container
+            
+            }
+
+        } // end get-posts, get-comments, get-likes, get-mentions
+
+    } //end status container
+
+    
+    
 } //end profile-container
 .liked{
     color:var(--secondary-text-color);
@@ -320,4 +331,8 @@
     transform: scale(0) translate(0%, -100%);
     transition: 1s;
     opacity: 0;
+}
+
+.modal-display{
+    background-color: rgba(19, 19, 19, 0.452);
 }

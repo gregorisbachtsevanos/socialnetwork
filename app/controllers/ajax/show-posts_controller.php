@@ -19,22 +19,22 @@
 				$rows = $db->fetch($sql);
 			}
 			
-		} //else if(($_POST["page"]) == "profile"){
+		} else if(($_POST["page"]) == "profile"){
 
-		// 	if(isset($_POST["counter"])){
-		// 		$counter = $_POST["counter"];
-		// 		$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-		// 		$params = array($_POST["postId"], $_POST["userId"]);
-		// 		$rows = $db->fetch($sql, $params);
-		// 		print_r($rows);
-		// 	} else{
-		// 		$counter = 0;
-		// 		$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
-		// 		$params = array($_POST["userId"]);
-		// 		$rows = $db->fetch($sql, $params);
-		// 		// print_r($rows);
-		// 	}
-		// }
+			if(isset($_POST["counter"])){
+				$counter = $_POST["counter"];
+				$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+				$params = array($_POST["postId"], $_POST["userId"]);
+				$rows = $db->fetch($sql, $params);
+				// print_r($rows);
+			} else{
+				$counter = 0;
+				$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
+				$params = array($_POST["userId"]);
+				$rows = $db->fetch($sql, $params);
+				// print_r($rows);
+			}
+		}
 
 		$limit = $counter + 5;
 		// get all posts

@@ -28,10 +28,10 @@ if(isset($_GET["id"])){
 
 ?>
 <script>
-	const PAGE = "<?php echo "profile" ?>"
+	const PAGE = "profile"
 </script>
 
-<div class="profile-container" >	
+<div class="profile-container">	
 	<div class="user-container user" data-id="<?php echo $row->id ?>">
 		<div class="user">
 			<div class="img">
@@ -45,7 +45,7 @@ if(isset($_GET["id"])){
 				<p><span id="following"><?php echo $row->following ?></span> following</p>
 			</div>
 		</div>
-		<p><?php echo $row->bio ?></p>
+		<p class="bio"><?php echo $row->bio ?></p>
 		<p id="btn-profile">
 			<?php 
 				// get follow unfollow btn
@@ -61,7 +61,8 @@ if(isset($_GET["id"])){
 			echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : $follow ?>
 		</p>
 		
-	</div>
+	</div> <!-- end user-container -->
+
 	<div class="actions-container">
 		<div class="action-type">
 			<div class="action post-action"> 
@@ -77,91 +78,79 @@ if(isset($_GET["id"])){
 				<h4>Likes</h4>
 			</div>
 		</div>
-	</div>
+	</div> <!-- end actions-container -->
+
 	<div class="status-container">
 		<div class='get-posts'>
 
-			<?php
-			
-			// // get users posts
-			// $sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is NULL";
-			// $params = array($_GET["id"]);
-			// $rows = $db->fetch($sql, $params);
-			// echo count((array)$rows) == 0 ? "No posts" : null;
-			
-			// include $appIncludes."feeds.php"; ?>
+			<div class="users-posts"></div> <!-- load users posts with ajax -->
+			<div id="loading-container">
+				<button id="load-posts">more...</button>
+				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+			</div>
 		</div>
+
 		<div class='get-comments show-action'>
 
+			<div class="users-comments"></div> <!-- load users comments with ajax -->
+			<div id="loading-container">
+				<button id="load-posts">more...</button>
+				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+			</div>
 			<?php
-			
-			// get users comments
-			$sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is not NULL";
-			$params = array($_GET["id"]);
-			$rows = $db->fetch($sql, $params);
-			echo count((array)$rows) == 0 ? "No comments" : null;
-			
-			foreach($rows as $index){
-				$sql = "SELECT * FROM posts WHERE id = ?";
-				$params = array($index->parent_id);
-				$rows = $db->fetch($sql, $params);
-
-				include $appIncludes."feeds.php";
-			}?>
-			
+			// $sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is not NULL";
+			// $params = array($_GET["id"]);
+			// $rows = $db->fetch($sql, $params);
+			// echo count((array)$rows) == 0 ? "No comments" : null;
+			// foreach($rows as $index){
+			// $sql = "SELECT * FROM posts WHERE id = ?";
+			// $params = array($index->parent_id);
+			// $rows = $db->fetch($sql, $params);
+			// include $appIncludes."feeds.php";
+			// }?>
 		</div>
 
 		<div class='get-mentions show-action'>
 
+			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
+			<div id="loading-container">
+				<button id="load-posts">more...</button>
+				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+			</div>
 			<?php
-			
-			// get users mentions
-			$sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
-			$params = array($_GET["id"]);
-			$rows = $db->fetch($sql, $params);
-			echo count((array)$rows) == 0 ? "No mentions" : null;
-			
-			foreach($rows as $index){
-				$sql = "SELECT * FROM posts WHERE id = ?";
-				$params = array($index->post_id);
-				$rows = $db->fetch($sql, $params);
-
-				include $appIncludes."feeds.php";
-			}?>
-			
+			// $sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
+			// $params = array($_GET["id"]);
+			// $rows = $db->fetch($sql, $params);
+			// echo count((array)$rows) == 0 ? "No mentions" : null;
+			// foreach($rows as $index){
+			// $sql = "SELECT * FROM posts WHERE id = ?";
+			// $params = array($index->post_id);
+			// $rows = $db->fetch($sql, $params);
+			// include $appIncludes."feeds.php";
+			// }?>
 		</div>
+
 		<div class='get-likes show-action'>
 
+			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
+			<div id="loading-container">
+				<button id="load-posts">more...</button>
+				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+			</div>
 			<?php
-			
-			// get users likes
-			$sql = "SELECT * FROM posts_likes WHERE user_id = ?";
-			$params = array($_GET["id"]);
-			$rows = $db->fetch($sql, $params);
-			echo count((array)$rows) == 0 ? "No likes" : null;
-			
-			foreach($rows as $index){
-				$sql = "SELECT * FROM posts WHERE id = ?";
-				$params = array($index->post_id);
-				$rows = $db->fetch($sql, $params);
-				
-				include $appIncludes."feeds.php";
-			}?>
-			
+			// $sql = "SELECT * FROM posts_likes WHERE user_id = ?";
+			// $params = array($_GET["id"]);
+			// $rows = $db->fetch($sql, $params);
+			// echo count((array)$rows) == 0 ? "No likes" : null;
+			// foreach($rows as $index){
+			// $sql = "SELECT * FROM posts WHERE id = ?";
+			// $params = array($index->post_id);
+			// $rows = $db->fetch($sql, $params);
+			// include $appIncludes."feeds.php";
+			// }?>
 		</div>
 		
-
-	</div>
-	<div id="loading-container">
-		<button id="load-posts">more...</button>
-		<div id="loader">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: transparent; display: block; shape-rendering: auto;" width="80px"  height="80px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-				<circle cx="50" cy="50" r="32" stroke-width="5" stroke="#e4560fe8" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round">
-					<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="2s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
-				</circle>
-			</svg><!--[ldio] generated by https://loading.io/ -->
-		</div>
-	</div>
-</div>
-
+	</div> <!-- end status-container -->	
+	
+</div> <!-- end profile-container -->
 <?php require_once $appIncludes."footer.php" ?>

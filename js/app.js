@@ -73,6 +73,7 @@ function loadPosts(post, appendTo) {
 
 // first load posts
 if(typeof PAGE != "undefined"){
+	let time = 0
 
 	if(PAGE == "homepage"){
 		$.post("../app/controllers/ajax/show-posts_controller.php", {
@@ -103,49 +104,54 @@ if(typeof PAGE != "undefined"){
 							loadPosts(post, $("#feed-controller"));
 							$("#load-posts").show();
 							$("#loader").hide()
+							clearInterval(time)
 						}
+						
 					},500)
 				})
 			})
 
 		})
 
-	} //else if(PAGE == "profile"){
-	// 	$.post("../app/controllers/ajax/show-posts_controller.php", {
-	// 		userId,
-	// 		page: PAGE
-	// 	}, function(res){
-	// 		console.log(res);
-	// 		let data = jQuery.parseJSON(res);
-	// 		let showPosts = '';
-	// 		for (post of data.posts) {
-	// 			loadPosts(post, $(".get-posts"));
-	// 		}
-	// 		$("#load-posts").on('click', function(e){
-	// 			e.preventDefault()
-	// 			$.post("../app/controllers/ajax/show-posts_controller.php", {
-	// 				userId,
-	// 				page: PAGE,
-	// 				counter: post.counter,
-	// 				postId: post.post_id
-	// 			}, function(res){
-	// 				// console.log(res);
-	// 				data = jQuery.parseJSON(res);
-	// 				showPosts = '';
-	// 				$("#load-posts").hide();
-	// 				$("#loader").show()
-	// 				setTimeout(function(){
-	// 					for (post of data.posts) {
-	// 						loadPosts(post, $(".get-posts"));
-	// 						$("#load-posts").show();
-	// 						$("#loader").hide()
-	// 					}
-	// 				},500)
-	// 			})
-	// 		})
+	} else if(PAGE == "profile"){
+		$.post("../app/controllers/ajax/show-posts_controller.php", {
+			userId,
+			page: PAGE
+		}, function(res){
+			// console.log(res);
+			let data = jQuery.parseJSON(res);
+			let showPosts = '';
+			for (post of data.posts) {
+				loadPosts(post, $(".users-posts"));
+			}
+			$("#load-posts").on('click', function(e){
+				e.preventDefault()
+				$.post("../app/controllers/ajax/show-posts_controller.php", {
+					userId,
+					page: PAGE,
+					counter: post.counter,
+					postId: post.post_id
+				}, function(res){
+					console.log(res);
+					data = jQuery.parseJSON(res);
+					showPosts = '';
+					$("#load-posts").hide();
+					$("#loader").show()
+					// let time = ''
+					setTimeout(function(){
+						
+						for (post of data.posts) {
+							loadPosts(post, $(".users-posts"));
+							$("#load-posts").show();
+							$("#loader").hide()
+						}
+						
+					},500)
+				})
+			})
 
-	// 	})
-	// }
+		})
+	}
 }
 
 // show comments

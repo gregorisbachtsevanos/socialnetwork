@@ -49,13 +49,19 @@
                     border: none;
                     padding: 3%;
                     border-radius: 10px;
+
+                    &:hover{
+                        background-color: #1e1f20;
+                        color: #dadada;
+                        transition: .6s;
+                    }
                 }
                 
-                .submit:hover{
-                    background-color: #1e1f20;
-                    color: #dadada;
-                    transition: .6s;
-                }
+                // .submit:hover{
+                //     background-color: #1e1f20;
+                //     color: #dadada;
+                //     transition: .6s;
+                // }
             } // end submit-btn
             
             #new-account{
