@@ -156,9 +156,12 @@
             display: flex;
             padding: 4%;
             align-items: center;
+
+
             
             img,
             span{
+                border: 2px solid var(--secondary-text-color);
                 width: 35px;
                 height: 35px;
                 border-radius: 60px;

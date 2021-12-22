@@ -70,87 +70,93 @@ function loadPosts(post, appendTo) {
 
 	return appendTo.append(showPosts);
 }
+// loading users action (posts, likes etc)
+function loadUsersActions(PAGE, append, type="posts") {
+	$.post("../app/controllers/ajax/show-posts_controller.php", {
+		userId,
+		page: PAGE,
+		type:type
+	}, function (res) {
+		console.log(res);
+		let data = jQuery.parseJSON(res);
+		let showPosts = '';
+		for (post of data.posts) {
+			loadPosts(post, append);
+		} 
+		$(".load-posts").on('click', function (e) {
+			e.preventDefault();
+			$.post("../app/controllers/ajax/show-posts_controller.php", {
+				userId,
+				page: PAGE,
+				type:type,
+				counter: post.counter,
+				postId: post.post_id
+			}, function (res) {
+				console.log(res);
+				data = jQuery.parseJSON(res);
+				showPosts = '';
+				$(".load-posts").hide();
+				$("#loader").show();
+				setTimeout(function () {
+
+					for (post of data.posts) {
+						loadPosts(post, append);
+						$(".load-posts").show();
+						$("#loader").hide();
+					}
+					if(data[0] == 0){
+						$("#loader").hide();
+						$(".no-more-posts")
+										.html(`Where is no more ${type} to show.`)
+										.css({"padding-top": '3%', "padding-bottom": '7%'})
+					}
+
+				}, 500);
+			});
+		});
+
+	});
+}
 
 // first load posts
 if(typeof PAGE != "undefined"){
-	let time = 0
 
 	if(PAGE == "homepage"){
-		$.post("../app/controllers/ajax/show-posts_controller.php", {
-			userId,
-			page: PAGE
-		}, function(res){
-			// console.log(res);
-			let data = jQuery.parseJSON(res);
-			let showPosts = '';
-			for (post of data.posts) {
-				loadPosts(post, $("#feed-controller"));
-			}
-			$("#load-posts").on('click', function(e){
-				e.preventDefault()
-				$.post("../app/controllers/ajax/show-posts_controller.php", {
-					userId,
-					page: PAGE,
-					counter: post.counter,
-					postId: post.post_id
-				}, function(res){
-					// console.log(res);
-					data = jQuery.parseJSON(res);
-					showPosts = '';
-					$("#load-posts").hide();
-					$("#loader").show()
-					setTimeout(function(){
-						for (post of data.posts) {
-							loadPosts(post, $("#feed-controller"));
-							$("#load-posts").show();
-							$("#loader").hide()
-							clearInterval(time)
-						}
-						
-					},500)
-				})
-			})
-
-		})
-
+		loadUsersActions("homepage", $("#feed-controller"))
 	} else if(PAGE == "profile"){
-		$.post("../app/controllers/ajax/show-posts_controller.php", {
-			userId,
-			page: PAGE
-		}, function(res){
-			// console.log(res);
-			let data = jQuery.parseJSON(res);
-			let showPosts = '';
-			for (post of data.posts) {
-				loadPosts(post, $(".users-posts"));
-			}
-			$("#load-posts").on('click', function(e){
-				e.preventDefault()
-				$.post("../app/controllers/ajax/show-posts_controller.php", {
-					userId,
-					page: PAGE,
-					counter: post.counter,
-					postId: post.post_id
-				}, function(res){
-					console.log(res);
-					data = jQuery.parseJSON(res);
-					showPosts = '';
-					$("#load-posts").hide();
-					$("#loader").show()
-					// let time = ''
-					setTimeout(function(){
-						
-						for (post of data.posts) {
-							loadPosts(post, $(".users-posts"));
-							$("#load-posts").show();
-							$("#loader").hide()
-						}
-						
-					},500)
-				})
-			})
-
-		})
+		loadUsersActions("profile", $(".users-posts"), "posts");
+		// get users comments
+		$(".comment-action").click(() => getUserActions(
+			$(".get-comments"), 
+			$(".get-posts"), 
+			$(".get-mentions"), 
+			$(".get-likes")
+		));
+		$(".comment-action").click(() => loadUsersActions("profile", $(".users-comments"), "comments"));
+		// get users mentions
+		$(".mention-action").click(() => getUserActions(
+			$(".get-mentions"), 
+			$(".get-comments"), 
+			$(".get-posts"), 
+			$(".get-likes")
+		));
+		$(".mention-action").click(() => loadUsersActions("profile", $(".users-mentions"), "mentions"));
+		// get users likes
+		$(".like-action").click(() => getUserActions(
+			$(".get-likes"), 
+			$(".get-comments"), 
+			$(".get-posts"), 
+			$(".get-mentions")
+		));
+		$(".like-action").click(() => loadUsersActions("profile", $(".users-likes"), "likes"));
+		// get users posts
+		$(".post-action").click(() => getUserActions(
+			$(".get-posts"), 
+			$(".get-comments"), 
+			$(".get-mentions"), 
+			$(".get-likes")
+		));
+		$(".post-action").click(() => loadUsersActions("profile", $(".users-posts"), "posts"));
 	}
 }
 
@@ -238,7 +244,6 @@ $("body").on("click", ".fa-heart", function(){
 	})
 })
 
-
 // users action
 function getUserActions(removeClass, addClass0, addClass1, addClass2){
 	removeClass.removeClass("show-action");
@@ -246,34 +251,6 @@ function getUserActions(removeClass, addClass0, addClass1, addClass2){
 	addClass1.addClass("show-action");
 	addClass2.addClass("show-action");
 }	
-
-$(".comment-action").click(() => getUserActions(
-	$(".get-comments"), 
-	$(".get-posts"), 
-	$(".get-mentions"), 
-	$(".get-likes")
-));
-
-$(".mention-action").click(() => getUserActions(
-	$(".get-mentions"), 
-	$(".get-comments"), 
-	$(".get-posts"), 
-	$(".get-likes")
-));
-
-$(".like-action").click(() => getUserActions(
-	$(".get-likes"), 
-	$(".get-comments"), 
-	$(".get-posts"), 
-	$(".get-mentions")
-));
-
-$(".post-action").click(() => getUserActions(
-	$(".get-posts"), 
-	$(".get-comments"), 
-	$(".get-mentions"), 
-	$(".get-likes")
-));
 
 // search form show
 $(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
@@ -298,7 +275,7 @@ $("#search-items .search-input").on("keyup ", function(e){
 			let searchResult = 	
 			/*html*/`
 			<div class="input-result">
-				${user.avatar ? `<img style='width:100%;height:100%' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
+				${user.avatar ? `<img style='width:35px;height:35px' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
 				<h4>${user.fullname} 
 					<small>
 						<a href="../public/profile.php?id=${user.id}">@${user.username}</a>

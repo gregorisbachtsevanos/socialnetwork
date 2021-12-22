@@ -66,16 +66,16 @@ if(isset($_GET["id"])){
 	<div class="actions-container">
 		<div class="action-type">
 			<div class="action post-action"> 
-				<h4>Posts</h4>
+				<button>Posts</button>
 			</div>
 			<div class="action comment-action">
-				<h4>Comments</h4>
+				<button>Comments</button>
 			</div>
 			<div class="action mention-action">
-				<h4>Mentions</h4>
+				<button>Mentions</button>
 			</div>
 			<div class="action like-action">
-				<h4>Likes</h4>
+				<button>Likes</button>
 			</div>
 		</div>
 	</div> <!-- end actions-container -->
@@ -85,8 +85,9 @@ if(isset($_GET["id"])){
 
 			<div class="users-posts"></div> <!-- load users posts with ajax -->
 			<div id="loading-container">
-				<button id="load-posts">more...</button>
+				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<p id="no-more-posts"></p>
 			</div>
 		</div>
 
@@ -94,7 +95,7 @@ if(isset($_GET["id"])){
 
 			<div class="users-comments"></div> <!-- load users comments with ajax -->
 			<div id="loading-container">
-				<button id="load-posts">more...</button>
+				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
 			</div>
 			<?php
@@ -114,9 +115,10 @@ if(isset($_GET["id"])){
 
 			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
 			<div id="loading-container">
-				<button id="load-posts">more...</button>
+				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
 			</div>
+			
 			<?php
 			// $sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
 			// $params = array($_GET["id"]);
@@ -134,7 +136,7 @@ if(isset($_GET["id"])){
 
 			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
 			<div id="loading-container">
-				<button id="load-posts">more...</button>
+				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
 			</div>
 			<?php

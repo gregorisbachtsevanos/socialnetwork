@@ -17,23 +17,81 @@
 				$counter = 0;
 				$sql = "SELECT * FROM posts WHERE parent_id is Null";
 				$rows = $db->fetch($sql);
+				// print_r($rows);
 			}
 			
 		} else if(($_POST["page"]) == "profile"){
-
-			if(isset($_POST["counter"])){
-				$counter = $_POST["counter"];
-				$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-				$params = array($_POST["postId"], $_POST["userId"]);
-				$rows = $db->fetch($sql, $params);
-				// print_r($rows);
-			} else{
-				$counter = 0;
-				$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
-				$params = array($_POST["userId"]);
-				$rows = $db->fetch($sql, $params);
-				// print_r($rows);
-			}
+			// ****** load users posts ****** //
+			if($_POST["type"] == "posts"){
+				// echo $_POST["type"];
+				if(isset($_POST["counter"])){
+					$counter = $_POST["counter"];
+					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+					$params = array($_POST["postId"], $_POST["userId"]);
+					$rows = $db->fetch($sql, $params);
+					// print_r($rows);
+				} else{
+					$counter = 0;
+					$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
+					$params = array($_POST["userId"]);
+					$rows = $db->fetch($sql, $params);
+					// print_r($rows);
+				}
+			} 
+			// ****** load users comments ****** //
+			else if($_POST["type"] == "comments"){
+				if(isset($_POST["counter"])){
+					$counter = $_POST["counter"];
+					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is not Null AND user_id = ?";
+					$params = array($_POST["postId"], $_POST["userId"]);
+					$rows = $db->fetch($sql, $params);
+					// print_r($rows);
+				} else{
+					$counter = 0;
+					$sql = "SELECT * FROM posts WHERE parent_id is not Null AND user_id = ?";
+					$params = array($_POST["userId"]);
+					$rowsP = $db->fetch($sql, $params);
+					foreach($rowsP as $row){
+						$sql = "SELECT * FROM posts WHERE parent_id is Null AND id = ?";
+						$params = array($row->parent_id);
+						$rows = $db->fetch($sql, $params);
+					}
+					// print_r($rows);
+					// $rows = array_values($postComments->comments);
+				}
+			} 
+			// // ****** load users mentions ****** //
+			// else if($_POST["type"] == "mentions"){
+			// 	if(isset($_POST["counter"])){
+			// 		$counter = $_POST["counter"];
+			// 		$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+			// 		$params = array($_POST["postId"], $_POST["userId"]);
+			// 		$rows = $db->fetch($sql, $params);
+			// 		// print_r($rows);
+			// 	} else{
+			// 		$counter = 0;
+			// 		$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
+			// 		$params = array($_POST["userId"]);
+			// 		$rows = $db->fetch($sql, $params);
+			// 		// print_r($rows);
+			// 	}
+			// } 
+			// // ****** load users likes ****** //
+			// else if($_POST["type"] == "likes"){
+			// 	if(isset($_POST["counter"])){
+			// 		$counter = $_POST["counter"];
+			// 		$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+			// 		$params = array($_POST["postId"], $_POST["userId"]);
+			// 		$rows = $db->fetch($sql, $params);
+			// 		// print_r($rows);
+			// 	} else{
+			// 		$counter = 0;
+			// 		$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
+			// 		$params = array($_POST["userId"]);
+			// 		$rows = $db->fetch($sql, $params);
+			// 		// print_r($rows);
+			// 	}
+			// }
 		}
 
 		$limit = $counter + 5;
