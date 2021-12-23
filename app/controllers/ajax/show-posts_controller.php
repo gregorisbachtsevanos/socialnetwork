@@ -21,80 +21,100 @@
 			}
 			
 		} else if(($_POST["page"]) == "profile"){
-			// ****** load users posts ****** //
+
+			// ****** load user's posts ****** //
 			if($_POST["type"] == "posts"){
-				// echo $_POST["type"];
+				
 				if(isset($_POST["counter"])){
 					$counter = $_POST["counter"];
-					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND `user_id` = ?";
 					$params = array($_POST["postId"], $_POST["userId"]);
 					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				} else{
 					$counter = 0;
-					$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
+					$sql = "SELECT * FROM posts WHERE parent_id is Null AND `user_id` = ?";
 					$params = array($_POST["userId"]);
 					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				}
 			} 
-			// ****** load users comments ****** //
-			else if($_POST["type"] == "comments"){
+			// ****** load user's images ****** //
+			else if($_POST["type"] == "images"){
 				if(isset($_POST["counter"])){
 					$counter = $_POST["counter"];
-					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is not Null AND user_id = ?";
+					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND images is not NULL AND `user_id` = ?";
 					$params = array($_POST["postId"], $_POST["userId"]);
 					$rows = $db->fetch($sql, $params);
+					
 					// print_r($rows);
 				} else{
 					$counter = 0;
-					$sql = "SELECT * FROM posts WHERE parent_id is not Null AND user_id = ?";
+					$sql = "SELECT * FROM posts WHERE parent_id is Null AND `message` is NULL AND images is not NULL AND `user_id` = ?";
 					$params = array($_POST["userId"]);
-					$rowsP = $db->fetch($sql, $params);
-					foreach($rowsP as $row){
-						$sql = "SELECT * FROM posts WHERE parent_id is Null AND id = ?";
-						$params = array($row->parent_id);
-						$rows = $db->fetch($sql, $params);
-					}
+					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
-					// $rows = array_values($postComments->comments);
 				}
 			} 
-			// // ****** load users mentions ****** //
-			// else if($_POST["type"] == "mentions"){
-			// 	if(isset($_POST["counter"])){
-			// 		$counter = $_POST["counter"];
-			// 		$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-			// 		$params = array($_POST["postId"], $_POST["userId"]);
-			// 		$rows = $db->fetch($sql, $params);
-			// 		// print_r($rows);
-			// 	} else{
-			// 		$counter = 0;
-			// 		$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
-			// 		$params = array($_POST["userId"]);
-			// 		$rows = $db->fetch($sql, $params);
-			// 		// print_r($rows);
-			// 	}
-			// } 
-			// // ****** load users likes ****** //
-			// else if($_POST["type"] == "likes"){
-			// 	if(isset($_POST["counter"])){
-			// 		$counter = $_POST["counter"];
-			// 		$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-			// 		$params = array($_POST["postId"], $_POST["userId"]);
-			// 		$rows = $db->fetch($sql, $params);
-			// 		// print_r($rows);
-			// 	} else{
-			// 		$counter = 0;
-			// 		$sql = "SELECT * FROM posts WHERE parent_id is Null AND user_id = ?";
-			// 		$params = array($_POST["userId"]);
-			// 		$rows = $db->fetch($sql, $params);
-			// 		// print_r($rows);
-			// 	}
-			// }
+			// ****** load users followers ****** //
+			else if($_POST["type"] == "following"){
+				$followers = array("posts"=>array());
+				if(isset($_POST["counter"])){
+					// $counter = $_POST["counter"];
+					// $sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+					// $params = array($_POST["postId"], $_POST["userId"]);
+					// $rows = $db->fetch($sql, $params);
+					// print_r($rows);
+				} else{
+					$counter = 0;
+					$sql = "SELECT `follow_user_id` FROM `follow` WHERE `user_id` = ?";
+					$params = array($_SESSION["user"]);
+					$rows = $db -> fetch($sql, $params);
+					foreach($rows as $row){
+						$sql = "SELECT `id`, `fullname`, `username`, `avatar` FROM `users` WHERE `id` = ?";
+						$params = array($row->follow_user_id);
+						$row = $db -> row($sql, $params);
+						$row->profileAvatar = $row -> avatar 
+							? "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."'alt='image-profile'>" 
+							: "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";
+						array_push($followers["posts"], $row);
+					}				
+					// print_r($followers);
+					echo json_encode($followers);
+					exit();
+				}
+			} 
+			// ****** load users following ****** //
+			else if($_POST["type"] == "followers"){
+				$following = array("posts"=>array());
+				if(isset($_POST["counter"])){
+					// $counter = $_POST["counter"];
+					// $sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
+					// $params = array($_POST["postId"], $_POST["userId"]);
+					// $rows = $db->fetch($sql, $params);
+					// print_r($rows);
+				} else{
+					$counter = 0;
+					$sql = "SELECT `user_id` FROM `follow` WHERE `follow_user_id` = ?";
+					$params = array($_SESSION["user"]);
+					$rows = $db -> fetch($sql, $params);
+					foreach($rows as $row){
+						$sql = "SELECT `id`, `fullname`, `username`, `avatar` FROM `users` WHERE `id` = ?";
+						$params = array($row->user_id);
+						$row = $db -> row($sql, $params);
+						$row->profileAvatar = $row -> avatar 
+						? "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."'alt='image-profile'>" 
+						: "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";
+						array_push($following["posts"], $row);
+					}				
+					echo json_encode($following);
+					exit();
+				}
+			} 
+			
 		}
 
-		$limit = $counter + 5;
+		$limit = $counter + 2;
 		// get all posts
 		$response = array($totalPosts = Count($rows),'posts'=>array());
 		foreach(array_reverse($rows) as $post){
@@ -156,7 +176,7 @@
 				// print_r($data);
 
 				$data["liked"] = '';
-				$sql = "SELECT `date` FROM posts_likes WHERE user_id = ? AND post_id = ?";
+				$sql = "SELECT `date` FROM posts_likes WHERE `user_id` = ? AND post_id = ?";
 				$params = array($_POST["userId"], $post->id);
 				$row = $db -> row($sql, $params);
 				if($row){

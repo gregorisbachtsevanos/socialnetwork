@@ -11,18 +11,20 @@
         border-top: none;
 
         #btn-profile{
-
+            width: 30%;
+            margin: 0 auto 1% auto;
             display: flex;
-            justify-content: right;
+            justify-content: space-evenly;
 
-            a,
-            button{
+            a{
                 text-decoration: none;
-                color: var(--secondary-text-color);
+                color: var(--main-color-text);
             }
 
+            .msg,
+            .edit,
             .follow-btn{
-                padding: .5% 3%;
+                padding: 1.5% 3%;
                 border: none;
                 border-radius: 5px;
                 background-color: var(--secondary-text-color);
@@ -116,20 +118,86 @@
         margin: 1% auto;
         padding: 1% .5%;
 
-        .get-posts, .get-comments, .get-likes, .get-mentions{
-            // position: absolute;
-            // width: 50%;
-            // left: 25%;
-            // transition: 1.5s;
-        }
-       
-        .get-posts, .get-comments, .get-likes, .get-mentions{
+        .get-posts, .get-images, .get-following, .get-followers{
             position: absolute;
             width: 100%;
             left: 50%;
             transition: 1.5s;
 
-            .users-posts, .users-comments,.users-mentions, .users-likes{
+            .users-followers, .users-following{
+                width: 80%;
+                margin: auto;
+                display: grid;
+                align-self: center;
+                grid-template-columns: repeat(2, 50%);
+
+                    .friend-card{
+                        width: 90%;
+                        margin: 5% auto;
+                        padding: 10%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        border: 2px solid rgba(51,51,51,1);
+                        background-color: rgba(30, 31, 32, 1);
+            
+                        .profile-img{
+                            width: 100px;
+                            height: 100px;
+                            margin: auto;
+                            color: var(--secondary-bg-color);
+                            background-color: var(--secondary-text-color);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 100px;
+                            
+                            img{
+                                border-radius: 100px;
+                                border: 3px solid var(--secondary-text-color);
+                                width: 100%;    
+                            }
+            
+                            .user-icon{
+                                font-size: 4.4rem;
+                                font-weight: 700;
+                            }
+                        }
+            
+                        .info{
+                            
+                            h2{
+                                margin: 5% 0;
+                                color: var(--main-text-color);
+            
+                                a{
+                                    font-size: .9rem;
+                                    text-decoration: none;
+                                    color: var(--secondary-text-color);
+                                }
+                            }
+            
+                        }
+                        .btns{
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-evenly;
+                            
+                            button{
+                                padding: 2%;
+                                border: none;
+                                cursor: pointer;
+                                border-radius: 5px;
+                                background-color: var(--secondary-text-color);
+                            }
+                        }
+                    } // end friend card
+
+            } // end users-posts, users-images ,users-following, users-followers
+
+            .users-posts, .users-images ,.users-following, .users-followers{
 
                 .feed {
                     border-radius: 10px;
@@ -197,8 +265,18 @@
                     }
         
                     .feed-message {
+                        // width: 80%;
         
-                        .post-msg {padding: 1% 0;}
+                        .post-msg {
+                            padding: 1% 0;
+
+                            img{
+                                width: 100%;
+                                margin: auto;
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
                         
                         .reactions{
                                 display: flex;
@@ -277,7 +355,13 @@
         
                 } //end feed
 
-                #loading-container{
+                .img-container{
+                    width: 80%;
+                    padding: 1.5%;
+                    margin: 2% auto;
+                }
+
+                .loading-container{
                     height: 100%;
                     position: relative;
                     width: 100%;
@@ -299,7 +383,7 @@
                         border-bottom: 1px solid var(--secondary-text-color);
                     }
             
-                    #loader{
+                    .loader{
                         display: flex;
                         justify-content: center;
                         display: none;
@@ -310,9 +394,9 @@
                 } //  end loading container
                
                 
-            } // end users-posts, users-comments,users-mentions, users-likes
+            } // end users-posts, users-images ,users-following, users-followers
 
-        } // end get-posts, get-comments, get-likes, get-mentions
+        } // end get-posts, get-images, get-followers, get-following
 
     } //end status container
 
@@ -323,7 +407,7 @@
 .not-liked{color:var(--main-text-color);}
 
 .show-action{
-    transform: scale(0) translate(0%, -100%);
+    transform: scale(0) translate(0,-50%);
     transition: 1s;
     opacity: 0;
 }

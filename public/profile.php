@@ -32,6 +32,7 @@ if(isset($_GET["id"])){
 </script>
 
 <div class="profile-container">	
+	
 	<div class="user-container user" data-id="<?php echo $row->id ?>">
 		<div class="user">
 			<div class="img">
@@ -45,7 +46,6 @@ if(isset($_GET["id"])){
 				<p><span id="following"><?php echo $row->following ?></span> following</p>
 			</div>
 		</div>
-		<p class="bio"><?php echo $row->bio ?></p>
 		<p id="btn-profile">
 			<?php 
 				// get follow unfollow btn
@@ -57,9 +57,12 @@ if(isset($_GET["id"])){
 				}else{
 					$follow = "<button class='follow-btn'>follow</button>";
 				}
-
-			echo $_SESSION['user'] === $_GET["id"] ? "<a href='edit.php'>edit</a>" : $follow ?>
+				
+				echo $_SESSION['user'] === $_GET["id"] 
+					? "<button class='edit'><a href='edit.php'>edit profile</a></button>" 
+					: $follow."<button class='msg'>Message</button>"?>
 		</p>
+		<p class="bio"><?php echo $row->bio ?></p>
 		
 	</div> <!-- end user-container -->
 
@@ -68,88 +71,58 @@ if(isset($_GET["id"])){
 			<div class="action post-action"> 
 				<button>Posts</button>
 			</div>
-			<div class="action comment-action">
-				<button>Comments</button>
+			<div class="action image-action">
+				<button>Images</button>
 			</div>
-			<div class="action mention-action">
-				<button>Mentions</button>
+			<div class="action followers-action">
+				<button>Followers</button>
 			</div>
-			<div class="action like-action">
-				<button>Likes</button>
+			<div class="action following-action">
+				<button>Following</button>
 			</div>
 		</div>
 	</div> <!-- end actions-container -->
 
 	<div class="status-container">
+				
+		<!-- user's posts -->
 		<div class='get-posts'>
-
-			<div class="users-posts"></div> <!-- load users posts with ajax -->
+			<div class="users-posts"></div> <!-- load user's posts with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
-				<p id="no-more-posts"></p>
+				<p class="no-more-posts"></p>
 			</div>
 		</div>
 
-		<div class='get-comments show-action'>
-
-			<div class="users-comments"></div> <!-- load users comments with ajax -->
+		<!-- user's images -->
+		<div class='get-images show-action'>
+			<div class="users-images"></div> <!-- load user's images with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<p class="no-more-posts"></p>
 			</div>
-			<?php
-			// $sql = "SELECT * FROM posts WHERE user_id = ? AND parent_id is not NULL";
-			// $params = array($_GET["id"]);
-			// $rows = $db->fetch($sql, $params);
-			// echo count((array)$rows) == 0 ? "No comments" : null;
-			// foreach($rows as $index){
-			// $sql = "SELECT * FROM posts WHERE id = ?";
-			// $params = array($index->parent_id);
-			// $rows = $db->fetch($sql, $params);
-			// include $appIncludes."feeds.php";
-			// }?>
 		</div>
 
-		<div class='get-mentions show-action'>
-
-			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
+		<!-- user's following -->
+		<div class='get-following show-action'>
+			<div class="users-following"></div> <!-- load user's following with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<p class="no-more-posts"></p>
 			</div>
-			
-			<?php
-			// $sql = "SELECT * FROM posts_mentions WHERE user_id = ?";
-			// $params = array($_GET["id"]);
-			// $rows = $db->fetch($sql, $params);
-			// echo count((array)$rows) == 0 ? "No mentions" : null;
-			// foreach($rows as $index){
-			// $sql = "SELECT * FROM posts WHERE id = ?";
-			// $params = array($index->post_id);
-			// $rows = $db->fetch($sql, $params);
-			// include $appIncludes."feeds.php";
-			// }?>
 		</div>
 
-		<div class='get-likes show-action'>
-
-			<div class="users-mentions"></div> <!-- load users mentions with ajax -->
+		<!-- user's followers -->
+		<div class='get-followers show-action'>
+			<div class="users-followers"></div> <!-- load user's followers with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
 				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<p class="no-more-posts"></p>
 			</div>
-			<?php
-			// $sql = "SELECT * FROM posts_likes WHERE user_id = ?";
-			// $params = array($_GET["id"]);
-			// $rows = $db->fetch($sql, $params);
-			// echo count((array)$rows) == 0 ? "No likes" : null;
-			// foreach($rows as $index){
-			// $sql = "SELECT * FROM posts WHERE id = ?";
-			// $params = array($index->post_id);
-			// $rows = $db->fetch($sql, $params);
-			// include $appIncludes."feeds.php";
-			// }?>
 		</div>
 		
 	</div> <!-- end status-container -->	

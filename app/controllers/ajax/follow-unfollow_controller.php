@@ -38,7 +38,7 @@
 			$params = array($_SESSION["user"]);
 			$row = $db->row($sql, $params);
 			$db->update("users", array("following" => $row->totalF), array("id" => $_SESSION["user"]));
-// print_r($row);
+			// print_r($row);
 			echo json_encode($data);
 	}
 
