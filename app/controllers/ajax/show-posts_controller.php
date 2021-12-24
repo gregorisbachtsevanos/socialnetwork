@@ -7,22 +7,22 @@
 		
 		if(($_POST["page"]) == "homepage"){
 			
-			if(isset($_POST["counter"])){
-				$counter = $_POST["counter"];
-				$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null";
-				$params = array($_POST["postId"]);
-				$rows = $db->fetch($sql, $params);
-				// print_r($rows);
-			} else{
-				$counter = 0;
-				$sql = "SELECT * FROM posts WHERE parent_id is Null";
+			// if(isset($_POST["counter"])){
+			// 	$counter = $_POST["counter"];
+			// 	$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null";
+			// 	$params = array($_POST["postId"]);
+			// 	$rows = $db->fetch($sql, $params);
+			// 	// print_r($rows);
+			// } else{
+				// $counter = 0;
+				$sql = "SELECT * FROM posts WHERE parent_id is Null AND `message` IS NOT NULL ORDER BY id DESC  LIMIT 10";
 				$rows = $db->fetch($sql);
 				// print_r($rows);
-			}
+			// }
 			
 		} else if(($_POST["page"]) == "profile"){
 
-			// ****** load user's posts ****** //
+		// ********** load user's posts ********** //
 			if($_POST["type"] == "posts"){
 				
 				if(isset($_POST["counter"])){
@@ -39,7 +39,7 @@
 					// print_r($rows);
 				}
 			} 
-			// ****** load user's images ****** //
+		// ********** load user's images ********** //
 			else if($_POST["type"] == "images"){
 				if(isset($_POST["counter"])){
 					$counter = $_POST["counter"];
@@ -56,9 +56,9 @@
 					// print_r($rows);
 				}
 			} 
-			// ****** load users followers ****** //
+		// ********** load users followers ********** //
 			else if($_POST["type"] == "following"){
-				$followers = array("posts"=>array());
+				$following = array("posts"=>array());
 				if(isset($_POST["counter"])){
 					// $counter = $_POST["counter"];
 					// $sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
@@ -77,14 +77,14 @@
 						$row->profileAvatar = $row -> avatar 
 							? "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."'alt='image-profile'>" 
 							: "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";
-						array_push($followers["posts"], $row);
+						array_push($following["posts"], $row);
 					}				
 					// print_r($followers);
-					echo json_encode($followers);
+					echo json_encode($following);
 					exit();
 				}
 			} 
-			// ****** load users following ****** //
+		// ********** load users following ********** //
 			else if($_POST["type"] == "followers"){
 				$following = array("posts"=>array());
 				if(isset($_POST["counter"])){
@@ -114,12 +114,12 @@
 			
 		}
 
-		$limit = $counter + 2;
+		// $limit = $counter + 2;
 		// get all posts
 		$response = array($totalPosts = Count($rows),'posts'=>array());
-		foreach(array_reverse($rows) as $post){
-			$counter++;
-			if($counter <= $limit){
+		foreach(($rows) as $post){
+			// $counter++;
+			// if($counter <= $limit){
 			
 				$comments = array();
 			
@@ -171,7 +171,7 @@
 					"fullname"		=> $row->fullname,
 					"avatar"		=> $avatar,
 					"comments"		=> $comments,
-					"counter"		=> $counter
+					// "counter"		=> $counter
 				);
 				// print_r($data);
 
@@ -181,7 +181,7 @@
 				$row = $db -> row($sql, $params);
 				if($row){
 					$data["liked"] = "liked";
-				}
+				// }
 				array_push($response['posts'], $data);
 			}
 		}

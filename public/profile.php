@@ -90,7 +90,7 @@ if(isset($_GET["id"])){
 			<div class="users-posts"></div> <!-- load user's posts with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
-				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<?php require_once "../files/assets/img/svg/loading.svg"?>
 				<p class="no-more-posts"></p>
 			</div>
 		</div>
@@ -100,7 +100,7 @@ if(isset($_GET["id"])){
 			<div class="users-images"></div> <!-- load user's images with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
-				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<?php require_once "../files/assets/img/svg/loading.svg"?>
 				<p class="no-more-posts"></p>
 			</div>
 		</div>
@@ -110,7 +110,7 @@ if(isset($_GET["id"])){
 			<div class="users-following"></div> <!-- load user's following with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
-				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<?php require_once "../files/assets/img/svg/loading.svg"?>
 				<p class="no-more-posts"></p>
 			</div>
 		</div>
@@ -120,7 +120,7 @@ if(isset($_GET["id"])){
 			<div class="users-followers"></div> <!-- load user's followers with ajax -->
 			<div id="loading-container">
 				<button class="load-posts">more...</button>
-				<?php require_once "../files/assets/img/svg/loading.svg" ?>
+				<?php require_once "../files/assets/img/svg/loading.svg"?>
 				<p class="no-more-posts"></p>
 			</div>
 		</div>

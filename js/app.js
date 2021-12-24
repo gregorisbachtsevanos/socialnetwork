@@ -154,7 +154,8 @@ function loadPosts(post, appendTo, type="posts") {
 	}
 	return appendTo.append(showPosts);
 }
-// loading users action (posts, likes etc)
+
+// loading users action
 function loadUsersActions(PAGE, append, type="posts") {
 	$.post("../app/controllers/ajax/show-posts_controller.php", {
 		userId,
@@ -173,11 +174,11 @@ function loadUsersActions(PAGE, append, type="posts") {
 				userId,
 				page: PAGE,
 				type:type,
-				counter: post.counter,
+				// counter: post.counter,
 				postId: post.post_id
 			}, function (res) {
 				data = jQuery.parseJSON(res);
-				console.log(data);
+				console.log(post.post_id);
 				showPosts = '';
 				$(".load-posts").hide();
 				$(".loader").show();
