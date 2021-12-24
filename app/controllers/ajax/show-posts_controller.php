@@ -120,9 +120,9 @@
 		foreach(($rows) as $post){
 			// $counter++;
 			// if($counter <= $limit){
-			
+				
 				$comments = array();
-			
+				
 				$sql = "SELECT `fullname`, `username`, id, avatar FROM `users` WHERE `id` = '$post->user_id'";
 				$row = $db->row($sql);
 				$date = date("d/m/Y", strtotime($post->date_created));
@@ -139,7 +139,7 @@
 				
 				foreach($commentsRow as $comment){
 					if($comment->id){
-
+						
 						$sql = "SELECT `username` FROM users WHERE id = ?";
 						$params = array($comment->user_id);
 						$commentsUsername = $db->row($sql, $params);
@@ -173,18 +173,20 @@
 					"comments"		=> $comments,
 					// "counter"		=> $counter
 				);
-				// print_r($data);
-
+				// print_r($post);
+				
 				$data["liked"] = '';
 				$sql = "SELECT `date` FROM posts_likes WHERE `user_id` = ? AND post_id = ?";
 				$params = array($_POST["userId"], $post->id);
 				$row = $db -> row($sql, $params);
 				if($row){
 					$data["liked"] = "liked";
-				// }
-				array_push($response['posts'], $data);
+					// } ##############
+					array_push($response['posts'], $data);
+					print_r($data);
 			}
 		}
+		print_r(($response));
 		echo json_encode(($response));
 		
 	}
