@@ -12,12 +12,7 @@
 <html lang="en">
 <head>
 	<script>
-		const userId = <?php if(isset($_GET['id'])) {
-								echo $_GET['id'];
-							}else{
-								echo $_SESSION["user"];
-							} 
-							?>
+		const userId = <?php echo isset($_GET['id']) ? $_GET['id'] : $_SESSION["user"] ?>
 	</script>
 	<meta charset="utf-8">
 	<title>Social Network</title>

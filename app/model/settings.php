@@ -1,11 +1,17 @@
 <?php
 
+// if(!defined('social'))
+    // die("Access denied");
+
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User
 $dbpass = '';          // User's Password
 $dbname = 'socialnetwork';   // Name of the database
+$appURL = 'http://localhost/socialnetwork/public/'; // base domain configuration
 $appName = 'social'; //appName configuration
 $appControllers = '../app/controllers/'; //app controllers folder
+$appView = '../app/view/'; //app view folder
+$appModel = '../app/model/'; //app view folder
 $appAjax = '../app/controllers/ajax/'; //app ajax controllers folder
 $appAvatars = '../files/assets/img/avatars/'; // app avatars folder
 $appIncludes = '../public/includes/'; // app includes folder
