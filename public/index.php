@@ -22,6 +22,8 @@ if($controllerName == ''){
 	header("Location:".$requestUrl);
 	exit();
 }
+// echo $controllerName.'<br>';
+
 $cParams = array();
 while(Count($urlParams) > 0){
 	$actionName = filter_var(strtolower(array_shift($urlParams)), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
@@ -30,11 +32,13 @@ while(Count($urlParams) > 0){
 	if($actionName != '')
 		array_push($cParams, $actionName);
 }
-if(isset($cParams[0]) /*&& file_exists($appControllers.$controllerName.'/'.$cParams[0].'_controller.php')*/){
+echo $cParams[0].'<br>';
+if(isset($cParams[0]) && file_exists($appControllers.$controllerName.'/'.$cParams[0].'_controller.php')){
 	$file = $cParams[0];
 	unset($cParams[0]);
 	$cParams = array_values($cParams);
-	// echo '<br>'.$appControllers.$controllerName.'/'.$cParams[0].'_controller.php';
+	echo '<br>'.$appControllers.$controllerName.'/'.$cParams[0].'_controller.php';
+	exit();
 	include($appControllers.$controllerName.'/'.$file.'_controller.php');
 }else if(file_exists($appControllers.$controllerName.'/index_controller.php')){
 	include($appControllers.$controllerName.'/index_controller.php');

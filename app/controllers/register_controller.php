@@ -1,7 +1,9 @@
 <?php 
+	require_once('../model/settings.php');
 	if (!defined('social')) 
-		die('Access denied');
+		// die('Access denied');
 	
+
 		if(isset($_POST['signup-btn'])){
 			$error = "";
 			$SIGN_UP = 1;
@@ -75,5 +77,6 @@
 			}
 			
 		}
-	include($appView.'register_view.php');
+	// include($appView.'register_view.php');
+	include('../model/settings.php');
 ?>

@@ -1,6 +1,6 @@
 <?php 
 if (!defined('social')) 
-	die('Access denied');
+	// die('Access denied');
 
 	if(isset($_POST['login-btn'])){
 		$sql = 'SELECT id, fullname FROM users WHERE username = ?';
