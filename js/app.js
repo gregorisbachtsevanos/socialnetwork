@@ -9,7 +9,7 @@ typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
 // loading more posts
 function loadPosts(post, appendTo, type="posts") {
-	console.log(type)
+	// console.log(type)
 	let showComments = [];
 	let comment = [];
 	if(type == "posts" || type == "images"){
@@ -163,42 +163,43 @@ function loadUsersActions(PAGE, append, type="posts") {
 		type:type
 	}, function (res) {
 		let data = jQuery.parseJSON(res);
-		console.log(data);
+		// console.log(data);
 		let showPosts = '';
 		for (post of data.posts) {
 			loadPosts(post, append, type);
 		} 
-		$(".load-posts").on('click', function (e) {
-			e.preventDefault();
-			$.post("../app/controllers/ajax/show-posts_controller.php", {
-				userId,
-				page: PAGE,
-				type:type,
-				// counter: post.counter,
-				postId: post.post_id
-			}, function (res) {
-				data = jQuery.parseJSON(res);
-				console.log(post.post_id);
-				showPosts = '';
-				$(".load-posts").hide();
-				$(".loader").show();
-				setTimeout(function () {
+		// $(".load-posts").on('click', function (e) {
+		// 	console.log(data.posts[data.posts.length-1])
+		// 	e.preventDefault();
+		// 	$.post("../app/controllers/ajax/show-posts_controller.php", {
+		// 		userId,
+		// 		page: PAGE,
+		// 		type:type,
+		// 		// counter: post.counter,
+		// 		postId: post.post_id
+		// 	}, function (res) {
+		// 		data = jQuery.parseJSON(res);
+		// 		// console.log(post.post_id);
+		// 		showPosts = '';
+		// 		$(".load-posts").hide();
+		// 		$(".loader").show();
+		// 		setTimeout(function () {
 
-					for (post of data.posts) {
-						loadPosts(post, append, type);
-						$(".load-posts").show();
-						$(".loader").hide();
-					}
-					if(data[0] == 0){
-						$(".loader").hide();
-						$(".no-more-posts")
-										.html(`There is no more ${type} to show.`)
-										.css({"padding-top": '3%', "padding-bottom": '7%'})
-					}
+		// 			for (post of data.posts) {
+		// 				loadPosts(post, append, type);
+		// 				$(".load-posts").show();
+		// 				$(".loader").hide();
+		// 			}
+		// 			if(data[0] == 0){
+		// 				$(".loader").hide();
+		// 				$(".no-more-posts")
+		// 					.html(`There is no more ${type} to show.`)
+		// 					.css({"padding-top": '3%', "padding-bottom": '7%'})
+		// 			}
 
-				}, 500);
-			});
-		});
+		// 		}, 500);
+		// 	});
+		// });
 
 	});
 }

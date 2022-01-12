@@ -15,7 +15,7 @@
 			// 	// print_r($rows);
 			// } else{
 				// $counter = 0;
-				$sql = "SELECT * FROM posts WHERE parent_id is Null AND `message` IS NOT NULL ORDER BY id DESC  LIMIT 10";
+				$sql = "SELECT * FROM posts WHERE parent_id is Null ORDER BY id DESC LIMIT 10";
 				$rows = $db->fetch($sql);
 				// print_r($rows);
 			// }
@@ -181,12 +181,13 @@
 				$row = $db -> row($sql, $params);
 				if($row){
 					$data["liked"] = "liked";
-					// } ##############
+					} ##############
 					array_push($response['posts'], $data);
-					print_r($data);
-			}
+					// $response['posts'] = $data;
+					// print_r($data);
+			// }
 		}
-		print_r(($response));
+		// print_r(($response));
 		echo json_encode(($response));
 		
 	}
