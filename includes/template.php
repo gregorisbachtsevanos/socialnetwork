@@ -2,14 +2,15 @@
 if (!defined('social')) 
 	die('Access denied');
 	
-function loadHeader($title){
+function loadHeader($title, $err = null){
 	global $db;
 	global $appName;
 	if($title != ''){
-		$title .= ' - '.$title;
+		$title .= ' - '.$appName;
 	}else{
 		$title = $appName;
 	}
+	echo $title;
 	echo 
 	'<!DOCTYPE html>
 		<html lang="el">
@@ -26,6 +27,8 @@ function loadHeader($title){
 			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 		</head>';
 }
+
+	// include("../public/includes/navigationbar.php");
 function endBody(){
 	echo 
 		'<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

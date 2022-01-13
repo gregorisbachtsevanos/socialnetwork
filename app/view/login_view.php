@@ -2,10 +2,10 @@
 if(!defined('social'))
 	die("Access denied");
 
-loadHeader($title)?>
+loadHeader($title, $err)?>
 <div class="container login">
 	<div class="form">
-		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+		<form action="<?php echo $appURL; ?>login" method="post">
 			<legend>Login</legend>
 			<div class="input-controller">
 				<label>Username <br>
@@ -22,7 +22,7 @@ loadHeader($title)?>
 			</div>
 			<?php echo $error ?>
 			<br>
-			<a href="index.php" id="new-account">Don't have an account yet? Create one.</a>
+			<a href="<?php echo $appURL; ?>register" id="new-account">Don't have an account yet? Create one.</a>
 		</form>
 	</div>
 </div>

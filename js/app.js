@@ -1,8 +1,8 @@
 // toggle forms
 $("#new-account, #member").on('click', function(e){
-	e.preventDefault();
-	$('.login').toggleClass('hide');
-	$('.signup').toggleClass('hide');
+	// e.preventDefault();
+	// $('.login').toggleClass('hide');
+	// $('.signup').toggleClass('hide');
 })
 
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);

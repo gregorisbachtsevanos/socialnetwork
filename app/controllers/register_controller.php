@@ -1,12 +1,12 @@
 <?php 
-	require_once('../model/settings.php');
 	if (!defined('social')) 
-		// die('Access denied');
-	
+		die('Access denied');
+		
+		$title = 'register';
+		$error = '';
+		$SIGN_UP = 1;
 
 		if(isset($_POST['signup-btn'])){
-			$error = "";
-			$SIGN_UP = 1;
 			echo "<script>let sign_up = `<?php echo '$SIGN_UP';?>`</script>";
 			if(empty($_POST["username"]) || empty($_POST["fullname"]) || empty($_POST["email"]) || empty($_POST["pwd"]) || empty($_POST["pwdRepeat"])){
 				$error = "Some fields are";
@@ -69,7 +69,7 @@
 								$db -> insert("users_extra_info", $data);
 								$_SESSION["user"] = $new_id;
 								$_SESSION["fullname"] = $_POST["fullname"];
-								header("Location: ".$appPublic."homepage.php");
+								header("Location: ".$appPublic."homepage");
 							}
 						}
 					}
@@ -77,6 +77,6 @@
 			}
 			
 		}
-	// include($appView.'register_view.php');
-	include('../model/settings.php');
+		$err = $error;
+	include($appView.'register_view.php');
 ?>

@@ -1,6 +1,9 @@
-<?php 
+<?php
 if (!defined('social')) 
-	// die('Access denied');
+	die('Access denied');
+
+	$title = 'login';
+	$error = '';
 
 	if(isset($_POST['login-btn'])){
 		$sql = 'SELECT id, fullname FROM users WHERE username = ?';
@@ -16,7 +19,7 @@ if (!defined('social'))
 			if(password_verify($_POST["pwd"],$row->password)){
 				$_SESSION['user'] = $row->user_id;
 				$_SESSION["fullname"] = $fullname;
-				header("Location: ".$appPublic."homepage.php");
+				header("Location: ".$appURL."homepage");
 				exit();
 			}
 			else {
@@ -27,5 +30,6 @@ if (!defined('social'))
 			$error = 'The user not found.';
 		}
 	}
+	$err = $error;
 	include($appView.'login_view.php');
 ?>
