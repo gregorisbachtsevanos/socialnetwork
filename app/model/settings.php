@@ -1,7 +1,7 @@
 <?php
 
-// if(!defined('social'))
-    // die("Access denied");
+if(!defined('social'))
+    die("Access denied");
 
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User
@@ -16,6 +16,7 @@ $appAjax = '../app/controllers/ajax/'; //app ajax controllers folder
 $appAvatars = '../files/assets/img/avatars/'; // app avatars folder
 $appIncludes = '../public/includes/'; // app includes folder
 $appPublic = '../../public/'; // app public folder
+$cdnURL = '../files/'; // app files folder
 date_default_timezone_set('Europe/Athens');
 
 

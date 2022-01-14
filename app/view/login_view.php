@@ -2,7 +2,7 @@
 if(!defined('social'))
 	die("Access denied");
 
-loadHeader($title, $err)?>
+loadIndexHeader($title, $err)?>
 <div class="container login">
 	<div class="form">
 		<form action="<?php echo $appURL; ?>login" method="post">
@@ -26,4 +26,4 @@ loadHeader($title, $err)?>
 		</form>
 	</div>
 </div>
-<?php endBody()?>
+<?php endIndexBody()?>

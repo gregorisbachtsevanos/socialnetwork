@@ -1,0 +1,27 @@
+@media all and (max-width: 1200px){
+
+    #nav-container{
+        position: fixed;
+        top: 90%;
+        left: 0;
+        width: 100%;
+        height: 10%;
+        background-color: #1a1b1b;
+        flex-direction: column;
+        vertical-align: baseline;
+
+        #nav-items{
+            width: 100%;
+            height: 100%;
+            flex-direction: row;
+            align-items: center;
+
+            .space{
+                flex-direction: row;
+                width: 10%;
+            }
+
+        }        
+       
+    }
+}

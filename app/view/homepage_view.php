@@ -1,9 +1,9 @@
-<?php 
-// require_once('../../includes/template.php');
+<?php
+if(!defined('social'))
+	die("Access deniad");
+
 loadHeader($title)?>
-<script>
-	const PAGE = "homepage"
-</script>
+<script>const PAGE = "homepage";</script>
 
 <div id="feed-container">
 

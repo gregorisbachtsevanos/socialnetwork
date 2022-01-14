@@ -1,45 +1,34 @@
 <?php
-session_start();
-if (!defined('social') || !isset($_SESSION['user'])) 
+if (!defined('social')) 
 	die('Access denied');
 	
-require_once('../app/model/settings.php');
-	
-// if(!isset($_SESSION['user']))
-	// die("Access deniad");
-
-function loadHeader($title, $err = null, $styles = null){
+function loadIndexHeader($title, $err = null){
 	global $db;
 	global $appName;
-	global $cdnURL;
-	global $controllerName;
-	global $title;
-	global $styles;
-
-	$title != '' ? $title .= ' - '.$appName : $title = $appName;
-	$styles ? $href = 'href="'.$styles.'"' : $href = 'href="'.$cdnURL.'assets/styles/style.css"';
-
+	if($title != ''){
+		$title .= ' - '.$appName;
+	}else{
+		$title = $appName;
+	}
 	// echo $title;
 	echo 
 	'<!DOCTYPE html>
 		<html lang="el">
 		<head>
-		<base href="'.$controllerName.'">
 			<meta charset="utf-8">
 			<title>'.$title.'</title>
 			<meta name="description" content="Social network">
+			<link rel="stylesheet" href="../styles/index-style.css">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<script src="https://kit.fontawesome.com/947f5ef4a5.js" crossorigin="anonymous"></script>
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 			<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-			<link rel="stylesheet" '.$href.'">
 		</head>';
-}
-include($appView."common/navbar_view.php");
-	
-function endBody(){
+	}
+
+function endIndexBody(){
 	echo 
 		'<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="../js/app.js"></script>

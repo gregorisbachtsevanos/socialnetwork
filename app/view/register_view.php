@@ -2,7 +2,7 @@
 if(!defined('social'))
 	die("Access denied");
 
-loadHeader($title, $err)?>
+loadIndexHeader($title, $err)?>
 <div class="container signup "> <!-- class hide -->
 	<div class="form">
 
@@ -44,4 +44,4 @@ loadHeader($title, $err)?>
 
 	</div>
 </div>
-<?php endBody()?>
+<?php endIndexBody()?>

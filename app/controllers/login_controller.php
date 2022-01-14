@@ -17,8 +17,9 @@ if (!defined('social'))
 			$row = $db->row($sql, $params);
 
 			if(password_verify($_POST["pwd"],$row->password)){
-				$_SESSION['user'] = $row->user_id;
-				$_SESSION["fullname"] = $fullname;
+				session_start();
+				$_SESSION['user'] = $_POST['username'];
+				// $_SESSION["fullname"] = $fullname;
 				header("Location: ".$appURL."homepage");
 				exit();
 			}

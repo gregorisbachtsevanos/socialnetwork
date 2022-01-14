@@ -5,6 +5,46 @@ $("#new-account, #member").on('click', function(e){
 	// $('.signup').toggleClass('hide');
 })
 
+//****************************** search test ******************************
+$(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
+
+$(".fa-times").click( function() {
+	$(".search, .search-background").animate({left:'-30%'}, "slow");
+	$(".search-input").val('');
+	$(".input-result, hr").remove();
+});
+
+$("#search-items .search-input").on("keyup ", function(e){
+
+	let userInput = $(this).val();
+	
+	$.post("../app/controllers/ajax/user-search_controler.php",{
+		searchInput:userInput
+	}, function(res){
+		let data = jQuery.parseJSON(res);
+	
+		$(".results").html("")
+		for (user of data){
+			let searchResult = 	
+			/*html*/`
+			<div class="input-result">
+				${user.avatar ? `<img style='width:35px;height:35px' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
+				<h4>${user.fullname} 
+					<small>
+						<a href="../public/profile.php?id=${user.id}">@${user.username}</a>
+					</small>
+				</h4>
+			</div>
+			<hr>
+			`;
+			$(".results").append(searchResult);
+					
+		}	
+	
+	})
+})
+//****************************** search test ******************************
+
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
 // loading more posts
