@@ -6,8 +6,15 @@
         $sql = "SELECT * FROM users WHERE username = ?";
         $params = array($_SESSION["user"]);
         $row = $db->row($sql, $params);
+        $url = getURL($requestUrl, $appURL);
+        
+        if(isset($url[1])){
+            $src = "src='../".$cdnURL."assets/img/avatars/".$row->avatar."'";
+        }else{
+            $src = "src='".$cdnURL."assets/img/avatars/".$row->avatar."'";
+        }
         if($row->avatar){
-            $avatar = "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$row->avatar."' alt='image-profile'>";
+            $avatar = "<img style='width:100%;height:100%' ".$src." alt='image-profile'>";
         }else{
             $avatar = "<span class='user-icon'>".substr(ucwords($row->fullname),0,1)."</span>";
         }

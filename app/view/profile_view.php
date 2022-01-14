@@ -1,6 +1,6 @@
 <?php
 if(!defined('social'))
-	die("Access deniad");
+	die("Access denied");
 
 loadHeader($title)?>
 
@@ -27,9 +27,10 @@ loadHeader($title)?>
 					$sql = "SELECT id FROM `users` WHERE `username` = ?";
 					$params = array($_SESSION["user"]);
 					$user = $db->row($sql, $params);
-					
+					print_r($userCheck[0]);
 					$sql = "SELECT id FROM `users` WHERE`username` = ?";
-					$params = array($userCheck);
+					$params = array($userCheck[0]);
+					// $params = array($userCheck);
 					$userCheck = $db->row($sql, $params);
 
 					if($user->id != $userCheck->id){

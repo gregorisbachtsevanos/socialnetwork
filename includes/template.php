@@ -16,8 +16,8 @@ function loadHeader($title, $err = null, $styles = null){
 	global $title;
 	global $styles;
 
+	$title == "edit" ? $href = 'href="'.$styles.'"' : $href = 'href="'.$cdnURL.'assets/styles/style.css"';
 	$title != '' ? $title .= ' - '.$appName : $title = $appName;
-	$styles ? $href = 'href="'.$styles.'"' : $href = 'href="'.$cdnURL.'assets/styles/style.css"';
 
 	// echo $title;
 	echo 
