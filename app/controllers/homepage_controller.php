@@ -1,7 +1,8 @@
 <?php
 
-	if(!defined('social'))
+	if(!defined('social')){
 		die("Access denied");
+	}
 		
 		$title = 'homepage';
 		// $error = '';

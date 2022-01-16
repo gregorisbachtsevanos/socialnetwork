@@ -1,7 +1,8 @@
 <?php
 
-if(!defined("social"))
+if(!defined("social")){
 	die("Access deniad");
+}
 
 loadheader($title)?>
 

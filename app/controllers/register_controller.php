@@ -1,8 +1,10 @@
 <?php 
-	if (!defined('social')) 
+	if (!defined('social')) {
 		die('Access denied');
+	}
 		
 		$title = 'register';
+		$styles = '';
 		$error = '';
 		$SIGN_UP = 1;
 

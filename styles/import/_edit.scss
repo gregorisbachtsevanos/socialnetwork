@@ -71,10 +71,11 @@
                 }
 
                 input[type="submit"]{
-                    background-color: var(--secondary-text-color);
+                    // background-color: var(--secondary-text-color);
+                    background-color: red;
                     width: 20%;
-                    border: none;
-
+                    border: none;  
+                    // color: var(--secondary-bg-color);
                 }
                 
             } //end input-item

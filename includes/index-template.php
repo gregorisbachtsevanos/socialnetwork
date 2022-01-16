@@ -1,6 +1,7 @@
 <?php
-if (!defined('social')) 
+if (!defined('social')){
 	die('Access denied');
+}
 	
 function loadIndexHeader($title, $err = null){
 	global $db;

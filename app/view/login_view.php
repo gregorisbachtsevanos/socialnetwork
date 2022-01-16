@@ -1,8 +1,9 @@
 <?php 
-if(!defined('social'))
+if(!defined('social')){
 	die("Access denied");
+}
 
-loadIndexHeader($title, $err)?>
+loadIndexHeader($title, $styles, $err)?>
 <div class="container login">
 	<div class="form">
 		<form action="<?php echo $appURL; ?>login" method="post">

@@ -3,9 +3,12 @@
 	require_once '../../model/settings.php';
 	// header('Content-Type: application/json; charset=utf-8');
 
-	if(isset($_POST["userId"])){
-		
-		if(($_POST["page"]) == "homepage"){
+	if(isset($_POST["USERNAME"])){
+		$sql = "SELECT id FROM users WHERE username = ?";
+		$params = array($_POST["USERNAME"]);
+		$row = $db->row($sql, $params);
+		$userId = $row->id;
+		// if(($_POST["page"]) == "homepage"){
 			
 			// if(isset($_POST["counter"])){
 			// 	$counter = $_POST["counter"];
@@ -15,12 +18,13 @@
 			// 	// print_r($rows);
 			// } else{
 				// $counter = 0;
-				$sql = "SELECT * FROM posts WHERE parent_id is Null ORDER BY id DESC LIMIT 10";
+				$sql = "SELECT * FROM posts WHERE parent_id is Null ORDER BY id DESC LIMIT 5";
 				$rows = $db->fetch($sql);
 				// print_r($rows);
 			// }
 			
-		} else if(($_POST["page"]) == "profile"){
+		// } 
+		/*else*/ if(($_POST["page"]) == "profile"){
 
 		// ********** load user's posts ********** //
 			if($_POST["type"] == "posts"){
@@ -28,13 +32,13 @@
 				if(isset($_POST["counter"])){
 					$counter = $_POST["counter"];
 					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND `user_id` = ?";
-					$params = array($_POST["postId"], $_POST["userId"]);
+					$params = array($_POST["postId"], $userId);
 					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				} else{
 					$counter = 0;
 					$sql = "SELECT * FROM posts WHERE parent_id is Null AND `user_id` = ?";
-					$params = array($_POST["userId"]);
+					$params = array($userId);
 					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				}
@@ -44,14 +48,14 @@
 				if(isset($_POST["counter"])){
 					$counter = $_POST["counter"];
 					$sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND images is not NULL AND `user_id` = ?";
-					$params = array($_POST["postId"], $_POST["userId"]);
+					$params = array($_POST["postId"], $userId);
 					$rows = $db->fetch($sql, $params);
 					
 					// print_r($rows);
 				} else{
 					$counter = 0;
 					$sql = "SELECT * FROM posts WHERE parent_id is Null AND `message` is NULL AND images is not NULL AND `user_id` = ?";
-					$params = array($_POST["userId"]);
+					$params = array($userId);
 					$rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				}
@@ -62,7 +66,7 @@
 				if(isset($_POST["counter"])){
 					// $counter = $_POST["counter"];
 					// $sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-					// $params = array($_POST["postId"], $_POST["userId"]);
+					// $params = array($_POST["postId"], $userId);
 					// $rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				} else{
@@ -90,7 +94,7 @@
 				if(isset($_POST["counter"])){
 					// $counter = $_POST["counter"];
 					// $sql = "SELECT * FROM posts WHERE id < ? AND parent_id is Null AND user_id = ?";
-					// $params = array($_POST["postId"], $_POST["userId"]);
+					// $params = array($_POST["postId"], $userId);
 					// $rows = $db->fetch($sql, $params);
 					// print_r($rows);
 				} else{
@@ -177,7 +181,7 @@
 				
 				$data["liked"] = '';
 				$sql = "SELECT `date` FROM posts_likes WHERE `user_id` = ? AND post_id = ?";
-				$params = array($_POST["userId"], $post->id);
+				$params = array($userId, $post->id);
 				$row = $db -> row($sql, $params);
 				if($row){
 					$data["liked"] = "liked";

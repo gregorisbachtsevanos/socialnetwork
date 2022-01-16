@@ -1,8 +1,9 @@
 <?php 
-if(!defined('social'))
+if(!defined('social')){
 	die("Access denied");
+}
 
-loadIndexHeader($title, $err)?>
+loadIndexHeader($title, $styles, $err)?>
 <div class="container signup "> <!-- class hide -->
 	<div class="form">
 

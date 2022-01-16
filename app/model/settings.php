@@ -1,7 +1,8 @@
 <?php
 
-if(!defined('social'))
-    die("Access denied");
+// if(!defined('social')){
+//     die("Access denied");
+// }
 
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User

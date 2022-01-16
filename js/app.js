@@ -60,7 +60,7 @@ function loadPosts(post, appendTo, type="posts") {
 				<div class="comment" data-id='${comment.id}'>
 					<h4>
 						${comment.username.username} 
-						${comment.user_id == userId ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
+						${comment.user_id == USERNAME ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
 					</h4>
 					<small>${comment.date_created}</small>
 					<p>${comment.message}</p>
@@ -85,7 +85,7 @@ function loadPosts(post, appendTo, type="posts") {
 								</h4>
 							</div>
 						</a>
-						${post.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+						${post.user_id == USERNAME ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
 					</div>
 					<span class="date"><small>${post.date_created}</small></span>
 					<hr>
@@ -129,7 +129,7 @@ function loadPosts(post, appendTo, type="posts") {
 								</h4>
 							</div>
 						</a>
-						${post.user_id == userId ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+						${post.user_id == USERNAME ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
 					</div>
 					<span class="date"><small>${post.date_created}</small></span>
 					<hr>
@@ -198,7 +198,7 @@ function loadPosts(post, appendTo, type="posts") {
 // loading users action
 function loadUsersActions(PAGE, append, type="posts") {
 	$.post("../app/controllers/ajax/show-posts_controller.php", {
-		userId,
+		USERNAME,
 		page: PAGE,
 		type:type
 	}, function (res) {
@@ -212,7 +212,7 @@ function loadUsersActions(PAGE, append, type="posts") {
 		// 	console.log(data.posts[data.posts.length-1])
 		// 	e.preventDefault();
 		// 	$.post("../app/controllers/ajax/show-posts_controller.php", {
-		// 		userId,
+		// 		USERNAME,
 		// 		page: PAGE,
 		// 		type:type,
 		// 		// counter: post.counter,
@@ -427,7 +427,7 @@ $("#search-items .search-input").on("keyup ", function(e){
 $(".user-container, #friends-container, .users-followers, .users-following").on('click','.follow-btn', function() {
 	
 	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
-		userId: $(this).closest(".user").data("id")
+		USERNAME: $(this).closest(".user").data("id")
 	}, function(res){
 		console.log(res)
 		let data = jQuery.parseJSON(res);

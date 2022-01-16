@@ -1,8 +1,10 @@
 <?php
-if (!defined('social')) 
+if (!defined('social')) {
 	die('Access denied');
+}
 
 	$title = 'login';
+	$styles = '';
 	$error = '';
 
 	if(isset($_POST['login-btn'])){

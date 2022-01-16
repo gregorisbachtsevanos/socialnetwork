@@ -1,6 +1,7 @@
 <?php
-if(!defined('social'))
+if(!defined('social')){
 	die("Access denied");
+}
 
 loadHeader($title)?>
 
@@ -9,7 +10,7 @@ loadHeader($title)?>
 		<div class="user-container user" data-id="<?php echo $row->id ?>">
 			<div class="user">
 				<div class="img">
-					<?php echo $profileAvatar; ?>
+					<?php echo $avatar; ?>
 				</div>
 				<div class="name">
 					<h3><?php echo $row->fullname ?> <small><?php echo "@".$row->username ?></small></h3>
@@ -23,29 +24,19 @@ loadHeader($title)?>
 				<?php 
 					// get follow unfollow btn
 					$rowFollow = '';
+					$userCheck = getURL($requestUrl, $appURL);
 
-					$sql = "SELECT id FROM `users` WHERE `username` = ?";
-					$params = array($_SESSION["user"]);
-					$user = $db->row($sql, $params);
-					print_r($userCheck[0]);
-					$sql = "SELECT id FROM `users` WHERE`username` = ?";
-					$params = array($userCheck[0]);
-					// $params = array($userCheck);
-					$userCheck = $db->row($sql, $params);
-
-					if($user->id != $userCheck->id){
+					if($_SESSION["user"] != $userCheck[0]){
 						$sql = "SELECT * FROM `follow` WHERE `user_id` = ? AND `follow_user_id` = ?";
-						$params = array($user->id, $userCheck->id);
+						$params = array($_SESSION["user"], $userCheck[0]);
 						$rowFollow = $db->row($sql, $params);
-						
 					}
 					if($rowFollow){
 						$follow = "<button class='follow-btn'>unfollow</button>";
 					}else{
 						$follow = "<button class='follow-btn'>follow</button>";
 					}
-					
-					echo $user == $userCheck 
+					echo $_SESSION["user"] == $userCheck[0] 
 						? "<button class='edit'><a href='".$appURL.$_SESSION['user']."/edit'>edit profile</a></button>" 
 						: $follow."<button class='msg'>Message</button>"?>
 			</p>

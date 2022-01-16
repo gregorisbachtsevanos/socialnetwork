@@ -1,6 +1,7 @@
 <?php 
-	if(!defined("social"))
+	if(!defined("social")){
 		die("Access denied");
+	}
 
 	// if(isset($user)){
 	// 	header('Location: '.$appUrl.'homepage');

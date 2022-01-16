@@ -1,16 +1,25 @@
 <?php 
-if(!defined('social'))
+if(!defined('social')){
 	die("Access deniad");
+}
 	
 $styles = '../../files/assets/styles/style.css';
-
 loadHeader($title, $styles)?>
 
 	<div class="edit-container">
 		
         <div id="go-back">
-            <p id="<?php echo $class;?>"> <?php //echo $msg;?></p>
-            <a href="<?php echo $appURL.$userCheck?>">
+            <?php
+				if(isset($error)){
+					echo '<p id="error-msg">'.$error.'</p>';
+				}elseif(isset($msg)){
+					echo $msg != "No changes have been made"
+						? '<p id="success-msg">'.$msg.'</p>'
+						: '<p id="no-changes-msg">'.$msg.'</p>';
+				}
+			?>
+           
+            <a href="<?php echo $appURL.$userCheck[0]?>">
                 <i class="fas fa-undo"></i>
                 Back to your page
             </a>
@@ -27,7 +36,7 @@ loadHeader($title, $styles)?>
 				</div>
 				<div class="input-item">
 					<label for="Fullname">Fullname</label>
-						<input type="text" autocomplete="off" name="fullname" value="<?php echo $row->fullname ?>">
+						<input type="text" autocomplete="off" name="fullname" value="<?php //echo $row->fullname ?>">
 				</div>    
 				<div class="input-item">
 					<label for="Bio">Bio</label>
@@ -35,27 +44,27 @@ loadHeader($title, $styles)?>
 				</div>
 				<div class="input-item">
 					<label for="Email">Email</label>
-						<input type="email" autocomplete="off" name="Email" value="<?php echo $row->email ?>">
+						<input type="email" autocomplete="off" name="email" value="<?php //echo $row->email ?>">
 				</div>
 				<div class="input-item">
 					<label for="Website">Website</label>
-						<input type="text" autocomplete="off" name="website" value="<?php echo $row->website ?>">
+						<input type="text" autocomplete="off" name="website" value="<?php //echo $row->website ?>">
 				</div>
 				<div class="input-item">
 					<label for="YouTube">YouTube</label>
-						<input type="text" autocomplete="off" name="youtube" value="<?php echo $row->youtube ?>">
+						<input type="text" autocomplete="off" name="youtube" value="<?php //echo $row->youtube ?>">
 				</div>
 				<div class="input-item">
 					<label for="Instagram">Instagram</label>
-						<input type="text" autocomplete="off" name="instagram" value="<?php echo $row->instagram ?>">
+						<input type="text" autocomplete="off" name="instagram" value="<?php //echo $row->instagram ?>">
 				</div>
 				<div class="input-item">
 					<label for="Instagram">TikTok</label>
-						<input type="text" autocomplete="off" name="tiktok" value="<?php echo $row->tiktok ?>">
+						<input type="text" autocomplete="off" name="tiktok" value="<?php // echo $row->tiktok ?>">
 				</div>
 				<div class="input-item">
 					<label for="Twitch">Phone Number</label>
-						<input type="text" autocomplete="off" name="phone" value="<?php echo $row->phone_number ?>">
+						<input type="text" autocomplete="off" name="phone" value="<?php //echo $row->phone_number ?>">
 				</div>
 				<div class="input-item">
 					<input type="submit" name="submit" value="Save">
