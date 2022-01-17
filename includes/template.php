@@ -7,13 +7,15 @@ if (!defined('social') || !isset($_SESSION['user'])) {
 require_once('../app/model/settings.php');
 $user = $_SESSION['user'];
 	
-// if(!isset($_SESSION['user']))
-	// die("Access deniad");
+if(!isset($_SESSION['user'])){
+	die("Access deniad");
+}
 
 function loadHeader($title, $styles = null){
 	global $db;
 	global $appName;
-	global $cdnURL;
+	global $appFiles;
+	// global $cdnURL;
 	global $appURL;
 	global $appView;
 	global $requestUrl;
@@ -22,7 +24,7 @@ function loadHeader($title, $styles = null){
 	global $title;
 	global $styles;
 
-	$title == "edit" ? $href = 'href="'.$styles.'"' : $href = 'href="'.$cdnURL.'assets/styles/style.css"';
+	$title == "edit" ? $href = 'href="'.$styles.'"' : $href = 'href="'.$appFiles.'assets/styles/style.css"';
 	$title != '' ? $title .= ' - '.$appName : $title = $appName;
 
 	echo 
@@ -42,7 +44,14 @@ function loadHeader($title, $styles = null){
 			<link rel="stylesheet" '.$href.'">
 		</head>';
 		include($appView.'common/navbar_view.php');
-		echo "<script>let USERNAME = '$user'</script>";
+		$userAction = getURL($requestUrl, $appURL);
+		echo "
+			<script>
+				const USERNAME = '$userAction[0]'
+				const CURRENT_USER = '$user'
+				const APP_URL = '$appURL'
+			</script>
+		";
 }
 ;
 	

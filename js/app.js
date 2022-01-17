@@ -1,49 +1,9 @@
-// toggle forms
+// toggle forms (login-register)
 $("#new-account, #member").on('click', function(e){
 	// e.preventDefault();
 	// $('.login').toggleClass('hide');
 	// $('.signup').toggleClass('hide');
 })
-
-//****************************** search test ******************************
-$(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
-
-$(".fa-times").click( function() {
-	$(".search, .search-background").animate({left:'-30%'}, "slow");
-	$(".search-input").val('');
-	$(".input-result, hr").remove();
-});
-
-$("#search-items .search-input").on("keyup ", function(e){
-
-	let userInput = $(this).val();
-	
-	$.post("../app/controllers/ajax/user-search_controler.php",{
-		searchInput:userInput
-	}, function(res){
-		let data = jQuery.parseJSON(res);
-	
-		$(".results").html("")
-		for (user of data){
-			let searchResult = 	
-			/*html*/`
-			<div class="input-result">
-				${user.avatar ? `<img style='width:35px;height:35px' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
-				<h4>${user.fullname} 
-					<small>
-						<a href="../public/profile.php?id=${user.id}">@${user.username}</a>
-					</small>
-				</h4>
-			</div>
-			<hr>
-			`;
-			$(".results").append(searchResult);
-					
-		}	
-	
-	})
-})
-//****************************** search test ******************************
 
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
@@ -60,7 +20,7 @@ function loadPosts(post, appendTo, type="posts") {
 				<div class="comment" data-id='${comment.id}'>
 					<h4>
 						${comment.username.username} 
-						${comment.user_id == USERNAME ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
+						${comment.username.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
 					</h4>
 					<small>${comment.date_created}</small>
 					<p>${comment.message}</p>
@@ -75,7 +35,7 @@ function loadPosts(post, appendTo, type="posts") {
 			<div class="feed" data-id="${post.post_id}">
 				<div class="feed-info">
 					<div class="post-header">
-						<a href='../public/profile.php?id=${post.user_id}'>
+						<a href='../public/${post.username}'>
 							<div class="users-info">
 								<div class="users-avatar">
 									${post.avatar}
@@ -85,7 +45,7 @@ function loadPosts(post, appendTo, type="posts") {
 								</h4>
 							</div>
 						</a>
-						${post.user_id == USERNAME ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+						${post.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
 					</div>
 					<span class="date"><small>${post.date_created}</small></span>
 					<hr>
@@ -119,7 +79,7 @@ function loadPosts(post, appendTo, type="posts") {
 			<div class="feed img-container" data-id="${post.post_id}">
 				<div class="feed-info">
 					<div class="post-header">
-						<a href='../public/profile.php?id=${post.user_id}'>
+						<a href='../public/${post.username}'>
 							<div class="users-info">
 								<div class="users-avatar">
 									${post.avatar}
@@ -167,7 +127,7 @@ function loadPosts(post, appendTo, type="posts") {
 				${post.profileAvatar}
 				</div>
 				<div class="info">
-					<h2>${post.fullname} <a href="./profile.php?id=${post.id}">@${post.username}</a></h2>
+					<h2>${post.fullname} <a href='../public/${post.username}'>@${post.username}</a></h2>
 				</div>
 				<div class="btns">
 					<button class="follow-btn">unfollow</button>
@@ -183,7 +143,7 @@ function loadPosts(post, appendTo, type="posts") {
 				${post.profileAvatar}
 				</div>
 				<div class="info">
-					<h2>${post.fullname} <a href="./profile.php?id=${post.id}">@${post.username}</a></h2>
+					<h2>${post.fullname} <a href='../public/${post.username}'>@${post.username}</a></h2>
 				</div>
 				<div class="btns">
 					<!--<button class="follow-btn">unfollow</button>-->
@@ -195,65 +155,75 @@ function loadPosts(post, appendTo, type="posts") {
 	return appendTo.append(showPosts);
 }
 
-// loading users action
-function loadUsersActions(PAGE, append, type="posts") {
+// loading user's action
+function loadUsersActions(PAGE, append, type="posts", limit=5) {
 	$.post("../app/controllers/ajax/show-posts_controller.php", {
 		USERNAME,
 		page: PAGE,
-		type:type
+		type:type,
+		limit: limit
 	}, function (res) {
 		let data = jQuery.parseJSON(res);
 		// console.log(data);
-		let showPosts = '';
+		// let showPosts = '';
 		for (post of data.posts) {
 			loadPosts(post, append, type);
-		} 
-		// $(".load-posts").on('click', function (e) {
-		// 	console.log(data.posts[data.posts.length-1])
-		// 	e.preventDefault();
-		// 	$.post("../app/controllers/ajax/show-posts_controller.php", {
-		// 		USERNAME,
-		// 		page: PAGE,
-		// 		type:type,
-		// 		// counter: post.counter,
-		// 		postId: post.post_id
-		// 	}, function (res) {
-		// 		data = jQuery.parseJSON(res);
-		// 		// console.log(post.post_id);
-		// 		showPosts = '';
-		// 		$(".load-posts").hide();
-		// 		$(".loader").show();
-		// 		setTimeout(function () {
+		}
+		let counter;
+		data.posts.length > 0 ? counter = data.posts[data.posts.length-1].post_id : void(0)
+	
+		$(".load-posts").on('click', loadMore());
+		$(".delete-feed").on('click', loadMore(1));
 
-		// 			for (post of data.posts) {
-		// 				loadPosts(post, append, type);
-		// 				$(".load-posts").show();
-		// 				$(".loader").hide();
-		// 			}
-		// 			if(data[0] == 0){
-		// 				$(".loader").hide();
-		// 				$(".no-more-posts")
-		// 					.html(`There is no more ${type} to show.`)
-		// 					.css({"padding-top": '3%', "padding-bottom": '7%'})
-		// 			}
+		function loadMore(limit=5) {
+			return function (e) {
+				e.preventDefault();
+				$.post("../app/controllers/ajax/show-posts_controller.php", {
+					USERNAME,
+					counter,
+					page: PAGE,
+					type: type,
+					limit: limit,
+					postId: post.post_id
+				}, function (res) {
+					data = jQuery.parseJSON(res);
+					// console.log(post.post_id);
+					showPosts = '';
+					$(".load-posts").hide();
+					$(".loader").show();
+					setTimeout(function () {
 
-		// 		}, 500);
-		// 	});
-		// });
+						for (post of data.posts) {
+							loadPosts(post, append, type);
+							$(".load-posts").show();
+							$(".loader").hide();
+						}
+						if (data[0] == 0) {
+							$(".loader").hide();
+							$(".no-more-posts")
+								.html(`There is no more ${type} to show.`)
+								.css({ "padding-top": '3%', "padding-bottom": '7%' });
+						}
 
+					}, 500);
+					data.posts.length > 0 ? counter = data.posts[data.posts.length - 1].post_id : void (0);
+
+				});
+			};
+		}
 	});
 }
 
-// first load posts
+// first load (posts)
 if(typeof PAGE != "undefined"){
 
 	if(PAGE == "homepage"){
-		loadUsersActions("homepage", $("#feed-controller"))
+		loadUsersActions("homepage", $("#feed-controller"));
 	} else if(PAGE == "profile"){
 		loadUsersActions("profile", $(".users-posts"), "posts");
 		
 		// get users posts
-		$(".post-action").click(() => toggleUserActions(
+		$(".post-action").click(() => toggleUserAction(
 			$(".get-posts"), 
 			$(".get-images"), 
 			$(".get-followers"), 
@@ -262,7 +232,7 @@ if(typeof PAGE != "undefined"){
 		$(".post-action").click(() => loadUsersActions("profile", $(".users-posts"), "posts"));
 		
 		// get users images
-		$(".image-action").click(() => toggleUserActions(
+		$(".image-action").click(() => toggleUserAction(
 			$(".get-images"), 
 			$(".get-followers"), 
 			$(".get-posts"), 
@@ -271,7 +241,7 @@ if(typeof PAGE != "undefined"){
 		$(".image-action").click(() => loadUsersActions("profile", $(".users-images"), "images"));
 		
 		// get users followers
-		$(".followers-action").click(() => toggleUserActions(
+		$(".followers-action").click(() => toggleUserAction(
 			$(".get-followers"), 
 			$(".get-images"), 
 			$(".get-posts"), 
@@ -280,7 +250,7 @@ if(typeof PAGE != "undefined"){
 		$(".followers-action").click(() => loadUsersActions("profile", $(".users-followers"), "followers"));
 		
 		// get users following
-		$(".following-action").click(() => toggleUserActions(
+		$(".following-action").click(() => toggleUserAction(
 			$(".get-following"), 
 			$(".get-images"), 
 			$(".get-followers"), 
@@ -291,7 +261,11 @@ if(typeof PAGE != "undefined"){
 	}
 }
 
-// show comments
+$('body').on("click", '.post-msg', function(){
+	window.location.href = `${APP_URL}feed?id=${/*$(this.closest(".feed").data("id"))*/}`
+})
+
+// toggle comments
 $('body').on('click', '.fa-comment', function(){
 	let el = $(this).parent();
 	el.find('.comment-info').slideToggle(400);
@@ -321,7 +295,7 @@ $('body').on("click", ".delete-comment", function(){
 
 })
 
-// add comment
+// comment system
 $('body').on("click", ".new-comment", function(){
 
 	let post = $(this).closest(".feed");
@@ -332,8 +306,9 @@ $('body').on("click", ".new-comment", function(){
 		let data = res;
 		if (data.comment) {
 			post.find(".comment-count").html(data.total);
-			let addComment = 
-			/*html*/`
+
+			post.find(".post-comments").append(
+				/*html*/`
 				<div class="comment" data-id=${data.id}>
 					<h4>${data.username} 
 						<i class="far fa-trash-alt delete-comment"></i>
@@ -341,16 +316,15 @@ $('body').on("click", ".new-comment", function(){
 					<small>${data.date_created}</small>
 					<p>${data.message}</p>
 					<hr>
-				</div>
-			`;
-			post.find(".post-comments").append(addComment);
+				</div>`
+			);
 		}
 	})
 	post.find(".comment-field").val('');
 
 })
 
-// add a like
+// like system
 $("body").on("click", ".fa-heart", function(){
 	let post = $(this).closest('.feed');
 	$.post("../app/controllers/ajax/like_controller.php", {
@@ -359,24 +333,48 @@ $("body").on("click", ".fa-heart", function(){
 		let data = jQuery.parseJSON(res);		
 		if (data.liked) {
 			post.find(".likes").html(data.total);
-			post.find(".fa-heart").css({"color": data.color,
-										'transform': 'scale(1.1)',
-										'font-weight': '700'}
-									);
+			post.find(".fa-heart")
+				.css({
+					"color": data.color,
+					'transform': 'scale(1.1)',
+					'font-weight': '700'
+				});
 			setTimeout(() => {
-				post.find(".fa-heart").css({'transform': 'scale(1)',
-											'font-weight': '100'}
-										);
+				post.find(".fa-heart")
+					.css({
+						'transform': 'scale(1)',
+						'font-weight': '100'
+					});
 			},50)
 		} else {
 			post.find(".fa-heart").css("color", data.color);
 			post.find(".likes").html(data.total);
 		}
 	})
+});
+
+// friends card
+$.post("../app/controllers/ajax/load-friends_controller.php", {user: CURRENT_USER},
+function(res){
+	let data = jQuery.parseJSON(res)
+
+	$('.friends-controller').append(
+		/*html*/
+		`<div class="friend-card user" data-id="">
+			<div class="profile-img">${data.avatar}</div>
+			<div class="info">
+				<h2> ${data.fullname}<a href="../public/${data.username}">@${data.username}</a></h2>
+			</div>
+			<div class="btns">
+				<button class="follow-btn">unfollow</button>
+				<button>Message</button>
+			</div>
+		</div>`
+	);
 })
 
-// users action
-function toggleUserActions(removeClass, addClass0, addClass1, addClass2){
+// toggle user's action
+function toggleUserAction(removeClass, addClass0, addClass1, addClass2){
 	removeClass.removeClass("show-action");
 	removeClass.find(".feed, .friend-card").remove();
 	addClass0.addClass("show-action");
@@ -384,7 +382,7 @@ function toggleUserActions(removeClass, addClass0, addClass1, addClass2){
 	addClass2.addClass("show-action");
 }	
 
-// search form show
+// toggle search form
 $(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
 
 $(".fa-times").click( function() {
@@ -410,7 +408,7 @@ $("#search-items .search-input").on("keyup ", function(e){
 				${user.avatar ? `<img style='width:35px;height:35px' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
 				<h4>${user.fullname} 
 					<small>
-						<a href="../public/profile.php?id=${user.id}">@${user.username}</a>
+						<a href='../public/${user.username}'>@${user.username}</a>
 					</small>
 				</h4>
 			</div>
@@ -423,20 +421,20 @@ $("#search-items .search-input").on("keyup ", function(e){
 	})
 })
 
-// follow / unfollow
+// follow system
 $(".user-container, #friends-container, .users-followers, .users-following").on('click','.follow-btn', function() {
 	
 	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
-		USERNAME: $(this).closest(".user").data("id")
+		userId: $(this).closest(".user").data("id")
 	}, function(res){
 		console.log(res)
 		let data = jQuery.parseJSON(res);
 		if(data.followed){
 			$('.follow-btn').html("unfollow");
-			$("#following").html(data.totalFollowers);
+			$("#followers").html(data.totalFollowers);
 		}else{
 			$('.follow-btn').html("follow");
-			$("#following").html(data.totalFollowers);
+			$("#followers").html(data.totalFollowers);
 		}
 	})
 	if(!$(this).closest(".friend-card").parent().hasClass("users-following")){

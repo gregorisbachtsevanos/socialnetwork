@@ -125,11 +125,13 @@
 
                 .post-msg {
                     padding: 1% 0;
+                    color: var(--secondary-text-color);
+                    text-decoration: none;
                 }
                     .reactions{
                         display: flex;
                         width: 100%;
-                        
+
                         .fa-heart {
                             font-size: 1.1rem;
                             font-weight: 100;

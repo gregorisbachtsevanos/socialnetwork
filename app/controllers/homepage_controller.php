@@ -4,10 +4,10 @@
 		die("Access denied");
 	}
 		
-		$title = 'homepage';
-		// $error = '';
-	// if(isset($_SESSION["user"])){
+	$title = 'homepage';
+
+	if(isset($user)){
 		include($appView."homepage_view.php");
-	// }
+	}
 
 ?>

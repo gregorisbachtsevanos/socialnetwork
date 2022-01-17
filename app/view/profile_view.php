@@ -4,6 +4,7 @@ if(!defined('social')){
 }
 
 loadHeader($title)?>
+<script>const PAGE = "profile"</script>
 
 	<div class="profile-container">	
 		

@@ -28,6 +28,9 @@ body{
     background: var(--main-bg-color);
 }
 
+.fas{
+    cursor: pointer;
+}
 .fa-trash-alt:hover {
     color: #f85300 !important
 }

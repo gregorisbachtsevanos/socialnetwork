@@ -2,9 +2,8 @@
 if(!defined('social')){
 	die("Access deniad");
 }
-
 loadHeader($title)?>
-<script>const PAGE = "homepage";</script>
+<script>const PAGE = "homepage"</script>
 
 <div id="feed-container">
 
@@ -30,7 +29,7 @@ loadHeader($title)?>
 
 	<div id="loading-container">
 		<button class="load-posts">more...</button>
-		<?php //require_once "../files/assets/img/svg/loading.svg" ?>
+		<?php require_once $appFiles."/assets/img/svg/loading.svg" ?>
 		<p class="no-more-posts"></p>
 	</div>
 

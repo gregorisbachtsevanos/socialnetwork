@@ -1,8 +1,8 @@
 <?php 
 
-	if(!defined('social')){
-		die("Access denied");
-	}
+	// if(!defined('social')){
+	// 	die("Access denied");
+	// }
 		
 	require_once('../app/model/settings.php');
 

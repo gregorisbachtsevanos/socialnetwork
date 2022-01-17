@@ -7,7 +7,7 @@
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User
 $dbpass = '';          // User's Password
-$dbname = 'socialnetwork';   // Name of the database
+$dbname = 'social';   // Name of the database
 $appURL = 'http://localhost/socialnetwork/public/'; // base domain configuration
 $appName = 'social'; //appName configuration
 $appControllers = '../app/controllers/'; //app controllers folder
@@ -18,6 +18,7 @@ $appAvatars = '../files/assets/img/avatars/'; // app avatars folder
 $appIncludes = '../public/includes/'; // app includes folder
 $appPublic = '../../public/'; // app public folder
 $cdnURL = '../files/'; // app files folder
+$appFiles = '../files/'; // app files folder
 date_default_timezone_set('Europe/Athens');
 
 

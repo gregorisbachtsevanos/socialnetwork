@@ -4,16 +4,15 @@ if(!defined("social")){
 }
 
 	$title = $controllerName;
+	$username = getURL($requestUrl, $appURL);
 
 	$sql = "SELECT * FROM `users` WHERE username = ?";
-	$params = array($_SESSION["user"]);
+	$params = array($username[0]);
 	$row = $db -> row($sql, $params);
 
 	!isset($row->id) ? header("Location: ".$appURL."404") : null;
 
 	// sql for user's avatar
-	$username = getURL($requestUrl, $appURL);
-	// print_r($username[0]);
 	if(!isset(($cParams[0]))){
 
 		$sql = "SELECT * FROM users WHERE username = ?";

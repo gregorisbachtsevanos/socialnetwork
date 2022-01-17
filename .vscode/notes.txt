@@ -46,3 +46,4 @@
 					</div> <!-- end feed-message -->
 
 				</div>
+				an independent and self-motivated web developer interested for the backend technologies. Skilled with php, node.js, express, and vue.js

@@ -9,14 +9,16 @@
 
 @font-face {
   font-display: swap;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   src: local("Roboto Regular"), local("Roboto-Regular"), url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap") format("woff2");
 }
+
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
   outline: none;
 }
 
@@ -46,51 +48,66 @@ body {
   width: 100%;
   margin: 2% 0;
 }
+
 .edit-container #go-back {
   width: 70%;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 .edit-container #go-back a {
   cursor: pointer;
   text-decoration: none;
   color: var(--secondary-text-color);
 }
+
 .edit-container #go-back p {
   width: 35%;
   padding: 2%;
   border-radius: 10px;
   color: var(--main-text-color);
 }
+
 .edit-container #go-back #error-msg {
   background-color: rgba(128, 0, 0, 0.808);
   border: 2px solid #a81414;
 }
+
 .edit-container #go-back #success-msg {
   background-color: rgba(39, 117, 39, 0.808);
   border: 2px solid #277527;
 }
+
 .edit-container #go-back #no-changes-msg {
   background-color: rgba(117, 83, 39, 0.808);
   border: 2px solid #755327;
 }
+
 .edit-container .info-items {
   width: 40%;
   margin: auto;
 }
+
 .edit-container .info-items .input-items {
   width: 100%;
   margin: auto;
 }
+
 .edit-container .info-items .input-items .input-item {
   width: 100%;
   margin-top: 2%;
 }
+
 .edit-container .info-items .input-items .input-item label {
   display: block;
-  margin: 0.5% auto;
+  margin: .5% auto;
 }
+
 .edit-container .info-items .input-items .input-item textarea,
 .edit-container .info-items .input-items .input-item input {
   background-color: #333333;
@@ -100,15 +117,19 @@ body {
   border-radius: 10px;
   color: var(--main-text-color);
 }
-.edit-container .info-items .input-items .input-item input[type=submit] {
+
+.edit-container .info-items .input-items .input-item input[type="submit"] {
   background-color: var(--secondary-text-color);
   width: 20%;
   border: none;
+  color: var(--secondary-bg-color);
 }
+
 .edit-container .info-items #danger {
   margin: 5% 0;
   color: #963232;
 }
+
 .edit-container .info-items #danger hr {
   border: 1px solid #963232;
 }
@@ -116,6 +137,7 @@ body {
 #friends-container {
   width: 100%;
 }
+
 #friends-container .follow {
   margin-top: 7%;
   text-align: center;
@@ -123,63 +145,95 @@ body {
   font-style: italic;
   color: var(--main-text-color);
 }
+
 #friends-container .follow a {
   color: var(--secondary-text-color);
   text-decoration: none;
 }
+
 #friends-container .friends-controller {
   width: 80%;
   margin: auto;
+  display: -ms-grid;
   display: grid;
-  align-self: center;
-  grid-template-columns: repeat(4, 25%);
+  -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-columns: (25%)[4];
+      grid-template-columns: repeat(4, 25%);
 }
+
 #friends-container .friends-controller .friend-card {
   width: 90%;
   margin: 15% auto 0 auto;
   padding: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 10px;
   border: 2px solid #333333;
   background-color: #1e1f20;
 }
+
 #friends-container .friends-controller .friend-card .profile-img {
   width: 100px;
   height: 100px;
   margin: auto;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 100px;
 }
+
 #friends-container .friends-controller .friend-card .profile-img img {
   border-radius: 100px;
   border: 3px solid var(--secondary-text-color);
   width: 100%;
 }
+
 #friends-container .friends-controller .friend-card .profile-img .user-icon {
   font-size: 4.4rem;
   font-weight: 700;
 }
+
 #friends-container .friends-controller .friend-card .info h2 {
   margin: 5% 0;
   color: var(--main-text-color);
 }
+
 #friends-container .friends-controller .friend-card .info h2 a {
-  font-size: 0.9rem;
+  font-size: .9rem;
   text-decoration: none;
   color: var(--secondary-text-color);
 }
+
 #friends-container .friends-controller .friend-card .btns {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 #friends-container .friends-controller .friend-card .btns button {
   padding: 2%;
   border: none;
@@ -193,21 +247,28 @@ body {
   margin: auto;
   border: 2px solid #333333;
   background-color: #1e1f20;
-  padding: 3% 0.5%;
+  padding: 3% .5%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   border-top: none;
 }
+
 .profile-container .user-container #btn-profile {
   width: 30%;
   margin: 0 auto 1% auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 .profile-container .user-container #btn-profile a {
   text-decoration: none;
   color: var(--main-color-text);
 }
+
 .profile-container .user-container #btn-profile .msg,
 .profile-container .user-container #btn-profile .edit,
 .profile-container .user-container #btn-profile .follow-btn {
@@ -218,9 +279,11 @@ body {
   color: var(--secondary-bg-color);
   font-weight: 500;
 }
+
 .profile-container .user-container .user {
   width: 100%;
 }
+
 .profile-container .user-container .user .img {
   width: 120px;
   height: 120px;
@@ -229,50 +292,75 @@ body {
   background-color: var(--secondary-text-color);
   border: 6px solid var(--secondary-text-color);
   border-radius: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .profile-container .user-container .user .img img {
   width: 100%;
   height: 100%;
   border-radius: 128px;
 }
+
 .profile-container .user-container .user .img .user-icon {
   font-size: 4.4rem;
   font-weight: 700;
 }
+
 .profile-container .user-container .user .name {
   margin-top: 1%;
 }
+
 .profile-container .user-container .user .name h3 {
   color: var(--main-color-text);
   text-align: center;
 }
+
 .profile-container .user-container .user .name h3 small {
   color: var(--secondary-text-color);
 }
+
 .profile-container .user-container .user .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-self: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   font-weight: 100;
 }
+
 .profile-container .user-container .user .info p {
-  padding: 1% 0.5%;
+  padding: 1% .5%;
 }
+
 .profile-container .actions-container {
   width: 50%;
-  padding: 1% 0.5%;
+  padding: 1% .5%;
   border-radius: 10px;
   margin: 2% auto 0 auto;
   background-color: #1e1f20;
 }
+
 .profile-container .actions-container .action-type {
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .profile-container .actions-container .action-type .action button {
   cursor: pointer;
   background-color: transparent;
@@ -281,71 +369,105 @@ body {
   font-size: 1.1rem;
   font-family: "Roboto";
 }
+
 .profile-container .status-container {
   position: absolute;
   width: 50%;
   margin: 1% auto;
-  padding: 1% 0.5%;
+  padding: 1% .5%;
 }
+
 .profile-container .status-container .get-posts, .profile-container .status-container .get-images, .profile-container .status-container .get-following, .profile-container .status-container .get-followers {
   position: absolute;
   width: 100%;
   left: 50%;
+  -webkit-transition: 1.5s;
   transition: 1.5s;
 }
+
 .profile-container .status-container .get-posts .users-followers, .profile-container .status-container .get-posts .users-following, .profile-container .status-container .get-images .users-followers, .profile-container .status-container .get-images .users-following, .profile-container .status-container .get-following .users-followers, .profile-container .status-container .get-following .users-following, .profile-container .status-container .get-followers .users-followers, .profile-container .status-container .get-followers .users-following {
   width: 80%;
   margin: auto;
+  display: -ms-grid;
   display: grid;
-  align-self: center;
-  grid-template-columns: repeat(2, 50%);
+  -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-columns: (50%)[2];
+      grid-template-columns: repeat(2, 50%);
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card, .profile-container .status-container .get-posts .users-following .friend-card, .profile-container .status-container .get-images .users-followers .friend-card, .profile-container .status-container .get-images .users-following .friend-card, .profile-container .status-container .get-following .users-followers .friend-card, .profile-container .status-container .get-following .users-following .friend-card, .profile-container .status-container .get-followers .users-followers .friend-card, .profile-container .status-container .get-followers .users-following .friend-card {
   width: 90%;
   margin: 5% auto;
   padding: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 10px;
   border: 2px solid #333333;
   background-color: #1e1f20;
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .profile-img, .profile-container .status-container .get-posts .users-following .friend-card .profile-img, .profile-container .status-container .get-images .users-followers .friend-card .profile-img, .profile-container .status-container .get-images .users-following .friend-card .profile-img, .profile-container .status-container .get-following .users-followers .friend-card .profile-img, .profile-container .status-container .get-following .users-following .friend-card .profile-img, .profile-container .status-container .get-followers .users-followers .friend-card .profile-img, .profile-container .status-container .get-followers .users-following .friend-card .profile-img {
   width: 100px;
   height: 100px;
   margin: auto;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 100px;
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .profile-img img, .profile-container .status-container .get-posts .users-following .friend-card .profile-img img, .profile-container .status-container .get-images .users-followers .friend-card .profile-img img, .profile-container .status-container .get-images .users-following .friend-card .profile-img img, .profile-container .status-container .get-following .users-followers .friend-card .profile-img img, .profile-container .status-container .get-following .users-following .friend-card .profile-img img, .profile-container .status-container .get-followers .users-followers .friend-card .profile-img img, .profile-container .status-container .get-followers .users-following .friend-card .profile-img img {
   border-radius: 100px;
   border: 3px solid var(--secondary-text-color);
   width: 100%;
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .profile-img .user-icon, .profile-container .status-container .get-posts .users-following .friend-card .profile-img .user-icon, .profile-container .status-container .get-images .users-followers .friend-card .profile-img .user-icon, .profile-container .status-container .get-images .users-following .friend-card .profile-img .user-icon, .profile-container .status-container .get-following .users-followers .friend-card .profile-img .user-icon, .profile-container .status-container .get-following .users-following .friend-card .profile-img .user-icon, .profile-container .status-container .get-followers .users-followers .friend-card .profile-img .user-icon, .profile-container .status-container .get-followers .users-following .friend-card .profile-img .user-icon {
   font-size: 4.4rem;
   font-weight: 700;
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .info h2, .profile-container .status-container .get-posts .users-following .friend-card .info h2, .profile-container .status-container .get-images .users-followers .friend-card .info h2, .profile-container .status-container .get-images .users-following .friend-card .info h2, .profile-container .status-container .get-following .users-followers .friend-card .info h2, .profile-container .status-container .get-following .users-following .friend-card .info h2, .profile-container .status-container .get-followers .users-followers .friend-card .info h2, .profile-container .status-container .get-followers .users-following .friend-card .info h2 {
   margin: 5% 0;
   color: var(--main-text-color);
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .info h2 a, .profile-container .status-container .get-posts .users-following .friend-card .info h2 a, .profile-container .status-container .get-images .users-followers .friend-card .info h2 a, .profile-container .status-container .get-images .users-following .friend-card .info h2 a, .profile-container .status-container .get-following .users-followers .friend-card .info h2 a, .profile-container .status-container .get-following .users-following .friend-card .info h2 a, .profile-container .status-container .get-followers .users-followers .friend-card .info h2 a, .profile-container .status-container .get-followers .users-following .friend-card .info h2 a {
-  font-size: 0.9rem;
+  font-size: .9rem;
   text-decoration: none;
   color: var(--secondary-text-color);
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .btns, .profile-container .status-container .get-posts .users-following .friend-card .btns, .profile-container .status-container .get-images .users-followers .friend-card .btns, .profile-container .status-container .get-images .users-following .friend-card .btns, .profile-container .status-container .get-following .users-followers .friend-card .btns, .profile-container .status-container .get-following .users-following .friend-card .btns, .profile-container .status-container .get-followers .users-followers .friend-card .btns, .profile-container .status-container .get-followers .users-following .friend-card .btns {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-evenly;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
+
 .profile-container .status-container .get-posts .users-followers .friend-card .btns button, .profile-container .status-container .get-posts .users-following .friend-card .btns button, .profile-container .status-container .get-images .users-followers .friend-card .btns button, .profile-container .status-container .get-images .users-following .friend-card .btns button, .profile-container .status-container .get-following .users-followers .friend-card .btns button, .profile-container .status-container .get-following .users-following .friend-card .btns button, .profile-container .status-container .get-followers .users-followers .friend-card .btns button, .profile-container .status-container .get-followers .users-following .friend-card .btns button {
   padding: 2%;
   border: none;
@@ -353,85 +475,123 @@ body {
   border-radius: 5px;
   background-color: var(--secondary-text-color);
 }
+
 .profile-container .status-container .get-posts .users-posts .feed, .profile-container .status-container .get-posts .users-images .feed, .profile-container .status-container .get-posts .users-following .feed, .profile-container .status-container .get-posts .users-followers .feed, .profile-container .status-container .get-images .users-posts .feed, .profile-container .status-container .get-images .users-images .feed, .profile-container .status-container .get-images .users-following .feed, .profile-container .status-container .get-images .users-followers .feed, .profile-container .status-container .get-following .users-posts .feed, .profile-container .status-container .get-following .users-images .feed, .profile-container .status-container .get-following .users-following .feed, .profile-container .status-container .get-following .users-followers .feed, .profile-container .status-container .get-followers .users-posts .feed, .profile-container .status-container .get-followers .users-images .feed, .profile-container .status-container .get-followers .users-following .feed, .profile-container .status-container .get-followers .users-followers .feed {
   border-radius: 10px;
   padding: 1.5%;
   margin: 2% 0;
   background-color: rgba(30, 31, 32, 0.8);
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding-bottom: 1%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a {
   text-decoration: none;
   width: 100%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info .users-avatar, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info .users-avatar {
   height: 50px;
   width: 50px;
   border-radius: 100px;
   border: 2px solid var(--secondary-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
   margin-right: 1%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info .users-avatar img, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info .users-avatar img {
   border-radius: 100px;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info .users-avatar .user-icon, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info .users-avatar .user-icon {
   font-size: 1.7rem;
   font-weight: 700;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info h4, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info h4 {
   color: var(--main-text-color);
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-posts .users-images .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-posts .users-following .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-posts .users-followers .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-images .users-posts .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-images .users-images .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-images .users-following .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-images .users-followers .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-following .users-posts .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-following .users-images .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-following .users-following .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-following .users-followers .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-followers .users-posts .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-followers .users-images .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-followers .users-following .feed .feed-info .post-header a .users-info h4 span, .profile-container .status-container .get-followers .users-followers .feed .feed-info .post-header a .users-info h4 span {
   color: var(--secondary-text-color);
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-info .date, .profile-container .status-container .get-posts .users-images .feed .feed-info .date, .profile-container .status-container .get-posts .users-following .feed .feed-info .date, .profile-container .status-container .get-posts .users-followers .feed .feed-info .date, .profile-container .status-container .get-images .users-posts .feed .feed-info .date, .profile-container .status-container .get-images .users-images .feed .feed-info .date, .profile-container .status-container .get-images .users-following .feed .feed-info .date, .profile-container .status-container .get-images .users-followers .feed .feed-info .date, .profile-container .status-container .get-following .users-posts .feed .feed-info .date, .profile-container .status-container .get-following .users-images .feed .feed-info .date, .profile-container .status-container .get-following .users-following .feed .feed-info .date, .profile-container .status-container .get-following .users-followers .feed .feed-info .date, .profile-container .status-container .get-followers .users-posts .feed .feed-info .date, .profile-container .status-container .get-followers .users-images .feed .feed-info .date, .profile-container .status-container .get-followers .users-following .feed .feed-info .date, .profile-container .status-container .get-followers .users-followers .feed .feed-info .date {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed hr, .profile-container .status-container .get-posts .users-images .feed hr, .profile-container .status-container .get-posts .users-following .feed hr, .profile-container .status-container .get-posts .users-followers .feed hr, .profile-container .status-container .get-images .users-posts .feed hr, .profile-container .status-container .get-images .users-images .feed hr, .profile-container .status-container .get-images .users-following .feed hr, .profile-container .status-container .get-images .users-followers .feed hr, .profile-container .status-container .get-following .users-posts .feed hr, .profile-container .status-container .get-following .users-images .feed hr, .profile-container .status-container .get-following .users-following .feed hr, .profile-container .status-container .get-following .users-followers .feed hr, .profile-container .status-container .get-followers .users-posts .feed hr, .profile-container .status-container .get-followers .users-images .feed hr, .profile-container .status-container .get-followers .users-following .feed hr, .profile-container .status-container .get-followers .users-followers .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .post-msg, .profile-container .status-container .get-posts .users-images .feed .feed-message .post-msg, .profile-container .status-container .get-posts .users-following .feed .feed-message .post-msg, .profile-container .status-container .get-posts .users-followers .feed .feed-message .post-msg, .profile-container .status-container .get-images .users-posts .feed .feed-message .post-msg, .profile-container .status-container .get-images .users-images .feed .feed-message .post-msg, .profile-container .status-container .get-images .users-following .feed .feed-message .post-msg, .profile-container .status-container .get-images .users-followers .feed .feed-message .post-msg, .profile-container .status-container .get-following .users-posts .feed .feed-message .post-msg, .profile-container .status-container .get-following .users-images .feed .feed-message .post-msg, .profile-container .status-container .get-following .users-following .feed .feed-message .post-msg, .profile-container .status-container .get-following .users-followers .feed .feed-message .post-msg, .profile-container .status-container .get-followers .users-posts .feed .feed-message .post-msg, .profile-container .status-container .get-followers .users-images .feed .feed-message .post-msg, .profile-container .status-container .get-followers .users-following .feed .feed-message .post-msg, .profile-container .status-container .get-followers .users-followers .feed .feed-message .post-msg {
   padding: 1% 0;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .post-msg img, .profile-container .status-container .get-posts .users-images .feed .feed-message .post-msg img, .profile-container .status-container .get-posts .users-following .feed .feed-message .post-msg img, .profile-container .status-container .get-posts .users-followers .feed .feed-message .post-msg img, .profile-container .status-container .get-images .users-posts .feed .feed-message .post-msg img, .profile-container .status-container .get-images .users-images .feed .feed-message .post-msg img, .profile-container .status-container .get-images .users-following .feed .feed-message .post-msg img, .profile-container .status-container .get-images .users-followers .feed .feed-message .post-msg img, .profile-container .status-container .get-following .users-posts .feed .feed-message .post-msg img, .profile-container .status-container .get-following .users-images .feed .feed-message .post-msg img, .profile-container .status-container .get-following .users-following .feed .feed-message .post-msg img, .profile-container .status-container .get-following .users-followers .feed .feed-message .post-msg img, .profile-container .status-container .get-followers .users-posts .feed .feed-message .post-msg img, .profile-container .status-container .get-followers .users-images .feed .feed-message .post-msg img, .profile-container .status-container .get-followers .users-following .feed .feed-message .post-msg img, .profile-container .status-container .get-followers .users-followers .feed .feed-message .post-msg img {
   width: 100%;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .fa-heart, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .fa-heart {
   font-size: 1.1rem;
   font-weight: 100;
   height: 1%;
   width: 5%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body {
   width: 90%;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .fa-comment, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info {
   width: 100%;
   border-radius: 10px;
@@ -439,25 +599,35 @@ body {
   margin-top: 1%;
   display: none;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div small, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 300;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .post-comments div p, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
-  padding: 0.5% 0;
+  padding: .5% 0;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info input[type=text], .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
@@ -466,10 +636,11 @@ body {
   width: 90%;
   font-weight: 300;
 }
+
 .profile-container .status-container .get-posts .users-posts .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-posts .users-images .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-posts .users-following .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-posts .users-followers .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-images .users-posts .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-images .users-images .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-images .users-following .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-images .users-followers .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-following .users-posts .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-following .users-images .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-following .users-following .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-following .users-followers .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-followers .users-posts .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-followers .users-images .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-followers .users-following .feed .feed-message .reactions .comment-body .comment-info .new-comment, .profile-container .status-container .get-followers .users-followers .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
-  font-size: 0.8rem;
+  font-size: .8rem;
   cursor: pointer;
   font-weight: 400;
   color: #1e1f20;
@@ -477,20 +648,29 @@ body {
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
 }
+
 .profile-container .status-container .get-posts .users-posts .img-container, .profile-container .status-container .get-posts .users-images .img-container, .profile-container .status-container .get-posts .users-following .img-container, .profile-container .status-container .get-posts .users-followers .img-container, .profile-container .status-container .get-images .users-posts .img-container, .profile-container .status-container .get-images .users-images .img-container, .profile-container .status-container .get-images .users-following .img-container, .profile-container .status-container .get-images .users-followers .img-container, .profile-container .status-container .get-following .users-posts .img-container, .profile-container .status-container .get-following .users-images .img-container, .profile-container .status-container .get-following .users-following .img-container, .profile-container .status-container .get-following .users-followers .img-container, .profile-container .status-container .get-followers .users-posts .img-container, .profile-container .status-container .get-followers .users-images .img-container, .profile-container .status-container .get-followers .users-following .img-container, .profile-container .status-container .get-followers .users-followers .img-container {
   width: 80%;
   padding: 1.5%;
   margin: 2% auto;
 }
+
 .profile-container .status-container .get-posts .users-posts .loading-container, .profile-container .status-container .get-posts .users-images .loading-container, .profile-container .status-container .get-posts .users-following .loading-container, .profile-container .status-container .get-posts .users-followers .loading-container, .profile-container .status-container .get-images .users-posts .loading-container, .profile-container .status-container .get-images .users-images .loading-container, .profile-container .status-container .get-images .users-following .loading-container, .profile-container .status-container .get-images .users-followers .loading-container, .profile-container .status-container .get-following .users-posts .loading-container, .profile-container .status-container .get-following .users-images .loading-container, .profile-container .status-container .get-following .users-following .loading-container, .profile-container .status-container .get-following .users-followers .loading-container, .profile-container .status-container .get-followers .users-posts .loading-container, .profile-container .status-container .get-followers .users-images .loading-container, .profile-container .status-container .get-followers .users-following .loading-container, .profile-container .status-container .get-followers .users-followers .loading-container {
   height: 100%;
   position: relative;
   width: 100%;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .profile-container .status-container .get-posts .users-posts .loading-container .load-posts, .profile-container .status-container .get-posts .users-images .loading-container .load-posts, .profile-container .status-container .get-posts .users-following .loading-container .load-posts, .profile-container .status-container .get-posts .users-followers .loading-container .load-posts, .profile-container .status-container .get-images .users-posts .loading-container .load-posts, .profile-container .status-container .get-images .users-images .loading-container .load-posts, .profile-container .status-container .get-images .users-following .loading-container .load-posts, .profile-container .status-container .get-images .users-followers .loading-container .load-posts, .profile-container .status-container .get-following .users-posts .loading-container .load-posts, .profile-container .status-container .get-following .users-images .loading-container .load-posts, .profile-container .status-container .get-following .users-following .loading-container .load-posts, .profile-container .status-container .get-following .users-followers .loading-container .load-posts, .profile-container .status-container .get-followers .users-posts .loading-container .load-posts, .profile-container .status-container .get-followers .users-images .loading-container .load-posts, .profile-container .status-container .get-followers .users-following .loading-container .load-posts, .profile-container .status-container .get-followers .users-followers .loading-container .load-posts {
   width: auto;
   padding: 1% 3%;
@@ -503,9 +683,14 @@ body {
   border-top: 1px solid var(--secondary-text-color);
   border-bottom: 1px solid var(--secondary-text-color);
 }
+
 .profile-container .status-container .get-posts .users-posts .loading-container .loader, .profile-container .status-container .get-posts .users-images .loading-container .loader, .profile-container .status-container .get-posts .users-following .loading-container .loader, .profile-container .status-container .get-posts .users-followers .loading-container .loader, .profile-container .status-container .get-images .users-posts .loading-container .loader, .profile-container .status-container .get-images .users-images .loading-container .loader, .profile-container .status-container .get-images .users-following .loading-container .loader, .profile-container .status-container .get-images .users-followers .loading-container .loader, .profile-container .status-container .get-following .users-posts .loading-container .loader, .profile-container .status-container .get-following .users-images .loading-container .loader, .profile-container .status-container .get-following .users-following .loading-container .loader, .profile-container .status-container .get-following .users-followers .loading-container .loader, .profile-container .status-container .get-followers .users-posts .loading-container .loader, .profile-container .status-container .get-followers .users-images .loading-container .loader, .profile-container .status-container .get-followers .users-following .loading-container .loader, .profile-container .status-container .get-followers .users-followers .loading-container .loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   display: none;
   padding: 1% 3%;
 }
@@ -519,7 +704,9 @@ body {
 }
 
 .show-action {
-  transform: scale(0) translate(0, -50%);
+  -webkit-transform: scale(0) translate(0, -50%);
+          transform: scale(0) translate(0, -50%);
+  -webkit-transition: 1s;
   transition: 1s;
   opacity: 0;
 }
@@ -529,10 +716,12 @@ body {
   margin: 5% auto;
   padding-bottom: 2%;
 }
+
 #feed-container #textarea-container {
   width: 70%;
   margin: auto;
 }
+
 #feed-container #textarea-container textarea {
   width: 100%;
   border: 2px solid #3d3d3d;
@@ -542,23 +731,38 @@ body {
   padding: 1%;
   outline: none;
 }
+
 #feed-container #textarea-container #feedBtn-controller {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 1%;
 }
+
 #feed-container #textarea-container #feedBtn-controller #media {
   width: 20%;
 }
+
 #feed-container #textarea-container #feedBtn-controller #media .fas {
   width: 30%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  flex-flow: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-size: 1rem;
   color: var(--secondary-text-color);
 }
+
 #feed-container #textarea-container #feedBtn-controller #feed-btn {
   width: 10%;
   border-radius: 10px;
@@ -566,83 +770,117 @@ body {
   background-color: var(--secondary-text-color);
   color: #333333;
 }
+
 #feed-container #feed-controller {
   width: 100%;
   margin-top: 7%;
 }
+
 #feed-container #feed-controller .feed {
   border-radius: 10px;
   padding: 1.5%;
   margin: 2% 0;
   background-color: rgba(30, 31, 32, 0.8);
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding-bottom: 1%;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a {
   text-decoration: none;
   width: 100%;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info .users-avatar {
   height: 50px;
   width: 50px;
   border-radius: 100px;
   border: 2px solid var(--secondary-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
   margin-right: 1%;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info .users-avatar img {
   border-radius: 100px;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info .users-avatar .user-icon {
   font-size: 1.7rem;
   font-weight: 700;
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info h4 {
   color: var(--main-text-color);
 }
+
 #feed-container #feed-controller .feed .feed-info .post-header a .users-info h4 span {
   color: var(--secondary-text-color);
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #feed-container #feed-controller .feed .feed-info .date {
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
+
 #feed-container #feed-controller .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
+
 #feed-container #feed-controller .feed .feed-message .post-msg {
   padding: 1% 0;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .fa-heart {
   font-size: 1.1rem;
   font-weight: 100;
   height: 1%;
   width: 5%;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body {
   width: 90%;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info {
   width: 100%;
   border-radius: 10px;
@@ -650,25 +888,35 @@ body {
   margin-top: 1%;
   display: none;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
   font-weight: 100;
   font-size: var(--middle-text-size);
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
   font-size: var(--small-text-size);
   font-weight: 300;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
-  padding: 0.5% 0;
+  padding: .5% 0;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
@@ -677,10 +925,11 @@ body {
   width: 90%;
   font-weight: 300;
 }
+
 #feed-container #feed-controller .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
-  font-size: 0.8rem;
+  font-size: .8rem;
   cursor: pointer;
   font-weight: 400;
   color: #1e1f20;
@@ -691,10 +940,17 @@ body {
 
 #loading-container {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 #loading-container .load-posts {
   width: auto;
   padding: 1% 3%;
@@ -707,9 +963,14 @@ body {
   border-top: 1px solid var(--secondary-text-color);
   border-bottom: 1px solid var(--secondary-text-color);
 }
+
 #loading-container .loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   display: none;
   padding: 1% 3%;
 }
@@ -728,60 +989,96 @@ body {
   width: 5%;
   height: 100%;
   background-color: #1a1b1be7;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   z-index: 2;
 }
+
 #nav-container #nav-items {
   height: 95%;
   width: 100%;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 #nav-container #nav-items .space {
   width: 100%;
   height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #nav-container #nav-items #nav-item {
   margin: auto;
   list-style: none;
   cursor: pointer;
 }
+
 #nav-container #nav-items #nav-item a {
   color: var(--main-text-color);
-  transition: 0.3s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
+
 #nav-container #nav-items #nav-item a:hover {
   color: var(--secondary-text-color);
 }
+
 #nav-container #nav-items #nav-item #user {
   top: 5%;
   width: 60px;
   height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   border-radius: 50px;
   border: 3px solid var(--secondary-text-color);
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-decoration: none;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--secondary-bg-color);
   background-color: var(--secondary-text-color);
 }
+
 #nav-container #nav-items #nav-item #user img {
   width: 100%;
   height: 100%;
   border-radius: 128px;
 }
+
 #nav-container #nav-items #nav-item #user .user-icon {
   font-weight: 500;
   font-size: 2.2rem;
 }
+
 #nav-container #nav-items #nav-item #logout {
   background-color: transparent;
   bottom: 5%;
@@ -811,20 +1108,26 @@ body {
   padding: 2%;
   position: absolute;
 }
+
 .search .search-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 20%;
   position: fixed;
   direction: ltr;
 }
+
 .search .search-form #search-items {
   width: 100%;
 }
+
 .search .search-form #search-items label {
   display: block;
   font-size: 1.5rem;
 }
-.search .search-form #search-items input[type=search] {
+
+.search .search-form #search-items input[type="search"] {
   width: 100%;
   background-color: #333333;
   width: 100%;
@@ -834,11 +1137,13 @@ body {
   color: var(--main-text-color);
   outline: none;
 }
+
 .search .search-form .fa-times {
   color: var(--secondary-text-color);
   cursor: pointer;
   font-size: 1.2rem;
 }
+
 .search .results {
   width: 100%;
   height: 90%;
@@ -846,15 +1151,22 @@ body {
   overflow: scroll;
   direction: rtl;
 }
+
 .search .results ::-webkit-scrollbar {
   margin-left: 50%;
 }
+
 .search .results .input-result {
   direction: ltr;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 4%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .search .results .input-result img,
 .search .results .input-result span {
   border: 2px solid var(--secondary-text-color);
@@ -863,54 +1175,83 @@ body {
   border-radius: 60px;
   background-color: var(--secondary-text-color);
   color: var(--secondary-bg-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 1.4rem;
 }
+
 .search .results .input-result h4 {
   margin-left: 2%;
 }
+
 .search .results .input-result h4 small a {
   text-decoration: none;
   color: var(--secondary-text-color);
 }
+
 .search .results hr {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border: none;
   border-top: 1px solid #333333;
 }
 
 .fade {
-  transform: translate(-150%, 0);
+  -webkit-transform: translate(-150%, 0);
+          transform: translate(-150%, 0);
 }
 
 .container {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .container .form {
   width: 25%;
   padding: 2%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .container .form form {
   width: 100%;
 }
+
 .container .form form legend {
   text-align: center;
 }
+
 .container .form form .input-controller {
   width: 100%;
   margin: 2% auto;
 }
+
 .container .form form .input-controller label {
   padding-bottom: 1%;
   display: block;
 }
+
 .container .form form .input-controller label input {
   width: 100%;
   background-color: #333333;
@@ -919,10 +1260,16 @@ body {
   border-radius: 10px;
   color: var(--main-text-color);
 }
+
 .container .form form #submit-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .container .form form #submit-btn .submit {
   background-color: var(--secondary-text-color);
   width: 20%;
@@ -930,32 +1277,39 @@ body {
   padding: 3%;
   border-radius: 10px;
 }
+
 .container .form form #submit-btn .submit:hover {
   background-color: #1e1f20;
   color: #dadada;
-  transition: 0.6s;
+  -webkit-transition: .6s;
+  transition: .6s;
 }
+
 .container .form form #new-account {
   width: auto;
   color: #fc6d26be;
 }
+
 .container .form form #member {
   width: auto;
   color: #fc6d26be;
 }
 
 .login {
+  -webkit-transition: 1.3s;
   transition: 1.3s;
 }
 
 .signup {
   position: absolute;
   top: 0;
+  -webkit-transition: 1.3s;
   transition: 1.3s;
 }
 
 .hide {
-  transform: translateY(-300%);
+  -webkit-transform: translateY(-300%);
+          transform: translateY(-300%);
 }
 
 @media all and (max-width: 1200px) {
@@ -966,17 +1320,29 @@ body {
     width: 100%;
     height: 10%;
     background-color: #1a1b1b;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     vertical-align: baseline;
   }
   #nav-container #nav-items {
     width: 100%;
     height: 100%;
-    flex-direction: row;
-    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   #nav-container #nav-items .space {
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     width: 10%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */
