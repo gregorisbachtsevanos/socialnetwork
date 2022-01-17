@@ -7,7 +7,7 @@
 $dbhost = 'localhost'; // Usually localhost
 $dbuser = 'root';      // MySQL User
 $dbpass = '';          // User's Password
-$dbname = 'social';   // Name of the database
+$dbname = 'socialnetwork';   // Name of the database
 $appURL = 'http://localhost/socialnetwork/public/'; // base domain configuration
 $appName = 'social'; //appName configuration
 $appControllers = '../app/controllers/'; //app controllers folder

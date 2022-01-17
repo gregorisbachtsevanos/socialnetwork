@@ -2,6 +2,7 @@
 
 	require_once('../../model/settings.php');
 	if(isset($_POST['user'])){
+		$data = array();
 		$sql = "SELECT id FROM users WHERE username = ?";
 		$params = array($_POST['user']);
 		$row = $db->row($sql, $params);

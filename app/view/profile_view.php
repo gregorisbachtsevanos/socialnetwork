@@ -2,9 +2,8 @@
 if(!defined('social')){
 	die("Access denied");
 }
-
-loadHeader($title)?>
-<script>const PAGE = "profile"</script>
+loadHeader($title);?>
+<script>const PAGE = "profile";</script>
 
 	<div class="profile-container">	
 		
@@ -27,11 +26,22 @@ loadHeader($title)?>
 					$rowFollow = '';
 					$userCheck = getURL($requestUrl, $appURL);
 
+					$sql = "SELECT id FROM `users` WHERE `username` = ?";
+					$params = array($_SESSION['user']);
+					$row = $db->row($sql, $params);
+					$currentUserId = $row->id;
+					$sql = "SELECT id FROM `users` WHERE `username` = ?";
+					$params = array($userCheck[0]);
+					$row = $db->row($sql, $params);
+					$checkUserId = $row->id;
+
 					if($_SESSION["user"] != $userCheck[0]){
 						$sql = "SELECT * FROM `follow` WHERE `user_id` = ? AND `follow_user_id` = ?";
-						$params = array($_SESSION["user"], $userCheck[0]);
+						$params = array($currentUserId, $checkUserId);
 						$rowFollow = $db->row($sql, $params);
 					}
+					// print_r($rowFollow);
+					// echo $_SESSION['user']
 					if($rowFollow){
 						$follow = "<button class='follow-btn'>unfollow</button>";
 					}else{

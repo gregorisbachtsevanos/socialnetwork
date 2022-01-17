@@ -262,7 +262,65 @@ if(typeof PAGE != "undefined"){
 }
 
 $('body').on("click", '.post-msg', function(){
-	window.location.href = `${APP_URL}feed?id=${/*$(this.closest(".feed").data("id"))*/}`
+	let showPosts =
+		/*html*/ `
+			<div class="feed" data-id="${post.post_id}">
+				<div class="feed-info">
+					<div class="post-header">
+						<a href='../public/${post.username}'>
+							<div class="users-info">
+								<div class="users-avatar">
+									${post.avatar}
+								</div>
+								<h4>${post.fullname} 
+									<span> @${post.username}</span>
+								</h4>
+							</div>
+						</a>
+						${post.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
+					</div>
+					<span class="date"><small>${post.date_created}</small></span>
+					<hr>
+				</div>
+
+				<div class="feed-message">
+					<p class="post-msg">${post.message}</p>
+					<hr>
+					<div class="reactions">
+						<span class="fas fa-heart ${post.liked}">
+							<small class="likes">${post.total_likes}</small>
+						</span>  
+						<div class="comment-body">
+							<span class="fas fa-comment" id="${post.post_id}">
+								<small class="comment-count">${post.total_comments}</small>
+							</span>
+							<div class="comment-info" data-id="${post.post_id}">
+								<div class="post-comments">${post.post_id == comment.parent_id ? showComments.join(' ') : ''}</div>
+								<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+								<small class="new-comment">Comment</small>
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>`
+		;
+	// for (comment of post.comments) {
+	// 	showComments.push(
+	// 	/*html*/ `
+	// 		<div class="comment" data-id='${comment.id}'>
+	// 			<h4>
+	// 				${comment.username.username} 
+	// 				${comment.username.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
+	// 			</h4>
+	// 			<small>${comment.date_created}</small>
+	// 			<p>${comment.message}</p>
+	// 			<hr>
+	// 		</div>`
+	// 	);
+	// }
+	$("#per-feed-controller").append(showPosts)
+	window.location.href = `${APP_URL}feed?id=${($(this).closest(".feed").data("id"))}`;
+
 })
 
 // toggle comments
@@ -391,7 +449,7 @@ $(".fa-times").click( function() {
 	$(".input-result, hr").remove();
 });
 
-$("#search-items .search-input").on("keyup ", function(e){
+$("#search-items .search-input").on("keyup ", function(){
 
 	let userInput = $(this).val();
 	

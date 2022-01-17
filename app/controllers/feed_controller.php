@@ -4,7 +4,16 @@
 		die("Access denied");
 	}
 
-	$title = $_GET["id"];
+	
+	if(isset($_GET["id"])){
+		$title = $_GET["id"];
+
+		$sql = "SELECT * FROM posts WHERE id = ?";
+		$params = array($_GET["id"]);
+		$row = $db->row($sql, $params);
+		
+	}
+	// print_r($row);
 	include($appView.'feed_view.php');
 
 ?>
