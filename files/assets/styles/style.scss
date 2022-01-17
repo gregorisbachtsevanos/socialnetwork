@@ -4,6 +4,7 @@
     --secondary-bg-color: rgba(30, 31, 32, 1);
     --main-text-color : #d6d6d6;
     --secondary-text-color : #ff681d;
+    // --secondary-text-color : #cc4a7c;
     --small-text-size: .6rem;
     --middle-text-size: .9rem;
 }
@@ -25,7 +26,8 @@ body{
     width: 100%;
     height: 100%;
     color: var(--main-text-color);
-    background: var(--main-bg-color);
+    // background: var(--main-bg-color);
+    background: rgb(10, 10, 10);
 }
 
 .fa-trash-alt:hover {
@@ -42,8 +44,9 @@ body{
     border-radius: 100px;
   }
 
+@import "import/feed";
 @import "import/edit";
-// @import "import/index";
+@import "import/index";
 @import "import/friends";
 @import "import/profile";
 @import "import/homepage";

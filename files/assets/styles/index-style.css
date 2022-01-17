@@ -25,6 +25,7 @@ body {
   height: 100%;
   color: var(--main-text-color);
   background: var(--main-bg-color);
+  background: #0a0a0a;
 }
 
 .fa-trash-alt:hover {
@@ -93,6 +94,7 @@ body {
 }
 .container .form form #new-account {
   width: auto;
+  color: #fc6d26be;
   color: #fc6d26be;
 }
 .container .form form #member {

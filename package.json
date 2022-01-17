@@ -1,0 +1,23 @@
+{
+  "name": "socialnetwork",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile:sass": "node-sass files/assets/styles/style.scss files/assets/styles/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GregorisB/socialnetwork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GregorisB/socialnetwork/issues"
+  },
+  "homepage": "https://github.com/GregorisB/socialnetwork#readme",
+  "description": "",
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}

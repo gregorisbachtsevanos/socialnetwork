@@ -19,7 +19,7 @@ function loadIndexHeader($title, $err = null){
 			<meta charset="utf-8">
 			<title>'.$title.'</title>
 			<meta name="description" content="Social network">
-			<link rel="stylesheet" href="../styles/index-style.css">
+			<link rel="stylesheet" href="../styles/style.css">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<script src="https://kit.fontawesome.com/947f5ef4a5.js" crossorigin="anonymous"></script>
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

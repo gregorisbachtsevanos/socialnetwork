@@ -24,7 +24,7 @@ body {
   width: 100%;
   height: 100%;
   color: var(--main-text-color);
-  background: var(--main-bg-color);
+  background: #0a0a0a;
 }
 
 .fa-trash-alt:hover {
@@ -40,6 +40,133 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: var(--secondary-text-color);
   border-radius: 100px;
+}
+
+#per-feed-container {
+  width: 50%;
+  margin: auto;
+}
+#per-feed-container #per-feed-controller {
+  width: 100%;
+  margin-top: 7%;
+}
+#per-feed-container #per-feed-controller .feed {
+  border-radius: 10px;
+  padding: 1.5%;
+  margin: 2% 0;
+  background-color: rgba(30, 31, 32, 0.8);
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1%;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a {
+  text-decoration: none;
+  width: 100%;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info {
+  display: flex;
+  align-items: center;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info .users-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 100px;
+  border: 2px solid var(--secondary-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-bg-color);
+  background-color: var(--secondary-text-color);
+  margin-right: 1%;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info .users-avatar img {
+  border-radius: 100px;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info .users-avatar .user-icon {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info h4 {
+  color: var(--main-text-color);
+}
+#per-feed-container #per-feed-controller .feed .feed-info .post-header a .users-info h4 span {
+  color: var(--secondary-text-color);
+  font-size: 0.8rem;
+}
+#per-feed-container #per-feed-controller .feed .feed-info .date {
+  font-size: 0.8rem;
+}
+#per-feed-container #per-feed-controller .feed hr {
+  border: none;
+  border-top: 1px solid #333333;
+  margin: 1% 0;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .post-msg {
+  padding: 1% 0;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions {
+  display: flex;
+  width: 100%;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .fa-heart {
+  font-size: 1.1rem;
+  font-weight: 100;
+  height: 1%;
+  width: 5%;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body {
+  width: 90%;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .fa-comment {
+  font-size: 1.1rem;
+  font-weight: 100;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info {
+  width: 100%;
+  border-radius: 10px;
+  padding: 1%;
+  margin-top: 1%;
+  display: none;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments {
+  font-size: 1rem;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div {
+  font-weight: 100;
+  font-size: var(--middle-text-size);
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div h4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div small {
+  font-size: var(--small-text-size);
+  font-weight: 300;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .post-comments div p {
+  padding: 0.5% 0;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--secondary-text-color);
+  width: 90%;
+  font-weight: 300;
+}
+#per-feed-container #per-feed-controller .feed .feed-message .reactions .comment-body .comment-info .new-comment {
+  width: 10%;
+  padding: 0 1%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 400;
+  color: #1e1f20;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-text-color);
+  background-color: var(--secondary-text-color);
 }
 
 .edit-container {
@@ -938,6 +1065,7 @@ body {
 }
 .container .form form #new-account {
   width: auto;
+  color: #fc6d26be;
   color: #fc6d26be;
 }
 .container .form form #member {

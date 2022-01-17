@@ -28,12 +28,12 @@ loadHeader($title);?>
 
 					$sql = "SELECT id FROM `users` WHERE `username` = ?";
 					$params = array($_SESSION['user']);
-					$row = $db->row($sql, $params);
-					$currentUserId = $row->id;
+					$rowId = $db->row($sql, $params);
+					$currentUserId = $rowId->id;
 					$sql = "SELECT id FROM `users` WHERE `username` = ?";
 					$params = array($userCheck[0]);
-					$row = $db->row($sql, $params);
-					$checkUserId = $row->id;
+					$rowId = $db->row($sql, $params);
+					$checkUserId = $rowId->id;
 
 					if($_SESSION["user"] != $userCheck[0]){
 						$sql = "SELECT * FROM `follow` WHERE `user_id` = ? AND `follow_user_id` = ?";
