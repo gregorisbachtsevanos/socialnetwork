@@ -5,6 +5,7 @@
     --main-text-color : #d6d6d6;
     --secondary-text-color : #ff681d;
     // --secondary-text-color : #cc4a7c;
+    --background-color : rgb(12, 12, 12);
     --small-text-size: .6rem;
     --middle-text-size: .9rem;
 }
@@ -27,7 +28,7 @@ body{
     height: 100%;
     color: var(--main-text-color);
     // background: var(--main-bg-color);
-    background: rgb(12, 12, 12);
+    background: var(--background-color);
 }
 
 .fa-trash-alt:hover {

@@ -6,4 +6,6 @@ if(!defined("social")){
 
 $title = $controllerName;
 
+
+
 include($appView.'trending_view.php');

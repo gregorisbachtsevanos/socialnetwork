@@ -165,7 +165,7 @@ function loadPosts(post, appendTo, type="posts") {
 }
 
 // loading user's action
-function loadUsersActions(PAGE, append, type="posts", limit=5) {
+function loadUsersActions(PAGE, appendTo, type="posts", limit=5) {
 	$.post("../app/controllers/ajax/show-posts_controller.php", {
 		USERNAME,
 		page: PAGE,
@@ -176,7 +176,7 @@ function loadUsersActions(PAGE, append, type="posts", limit=5) {
 		console.log(data);
 		// let showPosts = '';
 		for (post of data.posts) {
-			loadPosts(post, append, type);
+			loadPosts(post, appendTo, type);
 		}
 		let counter;
 		data.posts.length > 0 ? counter = data.posts[data.posts.length-1].post_id : void(0)
@@ -203,7 +203,7 @@ function loadUsersActions(PAGE, append, type="posts", limit=5) {
 					setTimeout(function () {
 
 						for (post of data.posts) {
-							loadPosts(post, append, type);
+							loadPosts(post, appendTo, type);
 							$(".load-posts").show();
 							$(".loader").hide();
 						}
@@ -221,6 +221,39 @@ function loadUsersActions(PAGE, append, type="posts", limit=5) {
 			};
 		}
 	});
+}
+
+function displayTrending(data, avatar){
+	let card = 
+	/*html*/ `
+	<div class="trending-user-card">
+		<div class="profile-img">
+			${avatar}
+		</div>	
+		<div class="info">
+			<h2>${data.fullname}
+				<a href="#"> @${data.username}</a>
+			</h2>
+		</div>
+		<div class="btns">
+			<button></button>
+			<button>Message</button>
+		</div>
+	</div>
+	// `
+}
+
+function loadTrending(type, appendTo){
+	$.post("../app/controllers/ajax/load-trendings_controller.php",{
+		type:type
+	}, function(res){
+		// console.log(res)
+		let data = jQuery.parseJSON(res)
+		console.log(data)
+		// for(dataResuls of data){	
+		// 	displayTrending(dataResuls, avatar)
+		// }
+	})
 }
 
 // first load (posts)
@@ -267,6 +300,8 @@ if(typeof PAGE != "undefined"){
 		));
 		$(".following-action").click(() => loadUsersActions("profile", $(".users-following"), "following"));
 		
+	} else if (PAGE == "trending"){
+		loadTrending('posts', $(".trending-users-container"));
 	}
 }
 

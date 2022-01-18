@@ -3,7 +3,7 @@ if(!defined('social')){
 	die("Access denied");
 }
 loadHeader($title)?>
-<script>const PAGE = "homepage"</script>
+<script>const PAGE = "homepage";</script>
 
 <div id="feed-container">
 

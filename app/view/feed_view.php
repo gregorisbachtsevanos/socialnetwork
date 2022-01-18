@@ -42,11 +42,13 @@ loadHeader($title);?>
 			<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
 			<small class="new-comment">Comment</small>
 		</div>
-		<div id="arrow-icon">
-			<p>
-				<i class="fas fa-level-down-alt"></i>
-			</p>
-		</div>
+		<?php if($commetnsRow){ ?>
+			<div id="arrow-icon">
+				<p>
+					<i class="fas fa-level-down-alt"></i>
+				</p>
+			</div>
+			<?php } ?>
 		<div class="feed" data-id=<?php echo $feedRow->id ?>>
 			<?php foreach($commetnsRow as $comment):
 				$date = date("d/m/Y", strtotime($comment->date_created));

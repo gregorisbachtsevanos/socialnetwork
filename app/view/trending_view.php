@@ -4,6 +4,9 @@ if(!defined("social")){
 }
 
 loadHeader($title)?>
+
+<script>const PAGE = "trending";</script>
+
 <div class="trending-container">
 	<div class="trending-type">
 		<div class="trending trending-users">
@@ -17,5 +20,8 @@ loadHeader($title)?>
 		</div>
 		
 	</div>
-</div> <!-- end actions-container -->
+</div> <!-- end trending-container -->
+<div class="trending-users-container"></div>
+<div class="trending-posts-container"></div>
+<div class="trending-images-container"></div>
 <?php endBody(); ?>

@@ -9,16 +9,14 @@
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   src: local("Roboto Regular"), local("Roboto-Regular"), url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap") format("woff2");
 }
-
 * {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
   outline: none;
 }
 
@@ -42,5 +40,4 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: var(--secondary-text-color);
   border-radius: 100px;
-}
-/*# sourceMappingURL=index-style.css.map */
+}/*# sourceMappingURL=index-style.css.map */
