@@ -59,7 +59,7 @@
             </a>
         </li>
         <li id='nav-item'>
-            <a href="#"
+            <a href="<?php echo $appURL; ?>trending"
                 aria-label="trending">
                 <i class='fas fa-compass'
                     style='font-size:35px'>

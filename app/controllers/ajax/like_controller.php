@@ -16,7 +16,7 @@
 
         }else{
             $db->insert('posts_likes ', array('post_id'=>$_POST['postId'], 'user_id'=>$currentUserId->id, 'date'=>date('Y-m-d H:i:s')));
-            $data = array('status'=>200, 'liked'=>true, 'color'=>"#fc6d26be");
+            $data = array('status'=>200, 'liked'=>true, 'color'=>"#ff681d");
         }
         
         $sql = 'SELECT COUNT(user_id) as total FROM posts_likes WHERE post_id = ?';

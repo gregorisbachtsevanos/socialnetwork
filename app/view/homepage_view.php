@@ -1,6 +1,6 @@
 <?php
 if(!defined('social')){
-	die("Access deniad");
+	die("Access denied");
 }
 loadHeader($title)?>
 <script>const PAGE = "homepage"</script>

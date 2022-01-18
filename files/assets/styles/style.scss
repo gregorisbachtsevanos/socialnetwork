@@ -27,7 +27,7 @@ body{
     height: 100%;
     color: var(--main-text-color);
     // background: var(--main-bg-color);
-    background: rgb(10, 10, 10);
+    background: rgb(12, 12, 12);
 }
 
 .fa-trash-alt:hover {
@@ -50,6 +50,7 @@ body{
 @import "import/friends";
 @import "import/profile";
 @import "import/homepage";
+@import "import/trending";
 @import "import/navigation";
 @import "import/login-register";
 @import "import/responsiveness";

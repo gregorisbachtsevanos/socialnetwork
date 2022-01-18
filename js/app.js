@@ -16,16 +16,25 @@ function loadPosts(post, appendTo, type="posts") {
 
 		for (comment of post.comments) {
 			showComments.push(
-			/*html*/ `
-				<div class="comment" data-id='${comment.id}'>
-					<h4>
-						${comment.username.username} 
+			
+				/*html*/`
+				<div class="comment" data-id=${comment.id}>
+					<div class="comment-header">
+						<a href='../public/${comment.username.username}'>
+							<h4>
+								<div class="users-avatar">${comment.commentAvatar}</div>
+								${comment.username.fullname} 
+								<span>&nbsp;@${comment.username.username}<span>
+							</h4>
+						</a>
 						${comment.username.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
-					</h4>
-					<small>${comment.date_created}</small>
-					<p>${comment.message}</p>
-					<hr>
-				</div>`
+					</div>
+				<small>${comment.date_created}</small>
+				<hr>
+				<p>${comment.message}</p>
+				<hr>
+			</div>`
+				
 			);
 		}
 	}
@@ -164,7 +173,7 @@ function loadUsersActions(PAGE, append, type="posts", limit=5) {
 		limit: limit
 	}, function (res) {
 		let data = jQuery.parseJSON(res);
-		// console.log(data);
+		console.log(data);
 		// let showPosts = '';
 		for (post of data.posts) {
 			loadPosts(post, append, type);
@@ -261,72 +270,19 @@ if(typeof PAGE != "undefined"){
 	}
 }
 
+// redirect to the feed page 
 $('body').on("click", '.post-msg', function(){
-	// let showPosts =
-	// 	/*html*/ `
-	// 		<div class="feed" data-id="${post.post_id}">
-	// 			<div class="feed-info">
-	// 				<div class="post-header">
-	// 					<a href='../public/${post.username}'>
-	// 						<div class="users-info">
-	// 							<div class="users-avatar">
-	// 								${post.avatar}
-	// 							</div>
-	// 							<h4>${post.fullname} 
-	// 								<span> @${post.username}</span>
-	// 							</h4>
-	// 						</div>
-	// 					</a>
-	// 					${post.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${post.post_id}'></i>` : ''}
-	// 				</div>
-	// 				<span class="date"><small>${post.date_created}</small></span>
-	// 				<hr>
-	// 			</div>
 
-	// 			<div class="feed-message">
-	// 				<p class="post-msg">${post.message}</p>
-	// 				<hr>
-	// 				<div class="reactions">
-	// 					<span class="fas fa-heart ${post.liked}">
-	// 						<small class="likes">${post.total_likes}</small>
-	// 					</span>  
-	// 					<div class="comment-body">
-	// 						<span class="fas fa-comment" id="${post.post_id}">
-	// 							<small class="comment-count">${post.total_comments}</small>
-	// 						</span>
-	// 						<div class="comment-info" data-id="${post.post_id}">
-	// 							<div class="post-comments">${post.post_id == comment.parent_id ? showComments.join(' ') : ''}</div>
-	// 							<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
-	// 							<small class="new-comment">Comment</small>
-	// 						</div>
-	// 					</div>
-	// 				</div> 
-	// 			</div>
-	// 		</div>`
-	// 	;
-	// for (comment of post.comments) {
-	// 	showComments.push(
-	// 	/*html*/ `
-	// 		<div class="comment" data-id='${comment.id}'>
-	// 			<h4>
-	// 				${comment.username.username} 
-	// 				${comment.username.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${post.post_id}'></i>` : ''}
-	// 			</h4>
-	// 			<small>${comment.date_created}</small>
-	// 			<p>${comment.message}</p>
-	// 			<hr>
-	// 		</div>`
-	// 	);
-	// }
-	$("#per-feed-controller").append(showPosts)
-	window.location.href = `${APP_URL}feed?id=${($(this).closest(".feed").data("id"))}`;
+	if(window.location.href == `${APP_URL}homepage`){
+		window.location.href = `${APP_URL}feed?id=${($(this).closest(".feed").data("id"))}`;
+	}
 
 })
 
 // toggle comments
 $('body').on('click', '.fa-comment', function(){
 	let el = $(this).parent();
-	el.find('.comment-info').slideToggle(400);
+	el.parent().is('#comment-per-feed') ? void(0) : el.find('.comment-info').slideToggle(400)
 })
 
 // delete posts
@@ -347,7 +303,9 @@ $('body').on("click", ".delete-comment", function(){
 		feedId: comment.closest(".feed").data("id")
 	}, function(res){
 		let data = jQuery.parseJSON(res);
-		comment.closest(".feed").find(".comment-count").html(data.total);
+		comment.parent().is('.post-comments') 
+			? comment.closest(".feed").find(".comment-count").html(data.total)
+			: $("body").find(".comment-count").html(data.total);
 		comment.remove();
 	});
 
@@ -355,30 +313,54 @@ $('body').on("click", ".delete-comment", function(){
 
 // comment system
 $('body').on("click", ".new-comment", function(){
+	let post
+	$(this).parent().is('.comment-info')
+		? addCommentCall(
+			($(this).closest(".feed")),
+			($(this).closest(".feed")),
+			($(this).closest(".feed")).find(".comment-field").val(),
+			".post-comments"
+		)
+		: addCommentCall(
+			($('body').find("#feed")),
+			($('body')),
+			($('body')).find(".comment-field").val(),
+			".feed"
+		);
 
-	let post = $(this).closest(".feed");
-	$.post("../app/controllers/ajax/new-comment_controller.php", {
-		postId: post.data("id"),
-		msg: post.find(".comment-field").val()
-	}, function(res){
-		let data = res;
-		if (data.comment) {
-			post.find(".comment-count").html(data.total);
+	function addCommentCall(post, el, value, appendTo) {
 
-			post.find(".post-comments").append(
-				/*html*/`
-				<div class="comment" data-id=${data.id}>
-					<h4>${data.username} 
-						<i class="far fa-trash-alt delete-comment"></i>
-					</h4>
-					<small>${data.date_created}</small>
-					<p>${data.message}</p>
-					<hr>
-				</div>`
-			);
-		}
-	})
-	post.find(".comment-field").val('');
+		$.post("../app/controllers/ajax/new-comment_controller.php", {
+			postId: post.data('id'),
+			msg: value
+		}, function (res) {
+			console.log(res);
+			let data = res;
+			if (data.comment) {
+				el.find(".comment-count").html(data.total);
+				
+				el.find(appendTo).append(
+					/*html*/`
+					<div class="comment" data-id=${data.id}>
+						<div class="comment-header">
+							<a href='../public/${data.username}>'>
+								<h4>
+									<div class="users-avatar">${data.avatar}</div>
+									${data.fullname}&nbsp; <span>@${data.username} </span>
+								</h4>
+							</a>
+								<p style="color: #d4d4d4"><i class="far fa-trash-alt delete-comment" data-id=${data.id}></i></p>
+						</div>
+						<small>${data.date_created}</small>
+						<hr>
+						<p>${data.message}</p>
+						<hr>
+					</div>`
+				);
+			}
+		});
+		el.find(".comment-field").val('');
+	}
 
 })
 

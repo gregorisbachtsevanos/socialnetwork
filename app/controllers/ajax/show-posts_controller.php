@@ -129,10 +129,16 @@
 			foreach($commentsRow as $comment){
 				if($comment->id){
 					
-					$sql = "SELECT `username` FROM users WHERE id = ?";
+					$sql = "SELECT `username`, fullname, avatar FROM users WHERE id = ?";
 					$params = array($comment->user_id);
 					$commentsUsername = $db->row($sql, $params);
+
+					$commentsUsername->avatar 
+						? $commentAvatar = "<img style='width:100%;height:100%' src='../files/assets/img/avatars/".$commentsUsername->avatar."' alt='image-profile'>"
+						: $commentAvatar = "<span class='user-icon'>".substr(ucwords($commentsUsername->fullname),0,1)."</span>";
+
 					$comment->username = $commentsUsername;
+					$comment->commentAvatar = $commentAvatar;
 					array_push($comments, $comment);
 				}
 				// print_r(($comment));
@@ -160,7 +166,7 @@
 				"fullname"		=> $row->fullname,
 				"avatar"		=> $avatar,
 				"comments"		=> $comments,
-				"currentUserId"		=> $userId
+				"currentUserId"	=> $userId
 			);
 			// print_r($post);
 			

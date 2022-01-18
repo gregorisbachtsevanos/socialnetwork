@@ -6,7 +6,7 @@
             width: 100%;
             margin-top: 7%;
 
-            .feed {
+            #feed {
                 border-radius: 10px;
                 padding: 1.5%;
                 margin: 2% 0;
@@ -50,13 +50,14 @@
             
                                 h4 {
                                     color: var(--main-text-color);
+                                    
                                     span {
-        
                                         color: var(--secondary-text-color);
                                         font-size: .8rem;
                                     }
         
                                 }
+                                
                             } 
                         } // a
                         
@@ -79,85 +80,140 @@
                     .post-msg {
                         padding: 1% 0;
                     }
-                        .reactions{
+
+                    .reactions{
                             display: flex;
                             width: 100%;
                             
-                            .fa-heart {
-                                font-size: 1.1rem;
-                                font-weight: 100;
-                                height: 1%;
-                                width: 5%;
-                            }
-                            
-                            .comment-body {
-                                width: 90%;
+                        .fa-heart {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                            height: 1%;
+                            width: 5%;
+                        }
+                        
+                        .fa-comment {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                            height: 1%;
+                            width: 5%;
+                        }
 
-                                .fa-comment {
-                                font-size: 1.1rem;
-                                font-weight: 100;
-                            }
-
-                            .comment-info {
-                                width: 100%;
-                                border-radius: 10px;
-                                padding: 1%;
-                                margin-top: 1%;
-                                display: none;
-
-                                .post-comments {
-                                    font-size: 1rem;
-
-                                    div {
-                                        font-weight: 100;
-                                        font-size: var(--middle-text-size);
-
-                                        h4 {
-                                            width: 100%;
-                                            display: flex;
-                                            justify-content: space-between;
-                                        }
-
-                                        small {
-                                            font-size: var(--small-text-size);
-                                            font-weight: 300;
-                                        }
-
-                                        p {
-                                            padding: .5% 0;
-                                        }
-                                    }
-                                }
-
-                                input[type=text] {
-                                    background-color: transparent;
-                                    border: none;
-                                    outline: none;
-                                    color: var(--secondary-text-color);
-                                    width: 90%;
-                                    font-weight: 300;
-                                }
-
-                                .new-comment {
-                                    width: 10%;
-                                    padding: 0 1%;
-                                    font-size: .8rem;
-                                    cursor: pointer;
-                                    font-weight: 400;
-                                    color: #1e1f20;
-                                    border-radius: 10px;
-                                    border: 1px solid var(--secondary-text-color);
-                                    background-color: var(--secondary-text-color);
-                                }
-
-                            } // comments-container
-
-                        } //end comment-body
                     }
                 } //end feed-message
                 
 
-            } //end feed
+            } // end feed
+
+            #new-comment-container{
+                width: 92.5%;
+                border-radius: 10px;
+                padding: 1.5%;
+                margin: 2% auto;
+                background-color: rgba(30, 31, 32, .8);
+                font-weight: 200;
+                font-size: var(--middle-text-size);
+
+                input[type=text] {
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    color: var(--secondary-text-color);
+                    width: 90%;
+                    font-weight: 300;
+                }
+
+                .new-comment {
+                    width: 10%;
+                    padding: 0 1%;
+                    font-size: .8rem;
+                    cursor: pointer;
+                    font-weight: 400;
+                    color: #1e1f20;
+                    border-radius: 10px;
+                    border: 1px solid var(--secondary-text-color);
+                    background-color: var(--secondary-text-color);
+                }
+            }
+
+            #arrow-icon{
+                display:flex;
+                justify-content: center;
+
+                p{
+                    opacity: .5;
+                }
+            }
+
+            
+            .comment{
+                width: 85%;
+                margin: auto;
+                border-radius: 10px;
+                padding: 1.5%;
+                margin: 2% auto;
+                background-color: rgba(30, 31, 32, .4);
+                font-weight: 200;
+                font-size: var(--middle-text-size);
+
+                .comment-header{
+                    display: flex;
+                    justify-content: space-between;
+
+                    a{
+                        width: 60%;
+                        text-decoration: none;
+                        display: flex;
+
+                        h4{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            padding-bottom: 1.5%;
+                            color: #d4d4d4;
+
+                            span{
+                                color: var(--secondary-text-color);
+                                font-size: .8rem;
+                            }
+                            .users-avatar{
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 100px;
+                                border: 2px solid var(--secondary-text-color);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background-color: var(--secondary-text-color);
+                                margin-right: 1%;
+                                
+                                .user-icon{
+                                    font-size: 1.7rem;
+                                    color: var(--secondary-bg-color);
+                                }
+                                img{
+                                    border-radius: 100px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                small{
+                    font-size: var(--small-text-size);
+                    font-weight: 300;
+                }
+
+                p{
+                    padding: .5% 0;
+                }
+
+                hr{
+                    border: none;
+                    border-top: 1px solid #333333;
+                    margin: 1% 0;
+                }
+            } // end comment
             
     } //end feed-controller
 }

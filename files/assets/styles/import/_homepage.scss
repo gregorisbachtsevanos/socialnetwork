@@ -9,7 +9,7 @@
 
         textarea {
             width: 100%;
-            border: 2px solid rgb(61, 61, 61);
+            border: 2px solid rgba(30, 31, 32, 1);
             border-radius: 10px;
             background-color: transparent;
             color: var(--main-text-color);
@@ -155,25 +155,71 @@
                             .post-comments {
                                 font-size: 1rem;
 
-                                div {
-                                    font-weight: 100;
+                                .comment{
+                                    width: 100%;
+                                    margin: auto;
+                                    margin: 2% auto;
+                                    font-weight: 200;
                                     font-size: var(--middle-text-size);
-
-                                    h4 {
-                                        width: 100%;
+                    
+                                    .comment-header{
                                         display: flex;
                                         justify-content: space-between;
+                    
+                                        a{
+                                            width: 60%;
+                                            text-decoration: none;
+                                            display: flex;
+                    
+                                            h4{
+                                                width: 100%;
+                                                display: flex;
+                                                align-items: center;
+                                                padding-bottom: 1.5%;
+                                                color: #d4d4d4;
+                    
+                                                span{
+                                                    color: var(--secondary-text-color);
+                                                    font-size: .8rem;
+                                                }
+                                                .users-avatar{
+                                                    height: 50px;
+                                                    width: 50px;
+                                                    border-radius: 100px;
+                                                    border: 2px solid var(--secondary-text-color);
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    background-color: var(--secondary-text-color);
+                                                    margin-right: 1%;
+                                                    
+                                                    .user-icon{
+                                                        font-size: 1.7rem;
+                                                        color: var(--secondary-bg-color);
+                                                    }
+                                                    img{
+                                                        border-radius: 100px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                    
                                     }
-
-                                    small {
+                                    small{
                                         font-size: var(--small-text-size);
                                         font-weight: 300;
                                     }
-
-                                    p {
+                    
+                                    p{
                                         padding: .5% 0;
                                     }
-                                }
+                    
+                                    hr{
+                                        border: none;
+                                        border-top: 1px solid #333333;
+                                        margin: 1% 0;
+                                    }
+                                } // end comment
                             }
 
                             input[type=text] {
