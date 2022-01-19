@@ -1,5 +1,5 @@
 // toggle forms (login-register)
-$("#new-account, #member").on('click', function(e){
+$("#new-account, #member").on('click', function (e) {
 	// e.preventDefault();
 	// $('.login').toggleClass('hide');
 	// $('.signup').toggleClass('hide');
@@ -8,16 +8,17 @@ $("#new-account, #member").on('click', function(e){
 typeof sign_up !== "undefined" ? $("#member").click() : void(0);
 
 // loading more posts
-function loadPosts(post, appendTo, type="posts") {
+function loadPosts(post, appendTo, type = "posts") {
 	// console.log(type)
 	let showComments = [];
 	let comment = [];
-	if(type == "posts" || type == "images"){
+	if (type == "posts" || type == "images") {
 
 		for (comment of post.comments) {
 			showComments.push(
-			
-				/*html*/`
+
+				/*html*/
+				`
 				<div class="comment" data-id=${comment.id}>
 					<div class="comment-header">
 						<a href='../public/${comment.username.username}'>
@@ -34,13 +35,14 @@ function loadPosts(post, appendTo, type="posts") {
 				<p>${comment.message}</p>
 				<hr>
 			</div>`
-				
+
 			);
 		}
 	}
-	if(type == "posts"){
+	if (type == "posts") {
 		showPosts =
-		/*html*/ `
+			/*html*/
+			`
 			<div class="feed" data-id="${post.post_id}">
 				<div class="feed-info">
 					<div class="post-header">
@@ -79,12 +81,12 @@ function loadPosts(post, appendTo, type="posts") {
 						</div>
 					</div> 
 				</div>
-			</div>`
-		;
-		
-	} else if (type == "images"){
+			</div>`;
+
+	} else if (type == "images") {
 		showPosts =
-		/*html*/ `
+			/*html*/
+			`
 			<div class="feed img-container" data-id="${post.post_id}">
 				<div class="feed-info">
 					<div class="post-header">
@@ -125,12 +127,11 @@ function loadPosts(post, appendTo, type="posts") {
 						</div>
 					</div> 
 				</div>
-			</div>`
-		;
-		
-	} else if (type == "followers"){
+			</div>`;
+
+	} else if (type == "followers") {
 		showPosts =
-		/*html*/
+			/*html*/
 			`<div class="friend-card user" data-id="${post.id}">
 				<div class="profile-img">
 				${post.profileAvatar}
@@ -142,11 +143,10 @@ function loadPosts(post, appendTo, type="posts") {
 					<button class="follow-btn">unfollow</button>
 					<button>Message</button>
 				</div>
-			</div>`
-		;
-	} else if (type == "following"){
+			</div>`;
+	} else if (type == "following") {
 		showPosts =
-		/*html*/
+			/*html*/
 			`<div class="friend-card user" data-id="${post.id}">
 				<div class="profile-img">
 				${post.profileAvatar}
@@ -158,18 +158,17 @@ function loadPosts(post, appendTo, type="posts") {
 					<!--<button class="follow-btn">unfollow</button>-->
 					<button>Message</button>
 				</div>
-			</div>`
-		;
+			</div>`;
 	}
 	return appendTo.append(showPosts);
 }
 
 // loading user's action
-function loadUsersActions(PAGE, appendTo, type="posts", limit=5) {
+function loadUsersActions(PAGE, appendTo, type = "posts", limit = 5) {
 	$.post("../app/controllers/ajax/show-posts_controller.php", {
 		USERNAME,
 		page: PAGE,
-		type:type,
+		type: type,
 		limit: limit
 	}, function (res) {
 		let data = jQuery.parseJSON(res);
@@ -179,12 +178,12 @@ function loadUsersActions(PAGE, appendTo, type="posts", limit=5) {
 			loadPosts(post, appendTo, type);
 		}
 		let counter;
-		data.posts.length > 0 ? counter = data.posts[data.posts.length-1].post_id : void(0)
-	
+		data.posts.length > 0 ? counter = data.posts[data.posts.length - 1].post_id : void(0)
+
 		$(".load-posts").on('click', loadMore());
 		$(".delete-feed").on('click', loadMore(1));
 
-		function loadMore(limit=5) {
+		function loadMore(limit = 5) {
 			return function (e) {
 				e.preventDefault();
 				$.post("../app/controllers/ajax/show-posts_controller.php", {
@@ -211,11 +210,14 @@ function loadUsersActions(PAGE, appendTo, type="posts", limit=5) {
 							$(".loader").hide();
 							$(".no-more-posts")
 								.html(`There is no more ${type} to show.`)
-								.css({ "padding-top": '3%', "padding-bottom": '7%' });
+								.css({
+									"padding-top": '3%',
+									"padding-bottom": '7%'
+								});
 						}
 
 					}, 500);
-					data.posts.length > 0 ? counter = data.posts[data.posts.length - 1].post_id : void (0);
+					data.posts.length > 0 ? counter = data.posts[data.posts.length - 1].post_id : void(0);
 
 				});
 			};
@@ -223,145 +225,206 @@ function loadUsersActions(PAGE, appendTo, type="posts", limit=5) {
 	});
 }
 
-function displayTrending(data, avatar){
-	let card = 
-	/*html*/ `
-	<div class="trending-user-card">
-		<div class="profile-img">
-			${avatar}
-		</div>	
-		<div class="info">
-			<h2>${data.fullname}
-				<a href="#"> @${data.username}</a>
-			</h2>
-		</div>
-		<div class="btns">
-			<button></button>
-			<button>Message</button>
-		</div>
-	</div>
-	// `
+function displayTrending(data, appendTo) {
+	let showComments = [];
+	for (comment of data.comments) {
+		showComments.push(
+			/*html*/
+			`
+			<div class="comment" data-id=${comment.id}>
+				<div class="comment-header">
+					<a href='../public/${data}'>
+						<h4>
+							<div class="users-avatar">${comment.avatar}</div>
+							${comment.fullname} 
+							<span>&nbsp;@${comment.username}<span>
+						</h4>
+					</a>
+					${comment.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${data.post_id}'></i>` : ''}
+				</div>
+			<small>${comment.date_created}</small>
+			<hr>
+			<p>${comment.message}</p>
+			<hr>
+		</div>`
+
+		);
+	}
+	
+	let trendingPosts =
+		/*html*/
+		`
+		<div class="feed" data-id="${data.post_id}">
+			<div class="feed-info">
+				<div class="post-header">
+					<a href='../public/${data.username}'>
+						<div class="users-info">
+							<div class="users-avatar">
+								${data.avatar}
+							</div>
+							<h4>${data.fullname} 
+								<span> @${data.username}</span>
+							</h4>
+						</div>
+					</a>
+					${data.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${data.post_id}'></i>` : ''}
+				</div>
+				<span class="date"><small>${data.date_created}</small></span>
+				<hr>
+			</div>
+
+			<div class="feed-message">
+				<p class="post-msg">${data.message}</p>
+				<hr>
+				<div class="reactions">
+					<span class="fas fa-heart ${data.liked}">
+						<small class="likes">${data.total_likes}</small>
+					</span>  
+					<div class="comment-body">
+						<span class="fas fa-comment" id="${data.post_id}">
+							<small class="comment-count">${data.total_comments}</small>
+						</span>
+						<div class="comment-info" data-id="${data.post_id}">
+							<div class="post-comments">${typeof comment != "undefined" ? data.post_id == comment.parent_id ? showComments.join(' ') : '' : void(0)}</div>
+							<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+							<small class="new-comment">Comment</small>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>`;
+		return appendTo.append(trendingPosts)
 }
 
-function loadTrending(type, appendTo){
-	$.post("../app/controllers/ajax/load-trendings_controller.php",{
-		type:type
-	}, function(res){
-		// console.log(res)
+function loadTrending(type, appendTo) {
+	$.post("../app/controllers/ajax/load-trendings_controller.php", {
+		type: type,
+		CURRENT_USER
+	}, function (res) {
+		console.log(res)
 		let data = jQuery.parseJSON(res)
 		console.log(data)
-		// for(dataResuls of data){	
-		// 	displayTrending(dataResuls, avatar)
-		// }
+		for(dataResuls of data){	
+			displayTrending(dataResuls, appendTo);
+		}
 	})
 }
 
 // first load (posts)
-if(typeof PAGE != "undefined"){
+if (typeof PAGE != "undefined") {
 
-	if(PAGE == "homepage"){
+	if (PAGE == "homepage") {
 		loadUsersActions("homepage", $("#feed-controller"));
-	} else if(PAGE == "profile"){
+	} else if (PAGE == "profile") {
 		loadUsersActions("profile", $(".users-posts"), "posts");
-		
+
 		// get users posts
 		$(".post-action").click(() => toggleUserAction(
-			$(".get-posts"), 
-			$(".get-images"), 
-			$(".get-followers"), 
+			$(".get-posts"),
+			$(".get-images"),
+			$(".get-followers"),
 			$(".get-following")
 		));
 		$(".post-action").click(() => loadUsersActions("profile", $(".users-posts"), "posts"));
-		
+
 		// get users images
 		$(".image-action").click(() => toggleUserAction(
-			$(".get-images"), 
-			$(".get-followers"), 
-			$(".get-posts"), 
+			$(".get-images"),
+			$(".get-followers"),
+			$(".get-posts"),
 			$(".get-following")
-			));
+		));
 		$(".image-action").click(() => loadUsersActions("profile", $(".users-images"), "images"));
-		
+
 		// get users followers
 		$(".followers-action").click(() => toggleUserAction(
-			$(".get-followers"), 
-			$(".get-images"), 
-			$(".get-posts"), 
+			$(".get-followers"),
+			$(".get-images"),
+			$(".get-posts"),
 			$(".get-following")
 		));
 		$(".followers-action").click(() => loadUsersActions("profile", $(".users-followers"), "followers"));
-		
+
 		// get users following
 		$(".following-action").click(() => toggleUserAction(
-			$(".get-following"), 
-			$(".get-images"), 
-			$(".get-followers"), 
+			$(".get-following"),
+			$(".get-images"),
+			$(".get-followers"),
 			$(".get-posts")
 		));
 		$(".following-action").click(() => loadUsersActions("profile", $(".users-following"), "following"));
-		
-	} else if (PAGE == "trending"){
-		loadTrending('posts', $(".trending-users-container"));
+
+	} else if (PAGE == "trending") {
+		loadTrending('posts', $(".trending-posts-container"));
 	}
 }
 
 // redirect to the feed page 
-$('body').on("click", '.post-msg', function(){
+$('body').on("click", '.post-msg', function () {
 
-	if(window.location.href == `${APP_URL}homepage`){
+	if (window.location.href == `${APP_URL}homepage`) {
 		window.location.href = `${APP_URL}feed?id=${($(this).closest(".feed").data("id"))}`;
 	}
 
 })
 
 // toggle comments
-$('body').on('click', '.fa-comment', function(){
+$('body').on('click', '.fa-comment', function () {
 	let el = $(this).parent();
 	el.parent().is('#comment-per-feed') ? void(0) : el.find('.comment-info').slideToggle(400)
 })
 
 // delete posts
-$('body').on('click', '.delete-feed', function(){
+$('body').on('click', '.delete-feed', function () {
 	let post = $(this).closest('.feed');
 	$.post("../app/controllers/ajax/delete-post_controller.php", {
 		postId: post.data('id')
-	}, function(data){
+	}, function (data) {
 		post.remove();
 	})
 })
 
 // delete comment
-$('body').on("click", ".delete-comment", function(){
+$('body').on("click", ".delete-comment", function () {
 	let comment = $(this).closest(".comment");
 	$.post("../app/controllers/ajax/delete-post_controller.php", {
 		commentId: comment.data("id"),
 		feedId: comment.closest(".feed").data("id")
-	}, function(res){
+	}, function (res) {
 		let data = jQuery.parseJSON(res);
-		comment.parent().is('.post-comments') 
-			? comment.closest(".feed").find(".comment-count").html(data.total)
-			: $("body").find(".comment-count").html(data.total);
+		comment.parent().is('.post-comments') ?
+			comment.closest(".feed").find(".comment-count").html(data.total) :
+			$("body").find(".comment-count").html(data.total);
 		comment.remove();
+		if ($("body").find('.comment-container').hasClass("feed")) {
+			if ($(".comment-container").children().length == 0) {
+				$("body").find(".down-arrow").remove();
+			}
+		}
 	});
 
 })
 
 // comment system
-$('body').on("click", ".new-comment", function(){
-	let post
-	$(this).parent().is('.comment-info')
-		? addCommentCall(
+$('body').on("click", ".new-comment", function () {
+
+	$(this).parent().is('.comment-info') ?
+		addCommentCall(
 			($(this).closest(".feed")),
 			($(this).closest(".feed")),
 			($(this).closest(".feed")).find(".comment-field").val(),
 			".post-comments"
-		)
-		: addCommentCall(
+		) :
+		addCommentCall(
 			($('body').find("#feed")),
 			($('body')),
 			($('body')).find(".comment-field").val(),
-			".feed"
-		);
+			".comment-container"
+		)
+	$('body')
+		.find("#arrow-icon")
+		.empty()
+		.append(`<p class="down-arrow"><i class="fas fa-level-down-alt"></i></p>`);
 
 	function addCommentCall(post, el, value, appendTo) {
 
@@ -369,13 +432,13 @@ $('body').on("click", ".new-comment", function(){
 			postId: post.data('id'),
 			msg: value
 		}, function (res) {
-			console.log(res);
+			// console.log(res);
 			let data = res;
 			if (data.comment) {
 				el.find(".comment-count").html(data.total);
-				
 				el.find(appendTo).append(
-					/*html*/`
+					/*html*/
+					`
 					<div class="comment" data-id=${data.id}>
 						<div class="comment-header">
 							<a href='../public/${data.username}>'>
@@ -400,12 +463,12 @@ $('body').on("click", ".new-comment", function(){
 })
 
 // like system
-$("body").on("click", ".fa-heart", function(){
+$("body").on("click", ".fa-heart", function () {
 	let post = $(this).closest('.feed');
 	$.post("../app/controllers/ajax/like_controller.php", {
 		postId: post.data("id")
-	}, function(res){
-		let data = jQuery.parseJSON(res);		
+	}, function (res) {
+		let data = jQuery.parseJSON(res);
 		if (data.liked) {
 			post.find(".likes").html(data.total);
 			post.find(".fa-heart")
@@ -420,7 +483,7 @@ $("body").on("click", ".fa-heart", function(){
 						'transform': 'scale(1)',
 						'font-weight': '100'
 					});
-			},50)
+			}, 50)
 		} else {
 			post.find(".fa-heart").css("color", data.color);
 			post.find(".likes").html(data.total);
@@ -429,56 +492,63 @@ $("body").on("click", ".fa-heart", function(){
 });
 
 // friends card
-$.post("../app/controllers/ajax/load-friends_controller.php", {user: CURRENT_USER},
-function(res){
-	let data = jQuery.parseJSON(res)
+$.post("../app/controllers/ajax/load-friends_controller.php", {
+		user: CURRENT_USER
+	},
+	function (res) {
+		let data = jQuery.parseJSON(res)
 
-	$('.friends-controller').append(
-		/*html*/
-		`<div class="friend-card user" data-id="">
-			<div class="profile-img">${data.avatar}</div>
-			<div class="info">
-				<h2> ${data.fullname}<a href="../public/${data.username}">@${data.username}</a></h2>
-			</div>
-			<div class="btns">
-				<button class="follow-btn">unfollow</button>
-				<button>Message</button>
-			</div>
-		</div>`
-	);
-})
+		$('.friends-controller').append(
+			/*html*/
+			`<div class="friend-card user" data-id="">
+				<div class="profile-img">${data.avatar}</div>
+				<div class="info">
+					<h2> ${data.fullname}<a href="../public/${data.username}">@${data.username}</a></h2>
+				</div>
+				<div class="btns">
+					<button class="follow-btn">unfollow</button>
+					<button>Message</button>
+				</div>
+			</div>`
+		);
+	})
 
 // toggle user's action
-function toggleUserAction(removeClass, addClass0, addClass1, addClass2){
+function toggleUserAction(removeClass, addClass0, addClass1, addClass2) {
 	removeClass.removeClass("show-action");
 	removeClass.find(".feed, .friend-card").remove();
 	addClass0.addClass("show-action");
 	addClass1.addClass("show-action");
 	addClass2.addClass("show-action");
-}	
+}
 
 // toggle search form
-$(".fa-search").click(() => $(".search, .search-background").animate({ left: '0' }, "slow"));
+$(".fa-search").click(() => $(".search, .search-background").animate({
+	left: '0'
+}, "slow"));
 
-$(".fa-times").click( function() {
-	$(".search, .search-background").animate({left:'-30%'}, "slow");
+$(".fa-times").click(function () {
+	$(".search, .search-background").animate({
+		left: '-30%'
+	}, "slow");
 	$(".search-input").val('');
 	$(".input-result, hr").remove();
 });
 
-$("#search-items .search-input").on("keyup ", function(){
+$("#search-items .search-input").on("keyup ", function () {
 
 	let userInput = $(this).val();
-	
-	$.post("../app/controllers/ajax/user-search_controler.php",{
-		searchInput:userInput
-	}, function(res){
+
+	$.post("../app/controllers/ajax/user-search_controler.php", {
+		searchInput: userInput
+	}, function (res) {
 		let data = jQuery.parseJSON(res);
-	
+
 		$(".results").html("")
-		for (user of data){
-			let searchResult = 	
-			/*html*/`
+		for (user of data) {
+			let searchResult =
+				/*html*/
+				`
 			<div class="input-result">
 				${user.avatar ? `<img style='width:35px;height:35px' src="../files/assets/img/avatars/${user.avatar}" alt='image-profile'></img>` : `<span>${user.fullname.charAt(0)}</span>`}
 				<h4>${user.fullname} 
@@ -490,30 +560,30 @@ $("#search-items .search-input").on("keyup ", function(){
 			<hr>
 			`;
 			$(".results").append(searchResult);
-					
-		}	
-	
+
+		}
+
 	})
 })
 
 // follow system
-$(".user-container, #friends-container, .users-followers, .users-following").on('click','.follow-btn', function() {
-	
+$(".user-container, #friends-container, .users-followers, .users-following").on('click', '.follow-btn', function () {
+
 	$.post("../app/controllers/ajax/follow-unfollow_controller.php", {
 		userId: $(this).closest(".user").data("id")
-	}, function(res){
-		console.log(res)
+	}, function (res) {
+		// console.log(res)
 		let data = jQuery.parseJSON(res);
-		if(data.followed){
+		if (data.followed) {
 			$('.follow-btn').html("unfollow");
 			$("#followers").html(data.totalFollowers);
-		}else{
+		} else {
 			$('.follow-btn').html("follow");
 			$("#followers").html(data.totalFollowers);
 		}
 	})
-	if(!$(this).closest(".friend-card").parent().hasClass("users-following")){
-		if(($(this).parent().hasClass( "btns" ))){
+	if (!$(this).closest(".friend-card").parent().hasClass("users-following")) {
+		if (($(this).parent().hasClass("btns"))) {
 			$(this).closest(".friend-card").remove()
 		}
 	}

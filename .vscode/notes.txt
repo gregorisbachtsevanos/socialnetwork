@@ -46,4 +46,25 @@
 					</div> <!-- end feed-message -->
 
 				</div>
+				
 				an independent and self-motivated web developer interested for the backend technologies. Skilled with php, node.js, express, and vue.js
+
+				$sql = 'SELECT * 
+          FROM `table` 
+         WHERE `id` IN (' . implode(',', array_map('intval', $array)) . ')';
+
+
+		 <div class="trending-user-card">
+		<div class="profile-img">
+			${avatar}
+		</div>	
+		<div class="info">
+			<h2>${data.fullname}
+				<a href="#"> @${data.username}</a>
+			</h2>
+		</div>
+		<div class="btns">
+			<button></button>
+			<button>Message</button>
+		</div>
+	</div>
