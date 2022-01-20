@@ -37,10 +37,22 @@
 		.trending-categories-contoller {
 			width: 100%;
 
-			.trending-posts-container {
+			.trending-users-container,
+			.trending-images-container,
+			.trending-posts-container{
+				position: absolute;
 				width: 100%;
+				left: 15%;
+				transition: 1.5s;
+			}
+
+			.trending-users-container,
+			.trending-images-container,
+			.trending-posts-container {
+				width: 45%;
 
 				.feed {
+					width: 75%;
 					border-radius: 10px;
 					padding: 1.5%;
 					margin: 2% 0;
@@ -259,6 +271,71 @@
 				}
 
 				//end feed
+
+				.trending-card{
+					width: 75%;
+					margin: 2% 0;
+					padding: 5%;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					border-radius: 10px;
+					// border: 2px solid rgba(51,51,51,1);
+					background-color: rgba(30, 31, 32, 1);
+		
+					.profile-img{
+						width: 150px;
+						height: 150px;
+						color: var(--secondary-bg-color);
+						background-color: var(--secondary-text-color);
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border-radius: 100px;
+						
+						img{
+							border-radius: 100px;
+							border: 3px solid var(--secondary-text-color);
+							width: 100%;    
+						}
+		
+						.user-icon{
+							font-size: 4.4rem;
+							font-weight: 700;
+						}
+					}
+		
+					.info{
+						width: 60%;
+						line-height: 1.5rem;
+						
+						h2{
+							color: var(--main-text-color);
+						}
+						a{
+							font-size: .9rem;
+							text-decoration: none;
+							color: var(--secondary-text-color);
+						}
+						p{
+							font-weight: 100;
+						}
+		
+					}
+					.btns{
+						width: 100%;
+						display: flex;
+						justify-content: space-evenly;
+						
+						button{
+							padding: 2%;
+							border: none;
+							cursor: pointer;
+							border-radius: 5px;
+							background-color: var(--secondary-text-color);
+						}
+					}
+				} // end friend card
 			}
 		}
 	}
@@ -374,3 +451,9 @@
 		}
 	}
 }
+
+.show-action{
+    transform: scale(0) translate(0,-50%);
+    transition: 1s;
+    opacity: 0;
+} 

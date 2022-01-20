@@ -49,22 +49,26 @@
 				
 				an independent and self-motivated web developer interested for the backend technologies. Skilled with php, node.js, express, and vue.js
 
+				array params * for posts of the following
 				$sql = 'SELECT * 
-          FROM `table` 
-         WHERE `id` IN (' . implode(',', array_map('intval', $array)) . ')';
+					FROM `table` 
+					WHERE `id` IN (' . implode(',', array_map('intval', $array)) . ')';
 
+				<div class="trending-user-card">
+					<div class="profile-img">
+						${avatar}
+					</div>	
+					<div class="info">
+						<h2>${data.fullname}
+							<a href="#"> @${data.username}</a>
+						</h2>
+					</div>
+					<div class="btns">
+						<button></button>
+						<button>Message</button>
+					</div>
+				</div>
 
-		 <div class="trending-user-card">
-		<div class="profile-img">
-			${avatar}
-		</div>	
-		<div class="info">
-			<h2>${data.fullname}
-				<a href="#"> @${data.username}</a>
-			</h2>
-		</div>
-		<div class="btns">
-			<button></button>
-			<button>Message</button>
-		</div>
-	</div>
+				document.getElementById('foobar').addEventListener('keyup', e => {
+  console.log('Caret at: ', e.target.selectionStart)
+})

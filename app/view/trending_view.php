@@ -26,13 +26,15 @@ loadHeader($title)?>
 	<div class="trending-categories-container">
 		<div class="trending-categories-contoller">
 			<div class="trending-users-container">
+			<h4>Most followed users</h4>
 
 		</div>
-			<div class="trending-posts-container">
+			<div class="trending-posts-container show-action">
 			<h4>Most liked posts of the last seven  days</h4>
 
 			</div>
-			<div class="trending-images-container">
+			<div class="trending-images-container show-action">
+			<h4>Most liked images of the last seven  days</h4>
 
 			</div>
 		</div>

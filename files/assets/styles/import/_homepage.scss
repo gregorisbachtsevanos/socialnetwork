@@ -9,12 +9,30 @@
 
         textarea {
             width: 100%;
-            border: 2px solid rgba(30, 31, 32, 1);
-            border-radius: 10px;
+            // border: 2px solid rgba(30, 31, 32, 1);
+            // border-radius: 10px;
+            border: none;
             background-color: transparent;
-            color: var(--main-text-color);
+            color: transparent;
             padding: 1%;
             outline: none;
+            resize:none;
+            caret-color: var(--secondary-text-color);
+        }
+
+        #display-feed{
+            width: 35%;
+            top: 9.5%;
+            height: 131px;
+            font-weight: 400;
+            border: 2px solid rgba(30, 31, 32, 1);
+            border-radius: 10px;
+            padding: .3%;
+            color: var(--main-text-color);
+            position: absolute;
+            font-size: .8rem;
+            background-color: transparent;
+            z-index: -50;
         }
 
         #feedBtn-controller {
@@ -125,8 +143,10 @@
 
                 .post-msg {
                     padding: 1% 0;
+                    cursor: pointer;
                 }
-                    .reactions{
+                
+                .reactions{
                         display: flex;
                         width: 100%;
                         
@@ -247,8 +267,8 @@
 
                     } //end comment-body
                 }
+
             } //end feed-message
-            
 
         } //end feed
         

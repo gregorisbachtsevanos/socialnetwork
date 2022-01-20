@@ -11,6 +11,7 @@ loadHeader($title)?>
 		<div id="textarea-container">
 			<div id="textarea-controller">
 				<textarea name="new-feed" id="new-feed" placeholder="share your thoughts" rows="7" required></textarea>
+				<div id="display-feed" value="share your thoughts"></div>
 			</div>
 			<div id="feedBtn-controller">
 				<div id="media">

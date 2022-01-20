@@ -172,7 +172,7 @@ function loadUsersActions(PAGE, appendTo, type = "posts", limit = 5) {
 		limit: limit
 	}, function (res) {
 		let data = jQuery.parseJSON(res);
-		console.log(data);
+		// console.log(data);
 		// let showPosts = '';
 		for (post of data.posts) {
 			loadPosts(post, appendTo, type);
@@ -225,75 +225,94 @@ function loadUsersActions(PAGE, appendTo, type = "posts", limit = 5) {
 	});
 }
 
-function displayTrending(data, appendTo) {
+function displayTrending(data, appendTo, type) {
 	let showComments = [];
-	for (comment of data.comments) {
-		showComments.push(
+	let trendingPosts = ''
+	if(type != 'users'){
+		for (comment of data.comments) {
+			showComments.push(
+				/*html*/
+				`
+				<div class="comment" data-id=${comment.id}>
+					<div class="comment-header">
+						<a href='../public/${data}'>
+							<h4>
+								<div class="users-avatar">${comment.avatar}</div>
+								${comment.fullname} 
+								<span>&nbsp;@${comment.username}<span>
+							</h4>
+						</a>
+						${comment.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${data.post_id}'></i>` : ''}
+					</div>
+				<small>${comment.date_created}</small>
+				<hr>
+				<p>${comment.message}</p>
+				<hr>
+			</div>`
+
+			);
+		} 
+		data.message == null
+			? feed = `<img src=../files/assets/img/avatars/${data.image} width="100%" height="100%" alt="image-feed">`	
+			: feed = data.message
+		trendingPosts =
 			/*html*/
 			`
-			<div class="comment" data-id=${comment.id}>
-				<div class="comment-header">
-					<a href='../public/${data}'>
-						<h4>
-							<div class="users-avatar">${comment.avatar}</div>
-							${comment.fullname} 
-							<span>&nbsp;@${comment.username}<span>
-						</h4>
-					</a>
-					${comment.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-comment' data-id='${data.post_id}'></i>` : ''}
-				</div>
-			<small>${comment.date_created}</small>
-			<hr>
-			<p>${comment.message}</p>
-			<hr>
-		</div>`
-
-		);
-	}
-	
-	let trendingPosts =
-		/*html*/
-		`
-		<div class="feed" data-id="${data.post_id}">
-			<div class="feed-info">
-				<div class="post-header">
-					<a href='../public/${data.username}'>
-						<div class="users-info">
-							<div class="users-avatar">
-								${data.avatar}
+			<div class="feed" data-id="${data.post_id}">
+				<div class="feed-info">
+					<div class="post-header">
+						<a href='../public/${data.username}'>
+							<div class="users-info">
+								<div class="users-avatar">
+									${data.avatar}
+								</div>
+								<h4>${data.fullname} 
+									<span> @${data.username}</span>
+								</h4>
 							</div>
-							<h4>${data.fullname} 
-								<span> @${data.username}</span>
-							</h4>
-						</div>
-					</a>
-					${data.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${data.post_id}'></i>` : ''}
-				</div>
-				<span class="date"><small>${data.date_created}</small></span>
-				<hr>
-			</div>
-
-			<div class="feed-message">
-				<p class="post-msg">${data.message}</p>
-				<hr>
-				<div class="reactions">
-					<span class="fas fa-heart ${data.liked}">
-						<small class="likes">${data.total_likes}</small>
-					</span>  
-					<div class="comment-body">
-						<span class="fas fa-comment" id="${data.post_id}">
-							<small class="comment-count">${data.total_comments}</small>
-						</span>
-						<div class="comment-info" data-id="${data.post_id}">
-							<div class="post-comments">${typeof comment != "undefined" ? data.post_id == comment.parent_id ? showComments.join(' ') : '' : void(0)}</div>
-							<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
-							<small class="new-comment">Comment</small>
-						</div>
+						</a>
+						${data.username == CURRENT_USER ? `<i class='far fa-trash-alt delete-feed' data-id='${data.post_id}'></i>` : ''}
 					</div>
-				</div> 
+					<span class="date"><small>${data.date_created}</small></span>
+					<hr>
+				</div>
+
+				<div class="feed-message">
+					<p class="post-msg">${feed}</p>
+					<hr>
+					<div class="reactions">
+						<span class="fas fa-heart ${data.liked}">
+							<small class="likes">${data.total_likes}</small>
+						</span>  
+						<div class="comment-body">
+							<span class="fas fa-comment" id="${data.post_id}">
+								<small class="comment-count">${data.total_comments}</small>
+							</span>
+							<div class="comment-info" data-id="${data.post_id}">
+								<div class="post-comments">${typeof comment != "undefined" ? data.post_id == comment.parent_id ? showComments.join(' ') : '' : void(0)}</div>
+								<input type="text" name="comment" class="comment-field" autocomplete="off" placeholder="Add a comment" required>
+								<small class="new-comment">Comment</small>
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>`;
+	} else {
+		trendingPosts = 
+		/*html*/
+		`<div class="trending-card user" data-id="">
+			<div class="profile-img">${data.avatar}</div>
+			<div class="info">
+				<h2> ${data.fullname}</h2>
+				<a href="../public/${data.username}">@${data.username}</a>
+				<p>${data.followers} followers</p>
+				<p>${data.following} following</p>
 			</div>
-		</div>`;
-		return appendTo.append(trendingPosts)
+			
+		</div>`
+	}
+
+	return appendTo.append(trendingPosts)
 }
 
 function loadTrending(type, appendTo) {
@@ -301,13 +320,58 @@ function loadTrending(type, appendTo) {
 		type: type,
 		CURRENT_USER
 	}, function (res) {
-		console.log(res)
+		// console.log(res)
 		let data = jQuery.parseJSON(res)
-		console.log(data)
+		// console.log(data)
 		for(dataResuls of data){	
-			displayTrending(dataResuls, appendTo);
+			displayTrending(dataResuls, appendTo, type);
 		}
 	})
+}
+
+// toggle user's action
+function toggleUserAction(removeClass, addClass0, addClass1, addClass2 = null) {
+	removeClass.removeClass("show-action");
+	removeClass.find(".feed, .friend-card").remove();
+	addClass0.addClass("show-action");
+	addClass1.addClass("show-action");
+	if(addClass2 != null){
+		addClass2.addClass("show-action");
+	}
+}
+
+function addCommentCall(post, el, value, appendTo) {
+
+	$.post("../app/controllers/ajax/new-comment_controller.php", {
+		postId: post.data('id'),
+		msg: value
+	}, function (res) {
+		// console.log(res);
+		let data = res;
+		if (data.comment) {
+			el.find(".comment-count").html(data.total);
+			el.find(appendTo).append(
+				/*html*/
+				`
+				<div class="comment" data-id=${data.id}>
+					<div class="comment-header">
+						<a href='../public/${data.username}>'>
+							<h4>
+								<div class="users-avatar">${data.avatar}</div>
+								${data.fullname}&nbsp; <span>@${data.username} </span>
+							</h4>
+						</a>
+							<p style="color: #d4d4d4"><i class="far fa-trash-alt delete-comment" data-id=${data.id}></i></p>
+					</div>
+					<small>${data.date_created}</small>
+					<hr>
+					<p>${data.message}</p>
+					<hr>
+				</div>`
+			);
+		}
+	});
+	el.find(".comment-field").val('');
 }
 
 // first load (posts)
@@ -355,7 +419,28 @@ if (typeof PAGE != "undefined") {
 		$(".following-action").click(() => loadUsersActions("profile", $(".users-following"), "following"));
 
 	} else if (PAGE == "trending") {
-		loadTrending('posts', $(".trending-posts-container"));
+		loadTrending('users', $(".trending-users-container"));
+		
+		$('.trending-users').click(() => loadTrending('users', $(".trending-users-container")));
+		$(".trending-users").click(() => toggleUserAction(
+			$(".trending-users-container"),
+			$(".trending-posts-container"),
+			$(".trending-images-container")
+		));
+		
+		$('.trending-post').click(() => loadTrending('posts', $(".trending-posts-container")));
+		$(".trending-post").click(() => toggleUserAction(
+			$(".trending-posts-container"),
+			$(".trending-users-container"),
+			$(".trending-images-container")
+		));
+
+		$('.trending-images').click(() => loadTrending('images', $(".trending-images-container")));
+		$(".trending-images").click(() => toggleUserAction(
+			$(".trending-images-container"),
+			$(".trending-posts-container"),
+			$(".trending-users-container")
+		));
 	}
 }
 
@@ -425,43 +510,10 @@ $('body').on("click", ".new-comment", function () {
 		.find("#arrow-icon")
 		.empty()
 		.append(`<p class="down-arrow"><i class="fas fa-level-down-alt"></i></p>`);
-
-	function addCommentCall(post, el, value, appendTo) {
-
-		$.post("../app/controllers/ajax/new-comment_controller.php", {
-			postId: post.data('id'),
-			msg: value
-		}, function (res) {
-			// console.log(res);
-			let data = res;
-			if (data.comment) {
-				el.find(".comment-count").html(data.total);
-				el.find(appendTo).append(
-					/*html*/
-					`
-					<div class="comment" data-id=${data.id}>
-						<div class="comment-header">
-							<a href='../public/${data.username}>'>
-								<h4>
-									<div class="users-avatar">${data.avatar}</div>
-									${data.fullname}&nbsp; <span>@${data.username} </span>
-								</h4>
-							</a>
-								<p style="color: #d4d4d4"><i class="far fa-trash-alt delete-comment" data-id=${data.id}></i></p>
-						</div>
-						<small>${data.date_created}</small>
-						<hr>
-						<p>${data.message}</p>
-						<hr>
-					</div>`
-				);
-			}
-		});
-		el.find(".comment-field").val('');
-	}
-
+		
+		// comment function
 })
-
+	
 // like system
 $("body").on("click", ".fa-heart", function () {
 	let post = $(this).closest('.feed');
@@ -511,22 +563,15 @@ $.post("../app/controllers/ajax/load-friends_controller.php", {
 				</div>
 			</div>`
 		);
-	})
-
-// toggle user's action
-function toggleUserAction(removeClass, addClass0, addClass1, addClass2) {
-	removeClass.removeClass("show-action");
-	removeClass.find(".feed, .friend-card").remove();
-	addClass0.addClass("show-action");
-	addClass1.addClass("show-action");
-	addClass2.addClass("show-action");
-}
+	}
+)
 
 // toggle search form
 $(".fa-search").click(() => $(".search, .search-background").animate({
 	left: '0'
 }, "slow"));
 
+// search animation
 $(".fa-times").click(function () {
 	$(".search, .search-background").animate({
 		left: '-30%'
@@ -535,6 +580,7 @@ $(".fa-times").click(function () {
 	$(".input-result, hr").remove();
 });
 
+// search results
 $("#search-items .search-input").on("keyup ", function () {
 
 	let userInput = $(this).val();
@@ -587,4 +633,29 @@ $(".user-container, #friends-container, .users-followers, .users-following").on(
 			$(this).closest(".friend-card").remove()
 		}
 	}
+})
+
+// // feed display
+let text = ''
+$('#new-feed').keypress((e)=>{
+	// console.log(e.key)
+	// console.log($("#display-feed").text())
+	text += e.key
+	if(e.key == "#" || e.which == 51){
+		// console.log(e.target.selectionStart)
+		console.log(text)
+		if(e.key != ' ' || e.which != 32){
+			text += e.key.replace('#', `<span style="color: #bb60d5;">gds</span>`)
+			// text += e.key.replace('#', `<span style="color: #bb60d5;">gds</span>`)
+			
+			
+			}
+		}else if(e.key == "@" || e.which == 50){
+			alert("@")
+		} else {
+			
+			// text.join(`<span>${e.key}</span>`)
+		}
+		$("#display-feed").text(text)
+		// console.log(text)
 })

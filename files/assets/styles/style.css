@@ -969,12 +969,28 @@ body {
 
 #feed-container #textarea-container textarea {
   width: 100%;
-  border: 2px solid #1e1f20;
-  border-radius: 10px;
+  border: none;
   background-color: transparent;
-  color: var(--main-text-color);
+  color: transparent;
   padding: 1%;
   outline: none;
+  resize: none;
+  caret-color: var(--secondary-text-color);
+}
+
+#feed-container #textarea-container #display-feed {
+  width: 35%;
+  top: 9.5%;
+  height: 131px;
+  font-weight: 400;
+  border: 2px solid #1e1f20;
+  border-radius: 10px;
+  padding: .3%;
+  color: var(--main-text-color);
+  position: absolute;
+  font-size: .8rem;
+  background-color: transparent;
+  z-index: -50;
 }
 
 #feed-container #textarea-container #feedBtn-controller {
@@ -1101,6 +1117,7 @@ body {
 
 #feed-container #feed-controller .feed .feed-message .post-msg {
   padding: 1% 0;
+  cursor: pointer;
 }
 
 #feed-container #feed-controller .feed .feed-message .reactions {
@@ -1334,17 +1351,34 @@ body {
   width: 100%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container {
+  position: absolute;
   width: 100%;
+  left: 15%;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container {
+  width: 45%;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed {
+  width: 75%;
   border-radius: 10px;
   padding: 1.5%;
   margin: 2% 0;
   background-color: rgba(30, 31, 32, 0.8);
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1355,11 +1389,15 @@ body {
   padding-bottom: 1%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a {
   text-decoration: none;
   width: 100%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1369,6 +1407,8 @@ body {
           align-items: center;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info .users-avatar,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info .users-avatar,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info .users-avatar {
   height: 50px;
   width: 50px;
@@ -1388,38 +1428,54 @@ body {
   margin-right: 1%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info .users-avatar img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info .users-avatar img,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info .users-avatar img {
   border-radius: 100px;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info .users-avatar .user-icon,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info .users-avatar .user-icon,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info .users-avatar .user-icon {
   font-size: 1.7rem;
   font-weight: 700;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info h4,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info h4,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info h4 {
   color: var(--main-text-color);
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .post-header a .users-info h4 span,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .post-header a .users-info h4 span,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .post-header a .users-info h4 span {
   color: var(--secondary-text-color);
   font-size: .8rem;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-info .date,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-info .date,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-info .date {
   font-size: .8rem;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed hr,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed hr,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .post-msg,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .post-msg,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .post-msg {
   padding: 1% 0;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1427,6 +1483,8 @@ body {
   width: 100%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .fa-heart,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .fa-heart,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .fa-heart {
   font-size: 1.1rem;
   font-weight: 100;
@@ -1434,15 +1492,21 @@ body {
   width: 5%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body {
   width: 90%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .fa-comment,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .fa-comment,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .fa-comment {
   font-size: 1.1rem;
   font-weight: 100;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info {
   width: 100%;
   border-radius: 10px;
@@ -1451,10 +1515,14 @@ body {
   display: none;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments {
   font-size: 1rem;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment {
   width: 100%;
   margin: auto;
@@ -1463,6 +1531,8 @@ body {
   font-size: var(--middle-text-size);
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1472,6 +1542,8 @@ body {
           justify-content: space-between;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a {
   width: 60%;
   text-decoration: none;
@@ -1480,6 +1552,8 @@ body {
   display: flex;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 {
   width: 100%;
   display: -webkit-box;
@@ -1492,11 +1566,15 @@ body {
   color: #d4d4d4;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 span,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 span,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 span {
   color: var(--secondary-text-color);
   font-size: .8rem;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar {
   height: 50px;
   width: 50px;
@@ -1515,30 +1593,42 @@ body {
   margin-right: 1%;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar .user-icon,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar .user-icon,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar .user-icon {
   font-size: 1.7rem;
   color: var(--secondary-bg-color);
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar img,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment .comment-header a h4 .users-avatar img {
   border-radius: 100px;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment small,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment small,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment small {
   font-size: var(--small-text-size);
   font-weight: 300;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment p,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment p,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment p {
   padding: .5% 0;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment hr,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment hr,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .post-comments .comment hr {
   border: none;
   border-top: 1px solid #333333;
   margin: 1% 0;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info input[type=text],
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info input[type=text],
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info input[type=text] {
   background-color: transparent;
   border: none;
@@ -1548,6 +1638,8 @@ body {
   font-weight: 300;
 }
 
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .feed .feed-message .reactions .comment-body .comment-info .new-comment,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .feed .feed-message .reactions .comment-body .comment-info .new-comment,
 .trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .feed .feed-message .reactions .comment-body .comment-info .new-comment {
   width: 10%;
   padding: 0 1%;
@@ -1557,6 +1649,108 @@ body {
   color: #1e1f20;
   border-radius: 10px;
   border: 1px solid var(--secondary-text-color);
+  background-color: var(--secondary-text-color);
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card {
+  width: 75%;
+  margin: 2% 0;
+  padding: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+  background-color: #1e1f20;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .profile-img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .profile-img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .profile-img {
+  width: 150px;
+  height: 150px;
+  color: var(--secondary-bg-color);
+  background-color: var(--secondary-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 100px;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .profile-img img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .profile-img img,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .profile-img img {
+  border-radius: 100px;
+  border: 3px solid var(--secondary-text-color);
+  width: 100%;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .profile-img .user-icon,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .profile-img .user-icon,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .profile-img .user-icon {
+  font-size: 4.4rem;
+  font-weight: 700;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .info,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .info,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .info {
+  width: 60%;
+  line-height: 1.5rem;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .info h2,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .info h2,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .info h2 {
+  color: var(--main-text-color);
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .info a,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .info a,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .info a {
+  font-size: .9rem;
+  text-decoration: none;
+  color: var(--secondary-text-color);
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .info p,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .info p,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .info p {
+  font-weight: 100;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .btns,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .btns,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .btns {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.trending-container .trending-categories-container .trending-categories-contoller .trending-users-container .trending-card .btns button,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-images-container .trending-card .btns button,
+.trending-container .trending-categories-container .trending-categories-contoller .trending-posts-container .trending-card .btns button {
+  padding: 2%;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
   background-color: var(--secondary-text-color);
 }
 
@@ -1694,6 +1888,14 @@ body {
   font-weight: 500;
   border-radius: 5px;
   background-color: var(--secondary-text-color);
+}
+
+.show-action {
+  -webkit-transform: scale(0) translate(0, -50%);
+          transform: scale(0) translate(0, -50%);
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
 }
 
 #nav-container {
