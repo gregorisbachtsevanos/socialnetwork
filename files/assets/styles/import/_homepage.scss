@@ -37,16 +37,17 @@
 
         #feedBtn-controller {
             width: 100%;
+            height: auto;
             display: flex;
+            margin-top: 2%;
             justify-content: space-between;
-            padding: 1%;
 
             #media {
-                width: 20%;
+                width: 30%;
+                display: flex;
 
-                .fas {
-                    width: 30%;
-                    display: inline-flex;
+                svg {
+                    width: 100%;
                     flex-flow: column;
                     justify-content: space-between;
                     font-size: 1rem;
@@ -57,6 +58,7 @@
 
             #feed-btn {
                 width: 10%;
+                height: 20px;
                 border-radius: 10px;
                 border: 1px solid var(--secondary-text-color);
                 background-color: var(--secondary-text-color);
@@ -315,4 +317,14 @@
 
 .not-liked {
     color: var(--main-text-color);
+}
+
+.hastag{
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.mention{
+    color: var(--secondary-text-color);
+    font-weight: bold;
 }

@@ -47,7 +47,7 @@
 
 				</div>
 				
-				an independent and self-motivated web developer interested for the backend technologies. Skilled with php, node.js, express, and vue.js
+				an independent and self-motivated web developer interested for the computer software industry. Skilled with php, node.js, express, and vue.js
 
 				array params * for posts of the following
 				$sql = 'SELECT * 

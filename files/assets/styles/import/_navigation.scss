@@ -29,12 +29,12 @@
             list-style: none;
             cursor: pointer;
             
-            a{
+            svg{
                 color: var(--main-text-color);
                 transition: .3s;
 
                 &:hover{
-                    color: var(--secondary-text-color);
+                    fill: var(--secondary-text-color);
                 }
             }
             

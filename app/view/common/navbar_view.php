@@ -29,49 +29,55 @@
         <li id='nav-item'>
             <a href="<?php echo $appURL;?>homepage"
                 aria-label="homepage">
-                <i class='fas fa-home'
+                <!-- <i class='fas fa-home'
                     style='font-size:35px'>
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/home.svg" ?>
             </a>
         </li>
         <li id='nav-item'>
             <a href="#"
                 aria-label="search">
-                <i class='fas fa-search'
+                <!-- <i class='fas fa-search'
                     style='font-size:35px'>
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/search.svg" ?>
             </a>
         </li>
         <li id='nav-item'>
             <a href="#"
                 aria-label="notification">
-                <i class='fas fa-bell'
+                <!-- <i class='fas fa-bell'
                     style='font-size:35px'>
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/bell.svg" ?>
             </a>
         </li>
         <li id='nav-item'>
             <a href="#"
                 aria-label="chat">
-                <i class='fas fa-comments'
+                <!-- <i class='fas fa-comments'
                     style='font-size:35px'>
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/envelope.svg" ?>
             </a>
         </li>
         <li id='nav-item'>
             <a href="<?php echo $appURL; ?>trending"
                 aria-label="trending">
-                <i class='fas fa-compass'
+                <!-- <i class='fas fa-compass'
                     style='font-size:35px'>
-                </i>
+                </i> --> 
+                <?php require_once $appFiles."/assets/img/svg/navigation.svg" ?>
             </a>
         </li>
         <li id='nav-item'>
             <a href="<?php echo $appURL; ?>friends"
                 aria-label="friends">
-                <i class='fas fa-user-friends'
+                <!-- <i class='fas fa-user-friends'
                     style='font-size:35px'>
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/users.svg" ?>
             </a>
         </li>
 
@@ -80,9 +86,10 @@
         <li id='nav-item'>
             <a id='logout' href="<?php echo $appURL;?>logout"
                 aria-label="logout">
-                <i class="fas fa-power-off"
+                <!-- <i class="fas fa-power-off"
                     style="font-size:45px">
-                </i>
+                </i> -->
+                <?php require_once $appFiles."/assets/img/svg/logout.svg" ?>
             </a>
         </li>
     </ul>

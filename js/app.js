@@ -228,7 +228,7 @@ function loadUsersActions(PAGE, appendTo, type = "posts", limit = 5) {
 function displayTrending(data, appendTo, type) {
 	let showComments = [];
 	let trendingPosts = ''
-	if(type != 'users'){
+	if (type != 'users') {
 		for (comment of data.comments) {
 			showComments.push(
 				/*html*/
@@ -251,10 +251,10 @@ function displayTrending(data, appendTo, type) {
 			</div>`
 
 			);
-		} 
-		data.message == null
-			? feed = `<img src=../files/assets/img/avatars/${data.image} width="100%" height="100%" alt="image-feed">`	
-			: feed = data.message
+		}
+		data.message == null ?
+			feed = `<img src=../files/assets/img/avatars/${data.image} width="100%" height="100%" alt="image-feed">` :
+			feed = data.message
 		trendingPosts =
 			/*html*/
 			`
@@ -298,9 +298,9 @@ function displayTrending(data, appendTo, type) {
 				</div>
 			</div>`;
 	} else {
-		trendingPosts = 
-		/*html*/
-		`<div class="trending-card user" data-id="">
+		trendingPosts =
+			/*html*/
+			`<div class="trending-card user" data-id="">
 			<div class="profile-img">${data.avatar}</div>
 			<div class="info">
 				<h2> ${data.fullname}</h2>
@@ -323,7 +323,7 @@ function loadTrending(type, appendTo) {
 		// console.log(res)
 		let data = jQuery.parseJSON(res)
 		// console.log(data)
-		for(dataResuls of data){	
+		for (dataResuls of data) {
 			displayTrending(dataResuls, appendTo, type);
 		}
 	})
@@ -335,7 +335,7 @@ function toggleUserAction(removeClass, addClass0, addClass1, addClass2 = null) {
 	removeClass.find(".feed, .friend-card").remove();
 	addClass0.addClass("show-action");
 	addClass1.addClass("show-action");
-	if(addClass2 != null){
+	if (addClass2 != null) {
 		addClass2.addClass("show-action");
 	}
 }
@@ -420,14 +420,14 @@ if (typeof PAGE != "undefined") {
 
 	} else if (PAGE == "trending") {
 		loadTrending('users', $(".trending-users-container"));
-		
+
 		$('.trending-users').click(() => loadTrending('users', $(".trending-users-container")));
 		$(".trending-users").click(() => toggleUserAction(
 			$(".trending-users-container"),
 			$(".trending-posts-container"),
 			$(".trending-images-container")
 		));
-		
+
 		$('.trending-post').click(() => loadTrending('posts', $(".trending-posts-container")));
 		$(".trending-post").click(() => toggleUserAction(
 			$(".trending-posts-container"),
@@ -510,10 +510,10 @@ $('body').on("click", ".new-comment", function () {
 		.find("#arrow-icon")
 		.empty()
 		.append(`<p class="down-arrow"><i class="fas fa-level-down-alt"></i></p>`);
-		
-		// comment function
+
+	// comment function
 })
-	
+
 // like system
 $("body").on("click", ".fa-heart", function () {
 	let post = $(this).closest('.feed');
@@ -635,27 +635,51 @@ $(".user-container, #friends-container, .users-followers, .users-following").on(
 	}
 })
 
-// // feed display
+// feed display
 let text = ''
-$('#new-feed').keypress((e)=>{
-	// console.log(e.key)
-	// console.log($("#display-feed").text())
-	text += e.key
-	if(e.key == "#" || e.which == 51){
-		// console.log(e.target.selectionStart)
-		console.log(text)
-		if(e.key != ' ' || e.which != 32){
-			text += e.key.replace('#', `<span style="color: #bb60d5;">gds</span>`)
-			// text += e.key.replace('#', `<span style="color: #bb60d5;">gds</span>`)
-			
-			
+let cls = ''
+const accepted_chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω', 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω', 'ς', '#', '@', '!', '$', '€', '%', ',', '.', '/', '?', ';', ':', '_', '-', '+', '*', '"', "'", '~', '(', ')', '[', ']', '<', '>', '{', '}', ' ', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+// e.key.search(accepted_chars)
+// const accepted_chars = /[A-Z]/g;
+$('#new-feed, #display-feed').on('paste copy cut', (e) => {
+	e.preventDefault()
+})
+$('#new-feed').on('keydown', (e) => {
+	switch (e.key) {
+		case "#":
+			if (accepted_chars.includes(e.key)) {
+				cls = 'hastag';
+				text += `<span class='${cls}'>${e.key}</span>`;
+				break;
 			}
-		}else if(e.key == "@" || e.which == 50){
-			alert("@")
-		} else {
-			
-			// text.join(`<span>${e.key}</span>`)
-		}
-		$("#display-feed").text(text)
-		// console.log(text)
+			break;
+		case '@':
+			if (accepted_chars.includes(e.key)) {
+				cls = 'mention';
+				text += `<span class='${cls}'>${e.key}</span>`;
+				break;
+			}
+			break;
+		case ' ':
+			if (accepted_chars.includes(e.key)) {
+				cls = '';
+				text += `<span class='${cls}'>${e.key}</span>`;
+				break;
+			}
+			break;
+		case 'Backspace':
+			text = `<span class='${cls}'>${$('#new-feed').val().slice(0,-1)}</sp>`;
+			if (e.key == "#") {
+				cls = ''
+				text = `<span class='${cls}'>${$('#new-feed').val().slice(0,-1)}</sp>`;
+			}
+			break;
+		default:
+			if (accepted_chars.includes(e.key)) {
+				text += `<span class='${cls}'>${e.key}</span>`;
+			}
+	}
+
+	$("#display-feed").html(text)
 })

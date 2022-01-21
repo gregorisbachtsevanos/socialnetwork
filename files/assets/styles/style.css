@@ -995,24 +995,25 @@ body {
 
 #feed-container #textarea-container #feedBtn-controller {
   width: 100%;
+  height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 2%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 1%;
 }
 
 #feed-container #textarea-container #feedBtn-controller #media {
-  width: 20%;
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-#feed-container #textarea-container #feedBtn-controller #media .fas {
-  width: 30%;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+#feed-container #textarea-container #feedBtn-controller #media svg {
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
@@ -1026,6 +1027,7 @@ body {
 
 #feed-container #textarea-container #feedBtn-controller #feed-btn {
   width: 10%;
+  height: 20px;
   border-radius: 10px;
   border: 1px solid var(--secondary-text-color);
   background-color: var(--secondary-text-color);
@@ -1303,6 +1305,16 @@ body {
 
 .not-liked {
   color: var(--main-text-color);
+}
+
+.hastag {
+  color: var(--secondary-text-color);
+  font-style: italic;
+}
+
+.mention {
+  color: var(--secondary-text-color);
+  font-weight: bold;
 }
 
 .trending-btns-container {
@@ -1953,14 +1965,14 @@ body {
   cursor: pointer;
 }
 
-#nav-container #nav-items #nav-item a {
+#nav-container #nav-items #nav-item svg {
   color: var(--main-text-color);
   -webkit-transition: .3s;
   transition: .3s;
 }
 
-#nav-container #nav-items #nav-item a:hover {
-  color: var(--secondary-text-color);
+#nav-container #nav-items #nav-item svg:hover {
+  fill: var(--secondary-text-color);
 }
 
 #nav-container #nav-items #nav-item #user {

@@ -15,9 +15,15 @@ loadHeader($title)?>
 			</div>
 			<div id="feedBtn-controller">
 				<div id="media">
-					<span class='fas fa-image'></span>
-					<span class='fas fa-video'></span>
-					<span class='fas fa-microphone'></span>
+					<span>
+						<?php require_once $appFiles."/assets/img/svg/picture.svg" ?>
+					</span>
+					<span>
+						<?php require_once $appFiles."/assets/img/svg/film.svg" ?>
+					</span>
+					<span>
+						<?php require_once $appFiles."/assets/img/svg/microphone.svg" ?>
+					</span>
 				</div>
 				<button id="feed-btn" type="submit" name="submit" aria-label="submit-feed"><i class="fa fa-paper-plane-o"></i></button>
 			</div>
