@@ -54,7 +54,7 @@
             </a>
         </li>
         <li id='nav-item'>
-            <a href="#"
+            <a href="<?php echo $appURL; ?>chat"
                 aria-label="chat">
                 <!-- <i class='fas fa-comments'
                     style='font-size:35px'>

@@ -669,11 +669,10 @@ $('#new-feed').on('keydown', (e) => {
 			}
 			break;
 		case 'Backspace':
-			text = `<span class='${cls}'>${$('#new-feed').val().slice(0,-1)}</sp>`;
-			if (e.key == "#") {
-				cls = ''
-				text = `<span class='${cls}'>${$('#new-feed').val().slice(0,-1)}</sp>`;
-			}
+			e.target.selectionStart == $('#new-feed').val().length
+				? text = `<span class='${cls}'>${$('#new-feed').val().slice(0, -1)}</sp>`
+				: e.preventDefault();
+			
 			break;
 		default:
 			if (accepted_chars.includes(e.key)) {

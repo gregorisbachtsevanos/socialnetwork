@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:sass": "node-sass files/assets/styles/style.scss files/assets/styles/style.css -w"
+    "compile:sass": "node-sass files/assets/styles/style.scss files/assets/styles/style.css -w",
+    "chatServer": "nodemon js/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,10 @@
   "homepage": "https://github.com/GregorisB/socialnetwork#readme",
   "description": "",
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "socket.io": "^4.4.1"
   }
 }
