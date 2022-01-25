@@ -68,7 +68,7 @@ body {
 }
 
 #chat-container #conversations .conversation {
-  width: 100%;
+  width: 90%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
