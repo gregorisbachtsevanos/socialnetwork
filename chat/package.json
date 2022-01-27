@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:sass": "node-sass files/assets/styles/style.scss files/assets/styles/style.css -w",
-    "chatServer": "nodemon js/server.js"
+    "compile:sass": "node-sass ../files/assets/styles/style.scss files/assets/styles/style.css -w",
+    "chat:system": "nodemon js/server.js"
   },
   "repository": {
     "type": "git",
