@@ -38,18 +38,18 @@
                 <?php require_once $appFiles."/assets/img/svg/search.svg" ?>
             </a>
         </li>
-        <li id='nav-item'>
+        <!-- <li id='nav-item'>
             <a href="#" aria-label="notification">
                 <!-- <i class='fas fa-bell' style='font-size:35px'></i> -->
-                <?php require_once $appFiles."/assets/img/svg/bell.svg" ?>
-            </a>
-        </li>
-        <li id='nav-item'>
-            <a href="<?php echo $appURL; ?>chat" aria-label="chat">
+                <?php// require_once $appFiles."/assets/img/svg/bell.svg" ?>
+            <!-- </a> -->
+        <!-- </li> -->
+        <!-- <li id='nav-item'>
+            <a href="<?php //echo $appURL; ?>chat" aria-label="chat">
                 <!-- <i class='fas fa-comments' style='font-size:35px'></i> -->
-                <?php require_once $appFiles."/assets/img/svg/envelope.svg" ?>
-            </a>
-        </li>
+                <?php// require_once $appFiles."/assets/img/svg/envelope.svg" ?>
+            <!-- </a> -->
+        <!-- </li>  -->
         <li id='nav-item'>
             <a href="<?php echo $appURL; ?>trending" aria-label="trending">
                 <!-- <i class='fas fa-compass' style='font-size:35px'></i> -->
