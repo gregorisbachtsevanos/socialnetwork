@@ -1,0 +1,330 @@
+#feed-container {
+    width: 50%;
+    margin: 5% auto;
+    padding-bottom: 2%;
+
+    #textarea-container {
+        width: 70%;
+        margin: auto;
+
+        textarea {
+            width: 100%;
+            // border: 2px solid rgba(30, 31, 32, 1);
+            // border-radius: 10px;
+            border: none;
+            background-color: transparent;
+            color: transparent;
+            padding: 1%;
+            outline: none;
+            resize:none;
+            caret-color: var(--secondary-text-color);
+        }
+
+        #display-feed{
+            width: 35%;
+            top: 9.5%;
+            height: 131px;
+            font-weight: 400;
+            border: 2px solid rgba(30, 31, 32, 1);
+            border-radius: 10px;
+            padding: .3%;
+            color: var(--main-text-color);
+            position: absolute;
+            font-size: .8rem;
+            background-color: transparent;
+            z-index: -50;
+        }
+
+        #feedBtn-controller {
+            width: 100%;
+            height: auto;
+            display: flex;
+            margin-top: 2%;
+            justify-content: space-between;
+
+            #media {
+                width: 30%;
+                display: flex;
+
+                svg {
+                    width: 100%;
+                    flex-flow: column;
+                    justify-content: space-between;
+                    font-size: 1rem;
+                    color: var(--secondary-text-color);
+                }
+            }
+
+
+            #feed-btn {
+                width: 10%;
+                height: 20px;
+                border-radius: 10px;
+                border: 1px solid var(--secondary-text-color);
+                background-color: var(--secondary-text-color);
+                color: rgba(51,51,51,1);
+            }
+
+        } //end feedBtn-controller
+
+    } //end textarea-container
+
+    #feed-controller {
+        width: 100%;
+        margin-top: 7%;
+
+        .feed {
+            border-radius: 10px;
+            padding: 1.5%;
+            margin: 2% 0;
+            background-color: rgba(30, 31, 32, .8);
+
+            .feed-info {
+
+                .post-header {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 1%;
+
+                    a {
+                        text-decoration: none;
+                        width: 100%;
+
+                        .users-info{
+                            display: flex;
+                            align-items: center;
+
+                            .users-avatar{
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 100px;
+                                border: 2px solid var(--secondary-text-color);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: var(--secondary-bg-color);
+                                background-color: var(--secondary-text-color);
+                                margin-right: 1%;
+
+                                img{
+                                    border-radius: 100px;
+                                }
+                                .user-icon{
+                                    font-size: 1.7rem;
+                                    font-weight: 700;
+                                }
+                            }
+        
+                            h4 {
+                                color: var(--main-text-color);
+                                span {
+    
+                                    color: var(--secondary-text-color);
+                                    font-size: .8rem;
+                                }
+    
+                            }
+                        } 
+                    } // a
+                    
+                }  // post-header
+                
+                .date {
+                    font-size: .8rem;
+                }
+
+            } //end feed-info
+
+            hr {
+                border: none;
+                border-top: 1px solid rgba(51, 51, 51, 1);
+                margin: 1% 0;
+            }
+
+            .feed-message {
+
+                .post-msg {
+                    padding: 1% 0;
+                    cursor: pointer;
+                }
+                
+                .reactions{
+                        display: flex;
+                        width: 100%;
+                        
+                        .fa-heart {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                            height: 1%;
+                            width: 5%;
+                        }
+                        
+                        .comment-body {
+                            width: 90%;
+
+                            .fa-comment {
+                            font-size: 1.1rem;
+                            font-weight: 100;
+                        }
+
+                        .comment-info {
+                            width: 100%;
+                            border-radius: 10px;
+                            padding: 1%;
+                            margin-top: 1%;
+                            display: none;
+
+                            .post-comments {
+                                font-size: 1rem;
+
+                                .comment{
+                                    width: 100%;
+                                    margin: auto;
+                                    margin: 2% auto;
+                                    font-weight: 200;
+                                    font-size: var(--middle-text-size);
+                    
+                                    .comment-header{
+                                        display: flex;
+                                        justify-content: space-between;
+                    
+                                        a{
+                                            width: 60%;
+                                            text-decoration: none;
+                                            display: flex;
+                    
+                                            h4{
+                                                width: 100%;
+                                                display: flex;
+                                                align-items: center;
+                                                padding-bottom: 1.5%;
+                                                color: #d4d4d4;
+                    
+                                                span{
+                                                    color: var(--secondary-text-color);
+                                                    font-size: .8rem;
+                                                }
+                                                .users-avatar{
+                                                    height: 50px;
+                                                    width: 50px;
+                                                    border-radius: 100px;
+                                                    border: 2px solid var(--secondary-text-color);
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    background-color: var(--secondary-text-color);
+                                                    margin-right: 1%;
+                                                    
+                                                    .user-icon{
+                                                        font-size: 1.7rem;
+                                                        color: var(--secondary-bg-color);
+                                                    }
+                                                    img{
+                                                        border-radius: 100px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                    
+                                    }
+                                    small{
+                                        font-size: var(--small-text-size);
+                                        font-weight: 300;
+                                    }
+                    
+                                    p{
+                                        padding: .5% 0;
+                                    }
+                    
+                                    hr{
+                                        border: none;
+                                        border-top: 1px solid #333333;
+                                        margin: 1% 0;
+                                    }
+                                } // end comment
+                            }
+
+                            input[type=text] {
+                                background-color: transparent;
+                                border: none;
+                                outline: none;
+                                color: var(--secondary-text-color);
+                                width: 90%;
+                                font-weight: 300;
+                            }
+
+                            .new-comment {
+                                width: 10%;
+                                padding: 0 1%;
+                                font-size: .8rem;
+                                cursor: pointer;
+                                font-weight: 400;
+                                color: #1e1f20;
+                                border-radius: 10px;
+                                border: 1px solid var(--secondary-text-color);
+                                background-color: var(--secondary-text-color);
+                            }
+
+                        } // comments-container
+
+                    } //end comment-body
+                }
+
+            } //end feed-message
+
+        } //end feed
+        
+    } //end feed-controller
+    
+} //feed-container
+#loading-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .load-posts{
+        width: auto;
+        padding: 1% 3%;
+        margin: 2% auto;
+        border: none;
+        font-weight: 400;
+        font-style: italic;
+        background-color: transparent;
+        color: var(--secondary-text-color);
+        border-top: 1px solid var(--secondary-text-color);
+        border-bottom: 1px solid var(--secondary-text-color);
+    }
+
+    .loader{
+        display: flex;
+        justify-content: center;
+        display: none;
+        padding: 1% 3%;
+    }
+
+    // #no-more-posts{
+    //     margin-top: 2%;
+    //     // padding-bottom: 3%;
+    // }
+
+}
+
+.liked {
+    color: var(--secondary-text-color);
+}
+
+.not-liked {
+    color: var(--main-text-color);
+}
+
+.hastag{
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.mention{
+    color: var(--secondary-text-color);
+    font-weight: bold;
+}

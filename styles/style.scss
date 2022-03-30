@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root{
     --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
     --secondary-bg-color: rgba(30, 31, 32, 1);
     --main-text-color : #d6d6d6;
-    --secondary-text-color : #fc6d26be;
+    --secondary-text-color : #ff681d;
     --small-text-size: .6rem;
     --middle-text-size: .9rem;
+}
+@font-face{
+    font-display: swap;
+    font-family: 'Roboto', sans-serif;
+    src: local('Roboto Regular'), local('Roboto-Regular'), url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap") format('woff2');
 }
 
 *{
@@ -24,8 +28,11 @@ body{
     background: var(--main-bg-color);
 }
 
+.fas{
+    cursor: pointer;
+}
 .fa-trash-alt:hover {
-    color: #fc6d26be!important
+    color: #f85300 !important
 }
 
 ::-webkit-scrollbar{
@@ -39,9 +46,10 @@ body{
   }
 
 @import "import/edit";
-@import "import/index";
+// @import "import/index";
 @import "import/friends";
 @import "import/profile";
 @import "import/homepage";
 @import "import/navigation";
+@import "import/login-register";
 @import "import/responsiveness";

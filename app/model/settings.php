@@ -1,9 +1,26 @@
 <?php
 
-$dbhost = 'localhost'; //Usually localhost
-$dbuser = 'root';      //MySQL User
-$dbpass = '';          //User's Password
-$dbname = 'socialnetwork';   //Name of the database
+// if(!defined('social')){
+//     die("Access denied");
+// }
+
+$dbhost = 'localhost'; // Usually localhost
+$dbuser = 'root';      // MySQL User
+$dbpass = '';          // User's Password
+$dbname = 'socialnetwork';   // Name of the database
+$appURL = 'http://localhost/socialnetwork/public/'; // base domain configuration
+$appName = 'social'; //appName configuration
+$appControllers = '../app/controllers/'; //app controllers folder
+$appView = '../app/view/'; //app view folder
+$appModel = '../app/model/'; //app view folder
+$appAjax = '../app/controllers/ajax/'; //app ajax controllers folder
+$appAvatars = '../files/assets/img/avatars/'; // app avatars folder
+$appIncludes = '../public/includes/'; // app includes folder
+$appPublic = '../../public/'; // app public folder
+$cdnURL = '../files/'; // app files folder
+$appFiles = '../files/'; // app files folder
+date_default_timezone_set('Europe/Athens');
+
 
 
 class DB extends SQL{
@@ -14,7 +31,7 @@ class DB extends SQL{
         $this->pdo = new PDO($dsn, $user, $pass, $args);
     }
 
-    function column($q,$p=NULL,$k=0){
+    function column($q, $p = NULL, $k = 0){
         return($s = $this->query($q, $p)) ? $s -> fetchColumn($k) : 0;
     }
 
@@ -22,11 +39,11 @@ class DB extends SQL{
         return($s = $this->query($q, $p)) ? $s -> fetch(PDO::FETCH_OBJ) : 0;
     }
 
-    function fetch($q,$p=NULL){
-        return($s = $this->query($q,$p))?$s->fetchAll(PDO::FETCH_OBJ):0;
+    function fetch($q, $p = NULL){
+        return($s = $this->query($q,$p)) ? $s->fetchAll(PDO::FETCH_OBJ) : 0;
     }
 
-    function query($q,$p=NULL){
+    function query($q, $p = NULL){
         $s = $this->pdo -> prepare(self::$q[] = str_replace('"', $this->i, $q));
         $s -> execute($p);
         return $s;
@@ -41,37 +58,37 @@ class SQL {
         return($s = $this->query($q, $p)) ? $s -> rowCount() : 0;
     }
 
-    function select($c=0, $t, $w=0, $l=0, $o=0, $s=0){
+    function select($c = 0, $t, $w = 0, $l = 0, $o = 0, $s = 0){
         $c = $c?:'*';
         $q = "SELECT $c FROM \"$t\"";
         list($w, $p) = $this->where($w);
         if($w)$q.=" WHERE $w";
-        return array($q.($s?" ORDER BY $s":'').($l?" LIMIT $o,$l":''),$p);
+        return array($q.($s?" ORDER BY $s":'').($l?" LIMIT $o,$l":''), $p);
     }
 
-    function count($t,$w=0){
+    function count($t, $w = 0){
         list($q, $p) = $this->select('COUNT(*)', $t, $w);
         return $this->column($q, $p);
     }
 
     function insert($t, $d){
-        $q = "INSERT INTO $t (\"".implode('","',array_keys($d)).'")VALUES('.rtrim(str_repeat('?,',count($d)),',').')';
+        $q = "INSERT INTO $t (\"".implode('","',array_keys($d)).'")VALUES('.rtrim(str_repeat('?,',count($d)), ',').')';
         return $this->query($q, array_values($d)) ? $this->pdo->lastInsertId() : 0;
     }
 
-    function update($t, $d, $w=NULL){
+    function update($t, $d, $w = NULL){
         $q = "UPDATE $t SET \"".implode('"=?,"',array_keys($d)).'"=? WHERE ';
         list($a, $b) = $this->where($w);
         return(($s = $this->query($q.$a, array_merge(array_values($d), $b))) ? $s->rowCount() : NULL);
     }
 
-    function where($w=0){
+    function where($w = 0){
         $a = $s = array();
         if($w){
             foreach($w as $c => $v){
                 if(is_int($c))$s[] = $v;
                 else{
-                    $s[]="\"$c\"=?";
+                    $s[] = "\"$c\"=?";
                     $a[] = $v;
                 }
             }

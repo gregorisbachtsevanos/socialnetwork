@@ -1,23 +1,7 @@
-#welcome {
-    padding: 2%;
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-
-    p {
-        text-align: center;
-        font-size: 4rem;
-
-        span {
-            color: var(--secondary-text-color);
-        }
-    }
-} //end welcome
-
 #feed-container {
     width: 50%;
-    margin: auto;
+    margin: 5% auto;
+    padding-bottom: 2%;
 
     #textarea-container {
         width: 70%;
@@ -33,7 +17,7 @@
             outline: none;
         }
 
-        #feedBtn-controler {
+        #feedBtn-controller {
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -61,11 +45,11 @@
                 color: rgba(51,51,51,1);
             }
 
-        } //end feedBtn-controler
+        } //end feedBtn-controller
 
     } //end textarea-container
 
-    #feed-controler {
+    #feed-controller {
         width: 100%;
         margin-top: 7%;
 
@@ -80,24 +64,54 @@
                 .post-header {
                     display: flex;
                     justify-content: space-between;
+                    padding-bottom: 1%;
 
-                    h4 {
+                    a {
+                        text-decoration: none;
+                        width: 100%;
 
-                        a {
-                            text-decoration: none;
+                        .users-info{
+                            display: flex;
+                            align-items: center;
 
-                            span {
+                            .users-avatar{
+                                height: 50px;
+                                width: 50px;
+                                border-radius: 100px;
+                                border: 2px solid var(--secondary-text-color);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: var(--secondary-bg-color);
+                                background-color: var(--secondary-text-color);
+                                margin-right: 1%;
 
-                                color: var(--secondary-text-color);
-                                font-size: .8rem;
+                                img{
+                                    border-radius: 100px;
+                                }
+                                .user-icon{
+                                    font-size: 1.7rem;
+                                    font-weight: 700;
+                                }
                             }
-
-                        }
-                    }
-
-                    span {}
-
+        
+                            h4 {
+                                color: var(--main-text-color);
+                                span {
+    
+                                    color: var(--secondary-text-color);
+                                    font-size: .8rem;
+                                }
+    
+                            }
+                        } 
+                    } // a
+                    
                 }  // post-header
+                
+                .date {
+                    font-size: .8rem;
+                }
 
             } //end feed-info
 
@@ -111,11 +125,13 @@
 
                 .post-msg {
                     padding: 1% 0;
+                    color: var(--secondary-text-color);
+                    text-decoration: none;
                 }
                     .reactions{
                         display: flex;
                         width: 100%;
-                        
+
                         .fa-heart {
                             font-size: 1.1rem;
                             font-weight: 100;
@@ -141,25 +157,74 @@
                             .post-comments {
                                 font-size: 1rem;
 
-                                div {
-                                    font-weight: 100;
+                                .comment{
+                                    width: 85%;
+                                    margin: auto;
+                                    border-radius: 10px;
+                                    padding: 1.5%;
+                                    margin: 2% auto;
+                                    background-color: rgba(30, 31, 32, .4);
+                                    font-weight: 200;
                                     font-size: var(--middle-text-size);
-
-                                    h4 {
-                                        width: 100%;
+                    
+                                    .comment-header{
                                         display: flex;
                                         justify-content: space-between;
+                    
+                                        a{
+                                            width: 60%;
+                                            text-decoration: none;
+                                            display: flex;
+                    
+                                            h4{
+                                                width: 100%;
+                                                display: flex;
+                                                align-items: center;
+                                                padding-bottom: 1.5%;
+                                                color: #d4d4d4;
+                    
+                                                span{
+                                                    color: var(--secondary-text-color);
+                                                    font-size: .8rem;
+                                                }
+                                                .users-avatar{
+                                                    height: 50px;
+                                                    width: 50px;
+                                                    border-radius: 100px;
+                                                    border: 2px solid var(--secondary-text-color);
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    background-color: var(--secondary-text-color);
+                                                    margin-right: 1%;
+                                                    
+                                                    .user-icon{
+                                                        font-size: 1.7rem;
+                                                        color: var(--secondary-bg-color);
+                                                    }
+                                                    img{
+                                                        border-radius: 100px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                    
                                     }
-
-                                    small {
+                                    small{
                                         font-size: var(--small-text-size);
-                                        font-weight: 100;
+                                        font-weight: 300;
                                     }
-
-                                    p {
+                    
+                                    p{
                                         padding: .5% 0;
                                     }
-                                }
+                    
+                                    hr{
+                                        border: none;
+                                        border-top: 1px solid #333333;
+                                        margin: 1% 0;
+                                    }
+                                } // end comment
                             }
 
                             input[type=text] {
@@ -168,7 +233,7 @@
                                 outline: none;
                                 color: var(--secondary-text-color);
                                 width: 90%;
-                                font-weight: 100;
+                                font-weight: 300;
                             }
 
                             .new-comment {
@@ -191,10 +256,43 @@
             
 
         } //end feed
-
-    } //end feed-controler
-
+        
+    } //end feed-controller
+    
 } //feed-container
+#loading-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .load-posts{
+        width: auto;
+        padding: 1% 3%;
+        margin: 2% auto;
+        border: none;
+        font-weight: 400;
+        font-style: italic;
+        background-color: transparent;
+        color: var(--secondary-text-color);
+        border-top: 1px solid var(--secondary-text-color);
+        border-bottom: 1px solid var(--secondary-text-color);
+    }
+
+    .loader{
+        display: flex;
+        justify-content: center;
+        display: none;
+        padding: 1% 3%;
+    }
+
+    // #no-more-posts{
+    //     margin-top: 2%;
+    //     // padding-bottom: 3%;
+    // }
+
+}
 
 .liked {
     color: var(--secondary-text-color);

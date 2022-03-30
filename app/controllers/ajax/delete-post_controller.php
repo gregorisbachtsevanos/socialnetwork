@@ -22,7 +22,7 @@
         $params = array($row->post_id);
         $row = $db->row($sql, $params);
         $db->update('posts', array('total_comments'=>$row->total), array('id'=>$_POST["feedId"]));
-        $data =  array('total'=>$row->total);
+        $data = array('total'=>$row->total);
         echo json_encode($data);
         exit();
     }

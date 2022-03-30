@@ -1,0 +1,93 @@
+.edit-container{
+    width: 100%;
+    margin: 2% 0;
+
+    #go-back{
+        width: 70%;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+
+            a{
+                cursor: pointer;
+                text-decoration: none;
+                color: var(--secondary-text-color);
+            }
+            p{
+                width: 35%;
+                padding: 2%;
+                border-radius: 10px;
+                color: var(--main-text-color);
+            }
+            
+            #error-msg{
+                background-color:  rgba(128, 0, 0, 0.808);
+                border: 2px solid rgb(168, 20, 20);
+        
+            }
+            #success-msg{
+                background-color:  rgba(39, 117, 39, 0.808);
+                border: 2px solid rgb(39, 117, 39);
+        
+            }
+            #no-changes-msg{
+                background-color:  rgba(117, 83, 39, 0.808);
+                border: 2px solid rgb(117, 83, 39);
+        
+            }
+    }
+    
+    .info-items{
+        width: 40%;
+        margin: auto;
+        
+        // #message{
+            // padding-top: 3%;
+
+        
+        // }
+        
+        .input-items{
+            width: 100%;
+            margin: auto;
+            
+            .input-item{
+                width: 100%;
+                margin-top: 2%;
+
+                label{
+                    display: block;
+                    margin: .5% auto;
+                }
+                
+                textarea,
+                input{
+                    background-color:  rgba(51,51,51,1);
+                    width: 100%;
+                    padding: 2%;
+                    border: 2px solid rgb(61, 61, 61);
+                    border-radius: 10px;
+                    color: var(--main-text-color);
+                }
+
+                input[type="submit"]{
+                    background-color: var(--secondary-text-color);
+                    width: 20%;
+                    border: none;
+                    color: var(--secondary-bg-color);
+                }
+                
+            } //end input-item
+        } // end input-item
+
+        #danger{
+            margin: 5% 0;
+            color: rgb(150,50,50);
+
+            hr{
+                border: 1px solid rgb(150,50,50);
+            }
+        }
+    } // end info-items
+
+} // end edit container

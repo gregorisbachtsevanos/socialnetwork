@@ -1,0 +1,59 @@
+:root{
+    --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
+    --background-color : rgb(12, 12, 12);
+    --secondary-bg-color: rgba(30, 31, 32, 1);
+    --main-text-color : #d6d6d6;
+    --secondary-text-color : #ff681d;
+    --secondary-text-color-opacity : rgb(255, 104, 29, .7);
+    // --secondary-text-color : #cc4a7c;
+    --small-text-size: .6rem;
+    --middle-text-size: .9rem;
+    // background-color: rgb(156, 33, 33);
+}
+@font-face{
+    font-display: swap;
+    font-family: 'Roboto', sans-serif;
+    src: local('Roboto Regular'), local('Roboto-Regular'), url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap") format('woff2');
+}
+
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    color: var(--main-text-color);
+    // background: var(--main-bg-color);
+    background: var(--background-color);
+}
+
+.fa-trash-alt:hover {
+    color: #f85300 !important
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+    height: 100%;
+    background-color: rgba(51,51,51,1);
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-text-color);
+    border-radius: 100px;
+}
+
+@import "import/chat";
+@import "import/feed";
+@import "import/edit";
+@import "import/index";
+@import "import/friends";
+@import "import/profile";
+@import "import/homepage";
+@import "import/trending";
+@import "import/navigation";
+@import "import/login-register";
+@import "import/responsiveness";
