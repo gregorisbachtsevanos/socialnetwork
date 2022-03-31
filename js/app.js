@@ -544,34 +544,36 @@ $("body").on("click", ".fa-heart", function () {
 });
 
 // friends card
-$.post("../app/controllers/ajax/load-friends_controller.php", {
-		user: CURRENT_USER
-	},
-	function (res) {
-		let data = jQuery.parseJSON(res)
+if(typeof CURRENT_USER != 'undefined'){
+	$.post("../app/controllers/ajax/load-friends_controller.php", {
+			user: CURRENT_USER
+		},
+		function (res) {
+			let data = jQuery.parseJSON(res)
 
-		$('.friends-controller').append(
-			/*html*/
-			`<div class="friend-card user" data-id="">
-				<div class="profile-img">${data.avatar}</div>
-				<div class="info">
-					<h2> ${data.fullname}<a href="../public/${data.username}">@${data.username}</a></h2>
-				</div>
-				<div class="btns">
-					<button class="follow-btn">unfollow</button>
-					<button>Message</button>
-				</div>
-			</div>`
-		);
-	}
-)
+			$('.friends-controller').append(
+				/*html*/
+				`<div class="friend-card user" data-id="">
+					<div class="profile-img">${data.avatar}</div>
+					<div class="info">
+						<h2> ${data.fullname}<a href="../public/${data.username}">@${data.username}</a></h2>
+					</div>
+					<div class="btns">
+						<button class="follow-btn">unfollow</button>
+						<button>Message</button>
+					</div>
+				</div>`
+			);
+		}
+	)
+}
 
 // toggle search form
-$(".fa-search").click(() => $(".search, .search-background").animate({
+$(".form-search").click(() => $(".search, .search-background").animate({
 	left: '0'
 }, "slow"));
 
-// search animation
+// search close animation
 $(".fa-times").click(function () {
 	$(".search, .search-background").animate({
 		left: '-30%'
@@ -682,3 +684,126 @@ $('#new-feed').on('keydown', (e) => {
 
 	$("#display-feed").html(text)
 })
+
+
+
+particlesJS('particles-js',
+  
+  {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#fdb9ef"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#cc4a7c"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#cc4a7c",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 400,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 50,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true,
+    "config_demo": {
+      "hide_card": false,
+      "background_color": "#cc4a7c",
+      "background_image": "",
+      "background_position": "50% 50%",
+      "background_repeat": "no-repeat",
+      "background_size": "cover"
+    }
+  }
+
+);

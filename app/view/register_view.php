@@ -4,8 +4,8 @@ if(!defined('social')){
 }
 
 loadIndexHeader($title, $styles, $err)?>
-<div class="container signup "> <!-- class hide -->
-	<div class="form">
+<div class="container" id="particles-js" style="height:100vh;width:100vw;background-color:rgba(25,25,25,1);"> <!-- class hide -->
+	<div class="form" style="z-index:10">
 
 		<form action="<?php echo $appURL; ?>register" method="post">
 			<legend>Sign Up</legend>
@@ -39,7 +39,8 @@ loadIndexHeader($title, $styles, $err)?>
 			</div>
 			<?php echo $error ?>
 			<br>
-			<a href="<?php echo $appURL; ?>login" id="member">Are you a member already? Login.</a>
+			<a href="<?php echo $appURL; ?>login" id="member" style="color: #cc4a7c;">Are you a member already? Login.</a> or 
+			<a href="<?php echo $appURL; ?>" style="color: #cc4a7c;">Go Back</a>
 
 		</form>
 

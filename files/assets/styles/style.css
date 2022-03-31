@@ -3,8 +3,8 @@
   --background-color: rgb(12, 12, 12);
   --secondary-bg-color: rgba(30, 31, 32, 1);
   --main-text-color: #d6d6d6;
-  --secondary-text-color: #ff681d;
-  --secondary-text-color-opacity: rgb(255, 104, 29, .7);
+  --secondary-text-color: #cc4a7c;
+  --secondary-text-color-opacity: rgba(204, 74, 124, 0.7);
   --small-text-size: .6rem;
   --middle-text-size: .9rem;
 }
@@ -32,7 +32,7 @@ body {
 }
 
 .fa-trash-alt:hover {
-  color: #f85300 !important;
+  color: #cc4a7c !important;
 }
 
 ::-webkit-scrollbar {
@@ -2328,6 +2328,7 @@ body {
 
 .container {
   width: 100%;
+  margin-top: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2392,7 +2393,7 @@ body {
 }
 
 .container .form form #submit-btn .submit:hover {
-  background-color: #1e1f20;
+  background-color: #fefeff;
   color: #dadada;
   -webkit-transition: .6s;
   transition: .6s;
@@ -2400,13 +2401,12 @@ body {
 
 .container .form form #new-account {
   width: auto;
-  color: #fc6d26be;
-  color: #fc6d26be;
+  color: #cc4a7c;
 }
 
 .container .form form #member {
   width: auto;
-  color: #fc6d26be;
+  color: #cc4a7c;
 }
 
 .login {
@@ -2415,8 +2415,6 @@ body {
 }
 
 .signup {
-  position: absolute;
-  top: 0;
   -webkit-transition: 1.3s;
   transition: 1.3s;
 }

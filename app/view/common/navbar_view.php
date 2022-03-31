@@ -34,8 +34,10 @@
         </li>
         <li id='nav-item'>
             <a href="#" aria-label="search">
-                <!-- <i class='fas fa-search' style='font-size:35px'></i> -->
-                <?php require_once $appFiles."/assets/img/svg/search.svg" ?>
+                <i class='form-search'>
+
+                    <?php require_once $appFiles."/assets/img/svg/search.svg" ?>
+                </i>
             </a>
         </li>
         <!-- <li id='nav-item'>

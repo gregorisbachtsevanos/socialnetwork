@@ -1,8 +1,8 @@
 :root {
-  --main-bg-color: radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(30,31,32,1) 80%);
+  --main-bg-color: radial-gradient(circle, rgba(37,37,37,1) 0%, rgba(30,31,32,1) 80%);
   --secondary-bg-color: rgba(30, 31, 32, 1);
   --main-text-color: #d6d6d6;
-  --secondary-text-color: #ff681d;
+  --secondary-text-color: #cc4a7c;
   --small-text-size: .6rem;
   --middle-text-size: .9rem;
 }
@@ -30,7 +30,7 @@ body {
 }
 
 .fa-trash-alt:hover {
-  color: #f85300 !important;
+  color: #cc4a7c !important;
 }
 
 ::-webkit-scrollbar {
