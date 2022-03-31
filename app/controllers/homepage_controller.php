@@ -4,7 +4,7 @@
 		die("Access denied");
 	}
 		
-	$title = 'homepage';
+	$title = 'Homepage';
 
 	if(isset($user)){
 		include($appView."homepage_view.php");

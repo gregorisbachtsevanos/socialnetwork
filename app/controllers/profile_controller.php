@@ -3,10 +3,11 @@ if(!defined("social")){
 	die("Access denied");
 }
 
-	$title = $controllerName;
+	$title = ucwords($controllerName);
 	$username = getURL($requestUrl, $appURL);
 
-	$sql = "SELECT * FROM `users` WHERE username = ?";
+	        $sql = "SELECT * FROM users INNER JOIN users_login ON users_login.user_id = users.id INNER JOIN users_extra_info ON users_extra_info.user_id = users.id WHERE users.username = ?";
+
 	$params = array($username[0]);
 	$row = $db -> row($sql, $params);
 
@@ -31,7 +32,7 @@ if(!defined("social")){
 	$userCheck = getURL($requestUrl, $appURL);
 	if(isset($cParams[0]) && $cParams[0] == 'edit'){
 		
-		$title = 'edit';
+		$title = 'Edit';
 		if (isset($_POST['submit'])){
 			$msg = "No changes have been made";
 			$success = array();

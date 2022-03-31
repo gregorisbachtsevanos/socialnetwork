@@ -3,7 +3,7 @@
 		die('Access denied');
 	}
 		
-		$title = 'register';
+		$title = 'Register';
 		$styles = '';
 		$error = '';
 		$SIGN_UP = 1;

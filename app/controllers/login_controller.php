@@ -3,7 +3,7 @@ if (!defined('social')) {
 	die('Access denied');
 }
 
-	$title = 'login';
+	$title = 'Login';
 	$styles = '';
 	$error = '';
 

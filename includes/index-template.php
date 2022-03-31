@@ -17,7 +17,7 @@ function loadIndexHeader($title, $err = null){
 		<html lang="el">
 		<head>
 			<meta charset="utf-8">
-			<title>'.$title.'</title>
+			<title>'.ucwords($title).'</title>
 			<meta name="description" content="Social network">
 			<link rel="stylesheet" href="../styles/style.css">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">

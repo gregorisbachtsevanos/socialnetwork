@@ -4,7 +4,7 @@
 		die("Access deniad");
 	}
 	
-	$title = $controllerName;
+	$title = ucwords($controllerName);
 	include($appView."friends_view.php");
 
 ?>

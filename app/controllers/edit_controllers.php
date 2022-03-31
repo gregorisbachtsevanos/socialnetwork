@@ -3,7 +3,7 @@
         die("Access denied");
     // session_start();
     // require_once "../model/settings.php";
-    $title = "edit";
+    $title = "Edit";
     
     if (isset($_POST['submit'])){
         $success = array();

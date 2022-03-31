@@ -4,6 +4,6 @@
 		die("Access denied");
 	}
 
-	$title	= $controllerName;
+	$title	= substr(ucwords($controllerName),0,1);
 	include($appView."chat_view.php");?>
 	

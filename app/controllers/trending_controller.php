@@ -4,7 +4,7 @@ if(!defined("social")){
 	die("Access denied");
 }
 
-$title = $controllerName;
+$title = ucwords($controllerName);
 
 
 
