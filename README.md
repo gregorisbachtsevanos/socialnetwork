@@ -37,8 +37,7 @@ This project is built using the following technologies:
 - jQuery
 - SCSS
 - Node.js (for real-time chat functionality)
-- MySQL (or another suitable database system)
-
+- MySQL
 ## Getting Started
 
 Follow these steps to get started with the Social Network App.
@@ -50,7 +49,7 @@ Before you begin, ensure you have the following installed:
 - Web server (e.g., Apache)
 - PHP (with necessary extensions)
 - Node.js and npm
-- MySQL (or another suitable database system)
+- MySQL
 
 ### Installation
 
